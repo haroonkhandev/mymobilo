@@ -3,6 +3,10 @@
   <head>
     <title>WmdSolutions</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,7 +15,17 @@
   </head>
 
   <body>
-    <%= render partial: "shared/navbar" %>
+    <%= render partial: "shared/header" %>
     <%= yield %>
+    <%= render partial: "shared/footer" %>
   </body>
 </html>
+
+
+<!-- jQuery Plugins -->
+<script src="/assets/jquery.min.js"></script>
+<script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/slick.min.js"></script>
+<script src="/assets/nouislider.min.js"></script>
+<script src="/assets/jquery.zoom.min.js"></script>
+<script src="/assets/main.js"></script>
