@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  2g: MyString
+  3g: MyString
+  4g: MyString
+  5g: MyString
+  sub_category: one
+
+two:
+  2g: MyString
+  3g: MyString
+  4g: MyString
+  5g: MyString
+  sub_category: two

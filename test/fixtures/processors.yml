@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cpu: MyString
+  chipset: MyString
+  gpu: MyString
+  sub_category: one
+
+two:
+  cpu: MyString
+  chipset: MyString
+  gpu: MyString
+  sub_category: two

@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sensors: MyString
+  audio: MyString
+  speaker: MyString
+  browser: MyString
+  messaging: MyString
+  games: MyString
+  torch: MyString
+  extra: MyString
+
+two:
+  sensors: MyString
+  audio: MyString
+  speaker: MyString
+  browser: MyString
+  messaging: MyString
+  games: MyString
+  torch: MyString
+  extra: MyString

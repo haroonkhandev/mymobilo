@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone: MyString
+  usb_cable: MyString
+  charger: MyString
+  sim_ejector: MyString
+  guide: MyString
+  protective_case: MyString
+  warranty_card: MyString
+  safety_guide: MyString
+
+two:
+  phone: MyString
+  usb_cable: MyString
+  charger: MyString
+  sim_ejector: MyString
+  guide: MyString
+  protective_case: MyString
+  warranty_card: MyString
+  safety_guide: MyString

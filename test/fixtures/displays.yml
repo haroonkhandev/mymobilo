@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  technology: MyString
+  size: MyString
+  resolution: MyString
+  extra_features: MyString
+  model_id: one
+  specification_id: one
+
+two:
+  technology: MyString
+  size: MyString
+  resolution: MyString
+  extra_features: MyString
+  model_id: two
+  specification_id: two
