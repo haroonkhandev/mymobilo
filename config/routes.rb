@@ -4,6 +4,10 @@ Rails.application.routes.draw do
         sessions: 'users/sessions'
       }
   root 'main#index'
+  get 'main/product'
+  get 'main/store'
+  get 'main/checkout'
+  get 'main/sub_category'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
