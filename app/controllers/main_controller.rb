@@ -3,7 +3,11 @@ class MainController < ApplicationController
 
   def product; end
 
-  def store; end
+  def store
+    @categories = Category.all
+  end
 
   def checkout; end
+
+  def sub_category; end
 end
