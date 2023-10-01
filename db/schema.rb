@@ -176,11 +176,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_164455) do
     t.string "description"
     t.string "pictures"
     t.string "price"
-    t.bigint "category_id", null: false
     t.bigint "sub_category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
   end
 
@@ -232,7 +230,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_164455) do
   add_foreign_key "memories", "specifications"
   add_foreign_key "processors", "products"
   add_foreign_key "processors", "specifications"
-  add_foreign_key "products", "categories"
   add_foreign_key "products", "sub_categories"
   add_foreign_key "specifications", "products"
   add_foreign_key "sub_categories", "categories"

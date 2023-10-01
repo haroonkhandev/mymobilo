@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'specifications/index'
+  get 'specifications/show'
+  get 'sub_categories/index'
+  get 'sub_categories/show'
+  get 'categories/index'
+  get 'categories/show'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
         sessions: 'users/sessions'
@@ -12,4 +18,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :products
 end
