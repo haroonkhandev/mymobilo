@@ -1,29 +1,103 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<script>
+  // Render blocking JS:
+  if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+</script>
+<!-- Page content -->
+<main>
+  <section class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center g-0 min-vh-100">
+      <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+        <!-- Card -->
+        <div class="card shadow">
+          <!-- Card body -->
+          <div class="card-body p-6">
+            <div class="mb-4">
+              <a href="<%= root_path %>"><img src="/assets/logo-icon.svg" class="mb-4" alt="logo"></a>
+              <h1 class="mb-1 fw-bold">Sign up</h1>
+              <span>Already have an account?
+                <a href="<%= new_user_session_path %>" class="ms-1">Sign in</a></span>
+            </div>
+            <!-- Form -->
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+                <!-- Username -->
+              <!-- <div class="mb-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" id="username" class="form-control" name="username" placeholder="User Name"
+                  required>
+              </div> -->
+                <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <!-- <input type="email" id="email" class="form-control" name="email" placeholder="Email address here"
+                  required> -->
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder: "Email address here", required: true %>
+              </div>
+                <!-- Password -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
+                  required> -->
+                <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"**************", required: true %>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password Confirmation</label>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
+                  required> -->
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"**************", required: true %>
+              </div>
+                <!-- Checkbox -->
+              <div class="mb-3">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="agreeCheck">
+                  <label class="form-check-label" for="agreeCheck"><span>I agree to the <a href="terms-condition-page.html">Terms of
+                        Service </a>and
+                      <a href="terms-condition-page.html">Privacy Policy.</a></span></label>
+                </div>
+              </div>
+              <div>
+                  <!-- Button -->
+                <div class="d-grid">
+                  <%= f.submit "Sign up", type:"submit", class:"btn btn-primary" %>
+                </div>
+              </div>
+              <hr class="my-4">
+              <div class="mt-4 text-center">
+                <!--Facebook-->
+                <a href="#" class="btn-social btn-social-outline btn-facebook">
+                  <i class="mdi mdi-facebook fs-4"></i>
+                </a>
+                <!--Twitter-->
+                <a href="#" class="btn-social btn-social-outline btn-twitter">
+                  <i class="mdi mdi-twitter fs-4"></i>
+                </a>
+                <!--LinkedIn-->
+                <a href="#" class="btn-social btn-social-outline btn-linkedin">
+                  <i class="mdi mdi-linkedin"></i>
+                </a>
+                <!--GitHub-->
+                <a href="#" class="btn-social btn-social-outline btn-github">
+                  <i class="mdi mdi-github"></i>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<%#= render "devise/shared/links" %>
+  <!-- Scripts -->
+  <!-- Libs JS -->
+<script src="/assets/jquery.min.js"></script>
+<script src="/assets/bootstrap.bundle.min.js"></script>
+<script src="/assets/simplebar.min.js"></script>
+<!-- Theme JS -->
+<script src="/assets/theme.min.js"></script>
