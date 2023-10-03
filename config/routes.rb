@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'landings#index'
   get 'specifications/index'
   get 'specifications/show'
   get 'sub_categories/index'
@@ -9,11 +10,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
         sessions: 'users/sessions'
       }
-  root 'main#index'
-  get 'main/product'
-  get 'main/store'
-  get 'main/checkout'
-  get 'main/sub_category'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

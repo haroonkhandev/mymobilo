@@ -11,21 +11,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <%= render partial: "shared/header" %>
+    <%#= render partial: "shared/header" %>
     <%= yield %>
-    <%= render partial: "shared/footer" %>
+    <%#= render partial: "shared/footer" %>
   </body>
 </html>
-
-
-<!-- jQuery Plugins -->
-<script src="/assets/jquery.min.js"></script>
-<script src="/assets/bootstrap.min.js"></script>
-<script src="/assets/slick.min.js"></script>
-<script src="/assets/nouislider.min.js"></script>
-<script src="/assets/jquery.zoom.min.js"></script>
-<script src="/assets/main.js"></script>
