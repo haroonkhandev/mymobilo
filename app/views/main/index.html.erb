@@ -11,8 +11,8 @@
 				<div class="col-md-4 col-xs-6">
 					<div class="shop">
 						<div class="shop-img">
-							<% if !category.present? %>
-								<% image_tag("#{category.picture.url}") %>
+							<% if category.picture.present? %>
+								<%= image_tag rails_blob_path(category.picture, disposition: "attachment", only_path: true) %>
 							<% else %>
 								<img src="/assets/shop01.png" alt="">
 							<% end %>
@@ -68,7 +68,7 @@
 									<div class="product">
 										<div class="product-img">
 											<% if product&.pictures.present? %>
-												<% image_tag("#{product.picture.url}") %>
+												<%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true) %>
 											<% else %>
 												<img src="/assets/product01.png" alt="">
 											<% end %>

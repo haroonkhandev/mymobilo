@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+	has_many_attached :pictures
 	has_one :specification
 	# has_one :build
 	# has_one :frequency
