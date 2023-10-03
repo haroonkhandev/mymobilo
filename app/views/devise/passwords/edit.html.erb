@@ -1,25 +1,58 @@
-<h2>Change your password</h2>
+<script>
+  // Render blocking JS:
+  if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+</script>
+<main>
+  <section class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center g-0 min-vh-100">
+      <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+        <!-- Card -->
+        <div class="card shadow">
+          <!-- Card body -->
+          <div class="card-body p-6">
+            <div class="mb-4">
+              <a href="../index.html"><img src="/assets/logo-icon.svg" class="mb-4" alt="logo-icon" /></a>
+              <h1 class="mb-1 fw-bold">Change your password</h1>
+              <p>Fill the form to change your password.</p>
+            </div>
+              <!-- Form -->
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+                <!-- Email -->
+              <div class="mb-3">
+                <label for="password" class="form-label">New Password</label>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
+                  required> -->
+                <%= f.password_field :password, autocomplete: "new-password", class:"form-control", required: true %>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password Confirmation</label>
+                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
+                  required> -->
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"**************", required: true %>
+              </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
+                <!-- Button -->
+              <div class="mb-3 d-grid">
+                <%= f.submit "Change my password" class:"btn btn-primary" %>
+              </div>
+              <span>Return to <a href="<%= new_user_session_path %>">sign in</a></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 <%= render "devise/shared/links" %>
+  <!-- Scripts -->
+  <!-- Libs JS -->
+<script src="/assets/jquery.min.js"></script>
+<script src="/assets/bootstrap.bundle.min.js"></script>
+<script src="/assets/simplebar.min.js"></script>
+<!-- Theme JS -->
+<script src="/assets/theme.min.js"></script>

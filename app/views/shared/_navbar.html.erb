@@ -159,7 +159,7 @@
                  </div>
                </div>
            </li>
-
+           <% if user_signed_in? %>
 	           <li class="dropdown ms-2 d-inline-block position-static">
 	               <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static"
 	                   aria-expanded="false">
@@ -168,73 +168,91 @@
 	                           class="rounded-circle" >
 	                   </div>
 	               </a>
-	               <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
-	                   <div class="dropdown-item">
-	                       <div class="d-flex">
-	                           <div class="avatar avatar-md avatar-indicators avatar-online">
-	                               <img alt="avatar" src="/assets/avatar-1.jpg"
-	                                   class="rounded-circle" >
-	                           </div>
-	                           <div class="ms-3 lh-1">
-	                               <h5 class="mb-1">Annette Black</h5>
-	                               <p class="mb-0 text-muted">annette@geeksui.com</p>
-	                           </div>
-	                       </div>
-	                   </div>
-	                   <div class="dropdown-divider"></div>
-	                   <ul class="list-unstyled">
-	                       <li class="dropdown-submenu dropstart-lg">
-	                           <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
-	                               <i class="fe fe-circle me-2"></i>Status
-	                           </a>
-	                           <ul class="dropdown-menu">
-	                               <li>
-	                                   <a class="dropdown-item" href="#">
-	                                       <span class="badge-dot bg-success me-2"></span>Online
-	                                   </a>
-	                               </li>
-	                               <li>
-	                                   <a class="dropdown-item" href="#">
-	                                       <span class="badge-dot bg-secondary me-2"></span>Offline
-	                                   </a>
-	                               </li>
-	                               <li>
-	                                   <a class="dropdown-item" href="#">
-	                                       <span class="badge-dot bg-warning me-2"></span>Away
-	                                   </a>
-	                               </li>
-	                               <li>
-	                                   <a class="dropdown-item" href="#">
-	                                       <span class="badge-dot bg-danger me-2"></span>Busy
-	                                   </a>
-	                               </li>
-	                           </ul>
-	                       </li>
-	                       <li>
-	                           <a class="dropdown-item" href="./pages/profile-edit.html">
-	                               <i class="fe fe-user me-2"></i>Profile
-	                           </a>
-	                       </li>
-	                       <li>
-	                           <a class="dropdown-item" href="<%#= pages_student_subscriptions_path %>">
-	                               <i class="fe fe-star me-2"></i>Subscription
-	                           </a>
-	                       </li>
-	                       <li>
-	                           <a class="dropdown-item" href="#">
-	                               <i class="fe fe-settings me-2"></i>Settings
-	                           </a>
-	                       </li>
-	                   </ul>
-	                   <div class="dropdown-divider"></div>
-	                   <ul class="list-unstyled">
-	                       <li>
-	                           <a class="dropdown-item" href="./index.html">
-	                               <i class="fe fe-power me-2"></i>Sign Out
-	                           </a>
-	                       </li>
-	                   </ul>
-	               </div>
+
+  	               <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
+  	                   <div class="dropdown-item">
+  	                       <div class="d-flex">
+  	                           <div class="avatar avatar-md avatar-indicators avatar-online">
+  	                               <img alt="avatar" src="/assets/avatar-1.jpg"
+  	                                   class="rounded-circle" >
+  	                           </div>
+  	                           <div class="ms-3 lh-1">
+  	                               <h5 class="mb-1">Annette Black</h5>
+  	                               <p class="mb-0 text-muted">annette@geeksui.com</p>
+  	                           </div>
+  	                       </div>
+  	                   </div>
+  	                   <div class="dropdown-divider"></div>
+  	                   <ul class="list-unstyled">
+  	                       <li class="dropdown-submenu dropstart-lg">
+  	                           <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+  	                               <i class="fe fe-circle me-2"></i>Status
+  	                           </a>
+  	                           <ul class="dropdown-menu">
+  	                               <li>
+  	                                   <a class="dropdown-item" href="#">
+  	                                       <span class="badge-dot bg-success me-2"></span>Online
+  	                                   </a>
+  	                               </li>
+  	                               <li>
+  	                                   <a class="dropdown-item" href="#">
+  	                                       <span class="badge-dot bg-secondary me-2"></span>Offline
+  	                                   </a>
+  	                               </li>
+  	                               <li>
+  	                                   <a class="dropdown-item" href="#">
+  	                                       <span class="badge-dot bg-warning me-2"></span>Away
+  	                                   </a>
+  	                               </li>
+  	                               <li>
+  	                                   <a class="dropdown-item" href="#">
+  	                                       <span class="badge-dot bg-danger me-2"></span>Busy
+  	                                   </a>
+  	                               </li>
+  	                           </ul>
+  	                       </li>
+  	                       <li>
+  	                           <a class="dropdown-item" href="<%= edit_user_registration_path %>">
+  	                               <i class="fe fe-user me-2"></i>Profile
+  	                           </a>
+  	                       </li>
+  	                       <li>
+  	                           <a class="dropdown-item" href="<%#= pages_student_subscriptions_path %>">
+  	                               <i class="fe fe-star me-2"></i>Subscription
+  	                           </a>
+  	                       </li>
+  	                       <li>
+  	                           <a class="dropdown-item" href="#">
+  	                               <i class="fe fe-settings me-2"></i>Settings
+  	                           </a>
+  	                       </li>
+  	                   </ul>
+  	                   <div class="dropdown-divider"></div>
+  	                   <ul class="list-unstyled">
+                         <li>
+                          <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                            <i class="fe fe-power me-2"></i>Sign Out
+                          <% end %>
+                         </li>
+  	                   </ul>
+  	               </div>
+                  <% else %>
+                   <div class="order-lg-3">
+                    <div class="d-flex align-items-center">
+                        
+                        <a href="<%= new_user_session_path %>" class="btn btn-outline-primary ms-2">Sign in</a>
+                        <a href="<%= new_user_registration_path %>" class="btn btn-primary ms-1  d-none d-lg-block">Sign up</a>
+                        <!-- Button -->
+                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="icon-bar top-bar mt-0"></span>
+                        <span class="icon-bar middle-bar"></span>
+                        <span class="icon-bar bottom-bar"></span>
+                        </button>
+                    </div>
+                   </div>
+                  <% end %>
 	           </li>
 	       </ul>
 
@@ -866,16 +884,19 @@
                       <li>
                           <hr class="mx-3" >
                       </li>
+                      
                       <li>
-                          <a class="dropdown-item" href="./pages/sign-in.html">
+                          <a class="dropdown-item" href="<%= new_user_session_path %>">
                               Sign In
                           </a>
                       </li>
+
                       <li>
-                          <a class="dropdown-item" href="./pages/sign-up.html">
+                          <a class="dropdown-item" href="<%= new_user_registration_path %>">
                               Sign Up
                           </a>
                       </li>
+
                       <li>
                           <a class="dropdown-item" href="./pages/forget-password.html">
                               Forgot Password
