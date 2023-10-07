@@ -36,7 +36,7 @@
   <div class="container">
     <div class="row mb-4">
       <div class="col">
-        <h2 class="mb-0">Recommended to you</h2>
+        <h2 class="mb-0 text-primary">Recommended to you</h2>
       </div>
     </div>
     <div class="position-relative">
@@ -55,8 +55,10 @@
             <div class="item">
               <!-- Card -->
               <div class="card  mb-4 card-hover">
-                <% if product&.pictures.present? %>  
-                  <%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), class:"card-img-top" %>
+                <% if product&.pictures.present? %> 
+                    <center>
+                        <%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), class:"card-img-top", style: "max-width:120px;" %>
+                    </center>
                 <% else %>
                   <a href="<%= product_path(product) %>" class="card-img-top"><img src="assets/course-react.jpg" 
                     alt="course" class="rounded-top-md card-img-top">
@@ -133,7 +135,7 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col">
-                <h2 class="mb-0">Latest From Huawei</h2>
+                <h2 class="mb-0 text-primary">Latest From Huawei</h2>
             </div>
         </div>
         <div class="position-relative">
@@ -541,7 +543,7 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col">
-                <h2 class="mb-0">Latest From Infinix</h2>
+                <h2 class="mb-0 text-primary">Latest From Infinix</h2>
             </div>
 
         </div>

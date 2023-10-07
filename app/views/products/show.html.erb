@@ -98,8 +98,8 @@
                                             aria-selected="false">Introduction</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="transcript-tab" data-bs-toggle="pill"
-                                            href="#transcript" role="tab" aria-controls="transcript"
+                                        <a class="nav-link" id="picture-tab" data-bs-toggle="pill"
+                                            href="#picture" role="tab" aria-controls="transcript"
                                             aria-selected="false">Images</a>
                                     </li>
                                     <li class="nav-item">
@@ -232,12 +232,6 @@
                                                   <td class="align-top">Titanium design Ceramic Shield front 
                                                     Textured matte glass back
                                                   </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td>Safety</td>
-                                                  <td class="align-top">Emergency SOS Crash Detection4</td>
                                                 </tr>
                                               </tbody>
                                             </table>
@@ -873,91 +867,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="transcript" role="tabpanel"
-                                    aria-labelledby="transcript-tab">
-                                    <!-- Description -->
-                                    <div>
-                                        <h3 class="mb-3">
-                                            Transcript from the "Introduction" Lesson
-                                        </h3>
-                                        <div class="mb-4">
-                                            <h4>
-                                                Course Overview
-                                                <a href="#" class="text-primary ms-2 h4">[00:00:00]</a>
-                                            </h4>
-                                            <p class="mb-0">
-                                                My name is John Deo and I work as human duct tape at
-                                                Gatsby, that means that I do a lot of different
-                                                things. Everything from dev roll to writing content to
-                                                writing code. And I used to work as an architect at
-                                                IBM. I live in Portland, Oregon.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>
-                                                Introduction
-                                                <a href="#" class="text-primary ms-2 h4">[00:00:16]</a>
-                                            </h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>
-                                                Why Take This Course?
-                                                <a href="#" class="text-primary ms-2 h4">[00:00:37]</a>
-                                            </h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>
-                                                A Look at the Demo Application
-                                                <a href="#" class="text-primary ms-2 h4">[00:00:54]</a>
-                                            </h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>
-                                                Summary
-                                                <a href="#" class="text-primary ms-2 h4">[00:01:31]</a>
-                                            </h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                    </div>
+                                <div class="tab-pane fade" id="picture" role="tabpanel"
+                                    aria-labelledby="picture-tab">
+                                    <% @product.pictures.each do |picture| %>
+                                        <center>
+                                            <%= image_tag rails_blob_path(picture, disposition: "attachment", only_path: true), class:"card-img-top mb-3", style: "max-width:50%;" %><br>
+                                        </center>
+                                    <% end  %>
                                 </div>
                                 <!-- Tab pane -->
                                 <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
