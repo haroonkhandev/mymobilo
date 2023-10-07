@@ -8,6 +8,10 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <script>
+      // Render blocking JS:
+      if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+    </script>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,8 +21,23 @@
   </head>
 
   <body>
-    <%#= render partial: "shared/header" %>
+    <%= render partial: "shared/navbar" %>
     <%= yield %>
     <%#= render partial: "shared/footer" %>
   </body>
+
+  <!-- Scripts -->
+
+  <script src="/assets/jquery.min.js"></script>
+  <script src="/assets/bootstrap.bundle.min.js"></script>
+  <script src="/assets/simplebar.min.js"></script>
+  <!-- Theme JS -->
+  <script src="/assets/theme.min.js"></script>
+  <script src="/assets/popup.js"></script>
+  <script src="/assets/popper.min.js"></script>
+  <script src="/assets/tippy-bundle.umd.min.js"></script>
+  <script src="/assets/jquery.magnific-popup.min.js"></script>
+  <script src="/assets/tooltip.js"></script>
+  <script src="/assets/tiny-slider.js"></script>
+  <script src="/assets/tnsSlider.js"></script>
 </html>
