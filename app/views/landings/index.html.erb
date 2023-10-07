@@ -1,991 +1,986 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <script>
-        // Render blocking JS:
-        if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
-    </script>
-  </head>
-  <main>
-    <!-- Navbar -->
-    <%= render 'shared/navbar' %>
-    <!-- Page Content -->
-    <section class="bg-primary">
-      <div class="container">
-        <!-- Hero Section -->
-        <div class="row align-items-center g-0">
-          <div class="col-xl-5 col-lg-6 col-md-12">
-            <div class="py-7 py-lg-0">
-              <h1 class="text-white display-4 fw-bold">Welcome to Mobile Hammer
-              </h1>
-              <p class="text-white-50 mb-4 lead">
-                  The best platform regarding Mobile Specifications and Prices in the world.
-              </p>
-              <%#= link_to 'Browse Courses', pages_course_filter_list_path, class: "btn btn-dark" %>
-              <a href="<%= categories_index_path %>" class="btn btn-white">Find by Category?</a>
-            </div>
-          </div>
-          <div class=" col-xl-7 col-lg-6 col-md-12 text-lg-end text-center">
-            <img src="/assets/mob-hero.png" alt="heroimg" class="img-fluid" style="width: 400px; height: 400px;">
-          </div>
+
+<script>
+    // Render blocking JS:
+    if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+</script>
+
+<main>
+<!-- Navbar -->
+<%= render 'shared/navbar' %>
+<!-- Page Content -->
+<section class="bg-primary">
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="row align-items-center g-0">
+      <div class="col-xl-5 col-lg-6 col-md-12">
+        <div class="py-7 py-lg-0">
+          <h1 class="text-white display-4 fw-bold">Welcome to Mobile Hammer
+          </h1>
+          <p class="text-white-50 mb-4 lead">
+              The best platform regarding Mobile Specifications and Prices in the world.
+          </p>
+          <%#= link_to 'Browse Courses', pages_course_filter_list_path, class: "btn btn-dark" %>
+          <a href="<%= categories_index_path %>" class="btn btn-white">Find by Category?</a>
         </div>
       </div>
-    </section>
-
-  
-    <!-- product -->
-    <section class="pt-lg-12 pb-lg-3 pt-5 pb-6">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col">
-            <h2 class="mb-0">Recommended to you</h2>
-          </div>
-        </div>
-        <div class="position-relative">
-          <ul class="controls " id="sliderFirstControls">
-            <li class="prev">
-              <i class="fe fe-chevron-left"></i>
-            </li>
-            <li class="next">
-              <i class="fe fe-chevron-right"></i>
-            </li>
-          </ul>
+      <div class=" col-xl-7 col-lg-6 col-md-12 text-lg-end text-center">
+        <img src="/assets/mob-hero.png" alt="heroimg" class="img-fluid" style="width: 400px; height: 400px;">
+      </div>
+    </div>
+  </div>
+</section>
 
 
-            <div class="sliderFirst">
-              <% @products.each do |product| %>
-                <div class="item">
-                  <!-- Card -->
-                  <div class="card  mb-4 card-hover">
-                    <% if product&.pictures.present? %>  
-                      <%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), class:"card-img-top" %>
-                    <% else %>
-                      <a href="pages/course-single.html" class="card-img-top"><img src="assets/course-react.jpg" 
-                        alt="course" class="rounded-top-md card-img-top">
-                    <% end %>    
-                    </a>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <h4 class="mb-2 text-truncate-line-2 ">
-                          <a href="pages/course-single.html" class="text-inherit"><%= product.name %>
-                          </a>
-                        </h4>
-                        <!-- List -->
-                        <!-- <ul class="mb-3 list-inline">
-                          <li class="list-inline-item">
-                            <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                          </li>
-                          <li class="list-inline-item">
-                            <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                              <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                              <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                              <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                            </svg> Beginner
-                          </li>
-                        </ul> -->
-                        <!-- <div class="lh-1">
-                          <span>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning"></i>
-                          </span>
-                          <span class="text-warning">4.5</span>
-                          <span class="fs-6 text-muted">(7,700)</span>
-                        </div> -->
-                        <!-- Price -->
-                        <div class="lh-1 mt-3">
-                            <span class="text-dark fw-bold">RS <%= product.price %></span>
-                            <del class="fs-6 text-muted">$750</del>
-                        </div>
+<!-- product -->
+<section class="pt-lg-12 pb-lg-3 pt-5 pb-6">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col">
+        <h2 class="mb-0">Recommended to you</h2>
+      </div>
+    </div>
+    <div class="position-relative">
+      <ul class="controls " id="sliderFirstControls">
+        <li class="prev">
+          <i class="fe fe-chevron-left"></i>
+        </li>
+        <li class="next">
+          <i class="fe fe-chevron-right"></i>
+        </li>
+      </ul>
+
+
+        <div class="sliderFirst">
+          <% @products.each do |product| %>
+            <div class="item">
+              <!-- Card -->
+              <div class="card  mb-4 card-hover">
+                <% if product&.pictures.present? %>  
+                  <%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), class:"card-img-top" %>
+                <% else %>
+                  <a href="<%= product_path(product) %>" class="card-img-top"><img src="assets/course-react.jpg" 
+                    alt="course" class="rounded-top-md card-img-top">
+                <% end %>    
+                </a>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <h4 class="mb-2 text-truncate-line-2 ">
+                      <a href="pages/course-single.html" class="text-inherit"><%= product.name %>
+                      </a>
+                    </h4>
+                    <!-- List -->
+                    <!-- <ul class="mb-3 list-inline">
+                      <li class="list-inline-item">
+                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
+                      </li>
+                      <li class="list-inline-item">
+                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                          <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                          <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                          <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                        </svg> Beginner
+                      </li>
+                    </ul> -->
+                    <!-- <div class="lh-1">
+                      <span>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning me-n1"></i>
+                          <i class="mdi mdi-star text-warning"></i>
+                      </span>
+                      <span class="text-warning">4.5</span>
+                      <span class="fs-6 text-muted">(7,700)</span>
+                    </div> -->
+                    <!-- Price -->
+                    <div class="lh-1 mt-3">
+                        <span class="text-dark fw-bold">RS <%= product.price %></span>
+                        <del class="fs-6 text-muted">$750</del>
                     </div>
-                    <!-- Card Footer -->
-                    <div class="card-footer">
-                      <div class="row align-items-center g-0">
-                        <div class="col-auto">
-                          <% if product.sub_category&.picture.present? %>
-                            <%= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                          <% else %>
-                            <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                alt="avatar">
-                          <% end %>      
-                        </div>
-                        <div class="col ms-2">
-                          <span><%= product.sub_category.name %></span>
-                        </div>
-                        <div class="col-auto">
-                          <a href="#" class="text-muted bookmark">
-                              <i class="fe fe-bookmark  "></i>
-                          </a>
-                        </div>
-                      </div>
+                </div>
+                <!-- Card Footer -->
+                <div class="card-footer">
+                  <div class="row align-items-center g-0">
+                    <div class="col-auto">
+                      <% if product.sub_category&.picture.present? %>
+                        <%= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
+                      <% else %>
+                        <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
+                            alt="avatar">
+                      <% end %>      
+                    </div>
+                    <div class="col ms-2">
+                      <span><%= product.sub_category.name %></span>
+                    </div>
+                    <div class="col-auto">
+                      <a href="#" class="text-muted bookmark">
+                          <i class="fe fe-bookmark  "></i>
+                      </a>
                     </div>
                   </div>
                 </div>
-              <% end %>  
+              </div>
             </div>
-
+          <% end %>  
         </div>
-      </div>
-    </section>
 
-    <section class="pb-lg-3 pt-lg-3">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col">
-                    <h2 class="mb-0">Latest From Huawei</h2>
-                </div>
-            </div>
-            <div class="position-relative">
-                <ul class="controls " id="sliderSecondControls">
-                    <li class="prev">
-                        <i class="fe fe-chevron-left"></i>
-                    </li>
-                    <li class="next">
-                        <i class="fe fe-chevron-right"></i>
-                    </li>
-                </ul>
-                <div class="sliderSecond">
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-gatsby.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Gatsby
-                                        JS:
-                                        build blog with GraphQL and React</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(9,370)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-5.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Morris Mccoy</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-javascript.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Getting
-                                        Started with JavaScript</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
-                                        </svg> Advance
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(5,245)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Ted Hawkins</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-css.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">CSS:
-                                        ultimate CSS course from beginner to advanced</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(17,000)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-7.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Juanita Bell</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-wordpress.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Wordpress:
-                                        complete WordPress theme & plugin development</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Intermediate
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(16,500)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-8.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Claire Robertson</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-javascript.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Getting
-                                        Started with JavaScript</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
-                                        </svg> Advance
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(5,245)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Ted Hawkins</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-css.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">CSS:
-                                        ultimate CSS course from beginner to advanced</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(17,000)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-7.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Juanita Bell</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-wordpress.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Wordpress:
-                                        complete WordPress theme & plugin development</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Intermediate
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(16,500)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-8.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Claire Robertson</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="pb-lg-8 pt-lg-3 py-6">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col">
-                    <h2 class="mb-0">Latest From Infinix</h2>
-                </div>
-
-            </div>
-            <div class="position-relative">
-                <ul class="controls" id="sliderThirdControls">
-                    <li class="prev">
-                        <i class="fe fe-chevron-left"></i>
-                    </li>
-                    <li class="next">
-                        <i class="fe fe-chevron-right"></i>
-                    </li>
-                </ul>
-                <div class="sliderThird">
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-react.jpg" alt="course"
-                                    class="card-img-top rounded-top-md">
-                            </a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2"><a href="pages/course-single.html"
-                                        class="text-inherit">How to
-                                        easily create a website with React</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(12,245)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-9.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Morris Mccoy</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-graphql.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">GraphQL:
-                                        introduction to graphQL for beginners</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
-                                        </svg> Advance
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(15,350)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-10.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Ted Hawkins</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-angular.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Angular -
-                                        the complete guide for beginner</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(6,600)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-4.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Juanita Bell</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-python.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">The
-                                        Python
-                                        Course: build web application</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Intermediate
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(2,500)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Claire Robertson</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-graphql.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">GraphQL:
-                                        introduction to graphQL for beginners</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
-                                        </svg> Advance
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(15,350)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-10.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Ted Hawkins</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-angular.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">Angular -
-                                        the complete guide for beginner</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(6,600)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-4.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Juanita Bell</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <!-- Card -->
-                        <div class="card  mb-4 card-hover">
-                            <a href="pages/course-single.html" class="card-img-top"><img
-                                    src="assets/course-python.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
-                                        class="text-inherit">The
-                                        Python
-                                        Course: build web application</a></h4>
-                                <!-- List -->
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item"><i
-                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg> Intermediate
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(2,500)</span>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
-                                            alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Claire Robertson</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark  "></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-  </main>
-
-    <!-- Footer -->
-    <!-- Footer -->
-  <footer class="footer">
+<section class="pb-lg-3 pt-lg-3">
     <div class="container">
-      <div class="row align-items-center g-0 border-top py-2">
-        <!-- Desc -->
-        <div class="col-md-6 col-12 text-center text-md-start">
-          <span>© <span id="copyright">
-            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>
-          </span>Geeks. All Rights Reserved.</span>
+        <div class="row mb-4">
+            <div class="col">
+                <h2 class="mb-0">Latest From Huawei</h2>
+            </div>
         </div>
-          <!-- Links -->
-        <div class="col-12 col-md-6">
-          <nav class="nav nav-footer justify-content-center justify-content-md-end">
-            <a class="nav-link active ps-0" href="#">Privacy</a>
-            <a class="nav-link" href="#">Terms </a>
-            <a class="nav-link" href="#">Feedback</a>
-            <a class="nav-link" href="#">Support</a>
-          </nav>
+        <div class="position-relative">
+            <ul class="controls " id="sliderSecondControls">
+                <li class="prev">
+                    <i class="fe fe-chevron-left"></i>
+                </li>
+                <li class="next">
+                    <i class="fe fe-chevron-right"></i>
+                </li>
+            </ul>
+            <div class="sliderSecond">
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-gatsby.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Gatsby
+                                    JS:
+                                    build blog with GraphQL and React</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Beginner
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(9,370)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-5.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Morris Mccoy</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-javascript.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Getting
+                                    Started with JavaScript</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
+                                    </svg> Advance
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(5,245)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Ted Hawkins</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-css.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">CSS:
+                                    ultimate CSS course from beginner to advanced</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Beginner
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(17,000)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-7.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Juanita Bell</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-wordpress.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Wordpress:
+                                    complete WordPress theme & plugin development</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Intermediate
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(16,500)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-8.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Claire Robertson</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-javascript.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Getting
+                                    Started with JavaScript</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
+                                    </svg> Advance
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(5,245)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Ted Hawkins</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-css.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">CSS:
+                                    ultimate CSS course from beginner to advanced</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Beginner
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(17,000)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-7.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Juanita Bell</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-wordpress.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Wordpress:
+                                    complete WordPress theme & plugin development</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Intermediate
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(16,500)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-8.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Claire Robertson</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+
+<section class="pb-lg-8 pt-lg-3 py-6">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col">
+                <h2 class="mb-0">Latest From Infinix</h2>
+            </div>
+
+        </div>
+        <div class="position-relative">
+            <ul class="controls" id="sliderThirdControls">
+                <li class="prev">
+                    <i class="fe fe-chevron-left"></i>
+                </li>
+                <li class="next">
+                    <i class="fe fe-chevron-right"></i>
+                </li>
+            </ul>
+            <div class="sliderThird">
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-react.jpg" alt="course"
+                                class="card-img-top rounded-top-md">
+                        </a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2"><a href="pages/course-single.html"
+                                    class="text-inherit">How to
+                                    easily create a website with React</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Beginner
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(12,245)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-9.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Morris Mccoy</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-graphql.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">GraphQL:
+                                    introduction to graphQL for beginners</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
+                                    </svg> Advance
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(15,350)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-10.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Ted Hawkins</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-angular.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Angular -
+                                    the complete guide for beginner</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Beginner
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(6,600)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-4.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Juanita Bell</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-python.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">The
+                                    Python
+                                    Course: build web application</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Intermediate
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(2,500)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Claire Robertson</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-graphql.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">GraphQL:
+                                    introduction to graphQL for beginners</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
+                                    </svg> Advance
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(15,350)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-10.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Ted Hawkins</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-angular.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">Angular -
+                                    the complete guide for beginner</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Beginner
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(6,600)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-4.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Juanita Bell</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <!-- Card -->
+                    <div class="card  mb-4 card-hover">
+                        <a href="pages/course-single.html" class="card-img-top"><img
+                                src="assets/course-python.jpg" alt="course"
+                                class="card-img-top rounded-top-md"></a>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2 "><a href="pages/course-single.html"
+                                    class="text-inherit">The
+                                    Python
+                                    Course: build web application</a></h4>
+                            <!-- List -->
+                            <ul class="mb-3 list-inline">
+                                <li class="list-inline-item"><i
+                                        class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m</li>
+                                <li class="list-inline-item">
+                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                    </svg> Intermediate
+                                </li>
+                            </ul>
+                            <div class="lh-1">
+                                <span>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning me-n1"></i>
+                                    <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(2,500)</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                                <div class="col-auto">
+                                    <img src="assets/avatar-6.jpg" class="rounded-circle avatar-xs"
+                                        alt="avatar">
+                                </div>
+                                <div class="col ms-2">
+                                    <span>Claire Robertson</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#" class="text-muted bookmark">
+                                        <i class="fe fe-bookmark  "></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row align-items-center g-0 border-top py-2">
+      <!-- Desc -->
+      <div class="col-md-6 col-12 text-center text-md-start">
+        <span>© <span id="copyright">
+          <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+          </script>
+        </span>Geeks. All Rights Reserved.</span>
+      </div>
+        <!-- Links -->
+      <div class="col-12 col-md-6">
+        <nav class="nav nav-footer justify-content-center justify-content-md-end">
+          <a class="nav-link active ps-0" href="#">Privacy</a>
+          <a class="nav-link" href="#">Terms </a>
+          <a class="nav-link" href="#">Feedback</a>
+          <a class="nav-link" href="#">Support</a>
+        </nav>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="assets/jquery.min.js"></script>
-  <script src="assets/bootstrap.bundle.min.js"></script>
-  <script src="assets/simplebar.min.js"></script>
-  <!-- Theme JS -->
-  <script src="assets/theme.min.js"></script>
-  <script src="assets/tiny-slider.js"></script>
-  <script src="assets/popper.min.js"></script>
-  <script src="assets/tippy-bundle.umd.min.js"></script>
-  <script src="assets/tnsSlider.js"></script>
-  <script src="assets/tooltip.js"></script>
-</html>
+<script src="assets/jquery.min.js"></script>
+<script src="assets/bootstrap.bundle.min.js"></script>
+<script src="assets/simplebar.min.js"></script>
+<!-- Theme JS -->
+<script src="assets/theme.min.js"></script>
+<script src="assets/tiny-slider.js"></script>
+<script src="assets/popper.min.js"></script>
+<script src="assets/tippy-bundle.umd.min.js"></script>
+<script src="assets/tnsSlider.js"></script>
+<script src="assets/tooltip.js"></script>
