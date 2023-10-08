@@ -255,14 +255,16 @@
              </li>
       </ul>
   </div>
+  </div>
 
         <!-- Collapse -->
-    <div class="collapse navbar-collapse" id="navbar-default">
-        <form class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
-            <span class="position-absolute ps-3 search-icon">
+    <div class="collapse navbar-collapse" id="navbar-default" style="display: flex;">
+        <%= form_tag(products_path, method: "get", class: "form-inline", style: "display: flex;") do %>
+            <%= text_field_tag(:search, params[:search], placeholder: "Search Products", class: "form-control ps-6") %>
+            <span class="position-absolute search-icon" style="padding-top: 10px;margin-left: 10px;">
                 <i class="fe fe-search"></i>
             </span>
-            <input type="search" class="form-control ps-6" placeholder="Search Courses" >
-        </form>
+            <%= submit_tag("Search", class: "btn btn-outline-primary my-2 my-sm-0") %>
+        <% end %>
     </div>
 </nav>
