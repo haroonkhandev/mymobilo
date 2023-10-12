@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   get 'specifications/show'
   get 'categories/index'
   get 'categories/show'
+
+  get '/categories/index', to: 'categories#index'
+  get '/categories/:category_id/subcategories', to: 'categories#subcategories'
+  get '/subcategories/:subcategory_id/products', to: 'categories#products'
+  
+  devise_scope :user do
+    get 'users/sessions/sign_out'
+  end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
         sessions: 'users/sessions'

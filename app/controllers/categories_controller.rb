@@ -9,6 +9,5 @@ class CategoriesController < ApplicationController
     else
     end
   end
-
   def show ;end
 end
