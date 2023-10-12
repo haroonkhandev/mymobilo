@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   root 'landings#index'
   get 'specifications/index'
   get 'specifications/show'
-  get 'sub_categories/index'
-  get 'sub_categories/show'
   get 'categories/index'
   get 'categories/show'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
