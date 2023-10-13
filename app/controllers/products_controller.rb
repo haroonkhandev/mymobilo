@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
+    @categories = Category.all
     if params[:search]
       keyword = params[:search].downcase
       @products = Product.where("LOWER(name)LIKE ?", "%#{keyword}%")
