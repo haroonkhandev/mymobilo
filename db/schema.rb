@@ -203,10 +203,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
     t.string "series"
     t.string "description"
     t.string "price"
-    t.bigint "sub_category_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "specifications", force: :cascade do |t|
@@ -215,14 +215,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_specifications_on_product_id"
-  end
-
-  create_table "sub_categories", force: :cascade do |t|
-    t.string "name"
-    t.bigint "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_sub_categories_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -259,7 +251,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
   add_foreign_key "memories", "specifications"
   add_foreign_key "processors", "products"
   add_foreign_key "processors", "specifications"
-  add_foreign_key "products", "sub_categories"
+  add_foreign_key "products", "categories"
   add_foreign_key "specifications", "products"
-  add_foreign_key "sub_categories", "categories"
 end

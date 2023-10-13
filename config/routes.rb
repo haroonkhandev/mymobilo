@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get '/categories/index', to: 'categories#index'
   get '/categories/:category_id/subcategories', to: 'categories#subcategories'
-  get '/subcategories/:subcategory_id/products', to: 'categories#products'
   
   devise_scope :user do
     get 'users/sessions/sign_out'

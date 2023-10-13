@@ -25,7 +25,7 @@
   <div class="container">
     <div class="row mb-4">
       <div class="col">
-        <h2 class="mb-0 text-primary">Results</h2>
+        <h2 class="mb-0 text-primary">Showing <%= @products.count %> out of <%= Product.all.count %></h2>
       </div>
     </div>
     <div class="position-relative">
@@ -37,86 +37,84 @@
           <i class="fe fe-chevron-right"></i>
         </li>
       </ul>
-
-
-        <div class="sliderFirst">
+      <div class="sliderFirst">
+        <div class="item">
           <% @products.each do |product| %>
-            <div class="item">
-              <!-- Card -->
-              <div class="card  mb-4 card-hover">
-                <% if product&.pictures.present? %> 
-                    <center>
-                        <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                        </a>
-                    </center>
-                <% else %>
-                  <a href="<%= product_path(product) %>" class="card-img-top"><img src="assets/course-react.jpg" 
-                    alt="course" class="rounded-top-md card-img-top">
-                <% end %>    
+            <!-- Card -->
+            <div class="card  mb-4 card-hover">
+              <% if product&.pictures.present? %> 
+                  <center>
+                    <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
+                    </a>
+                  </center>
+              <% else %>
+                <a href="<%= product_path(product) %>" class="card-img-top">
+                  <img src="/assets/course-react.jpg" 
+                  alt="course" class="rounded-top-md card-img-top">
                 </a>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <h4 class="mb-2 text-truncate-line-2 ">
-                      <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
-                      </a>
-                    </h4>
-                    <!-- List -->
-                    <!-- <ul class="mb-3 list-inline">
-                      <li class="list-inline-item">
-                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                      </li>
-                      <li class="list-inline-item">
-                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                          <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                          <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                          <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                        </svg> Beginner
-                      </li>
-                    </ul> -->
-                    <!-- <div class="lh-1">
-                      <span>
-                          <i class="mdi mdi-star text-warning me-n1"></i>
-                          <i class="mdi mdi-star text-warning me-n1"></i>
-                          <i class="mdi mdi-star text-warning me-n1"></i>
-                          <i class="mdi mdi-star text-warning me-n1"></i>
-                          <i class="mdi mdi-star text-warning"></i>
-                      </span>
-                      <span class="text-warning">4.5</span>
-                      <span class="fs-6 text-muted">(7,700)</span>
-                    </div> -->
-                    <!-- Price -->
-                    <div class="lh-1 mt-3">
-                        <span class="text-dark fw-bold">RS <%= product.price %></span>
-                        <del class="fs-6 text-muted">$750</del>
-                    </div>
-                </div>
-                <!-- Card Footer -->
-                <div class="card-footer">
-                  <div class="row align-items-center g-0">
-                    <div class="col-auto">
-                      <% if product.category&.picture.present? %>
-                        <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                      <% else %>
-                        <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                            alt="avatar">
-                      <% end %>      
-                    </div>
-                    <div class="col ms-2">
-                      <span><%= product.category.name %></span>
-                    </div>
-                    <div class="col-auto">
-                      <a href="#" class="text-muted bookmark">
-                          <i class="fe fe-bookmark  "></i>
-                      </a>
-                    </div>
+              <% end %>    
+              <!-- Card Body -->
+              <div class="card-body">
+                  <h4 class="mb-2 text-truncate-line-2 ">
+                    <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
+                    </a>
+                  </h4>
+                  <!-- List -->
+                  <!-- <ul class="mb-3 list-inline">
+                    <li class="list-inline-item">
+                      <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
+                    </li>
+                    <li class="list-inline-item">
+                      <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                        <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                        <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                      </svg> Beginner
+                    </li>
+                  </ul> -->
+                  <!-- <div class="lh-1">
+                    <span>
+                        <i class="mdi mdi-star text-warning me-n1"></i>
+                        <i class="mdi mdi-star text-warning me-n1"></i>
+                        <i class="mdi mdi-star text-warning me-n1"></i>
+                        <i class="mdi mdi-star text-warning me-n1"></i>
+                        <i class="mdi mdi-star text-warning"></i>
+                    </span>
+                    <span class="text-warning">4.5</span>
+                    <span class="fs-6 text-muted">(7,700)</span>
+                  </div> -->
+                  <!-- Price -->
+                  <div class="lh-1 mt-3">
+                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                      <del class="fs-6 text-muted">$750</del>
+                  </div>
+              </div>
+              <!-- Card Footer -->
+              <div class="card-footer">
+                <div class="row align-items-center g-0">
+                  <div class="col-auto">
+                    <% if product.category&.picture.present? %>
+                      <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
+                    <% else %>
+                      <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
+                          alt="avatar">
+                    <% end %>      
+                  </div>
+                  <div class="col ms-2">
+                    <span><%= product.category.name %></span>
+                  </div>
+                  <div class="col-auto">
+                    <a href="#" class="text-muted bookmark">
+                      <i class="fe fe-bookmark  "></i>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           <% end %>  
-        </div>
-
+        </div>  
+      </div>
     </div>
   </div>
 </section>
