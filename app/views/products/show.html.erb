@@ -994,19 +994,23 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative">
-                                    <img src="/assets/avatar-1.jpg" alt="avatar"
-                                        class="rounded-circle avatar-xl">
-                                    <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip"
-                                        data-placement="top" title="Verifed">
-                                        <img src="/assets/checked-mark.svg" alt="checked-mark" height="30"
-                                            width="30">
-                                    </a>
+                                    <% if @category&.picture.present? %>
+                                      <%= image_tag rails_blob_path(@category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xl" %>
+                                      
+                                    <% else %>
+                                      <img src="/assets/samsung-logo.png" alt="avatar"
+                                          class="rounded-circle avatar-xl">
+                                      <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip"
+                                          data-placement="top" title="Verifed">
+                                          <img src="/assets/checked-mark.svg" alt="checked-mark"height="30" width="30">
+                                      </a>
+                                    <% end %>
                                 </div>
                                 <div class="ms-4">
-                                    <h4 class="mb-0">Jenny Wilson</h4>
-                                    <p class="mb-1 fs-6">Front-end Developer, Designer</p>
+                                    <h4 class="mb-0"><%= @product.category.name %></h4>
+                                    <p class="mb-1 fs-6"><%= @product.series %></p>
                                     <span class="fs-6"><span class="text-warning">4.5</span><span
-                                            class="mdi mdi-star text-warning me-2"></span>Instructor Rating</span>
+                                            class="mdi mdi-star text-warning me-2"></span>Rating</span>
                                 </div>
                             </div>
                             <div class="border-top row mt-3 border-bottom mb-3 g-0">
