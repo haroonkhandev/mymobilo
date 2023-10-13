@@ -5,7 +5,7 @@
         <div class="row align-items-center">
           <div class="col-xl-12 col-lg-12 col-md-12 col-12">
             <div>
-              <h1 class="mb-0 text-white display-4">Filter Page</h1>
+              <h1 class="mb-0 text-white display-4"><%= current_page? ? @category.name : "Filter Page" %></h1>
             </div>
           </div>
         </div>
@@ -57,8 +57,18 @@
                   <span class="dropdown-header px-0 mb-2"><strong>Category</strong></span>
                   <!-- Checkbox -->
                   <% @categories.each do |category|%>
-                    <div class="form-check mb-1">
-                      <%= link_to "#{category.name.capitalize}", products_path(name: category.name), class: "nav-link" %>
+                    <div class="row align-items-center g-0">
+                      <div class="col-auto">
+                        <% if category&.picture.present? %>
+                          <%= image_tag rails_blob_path(category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs mb-1" %>
+                        <% else %>
+                          <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs mb-1"
+                              alt="avatar">
+                        <% end %>      
+                      </div>
+                      <div class="col-auto ms-3">
+                        <span><%= link_to "#{category.name.capitalize}", products_path(name: category.name), class: "active"  %></span>
+                      </div>
                     </div>
                   <% end %>
                 </div>  
