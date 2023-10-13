@@ -43,3 +43,6 @@
 .table-width {
    table-layout: fixed;
 }
+.nav-link:active{
+   color: red !important;
+}

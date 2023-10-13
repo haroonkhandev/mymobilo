@@ -11,5 +11,5 @@ class Product < ApplicationRecord
 	# has_one :feature
 	# has_one :battery
 	# has_one :box
-	belongs_to :sub_category
+	belongs_to :category
 end

@@ -95,15 +95,15 @@
                 <div class="card-footer">
                   <div class="row align-items-center g-0">
                     <div class="col-auto">
-                      <% if product.category&.picture.present? %>
-                        <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
+                      <% if product.sub_category&.picture.present? %>
+                        <%= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
                       <% else %>
                         <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
                             alt="avatar">
                       <% end %>      
                     </div>
                     <div class="col ms-2">
-                      <span><%= product.category.name %></span>
+                      <span><%= product.sub_category.name %></span>
                     </div>
                     <div class="col-auto">
                       <a href="#" class="text-muted bookmark">
