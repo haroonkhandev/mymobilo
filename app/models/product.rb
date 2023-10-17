@@ -12,4 +12,17 @@ class Product < ApplicationRecord
 	# has_one :battery
 	# has_one :box
 	belongs_to :category
+
+	scope :upcoming_products, -> { where('release_date > ?', Date.today) }
+
+	scope :latest, lambda{ where(['release_date > ?', 30.days.ago]) }
+
+	def is_upcoming?
+    release_date > Date.today
+  end
+
+  def is_latest?
+		release_date < Date.today - 30.days
+  end
+
 end
