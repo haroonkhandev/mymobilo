@@ -59,3 +59,7 @@ div.scrollmenu a {
   padding: 14px;
   text-decoration: none;
 }
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
