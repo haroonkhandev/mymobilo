@@ -728,33 +728,34 @@
                                     <!-- hr -->
                                     <hr class="my-5">
                                     <div class="mb-3">
-                                        <div
-                                            class="d-md-flex align-items-center align-items-center justify-content-between mb-5">
-                                            <!-- Reviews -->
-                                            <div class="mb-3 mb-lg-0">
-                                                <h3 class="mb-0">Reviews</h3>
-                                            </div>
-                                            <div>
-                                                <!-- Form -->
-                                                <form class="form-inline">
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="position-absolute ps-3">
-                                                            <i class="fe fe-search"></i>
-                                                        </span>
-                                                        <input type="search" class="form-control ps-6"
-                                                            placeholder="Search Review">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- Rating -->
+                                      <div class="d-md-flex align-items-center align-items-center justify-content-between mb-5">
+                                          <!-- Reviews -->
+                                          <div class="mb-3 mb-lg-0">
+                                              <h3 class="mb-0">Reviews</h3>
+                                          </div>
+                                          <div>
+                                              <!-- Form -->
+                                              <form class="form-inline">
+                                                  <div class="d-flex align-items-center">
+                                                      <span class="position-absolute ps-3">
+                                                          <i class="fe fe-search"></i>
+                                                      </span>
+                                                      <input type="search" class="form-control ps-6"
+                                                          placeholder="Search Review">
+                                                  </div>
+                                              </form>
+                                          </div>
+                                      </div>
+                                      <!-- Rating -->
+                                      <%= render "comments/form", product: @product %>
+                                      <% @comments.each do |comment| %>
                                         <div class="d-flex border-bottom pb-4 mb-4">
                                             <img src="/assets/avatar-2.jpg" alt="avatar"
                                                 class="rounded-circle avatar-lg">
                                             <div class="ms-3">
                                                 <h4 class="mb-1">
-                                                    Max Hawkins
-                                                    <span class="ms-1 fs-6 text-muted">2 Days ago</span>
+                                                    <%= comment.user.email %>
+                                                    <span class="ms-1 fs-6 text-muted"><%= time_ago_in_words(comment.created_at) %></span>
                                                 </h4>
                                                 <div class="fs-6 mb-2">
                                                     <i class="mdi mdi-star me-n1 text-warning"></i>
@@ -764,102 +765,17 @@
                                                     <i class="mdi mdi-star me-n1 text-warning"></i>
                                                 </div>
                                                 <p>
-                                                    Lectures were at a really good pace and I never felt
-                                                    lost. The instructor was well informed and allowed
-                                                    me to learn and navigate Figma easily.
+                                                  <%= comment.body %>
                                                 </p>
-                                                <div class="d-md-flex align-items-center ">
-                                                    <p class="mb-2 mb-md-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-md-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-secondary ms-1">No</a>
-                                                </div>
+                                                <% if current_user == comment.user %>
+                                                  <div class="d-md-flex align-items-center ">
+                                                  <%= button_to "Delete", product_comment_path(comment), method: :delete, class: "btn btn-xs btn-danger ms-md-3" %>
+                                                    <a href="<%= edit_product_comment_path(comment) %>" class="btn btn-xs btn-outline-secondary ms-1">Edit</a>
+                                                  </div>
+                                                <% end %>
                                             </div>
                                         </div>
-                                        <!-- Rating -->
-                                        <div class="d-flex border-bottom pb-4 mb-4">
-                                            <img src="/assets/avatar-3.jpg" alt="avatar"
-                                                class="rounded-circle avatar-lg">
-                                            <div class="ms-3">
-                                                <h4 class="mb-1">
-                                                    Arthur Williamson
-                                                    <span class="ms-1 fs-6 text-muted">3 Days ago</span>
-                                                </h4>
-                                                <div class="fs-6 mb-2">
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                </div>
-                                                <p>
-                                                    Its pretty good.Just a reminder that there are also
-                                                    students with Windows, meaning Figma its a bit
-                                                    different of yours. Thank you!
-                                                </p>
-                                                <div class="d-md-flex align-items-center ">
-                                                    <p class="mb-2 mb-md-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-md-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-secondary ms-1">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Rating -->
-                                        <div class="d-flex border-bottom pb-4 mb-4">
-                                            <img src="/assets/avatar-4.jpg" alt="avatar"
-                                                class="rounded-circle avatar-lg">
-                                            <div class="ms-3">
-                                                <h4 class="mb-1">
-                                                    Claire Jones
-                                                    <span class="ms-1 fs-6 text-muted">4 Days ago</span>
-                                                </h4>
-                                                <div class="fs-6 mb-2">
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                </div>
-                                                <p>
-                                                    Great course for learning Figma, the only bad detail
-                                                    would be that some icons are not included in the
-                                                    assets. But 90% of the icons needed are included,
-                                                    and the voice of the instructor was very clear and
-                                                    easy to understood.
-                                                </p>
-                                                <div class="d-md-flex align-items-center ">
-                                                    <p class="mb-2 mb-md-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-md-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-secondary ms-1">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Rating -->
-                                        <div class="d-flex">
-                                            <img src="/assets/avatar-5.jpg" alt="avatar"
-                                                class="rounded-circle avatar-lg">
-                                            <div class="ms-3">
-                                                <h4 class="mb-1">
-                                                    Bessie Pena
-                                                    <span class="ms-1 fs-6 text-muted">5 Days ago</span>
-                                                </h4>
-                                                <div class="fs-6 mb-2">
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                </div>
-                                                <p>
-                                                    I have really enjoyed this class and learned a lot,
-                                                    found it very inspiring and helpful, thank you!
-                                                </p>
-                                                <div class="d-md-flex align-items-center ">
-                                                    <p class="mb-2 mb-md-0">Was this review helpful?</p>
-                                                    <a href="#" class="btn btn-xs btn-primary ms-md-3">Yes</a>
-                                                    <a href="#" class="btn btn-xs btn-outline-secondary ms-1">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      <% end %>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="picture" role="tabpanel"

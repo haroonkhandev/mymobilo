@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_19_120611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -107,6 +107,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "connectivities", force: :cascade do |t|
@@ -206,6 +216,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "release_date"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
@@ -239,6 +250,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_122436) do
   add_foreign_key "builds", "specifications"
   add_foreign_key "cameras", "products"
   add_foreign_key "cameras", "specifications"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "connectivities", "products"
   add_foreign_key "connectivities", "specifications"
   add_foreign_key "displays", "products"

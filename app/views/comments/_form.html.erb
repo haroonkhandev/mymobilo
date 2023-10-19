@@ -1,0 +1,14 @@
+<div class="card-footer py-3 border-0 mb-4" style="background-color: #f8f9fa;">
+  <%= form_with(model: [product, product.comments.build]) do |f| %>
+    <div class="d-flex flex-start w-100 ">
+      <div class="form-outline w-100">
+        <%= f.text_area :body, class:"form-control", id:"textAreaExample", rows:"4", style:"background: #fff;" do %>
+          <label class="form-label" for="textAreaExample">Message</label>
+        <% end %>
+      </div>
+   </div>
+   <div class="float-end mt-2 pt-1">
+    <%= f.submit "Post Comment", class:"btn btn-primary btn-sm mb-4" %>
+   </div>
+  <% end %> 
+</div>
