@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
       @products = Product.where("LOWER(name)LIKE ?", "%#{keyword}%")
       @category_name = Category.find(@products.first.category_id).name.capitalize
       if params[:category].present?
-        @products = @products.latest if params[:category] == "Newest"
+        @products = @products.latest.order(created_at: desc) if params[:category] == "Newest"
         @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
         @products = @products.order(price: :desc) if params[:category] == "Highest Price"
         respond_to do |format|
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       @category_name = @category.first.name.capitalize
       @products = Product.where(category_id: @category.ids)
       if params[:category].present?
-        @products = @products.latest if params[:category] == "Newest"
+        @products = @products.latest.order(created_at: desc) if params[:category] == "Newest"
         @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
         @products = @products.order(price: :desc) if params[:category] == "Highest Price"
         respond_to do |format|
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
         end
       end
     else
-      @products = Product.all
+      @products = Product.all.page(params[:page]).per(10)
     end
   end
 
