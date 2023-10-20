@@ -5,7 +5,11 @@
         <div class="row align-items-center">
           <div class="col-xl-12 col-lg-12 col-md-12 col-12">
             <div>
-              <h1 class="mb-0 text-white display-4">Filter Page</h1>
+              <% if params[:name].present? %>
+                <h1 class="mb-0 text-white display-4">All <%= @category_name %> Mobiles</h1>
+              <% else %>
+                <h1 class="mb-0 text-white display-4">All <%= @category_name %> Mobiles</h1>
+              <% end %>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
     if params[:search]
       keyword = params[:search].downcase
       @products = Product.where("LOWER(name)LIKE ?", "%#{keyword}%")
+      @category_name = Category.find(@products.first.category_id).name.capitalize
       respond_to do |format|
         format.html
         format.js { render js: @products }
@@ -12,6 +13,7 @@ class ProductsController < ApplicationController
     elsif params[:name].present?
       keyword = params[:name].downcase
       @category = Category.where("LOWER(name)LIKE ?", "%#{keyword}%")
+      @category_name = @category.name.capitalize
       @products = Product.where(category_id: @category.ids)
       if params[:category].present?
         @products = @products.order(created_at: :desc) if params[:category] == "Newest"
