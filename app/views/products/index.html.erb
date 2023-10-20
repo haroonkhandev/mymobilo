@@ -35,12 +35,12 @@
                   </div>
                 </div>
                 <!-- List  -->
-                <select class="selectpicker" data-width="100%">
+                <select class="selectpicker" id="category-select" data-width="100%">
                   <option value="">Sort by</option>
                   <option value="Newest">Newest</option>
-                  <option value="Free">Free</option>
-                  <option value="Most Popular">Most Popular</option>
-                  <option value="Highest Rated">Highest Rated</option>
+                  <option value="Lowest Price">Lowest Price</option>
+                  <option value="Highest Price">Highest Price</option>
+                  <!-- <option value="Highest Rated">Highest Rated</option> -->
                 </select>
               </div>
             </div>
@@ -151,7 +151,7 @@
               <!-- Tab pane -->
               <div class="tab-pane fade show active pb-4 " id="tabPaneGrid" role="tabpanel"
                 aria-labelledby="tabPaneGrid">
-                  <div class="row">
+                  <div class="row" id="filtered-products">
                     <% @products.each do |product| %>
                       <div class="col-lg-4 col-md-6 col-12">
                         <!-- Card -->

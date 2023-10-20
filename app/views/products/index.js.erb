@@ -1,0 +1,4 @@
+$('#filtered-products').empty(); // Clear existing products
+<% @products.each do |product| %>
+  $('#filtered-products').append("<%= j render(:partial => 'product', :locals => { :product => product }) %>");
+<% end %>
