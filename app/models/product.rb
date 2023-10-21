@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+	paginates_per 6
 	has_many_attached :pictures
 	has_many :comments, dependent: :destroy
 	has_one :specification

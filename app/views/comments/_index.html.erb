@@ -1,0 +1,29 @@
+<% @comments.each do |comment| %>
+  <div class="d-flex border-bottom pb-4 mb-4">
+      <img src="/assets/avatar-2.jpg" alt="avatar"
+          class="rounded-circle avatar-lg">
+      <div class="ms-3">
+          <h4 class="mb-1">
+              <%= comment.user.email %>
+              <span class="ms-1 fs-6 text-muted"><%= time_ago_in_words(comment.created_at) %></span>
+          </h4>
+          <div class="fs-6 mb-2">
+              <i class="mdi mdi-star me-n1 text-warning"></i>
+              <i class="mdi mdi-star me-n1 text-warning"></i>
+              <i class="mdi mdi-star me-n1 text-warning"></i>
+              <i class="mdi mdi-star me-n1 text-warning"></i>
+              <i class="mdi mdi-star me-n1 text-warning"></i>
+          </div>
+          <p>
+            <%= comment.body %>
+          </p>
+          <% if current_user == comment.user %>
+            <div class="d-md-flex align-items-center ">
+            <%= button_to "Delete", product_comment_path(comment), method: :delete, class: "btn btn-xs btn-danger ms-md-3" %>
+              <a href="<%= edit_product_comment_path(comment) %>" class="btn btn-xs btn-outline-secondary ms-1">Edit</a>
+            </div>
+          <% end %>
+      </div>
+  </div>
+<% end %>
+<%= paginate @comments %>
