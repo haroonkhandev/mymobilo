@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
       keyword = params[:name].downcase
       @category = Category.where("LOWER(name)LIKE ?", "%#{keyword}%")
       @category_name = @category.first.name.capitalize
-      @products = Product.where(category_id: @category.ids)
+      @products = Product.where(category_id: @category.ids).page(params[:page])
       if params[:category].present?
         @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"
         @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
@@ -30,12 +30,12 @@ class ProductsController < ApplicationController
         end
       end
     else
-      @products = Product.all.page(params[:page]).per(10)
+      @products = Product.all.page(params[:page])
     end
   end
 
   def show
     @product = Product.find(params[:id])
-    @comments = @product.comments.order(created_at: :desc)
+    @comments = @product.comments.order(created_at: :desc).page(params[:page])
   end
 end
