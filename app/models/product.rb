@@ -14,7 +14,7 @@ class Product < ApplicationRecord
 	# has_one :box
 	belongs_to :category
 
-	scope :last_30_days, -> { where(created_at: (Time.now - 30.days)..Time.now) }
+	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }
 	scope :upcoming_products, -> { where('release_date > ?', Date.today) }
 	scope :latest, lambda{ where(['release_date > ?', 30.days.ago]) }
 
@@ -23,7 +23,6 @@ class Product < ApplicationRecord
   end
 
   def is_latest?
-		release_date < Date.today - 30.days
+	release_date < Date.today - 30.days
   end
-
 end
