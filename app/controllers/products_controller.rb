@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     elsif params[:name].present?
       keyword = params[:name].downcase
       @category = Category.where("LOWER(name)LIKE ?", "%#{keyword}%")
-      @category_name = @category.first.name.capitalize
+      @category_name = @category&.first&.name&.capitalize
       @products = Product.where(category_id: @category.ids).page(params[:page])
       if params[:category].present?
         @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"

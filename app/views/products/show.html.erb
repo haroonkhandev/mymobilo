@@ -753,11 +753,15 @@
                                 </div>
                                 <div class="tab-pane fade" id="picture" role="tabpanel"
                                     aria-labelledby="picture-tab">
-                                    <% @product.pictures.each do |picture| %>
-                                        <center>
-                                            <%= image_tag rails_blob_path(picture, disposition: "attachment", only_path: true), class:"card-img-top mb-3", style: "max-width:50%;" %><br>
-                                        </center>
-                                    <% end  %>
+                                    <% if @product.pictures.present? %>
+                                        <% @product.pictures.each do |picture| %>
+                                            <center>
+                                                <%= image_tag rails_blob_path(picture, disposition: "attachment", only_path: true), class:"card-img-top mb-3", style: "max-width:50%;" %><br>
+                                            </center>
+                                        <% end  %>
+                                    <% else %>
+                                        <h1 class="text-center mt-6">This Phone does not have any Image.</h1>
+                                    <% end %>
                                 </div>
                                 <!-- Tab pane -->
                                 <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
