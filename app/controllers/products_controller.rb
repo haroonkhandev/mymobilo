@@ -4,8 +4,11 @@ class ProductsController < ApplicationController
     @categories = Category.all
     if params[:search]
       keyword = params[:search].downcase
-      @products = Product.where("LOWER(name)LIKE ?", "%#{keyword}%")
-      @category_name = Category.find(@products.first.category_id).name.capitalize
+      @products = Product.where("LOWER(name)LIKE ?", "%#{keyword}%").page(params[:page])
+      if @products.present?
+        @category_name = Category.find(@products.first.category_id).name.capitalize
+      end
+
       if params[:category].present?
         @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"
         @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
@@ -31,6 +34,13 @@ class ProductsController < ApplicationController
       end
     else
       @products = Product.all.page(params[:page])
+      @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"
+      @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
+      @products = @products.order(price: :desc) if params[:category] == "Highest Price"
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 

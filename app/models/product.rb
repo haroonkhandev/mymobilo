@@ -24,6 +24,6 @@ class Product < ApplicationRecord
   end
 
   def is_latest?
-	release_date < Date.today - 30.days
+	release_date > Date.today - 30.days
   end
 end

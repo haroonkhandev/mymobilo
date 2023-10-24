@@ -1,346 +1,329 @@
 <main>
-    <!-- Page header -->
-    <section class="bg-primary py-4 py-lg-6">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-            <div>
-              <% if params[:name].present? %>
-                <h1 class="mb-0 text-white display-4">All <%= @category_name %> Mobiles</h1>
-              <% else %>
-                <h1 class="mb-0 text-white display-4">All <%= @category_name %> Mobiles</h1>
-              <% end %>
-            </div>
+  <!-- Page header -->
+  <section class="bg-primary py-4 py-lg-6">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+          <div>
+            <% if params[:name].present? %>
+              <h1 class="mb-0 text-white display-4">All <%= @category_name %> Mobiles</h1>
+            <% else %>
+              <h1 class="mb-0 text-white display-4">All <%= @category_name %> Mobiles</h1>
+            <% end %>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Content -->
-    <section class="py-6">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-            <div class="row d-md-flex justify-content-between align-items-center">
-              <div class="col-md-6 col-lg-8 col-xl-9 ">
-                <h4 class="mb-3 mb-md-0">Displaying <%= @products.count %> out of <%= Product.all.count %> mobiles</h4>
-              </div>
-              <div class="d-inline-flex col-md-6 col-lg-4 col-xl-3 ">
-                <div class="me-2">
-                  <!-- Nav -->
-                  <div class="nav btn-group flex-nowrap" role="tablist">
-                    <button class="btn btn-outline-secondary active" data-bs-toggle="tab" data-bs-target="#tabPaneGrid"
-                      role="tab" aria-controls="tabPaneGrid" aria-selected="true">
-                      <span class="fe fe-grid"></span>
-                    </button>
-                    <button class="btn btn-outline-secondary" data-bs-toggle="tab" data-bs-target="#tabPaneList"
-                      role="tab" aria-controls="tabPaneList" aria-selected="false">
-                      <span class="fe fe-list"></span>
-                    </button>
-                  </div>
+    </div>
+  </section>
+  <!-- Content -->
+  <section class="py-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+          <div class="row d-md-flex justify-content-between align-items-center">
+            <div class="col-md-6 col-lg-8 col-xl-9 ">
+              <h4 class="mb-3 mb-md-0">Displaying <%= @products.count %> out of <%= Product.all.count %>mobiles</h4>
+            </div>
+            <div class="d-inline-flex col-md-6 col-lg-4 col-xl-3 ">
+              <div class="me-2">
+                <!-- Nav -->
+                <div class="nav btn-group flex-nowrap" role="tablist">
+                  <button class="btn btn-outline-secondary active" data-bs-toggle="tab" data-bs-target="#tabPaneGrid"
+                    role="tab" aria-controls="tabPaneGrid" aria-selected="true">
+                    <span class="fe fe-grid"></span>
+                  </button>
+                  <button class="btn btn-outline-secondary" data-bs-toggle="tab" data-bs-target="#tabPaneList"
+                    role="tab" aria-controls="tabPaneList" aria-selected="false">
+                    <span class="fe fe-list"></span>
+                  </button>
                 </div>
-                <!-- List  -->
-                <select class="selectpicker" id="category-select" data-width="100%">
-                  <option value="">Sort by</option>
-                  <option value="Newest">Newest</option>
-                  <option value="Lowest Price">Lowest Price</option>
-                  <option value="Highest Price">Highest Price</option>
-                  <!-- <option value="Highest Rated">Highest Rated</option> -->
-                </select>
               </div>
+              <!-- List  -->
+              <select class="selectpicker" id="category-select" data-width="100%">
+                <option value="">Sort by</option>
+                <option value="Newest">Newest</option>
+                <option value="Lowest Price">Lowest Price</option>
+                <option value="Highest Price">Highest Price</option>
+                <!-- <option value="Highest Rated">Highest Rated</option> -->
+              </select>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-3 col-md-4 col-12 mb-4 mb-lg-0">
-            <!-- Card -->
-            <div class="card">
-              <!-- Card header -->
-              <div class="card-header">
-                <h4 class="mb-0">Filter</h4>
-              </div>
-              <!-- Card body -->
-                <div class="card-body">
-                  <span class="dropdown-header px-0 mb-2"><strong>Category</strong></span>
-                  <!-- Checkbox -->
-                  <% @categories.each do |category|%>
-                    <div class="row align-items-center g-0">
-                      <div class="col-auto">
-                        <% if category&.picture.present? %>
-                          <%= image_tag rails_blob_path(category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs mb-1" %>
-                        <% else %>
-                          <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs mb-1"
-                              alt="avatar">
-                        <% end %>      
-                      </div>
-                      <div class="col-auto ms-3">
-                        <span><%= link_to "#{category.name.capitalize}", products_path(name: category.name), class: "active"  %></span>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>  
-
-              <!-- Card body -->
-              <div class="card-body border-top">
-                <span class="dropdown-header px-0 mb-2"> Ratings</span>
-                <!-- Custom control -->
-                <div class="custom-control custom-radio mb-1">
-                  <input type="radio" class="form-check-input" id="starRadio1" name="customRadio">
-                  <label class="form-check-label" for="starRadio1">
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star text-warning "></i>
-                    <span class="fs-6">4.5 & UP</span>
-                  </label>
-                </div>
-                <!-- Custom control -->
-                <div class="custom-control custom-radio mb-1">
-                  <input type="radio" class="form-check-input" id="starRadio2" name="customRadio" checked>
-                  <label class="form-check-label" for="starRadio2"> <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star text-warning "></i>
-                    <span class="fs-6">4.0 & UP</span></label>
-                </div>
-                <!-- Custom control -->
-                <div class="custom-control custom-radio mb-1">
-                  <input type="radio" class="form-check-input" id="starRadio3" name="customRadio">
-                  <label class="form-check-label" for="starRadio3"> <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star text-warning "></i>
-                    <span class="fs-6">3.5 & UP</span></label>
-                </div>
-                <!-- Custom control -->
-                <div class="custom-control custom-radio mb-1">
-                  <input type="radio" class="form-check-input" id="starRadio4" name="customRadio">
-                  <label class="form-check-label" for="starRadio4"> <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                    <i class="mdi mdi-star text-warning "></i>
-                    <span class="fs-6">3.0 & UP</span></label>
-                </div>
-              </div>
-              <!-- Card body -->
-              <div class="card-body border-top">
-                <span class="dropdown-header px-0 mb-2"> Skill Level</span>
-                <!-- Checkbox -->
-                <div class="form-check mb-1">
-                  <input type="checkbox" class="form-check-input" id="allTwoCheck">
-                  <label class="form-check-label" for="allTwoCheck">All Level</label>
-                </div>
-                <!-- Checkbox -->
-                <div class="form-check mb-1">
-                  <input type="checkbox" class="form-check-input" id="beginnerTwoCheck" checked>
-                  <label class="form-check-label" for="beginnerTwoCheck">Beginner</label>
-                </div>
-                <!-- Checkbox -->
-                <div class="form-check mb-1">
-                  <input type="checkbox" class="form-check-input" id="intermediateCheck">
-                  <label class="form-check-label" for="intermediateCheck">Intermediate</label>
-                </div>
-                <!-- Checkbox -->
-                <div class="form-check mb-1">
-                  <input type="checkbox" class="form-check-input" id="AdvancedTwoCheck">
-                  <label class="form-check-label" for="AdvancedTwoCheck">Advance</label>
-                </div>
-              </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-12 mb-4 mb-lg-0">
+          <!-- Card -->
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header">
+              <h4 class="mb-0">Filter</h4>
             </div>
-          </div>
-          <!-- Tab content -->
-          <div class="col-xl-9 col-lg-9 col-md-8 col-12">
-            <div class="tab-content">
-              <!-- Tab pane -->
-              <div class="tab-pane fade show active pb-4 " id="tabPaneGrid" role="tabpanel"
-                aria-labelledby="tabPaneGrid">
-                  <div class="row" id="filtered-products">
-                    <% if @products.present? %>
-                      <% @products.each do |product| %>
-                        <div class="col-lg-4 col-md-6 col-12">
-                          <!-- Card -->
-                          <div class="card  mb-4 card-hover">
-                            <% if product&.pictures.present? %>
-                                <center>
-                                    <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                    </a>
-                                </center>
-                            <% else %>
-                              <a href="<%= product_path(product) %>" class="card-img-top"><img src="/assets/course-react.jpg"
-                                alt="course" class="rounded-top-md card-img-top">
-                            <% end %>
-                            </a>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2 ">
-                                  <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
-                                  </a>
-                                </h4>
-                                <!-- List -->
-                                <!-- <ul class="mb-3 list-inline">
-                                  <li class="list-inline-item">
-                                    <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                                  </li>
-                                  <li class="list-inline-item">
-                                    <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                    </svg> Beginner
-                                  </li>
-                                </ul> -->
-                                <!-- <div class="lh-1">
-                                  <span>
-                                      <i class="mdi mdi-star text-warning me-n1"></i>
-                                      <i class="mdi mdi-star text-warning me-n1"></i>
-                                      <i class="mdi mdi-star text-warning me-n1"></i>
-                                      <i class="mdi mdi-star text-warning me-n1"></i>
-                                      <i class="mdi mdi-star text-warning"></i>
-                                  </span>
-                                  <span class="text-warning">4.5</span>
-                                  <span class="fs-6 text-muted">(7,700)</span>
-                                </div> -->
-                                <!-- Price -->
-                                <div class="lh-1 mt-3">
-                                    <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                    <del class="fs-6 text-muted">$750</del>
-                                </div>
-                            </div>
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                              <div class="row align-items-center g-0">
-                                <div class="col-auto">
-                                  <% if product.category&.picture.present? %>
-                                    <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                                  <% else %>
-                                    <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                        alt="avatar">
-                                  <% end %>
-                                </div>
-                                <div class="col ms-2">
-                                  <span><%= product.category.name %> <%= product.series %></span>
-                                </div>
-                                <div class="col-auto">
-                                  <a href="#" class="text-muted bookmark">
-                                      <i class="fe fe-bookmark  "></i>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+            <!-- Card body -->
+              <div class="card-body">
+                <span class="dropdown-header px-0 mb-2"><strong>Category</strong></span>
+                <!-- Checkbox -->
+                <% @categories.each do |category|%>
+                  <div class="row align-items-center g-0">
+                    <div class="col-auto">
+                      <% if category&.picture.present? %>
+                        <%= image_tag rails_blob_path(category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs mb-1" %>
+                      <% else %>
+                        <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs mb-1"
+                            alt="avatar">
                       <% end %>
-                    <% else %>
-                      <h1 class="text-center mt-6">This category does not have any products.</h1>
-                    <% end %>
+                    </div>
+                    <div class="col-auto ms-3">
+                      <span><%= link_to "#{category.name.capitalize}", products_path(name: category.name), class: "active"  %></span>
+                    </div>
                   </div>
+                <% end %>
               </div>
-              <!-- Tab pane -->
-              <div class="tab-pane fade pb-4" id="tabPaneList" role="tabpanel" aria-labelledby="tabPaneList">
-                <!-- Card -->
-                <% if @products.present? %>
-                  <% @products.each do |product| %>
-                    <div class="card mb-4 card-hover">
-                      <div class="row g-0 mb-4">
-                        <% if product&.pictures.present? %>
-                          <a class="col-12 col-md-12 col-xl-3 col-lg-3 bg-cover img-left-rounded"
-                            style="background-image: url(/assets/course-vue.jpg);" href="<%= product_path(product) %>">
-                            <%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), class:"img-fluid d-lg-none invisible" %>
+
+            <!-- Card body -->
+            <div class="card-body border-top">
+              <span class="dropdown-header px-0 mb-2"> Ratings</span>
+              <!-- Custom control -->
+              <div class="custom-control custom-radio mb-1">
+                <input type="radio" class="form-check-input" id="starRadio1" name="customRadio">
+                <label class="form-check-label" for="starRadio1">
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star text-warning "></i>
+                  <span class="fs-6">4.5 & UP</span>
+                </label>
+              </div>
+              <!-- Custom control -->
+              <div class="custom-control custom-radio mb-1">
+                <input type="radio" class="form-check-input" id="starRadio2" name="customRadio" checked>
+                <label class="form-check-label" for="starRadio2"> <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star text-warning "></i>
+                  <span class="fs-6">4.0 & UP</span></label>
+              </div>
+              <!-- Custom control -->
+              <div class="custom-control custom-radio mb-1">
+                <input type="radio" class="form-check-input" id="starRadio3" name="customRadio">
+                <label class="form-check-label" for="starRadio3"> <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star text-warning "></i>
+                  <span class="fs-6">3.5 & UP</span></label>
+              </div>
+              <!-- Custom control -->
+              <div class="custom-control custom-radio mb-1">
+                <input type="radio" class="form-check-input" id="starRadio4" name="customRadio">
+                <label class="form-check-label" for="starRadio4"> <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star text-warning "></i>
+                  <span class="fs-6">3.0 & UP</span></label>
+              </div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body border-top">
+              <span class="dropdown-header px-0 mb-2"> Skill Level</span>
+              <!-- Checkbox -->
+              <div class="form-check mb-1">
+                <input type="checkbox" class="form-check-input" id="allTwoCheck">
+                <label class="form-check-label" for="allTwoCheck">All Level</label>
+              </div>
+              <!-- Checkbox -->
+              <div class="form-check mb-1">
+                <input type="checkbox" class="form-check-input" id="beginnerTwoCheck" checked>
+                <label class="form-check-label" for="beginnerTwoCheck">Beginner</label>
+              </div>
+              <!-- Checkbox -->
+              <div class="form-check mb-1">
+                <input type="checkbox" class="form-check-input" id="intermediateCheck">
+                <label class="form-check-label" for="intermediateCheck">Intermediate</label>
+              </div>
+              <!-- Checkbox -->
+              <div class="form-check mb-1">
+                <input type="checkbox" class="form-check-input" id="AdvancedTwoCheck">
+                <label class="form-check-label" for="AdvancedTwoCheck">Advance</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab content -->
+        <div class="col-xl-9 col-lg-9 col-md-8 col-12">
+          <div class="tab-content">
+            <!-- Tab pane -->
+            <div class="tab-pane fade show active pb-4 " id="tabPaneGrid" role="tabpanel"
+              aria-labelledby="tabPaneGrid">
+                <div class="row" id="filtered-products">
+                  <% if @products.present? %>
+                    <% @products.each do |product| %>
+                      <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Card -->
+                        <div class="card  mb-4 card-hover">
+                          <% if product&.pictures.present? %>
+                              <center>
+                                  <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
+                                  </a>
+                              </center>
+                          <% else %>
+                            <a href="<%= product_path(product) %>" class="card-img-top"><img src="/assets/course-react.jpg"
+                              alt="course" class="rounded-top-md card-img-top">
+                          <% end %>
                           </a>
-                        <% else %>
-                          <a class="col-12 col-md-12 col-xl-3 col-lg-3 bg-cover img-left-rounded"
-                            style="background-image: url(/assets/course-vue.jpg);" href="<%= product_path(product) %>">
-                            <img src="/assets/course-react.jpg" alt="course" class="img-fluid d-lg-none invisible">
-                          </a>
-                        <% end %>
-                          <div class="col-lg-9 col-md-12 col-12">
-                            <!-- Card body -->
-                            <div class="card-body">
-                              <h3 class="mb-2 text-truncate-line-2 "><a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a></h3>
-                              <!-- List inline -->
-                              <ul class="mb-5 list-inline">
-                                <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h
-                                  56m
+                          <!-- Card Body -->
+                          <div class="card-body">
+                              <h4 class="mb-2 text-truncate-line-2 ">
+                                <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
+                                </a>
+                              </h4>
+                              <!-- List -->
+                              <!-- <ul class="mb-3 list-inline">
+                                <li class="list-inline-item">
+                                  <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
                                 </li>
-                                <li class="list-inline-item"><svg class="me-1 mt-n1" width="16" height="16"
-                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE">
-                                    </rect>
-                                    <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9">
-                                    </rect>
-                                    <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9">
-                                    </rect>
-                                  </svg>Beginner </li>
-                                <li class="list-inline-item"> <span>
+                                <li class="list-inline-item">
+                                  <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                    <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                    <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                  </svg> Beginner
+                                </li>
+                              </ul> -->
+                              <!-- <div class="lh-1">
+                                <span>
                                     <i class="mdi mdi-star text-warning me-n1"></i>
                                     <i class="mdi mdi-star text-warning me-n1"></i>
                                     <i class="mdi mdi-star text-warning me-n1"></i>
                                     <i class="mdi mdi-star text-warning me-n1"></i>
                                     <i class="mdi mdi-star text-warning"></i>
-                                  </span>
-                                  <span class="text-warning">4.5</span>
-                                  <span class="fs-6 text-muted">(9,300)</span>
-                                </li>
-                              </ul>
-                              <!-- Row -->
-                              <div class="row align-items-center g-0">
-                                <div class="col-auto">
-                                  <% if product.category&.picture.present? %>
-                                    <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                                  <% else %>
-                                    <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                        alt="avatar">
-                                  <% end %>
-                                </div>
-                                <div class="col ms-2">
-                                  <span><%= product.category.name %> <%= product.series %></span>
-                                </div>
-                                <div class="col-auto">
-                                  <a href="#" class="text-muted bookmark">
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(7,700)</span>
+                              </div> -->
+                              <!-- Price -->
+                              <div class="lh-1 mt-3">
+                                  <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                  <del class="fs-6 text-muted">$750</del>
+                              </div>
+                          </div>
+                          <!-- Card Footer -->
+                          <div class="card-footer">
+                            <div class="row align-items-center g-0">
+                              <div class="col-auto">
+                                <% if product.category&.picture.present? %>
+                                  <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
+                                <% else %>
+                                  <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
+                                      alt="avatar">
+                                <% end %>
+                              </div>
+                              <div class="col ms-2">
+                                <span><%= product.category.name %> <%= product.series %></span>
+                              </div>
+                              <div class="col-auto">
+                                <a href="#" class="text-muted bookmark">
                                     <i class="fe fe-bookmark  "></i>
-                                  </a>
-                                </div>
+                                </a>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    <% end %>
+                  <% else %>
+                    <% if params[:search].present? %>
+                    <h1 class="text-center mt-6">No Record Found.</h1>
+                    <% else %>
+                      <h1 class="text-center mt-6">This category does not have any products.</h1>
+                    <% end %>
                   <% end %>
+                </div>
+            </div>
+            <!-- Tab pane -->
+            <div class="tab-pane fade pb-4" id="tabPaneList" role="tabpanel" aria-labelledby="tabPaneList">
+              <!-- Card -->
+              <% if @products.present? %>
+                <% @products.each do |product| %>
+                  <div class="card mb-4 card-hover">
+                    <div class="row g-0 mb-4">
+                      <% if product&.pictures.present? %>
+                        <a class="col-12 col-md-12 col-xl-3 col-lg-3 bg-cover img-left-rounded"
+                          style="background-image: url(/assets/course-vue.jpg);" href="<%= product_path(product) %>">
+                          <%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), class:"img-fluid d-lg-none invisible" %>
+                        </a>
+                      <% else %>
+                        <a class="col-12 col-md-12 col-xl-3 col-lg-3 bg-cover img-left-rounded"
+                          style="background-image: url(/assets/course-vue.jpg);" href="<%= product_path(product) %>">
+                          <img src="/assets/course-react.jpg" alt="course" class="img-fluid d-lg-none invisible">
+                        </a>
+                      <% end %>
+                        <div class="col-lg-9 col-md-12 col-12">
+                          <!-- Card body -->
+                          <div class="card-body">
+                            <h3 class="mb-2 text-truncate-line-2 "><a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a></h3>
+                            <!-- List inline -->
+                            <ul class="mb-5 list-inline">
+                              <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h
+                                56m
+                              </li>
+                              <li class="list-inline-item"><svg class="me-1 mt-n1" width="16" height="16"
+                                  viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE">
+                                  </rect>
+                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9">
+                                  </rect>
+                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9">
+                                  </rect>
+                                </svg>Beginner </li>
+                              <li class="list-inline-item"> <span>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning"></i>
+                                </span>
+                                <span class="text-warning">4.5</span>
+                                <span class="fs-6 text-muted">(9,300)</span>
+                              </li>
+                            </ul>
+                            <!-- Row -->
+                            <div class="row align-items-center g-0">
+                              <div class="col-auto">
+                                <% if product.category&.picture.present? %>
+                                  <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
+                                <% else %>
+                                  <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
+                                      alt="avatar">
+                                <% end %>
+                              </div>
+                              <div class="col ms-2">
+                                <span><%= product.category.name %> <%= product.series %></span>
+                              </div>
+                              <div class="col-auto">
+                                <a href="#" class="text-muted bookmark">
+                                  <i class="fe fe-bookmark  "></i>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              <% else %>
+                <% if params[:search].present? %>
+                <h1 class="text-center mt-6">No Record Found.</h1>
                 <% else %>
                   <h1 class="text-center mt-6">This category does not have any products.</h1>
                 <% end %>
-              </div>
+              <% end %>
             </div>
-            <%= paginate @products %>
           </div>
+          <%= paginate @products if @products.present? %>
         </div>
       </div>
-    </section>
-  </main>
-  <!-- Footer -->
-  <!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="row align-items-center g-0 border-top py-2">
-            <!-- Desc -->
-            <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© <span id="copyright">
-                    <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-
-                    </script>
-                </span>Geeks. All Rights Reserved.</span>
-            </div>
-              <!-- Links -->
-            <div class="col-12 col-md-6">
-                <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                    <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
-                </nav>
-            </div>
-        </div>
     </div>
-</footer>
+  </section>
+</main>
