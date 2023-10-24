@@ -1,1204 +1,1169 @@
 <main>
-    <!-- Page header -->
-    
-    <section class="pt-lg-8 pb-lg-16 pt-7 pb-12 bg-primary">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-7 col-lg-7 col-md-12">
-                    <div>
-                        <center>
-                            <% if @product.pictures.present? %>
-                                <section class="">
-                                    <%= image_tag rails_blob_path(@product.pictures.first, disposition: "attachment", only_path: true), style: "max-height: 330px;" %>
-                                </section>
-                            <% else %>
-                                <section class="pt-lg-8 pb-lg-16 pt-7 pb-12 show-page-image">
-                                </section>
-                            <% end %>
-                        </center>
-                        <h1 class="text-white display-4 fw-semibold">
-                            Samsung Galaxy Z Fold 4 12GB
-                        </h1>
-                        <!-- <p class="text-white mb-6 lead">
-                            JavaScript is the popular programming language which powers web
-                            pages and web applications. This course will get you started
-                            coding in JavaScript.
-                        </p> -->
-                        <div class="d-flex align-items-center">
-                            <!-- <a href="#" class="bookmark text-white text-decoration-none">
-                                <i class="fe fe-bookmark  me-2"></i>Bookmark
-                            </a> -->
-
-                            <span class="text-white ms-3"><i class="fas fa-camera"></i><strong> 48MP camera</strong>
-                            </span>
-                            <span class="text-white ms-3"><i class="fas fa-microchip"></i><strong> Snapdragon 662 Processor</strong>
-                            </span>
-                            <!-- <span class="text-white ms-3"><i class="fe fe-cpu "></i> Processor
-                            </span> -->
-                            <!-- <span class="ms-4">
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                <i class="mdi mdi-star me-n1-half text-warning"></i>
-                                <span class="text-white">(140)</span>
-                            </span> -->
-                            <!-- <span class="text-white ms-4 d-none d-md-block">
-                                <svg width="16" height="16" viewBox="0 0 16
-                          16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3" y="8" width="2" height="6" rx="1" fill="#DBD8E9"></rect>
-                                    <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-                                    <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-                                </svg>
-                                <span class="align-middle"> Intermediate </span>
-                            </span> -->
-                        </div><br>
-                        <div class="d-flex align-items-center">
-                        	<span class="text-white ms-3"><i class="fas fa-sd-card"></i><strong> 64GB/128GB Internal Storage</strong>
-                        	</span>
-                        	<span class="text-white ms-3"><i class="fas fa-battery-three-quarters"></i><strong> 5000mAh Li-Po Battery</strong>
-                        	</span>
-                        </div><br>
-                        <div class="d-flex align-items-center">
-                        	<span class="text-white ms-3"><i class="fas fa-memory"></i><strong> 4GB/6GB/8GB Memory (RAM)</strong>
-                        	</span>
-                        	<span class="text-white ms-3"><i class="fas fa-mobile"></i><strong> 6.58" 1080x2408 pixels Display</strong>
-                        	</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Page content -->
-    <section class="pb-10">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-12 col-12 mt-n8 mb-4 mb-lg-0">
-                    <!-- Card -->
-                    <div class="card rounded-3">
-                        <!-- Card header -->
-                        <div class="card-header border-bottom-0 p-0">
-                            <div>
-                                <!-- Nav -->
-                                <ul class="nav nav-lb-tab" id="tab" role="tablist">
-                                		<li class="nav-item">
-                                		    <a class="nav-link active" id="description-tab" data-bs-toggle="pill"
-                                		        href="#description" role="tab" aria-controls="description"
-                                		        aria-selected="true">Specification</a>
-                                		</li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="table-tab" data-bs-toggle="pill"
-                                            href="#table" role="tab" aria-controls="table"
-                                            aria-selected="false">Introduction</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="picture-tab" data-bs-toggle="pill"
-                                            href="#picture" role="tab" aria-controls="transcript"
-                                            aria-selected="false">Images</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="review-tab" data-bs-toggle="pill" href="#review"
-                                            role="tab" aria-controls="review" aria-selected="false">Reviews</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="faq-tab" data-bs-toggle="pill" href="#faq"
-                                            role="tab" aria-controls="faq" aria-selected="false">FAQ</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="tab-content" id="tabContent">
-                                <div class="tab-pane fade" id="table" role="tabpanel"
-                                    aria-labelledby="table-tab">
-                                    <!-- Card -->
-                                    <div class="accordion" id="courseAccordion">
-                                        <div>
-                                            <!-- List group -->
-                                            <ul class="list-group list-group-flush">
-                                                <!-- List group item -->
-                                                <li class="list-group-item px-0 pb-0">
-                                                    <!-- Toggle -->
-                                                    <a class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none"
-                                                        data-bs-toggle="collapse" href="#courseEleven"
-                                                        aria-expanded="false" aria-controls="courseEleven">
-                                                        <div class="me-auto">
-                                                            <!-- Title -->
-                                                            Samsung Galaxy Z Fold 4 12GB price in Pakistan
-                                                        </div>
-                                                        <!-- Chevron -->
-                                                        <span class="chevron-arrow ms-4">
-                                                            <i class="fe fe-chevron-down fs-4"></i>
-                                                        </span>
-                                                    </a>
-                                                    <!-- Row -->
-                                                    <!-- Collapse -->
-                                                    <div class="collapse" id="courseEleven"
-                                                        data-bs-parent="#courseAccordion">
-                                                        <div class="pt-3 pb-2">
-                                                            <p>
-                                                                Samsung Galaxy Z Fold 4 12GB price in Pakistan is Rs. 574,999. Official dealers and warranty providers regulate the retail price of Samsung mobile products in official warranty.
-
-                                                                <p>Price of Samsung Galaxy Z Fold 4 12GB in Pakistan is Rs. 574,999. <br><em> Price of Samsung in USD is $1758. </em> </p>
-                                                                Samsung Galaxy Z Fold 4 12GB - The Latest Foldable Smartphone!
-                                                                Samsung has launched the new Galaxy Z variant with 12GB of RAM. The Fold 4 has a lot to offer in terms of features. Firstly, we will discuss the display of this flagship smartphone, it comes with a massive 7.6 Inches Foldable Dynamic AMOLED 2X Capacitive Touchscreen that is both durable and slim. With an 1812 x 2176 pixels resolution and 120Hz refresh rate, Samsung Z Fold offers unbeatable display quality. A layer of Corning Gorilla Glass Victus+ is also present to protect the display on both sides of them. The Samsung Galaxy Z's a well-known and Powerful Qualcomm SM8475 Snapdragon 8+ Gen 1 chipset with the support of a 3.19Ghz Octa Core CPU. This Samsung Galaxy's Z Fold offers a triple camera setup in which the main camera is 50 MP, the second one is 10 MP and the third one is 12 MP. On the front, there is a single 10 MP selfie sensor to record and capture at high resolution. The Z Fold is backed with a bigger 4400 mAh battery pack that can easily last all day on just a single charge. In addition, it is also capable of 25W fast wired charging, 15W wireless charging, and 4.5W of reverse charging. Among the features of this Samsung's Galaxy Z Fold is the immersive 12GB of RAM and 512GB of internal storage. This is a very large amount of storage that will give you plenty of room for storing a lot of data in the future. As far as other brands are concerned, this brand new Galaxy Z Fold by Samsung is a tough competitor for them.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade show active" id="description" role="tabpanel"
-                                    aria-labelledby="description-tab">
-                                    <!-- Description -->
-                                    <div class="mb-4">
-                                        <h3 class="mb-2">Realme Y31</h3>
-                                        <div class="table-responsive table-borderless">
-                                          <table class="table mb-1 table-width">
-                                            <thead>
-                                              <tr>
-                                                Specifications
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <td class="text-secondary">Price in Pakistan</td>
-                                                <td class="align-top text-secondary">Rs. 40,999/-</td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/build.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">BUILD</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">OS</td>
-                                                  <td class="align-top text-secondary">Android 13 OS</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">UI</td>
-                                                  <td class="align-top text-secondary">Funtouch OS 13</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Dimensions</td>
-                                                  <td class="align-top text-secondary">164.1 x 76.2 x 8.1 mm</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Weight</td>
-                                                  <td class="align-top text-secondary">190 g</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">SIM</td>
-                                                  <td class="align-top text-secondary">Dual Sim, Dual Standby (Nano-SIM)</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Colors</td>
-                                                  <td class="align-top text-secondary">Burgundy Black, Sea Blue</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Safety</td>
-                                                  <td class="align-top text-secondary">Emergency SOS Crash Detection4</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Finish</td>
-                                                  <td class="align-top text-secondary">Titanium design Ceramic Shield front 
-                                                    Textured matte glass back
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/network.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">FREQUENCY</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">2G Band</td>
-                                                  <td class="align-top text-secondary">SIM1: GSM: 850/900/1800/1900MHz <br>
-                                                   SIM2: GSM: 850/900/1800/1900MHz
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">3G Band</td>
-                                                  <td class="align-top text-secondary">WCDMA: Bands 1/2/4/5/6/8/19</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">4G Band</td>
-                                                  <td class="align-top text-secondary">LTE FDD: Bands 1/2/3/4/5/7/8/12/13/17/18/19/20/26/
-                                                    28A/28B/66<br>
-                                                    LTE TDD: Bands 38/39/40/41
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">5G Band</td>
-                                                  <td class="align-top text-secondary">5G NR: n1/n3/n5/n7/n8/n20/n28A/n28B/n66/n38/n40/n41/n77/n78
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/platform.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">PROCESSOR</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">SoC</td>
-                                                  <td class="align-top text-secondary">MediaTek Dimensity 7050</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">CPU</td>
-                                                  <td class="align-top text-secondary">8 cores</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">GPU</td>
-                                                  <td class="align-top text-secondary">ARM Mail-G68 MC4</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/dis.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">DISPLAY</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Panel</td>
-                                                  <td class="align-top text-secondary">3D AMOLED (flexible)</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Resolution</td>
-                                                  <td class="align-top text-secondary">FHD+ (2412×1080)</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Refresh Rate</td>
-                                                  <td class="align-top text-secondary">Maximum: 120H</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Touch Sampling Rate</td>
-                                                  <td class="align-top text-secondary">Maximum: 240Hz</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Brightness</td>
-                                                  <td class="align-top text-secondary">Up to 950 nits</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Cover Glasses</td>
-                                                  <td class="align-top text-secondary">AGC DT-Star2</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Extra Features</td>
-                                                  <td class="align-top text-secondary">Pixel Density: 394PPI<br>
-                                                    Color Depth: 1.07 billion hues (10 bit)<br>
-                                                    Colour Gamut: Active Mode: 100% DCI-P3 
-                                                    <br>Soft Mode: 100% sRGB
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/memory.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">MEMORY</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">RAM and ROM Capacities</td>
-                                                  <td class="align-top text-secondary">8GB + 256GB</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">RAM Type</td>
-                                                  <td class="align-top text-secondary">Dual-channel LPDDR4x @ 2133MHz</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">ROM Specifications</td>
-                                                  <td class="align-top text-secondary">UFS2.2</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Phone Storage Card</td>
-                                                  <td class="align-top text-secondary">Supported</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">USB OTG</td>
-                                                  <td class="align-top text-secondary">Supported</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/camera.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">CAMERA</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Main</td>
-                                                  <td class="align-top text-secondary">Main camera: 64MP; f/1.7; FOV 81°; 6P lens;   
-                                                    supporting AF<br>
-                                                    Telephoto: 32MP; f/2.0; FOV 49°; 6P lens; supporting AF<br>
-                                                    Ultra-wide-angle: 8MP; f/2.2; FOV 112°; 5P lens, fixed focus.<br>
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Front</td>
-                                                  <td class="align-top text-secondary">32MP; f/2.4; FOV 89°; 5P lens, not supporting AF or OIS</td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Features</td>
-                                                  <td class="align-top text-secondary">Rear: Photos, videos, night photos, portraits, 
-                                                    professional photos, panorama, super text, Google Lens, cute shots, dual-view video, ultra-clear image quality, high pixel mode, time-lapse photography, and slow motion <br>
-                                                    Front: Photos, videos, panorama photos, portraits, night photos, portrait retouching, screen fill flash, cute shots, time-lapse photography, dual-view videos, and others
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/video.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">VIDEO</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Main</td>
-                                                  <td class="align-top text-secondary">
-                                                    4K@30fps, 1080P@60fps/30fps, and 720P@60fps/30fps.
-                                                    Video OIS supports EIS.
-                                                    Super steady shot supports EIS 1080P@60fps only.
-                                                    Video zoom shot supports 1080P@30fps and 720P@30fps.
-                                                    Slow-motion video supports 1080P@120fps/480fps, and 720P@240fps/960fps.
-                                                    Time-lapse photography supports 1080P@30fps.
-                                                    Dual-view video supports 1080P@30fps.
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Front</td>
-                                                  <td class="align-top text-secondary">
-                                                    Up to 1080P/720P@30fps, defaulting to 1080P@30fps (retouching effect is on by default).
-                                                    Video anti-shake 1080P@30fps.
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/comms.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">CONNECTIVITY</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">WLAN</td>
-                                                  <td class="align-top text-secondary">
-                                                    Supporting Wi-Fi 6 (802.11ax), Wi-Fi 5 (802.11ac), and 802.11a/b/g/n/. WLAN 2.4G / WLAN 5; WLAN Display; WLAN sharing; 2×2 MIMO; MU-MIMO
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Bluetooth</td>
-                                                  <td class="align-top text-secondary">
-                                                    Bluetooth® v5.3, Bluetooth® Low Energy
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Bluetooth® Audio Codec</td>
-                                                  <td class="align-top text-secondary">
-                                                    SBC, AAC, aptx, aptx-HD, LDAC, and LHDC
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">GPS</td>
-                                                  <td class="align-top text-secondary">
-                                                    GPS, GLONASS, BDS, Galileo, and QZSS
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Radio</td>
-                                                  <td class="align-top text-secondary">
-                                                    FM Radio
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">USB</td>
-                                                  <td class="align-top text-secondary">
-                                                    USB Type-C 2.0, OTG 
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">NFC</td>
-                                                  <td class="align-top text-secondary">
-                                                    Supported 
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">infrared</td>
-                                                  <td class="align-top text-secondary">
-                                                    Supported 
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/features.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">FEATURES</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Sensors</td>
-                                                  <td class="align-top text-secondary">
-                                                    Geomagnetic induction
-                                                    Ambient light induction
-                                                    Proximity sensor
-                                                    Acceleration sensor
-                                                    Gravity sensor
-                                                    Gyroscope
-                                                    Infrared sensor
-                                                    Step recording function
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Audio</td>
-                                                  <td class="align-top text-secondary">
-                                                    3.5mm Audio Jack, MP4/H.264 player, MP3/WAV/eAAC+/FLAC player, Speaker Phone
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Browser</td>
-                                                  <td class="align-top text-secondary">
-                                                    HTML5
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Messaging</td>
-                                                  <td class="align-top text-secondary">
-                                                    SMS(threaded view), MMS, Email, Push Mail, IM 
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Games</td>
-                                                  <td class="align-top text-secondary">
-                                                    Built-in + Downloadable
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Torch</td>
-                                                  <td class="align-top text-secondary">
-                                                    Yes
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Extra</td>
-                                                  <td class="align-top text-secondary">
-                                                    Glass front, plastic frame, plastic back, Document viewer, Photo/video editor 
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                                              <img src="/assets/battery.svg" alt="network" class="rounded-circle avatar-xl network-icon" >
-                                                <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">BATTERY</button>
-                                              </li>
-                                            </div>
-                                            <table class="table mb-1 table-width">
-                                              <thead>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Capacity</td>
-                                                  <td class="align-top text-secondary">
-                                                    4870mAh/18.94Wh (Rated)
-                                                    5000mAh/19.45Wh (Typical)
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">Charge</td>
-                                                  <td class="align-top text-secondary">
-                                                    SUPERVOOCTM 67W, SUPERVOOCTM 2.0, SUPERVOOCTM, VOOC 3.0, PD3.0（9V/2A）
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                              <tbody>
-                                                <tr>
-                                                  <td class="text-secondary">charging</td>
-                                                  <td class="align-top text-secondary ">
-                                                    Fast Charge
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                                    <!-- Reviews -->
-                                    <div class="mb-3">
-                                        <h3 class="mb-4">How students rated this courses</h3>
-                                        <div class="row align-items-center">
-                                            <div class="col-auto text-center">
-                                                <h3 class="display-2 fw-bold">4.5</h3>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                <i class="mdi mdi-star me-n1-half text-warning"></i>
-                                                <p class="mb-0 fs-6">(Based on 27 reviews)</p>
-                                            </div>
-                                            <!-- Progress bar -->
-                                            <div class="col pt-3 order-3 order-md-2">
-                                                <div class="progress mb-3" style="height: 6px">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-3" style="height: 6px">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-3" style="height: 6px">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-3" style="height: 6px">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="progress mb-0" style="height: 6px">
-                                                    <div class="progress-bar bg-warning" role="progressbar"
-                                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                        aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-auto col-6 order-2 order-md-3">
-                                                <!-- Rating -->
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <span class="ms-1">53%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">36%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">9%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">3%</span>
-                                                </div>
-                                                <div>
-                                                    <i class="mdi mdi-star me-n1 text-warning"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <i class="mdi mdi-star me-n1 text-light"></i>
-                                                    <span class="ms-1">2%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- hr -->
-                                    <hr class="my-5">
-                                    <div class="mb-3">
-                                      <div class="d-md-flex align-items-center align-items-center justify-content-between mb-5">
-                                          <!-- Reviews -->
-                                          <div class="mb-3 mb-lg-0">
-                                              <h3 class="mb-0">Reviews</h3>
-                                          </div>
-                                          <div>
-                                              <!-- Form -->
-                                              <form class="form-inline">
-                                                  <div class="d-flex align-items-center">
-                                                      <span class="position-absolute ps-3">
-                                                          <i class="fe fe-search"></i>
-                                                      </span>
-                                                      <input type="search" class="form-control ps-6"
-                                                          placeholder="Search Review">
-                                                  </div>
-                                              </form>
-                                          </div>
-                                      </div>
-                                      <!-- Rating -->
-                                      <%= render "comments/form", product: @product %>
-                                      <%= render 'comments/index' %>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="picture" role="tabpanel"
-                                    aria-labelledby="picture-tab">
-                                    <% if @product.pictures.present? %>
-                                        <% @product.pictures.each do |picture| %>
-                                            <center>
-                                                <%= image_tag rails_blob_path(picture, disposition: "attachment", only_path: true), class:"card-img-top mb-3", style: "max-width:50%;" %><br>
-                                            </center>
-                                        <% end  %>
-                                    <% else %>
-                                        <h1 class="text-center mt-6">This Phone does not have any Image.</h1>
-                                    <% end %>
-                                </div>
-                                <!-- Tab pane -->
-                                <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
-                                    <!-- FAQ -->
-                                    <div>
-                                        <h3 class="mb-3">Course - Frequently Asked Questions</h3>
-                                        <div class="mb-4">
-                                            <h4>How this course help me to design layout?</h4>
-                                            <p>
-                                                My name is Jason Woo and I work as human duct tape at
-                                                Gatsby, that means that I do a lot of different
-                                                things. Everything from dev roll to writing content to
-                                                writing code. And I used to work as an architect at
-                                                IBM. I live in Portland, Oregon.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>What is important of this course?</h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>Why Take This Course?</h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h4>
-                                                Is able to create application after this course?
-                                            </h4>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                            <p>
-                                                We'll dive into GraphQL, the fundamentals of GraphQL.
-                                                We're only gonna use the pieces of it that we need to
-                                                build in Gatsby. We're not gonna be doing a deep dive
-                                                into what GraphQL is or the language specifics. We're
-                                                also gonna get into MDX. MDX is a way to write React
-                                                components in your markdown.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12 mt-lg-n22">
-                    <!-- Card -->
-                    <div class="card mb-3 mb-4">
-                        <div class="p-1">
-                            <div class="d-flex justify-content-center position-relative rounded py-10 border-white border rounded-3 bg-cover"
-                                style="
-                background-image: url(/assets/course-javascript.jpg);
-              ">
-                                <a class="popup-youtube icon-shape rounded-circle btn-play icon-xl text-decoration-none"
-                                    href="https://www.youtube.com/watch?v=JRzWRZahOVU">
-                                    <i class="fe fe-play"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <!-- Price single page -->
-                            <div class="mb-3">
-                                <span class="text-dark fw-bold h2">$600</span>
-                                <del class="fs-4 text-muted">$750</del>
-                            </div>
-                            <div class="d-grid">
-                                <a href="#" class="btn btn-primary mb-2">Start Free Month</a>
-                                <a href="pricing.html" class="btn btn-outline-primary">Get Full Access</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card -->
-                    <div class="card mb-4">
-                        <div>
-                            <!-- Card header -->
-                            <div class="card-header">
-                                <h4 class="mb-0">What’s included</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-transparent">
-                                    <i class="fe fe-play-circle align-middle me-2 text-primary"></i>12 hours video
-                                </li>
-                                <li class="list-group-item bg-transparent">
-                                    <i class="fe fe-award me-2 align-middle text-success"></i>Certificate
-                                </li>
-                                <li class="list-group-item bg-transparent">
-                                    <i class="fe fe-calendar align-middle me-2 text-info"></i>12
-                                    Article
-                                </li>
-                                <li class="list-group-item bg-transparent">
-                                    <i class="fe fe-video align-middle me-2 text-secondary"></i>Watch Offline
-                                </li>
-                                <li class="list-group-item bg-transparent border-bottom-0">
-                                    <i class="fe fe-clock align-middle me-2 text-warning"></i>Lifetime access
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Card -->
-                    <div class="card">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="position-relative">
-                                    <% if @category&.picture.present? %>
-                                      <%= image_tag rails_blob_path(@category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xl" %>
-                                      
-                                    <% else %>
-                                      <img src="/assets/samsung-logo.png" alt="avatar"
-                                          class="rounded-circle avatar-xl">
-                                      <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip"
-                                          data-placement="top" title="Verifed">
-                                          <img src="/assets/checked-mark.svg" alt="checked-mark"height="30" width="30">
-                                      </a>
-                                    <% end %>
-                                </div>
-                                <div class="ms-4">
-                                    <h4 class="mb-0"><%= @product.category.name %></h4>
-                                    <p class="mb-1 fs-6"><%= @product.series %></p>
-                                    <span class="fs-6"><span class="text-warning">4.5</span><span
-                                            class="mdi mdi-star text-warning me-2"></span>Rating</span>
-                                </div>
-                            </div>
-                            <div class="border-top row mt-3 border-bottom mb-3 g-0">
-                                <div class="col">
-                                    <div class="pe-1 ps-2 py-3">
-                                        <h5 class="mb-0">11,604</h5>
-                                        <span>Students</span>
-                                    </div>
-                                </div>
-                                <div class="col border-start">
-                                    <div class="pe-1 ps-3 py-3">
-                                        <h5 class="mb-0">32</h5>
-                                        <span>Courses</span>
-                                    </div>
-                                </div>
-                                <div class="col border-start">
-                                    <div class="pe-1 ps-3 py-3">
-                                        <h5 class="mb-0">12,230</h5>
-                                        <span>Reviews</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>
-                                I am an Innovation designer focussing on UX/UI based in
-                                Berlin. As a creative resident at Figma explored the city of
-                                the future and how new technologies.
-                            </p>
-                            <a href="instructor-profile.html" class="btn btn-outline-secondary btn-sm">View
-                                Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Card -->
-            <div class="pt-12 pb-3">
-                <div class="row d-md-flex align-items-center mb-4">
-                    <div class="col-12">
-                        <h2 class="mb-0">Related Courses</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Card -->
-                        <div class="card mb-4 card-hover">
-                            <a href="course-single.html" class="card-img-top"><img
-                                    src="/assets/course-react.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2">
-                                    <a href="course-single.html" class="text-inherit">How to easily create a website
-                                        with React</a>
-                                </h4>
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item">
-                                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg>
-                                        Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(7,700)</span>
-                                </div>
-                            </div>
-                            <!-- Card footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="/assets/avatar-1.jpg"
-                                            class="rounded-circle avatar-xs" alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Morris Mccoy</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Card -->
-                        <div class="card mb-4 card-hover">
-                            <a href="course-single.html" class="card-img-top"><img
-                                    src="/assets/course-graphql.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2">
-                                    <a href="course-single.html" class="text-inherit">GraphQL: introduction to
-                                        graphQL
-                                        for beginners</a>
-                                </h4>
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item">
-                                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
-                                        </svg>
-                                        Advance
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(9,300)</span>
-                                </div>
-                            </div>
-                            <!-- Card footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="/assets/avatar-2.jpg"
-                                            class="rounded-circle avatar-xs" alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Ted Hawkins</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Card -->
-                        <div class="card mb-4 card-hover">
-                            <a href="course-single.html" class="card-img-top"><img
-                                    src="/assets/course-angular.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2">
-                                    <a href="course-single.html" class="text-inherit">Angular - the complete guide
-                                        for
-                                        beginner</a>
-                                </h4>
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item">
-                                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0
-                                0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg>
-                                        Beginner
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(8,890)</span>
-                                </div>
-                            </div>
-                            <!-- Card footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="/assets/avatar-3.jpg"
-                                            class="rounded-circle avatar-xs" alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Juanita Bell</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <div class="card mb-4 card-hover">
-                            <a href="course-single.html" class="card-img-top"><img
-                                    src="/assets/course-python.jpg" alt="course"
-                                    class="card-img-top rounded-top-md"></a>
-                            <div class="card-body">
-                                <h4 class="mb-2 text-truncate-line-2">
-                                    <a href="course-single.html" class="text-inherit">The Python Course: build web
-                                        application</a>
-                                </h4>
-                                <ul class="mb-3 list-inline">
-                                    <li class="list-inline-item">
-                                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
-                                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                        </svg>
-                                        Intermediate
-                                    </li>
-                                </ul>
-                                <div class="lh-1">
-                                    <span>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning me-n1"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                    </span>
-                                    <span class="text-warning">4.5</span>
-                                    <span class="fs-6 text-muted">(13,245)</span>
-                                </div>
-                            </div>
-                            <!-- Card footer -->
-                            <div class="card-footer">
-                                <div class="row align-items-center g-0">
-                                    <div class="col-auto">
-                                        <img src="/assets/avatar-4.jpg"
-                                            class="rounded-circle avatar-xs" alt="avatar">
-                                    </div>
-                                    <div class="col ms-2">
-                                        <span>Claire Robertson</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="text-muted bookmark">
-                                            <i class="fe fe-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-<!-- Footer -->
-<!-- Footer -->
-<footer class="footer">
+  <!-- Page header -->
+  <section class="pt-lg-8 pb-lg-16 pt-7 pb-12 bg-primary">
     <div class="container">
-        <div class="row align-items-center g-0 border-top py-2">
-            <!-- Desc -->
-            <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© <span id="copyright">
-                    <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-
-                    </script>
-                </span>Geeks. All Rights Reserved.</span>
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 col-md-12">
+          <div>
+            <center>
+              <% if @product.pictures.present? %>
+                <section class="">
+                  <%= image_tag rails_blob_path(@product.pictures.first, disposition: "attachment", only_path: true), style: "max-height: 330px;" %>
+                </section>
+              <% else %>
+                <section class="pt-lg-8 pb-lg-16 pt-7 pb-12 show-page-image">
+                </section>
+              <% end %>
+            </center>
+            <h1 class="text-white display-4 fw-semibold">
+              <%= @product.name %> 4 12GB
+            </h1>
+            <!-- <p class="text-white mb-6 lead">
+                JavaScript is the popular programming language which powers web
+                pages and web applications. This course will get you started
+                coding in JavaScript.
+            </p> -->
+            <div class="d-flex align-items-center">
+              <!-- <a href="#" class="bookmark text-white text-decoration-none">
+                  <i class="fe fe-bookmark  me-2"></i>Bookmark
+              </a> -->
+              <span class="text-white ms-3"><i class="fas fa-camera"></i>
+                <strong> 48MP camera</strong>
+              </span>
+              <span class="text-white ms-3"><i class="fas fa-microchip"></i>
+                <strong> Snapdragon 662 Processor</strong>
+              </span>
+              <!-- <span class="text-white ms-3"><i class="fe fe-cpu "></i> Processor
+              </span> -->
+              <!-- <span class="ms-4">
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1 text-warning"></i>
+                  <i class="mdi mdi-star me-n1-half text-warning"></i>
+                  <span class="text-white">(140)</span>
+              </span> -->
+              <!-- <span class="text-white ms-4 d-none d-md-block">
+                  <svg width="16" height="16" viewBox="0 0 16
+              16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#DBD8E9"></rect>
+                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
+                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
+                  </svg>
+                  <span class="align-middle"> Intermediate </span>
+              </span> -->
+            </div><br>
+            <div class="d-flex align-items-center">
+              <span class="text-white ms-3"><i class="fas fa-sd-card"></i>
+                <strong> 64GB/128GB Internal Storage</strong>
+              </span>
+              <span class="text-white ms-3"><i class="fas fa-battery-three-quarters"></i>
+                <strong> 5000mAh Li-Po Battery</strong>
+              </span>
+            </div><br>
+            <div class="d-flex align-items-center">
+              <span class="text-white ms-3"><i class="fas fa-memory"></i>
+                <strong> 4GB/6GB/8GB Memory (RAM)</strong>
+              </span>
+              <span class="text-white ms-3"><i class="fas fa-mobile"></i>
+                <strong> 6.58" 1080x2408 pixels Display</strong>
+              </span>
             </div>
-              <!-- Links -->
-            <div class="col-12 col-md-6">
-                <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                    <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
-                </nav>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</footer>
+  </section>
+  <!-- Page content -->
+  <section class="pb-10">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-12 mt-n8 mb-4 mb-lg-0">
+          <!-- Card -->
+          <div class="card rounded-3">
+            <!-- Card header -->
+            <div class="card-header border-bottom-0 p-0">
+              <div>
+                <!-- Nav -->
+                <ul class="nav nav-lb-tab" id="tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="description-tab" data-bs-toggle="pill"
+                    href="#description" role="tab" aria-controls="description"
+                    aria-selected="true">Specification
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="table-tab" data-bs-toggle="pill"
+                      href="#table" role="tab" aria-controls="table"
+                      aria-selected="false">Introduction
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="picture-tab" data-bs-toggle="pill"
+                      href="#picture" role="tab" aria-controls="transcript"
+                      aria-selected="false">Images
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="review-tab" data-bs-toggle="pill" href="#review"
+                      role="tab" aria-controls="review" aria-selected="false">Reviews
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="faq-tab" data-bs-toggle="pill" href="#faq"
+                      role="tab" aria-controls="faq" aria-selected="false">FAQ
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="tab-content" id="tabContent">
+                <div class="tab-pane fade" id="table" role="tabpanel" aria-labelledby="table-tab">
+                  <!-- Card -->
+                  <div class="accordion" id="courseAccordion">
+                    <div>
+                      <!-- List group -->
+                      <ul class="list-group list-group-flush">
+                        <!-- List group item -->
+                        <li class="list-group-item px-0 pb-0">
+                          <!-- Toggle -->
+                          <a class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none"
+                            data-bs-toggle="collapse" href="#courseEleven" aria-expanded="false" aria-controls="courseEleven">
+                            <div class="me-auto">
+                              <!-- Title -->
+                              <%= @product.name %> 4 12GB price in Pakistan
+                            </div>
+                            <!-- Chevron -->
+                            <span class="chevron-arrow ms-4">
+                              <i class="fe fe-chevron-down fs-4"></i>
+                            </span>
+                          </a>
+                          <!-- Row -->
+                          <!-- Collapse -->
+                          <div class="collapse" id="courseEleven" data-bs-parent="#courseAccordion">
+                            <div class="pt-3 pb-2">
+                              <p>
+                                Samsung Galaxy Z Fold 4 12GB price in Pakistan is Rs. 574,999. Official dealers and warranty providers regulate the retail price of Samsung mobile products in official warranty.
+
+                                <p>Price of Samsung Galaxy Z Fold 4 12GB in Pakistan is Rs. 574,999. <br><em> Price of Samsung in USD is $1758. </em> </p>
+                                Samsung Galaxy Z Fold 4 12GB - The Latest Foldable Smartphone!
+                                Samsung has launched the new Galaxy Z variant with 12GB of RAM. The Fold 4 has a lot to offer in terms of features. Firstly, we will discuss the display of this flagship smartphone, it comes with a massive 7.6 Inches Foldable Dynamic AMOLED 2X Capacitive Touchscreen that is both durable and slim. With an 1812 x 2176 pixels resolution and 120Hz refresh rate, Samsung Z Fold offers unbeatable display quality. A layer of Corning Gorilla Glass Victus+ is also present to protect the display on both sides of them. The Samsung Galaxy Z's a well-known and Powerful Qualcomm SM8475 Snapdragon 8+ Gen 1 chipset with the support of a 3.19Ghz Octa Core CPU. This Samsung Galaxy's Z Fold offers a triple camera setup in which the main camera is 50 MP, the second one is 10 MP and the third one is 12 MP. On the front, there is a single 10 MP selfie sensor to record and capture at high resolution. The Z Fold is backed with a bigger 4400 mAh battery pack that can easily last all day on just a single charge. In addition, it is also capable of 25W fast wired charging, 15W wireless charging, and 4.5W of reverse charging. Among the features of this Samsung's Galaxy Z Fold is the immersive 12GB of RAM and 512GB of internal storage. This is a very large amount of storage that will give you plenty of room for storing a lot of data in the future. As far as other brands are concerned, this brand new Galaxy Z Fold by Samsung is a tough competitor for them.
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade show active" id="description" role="tabpanel"
+                  aria-labelledby="description-tab">
+                  <!-- Description -->
+                  <div class="mb-4">
+                    <h3 class="mb-2">Realme Y31</h3>
+                    <div class="table-responsive table-borderless">
+                      <table class="table mb-1 table-width">
+                        <thead>
+                          <tr>
+                            Specifications
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Price in Pakistan</td>
+                            <td class="align-top text-secondary">Rs. 40,999/-</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/build.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">BUILD</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">OS</td>
+                            <td class="align-top text-secondary">Android 13 OS</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">UI</td>
+                            <td class="align-top text-secondary">Funtouch OS 13</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Dimensions</td>
+                            <td class="align-top text-secondary">164.1 x 76.2 x 8.1 mm</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Weight</td>
+                            <td class="align-top text-secondary">190 g</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">SIM</td>
+                            <td class="align-top text-secondary">Dual Sim, Dual Standby (Nano-SIM)</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Colors</td>
+                            <td class="align-top text-secondary">Burgundy Black, Sea Blue</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Safety</td>
+                            <td class="align-top text-secondary">Emergency SOS Crash Detection4</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Finish</td>
+                            <td class="align-top text-secondary">Titanium design Ceramic Shield front
+                              Textured matte glass back
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/network.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">FREQUENCY</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">2G Band</td>
+                            <td class="align-top text-secondary">SIM1: GSM: 850/900/1800/1900MHz <br>
+                             SIM2: GSM: 850/900/1800/1900MHz
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">3G Band</td>
+                            <td class="align-top text-secondary">WCDMA: Bands 1/2/4/5/6/8/19</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">4G Band</td>
+                            <td class="align-top text-secondary">LTE FDD: Bands 1/2/3/4/5/7/8/12/13/17/18/19/20/26/
+                              28A/28B/66<br>
+                              LTE TDD: Bands 38/39/40/41
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">5G Band</td>
+                            <td class="align-top text-secondary">5G NR: n1/n3/n5/n7/n8/n20/n28A/n28B/n66/n38/n40/n41/n77/n78
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/platform.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">PROCESSOR</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">SoC</td>
+                            <td class="align-top text-secondary">MediaTek Dimensity 7050</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">CPU</td>
+                            <td class="align-top text-secondary">8 cores</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">GPU</td>
+                            <td class="align-top text-secondary">ARM Mail-G68 MC4</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/dis.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">DISPLAY</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Panel</td>
+                            <td class="align-top text-secondary">3D AMOLED (flexible)</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Resolution</td>
+                            <td class="align-top text-secondary">FHD+ (2412×1080)</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Refresh Rate</td>
+                            <td class="align-top text-secondary">Maximum: 120H</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Touch Sampling Rate</td>
+                            <td class="align-top text-secondary">Maximum: 240Hz</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Brightness</td>
+                            <td class="align-top text-secondary">Up to 950 nits</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Cover Glasses</td>
+                            <td class="align-top text-secondary">AGC DT-Star2</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Extra Features</td>
+                            <td class="align-top text-secondary">Pixel Density: 394PPI<br>
+                              Color Depth: 1.07 billion hues (10 bit)<br>
+                              Colour Gamut: Active Mode: 100% DCI-P3
+                              <br>Soft Mode: 100% sRGB
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/memory.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">MEMORY</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">RAM and ROM Capacities</td>
+                            <td class="align-top text-secondary">8GB + 256GB</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">RAM Type</td>
+                            <td class="align-top text-secondary">Dual-channel LPDDR4x @ 2133MHz</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">ROM Specifications</td>
+                            <td class="align-top text-secondary">UFS2.2</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Phone Storage Card</td>
+                            <td class="align-top text-secondary">Supported</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">USB OTG</td>
+                            <td class="align-top text-secondary">Supported</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/camera.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">CAMERA</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Main</td>
+                            <td class="align-top text-secondary">Main camera: 64MP; f/1.7; FOV 81°; 6P lens;
+                              supporting AF<br>
+                              Telephoto: 32MP; f/2.0; FOV 49°; 6P lens; supporting AF<br>
+                              Ultra-wide-angle: 8MP; f/2.2; FOV 112°; 5P lens, fixed focus.<br>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Front</td>
+                            <td class="align-top text-secondary">32MP; f/2.4; FOV 89°; 5P lens, not supporting AF or OIS</td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Features</td>
+                            <td class="align-top text-secondary">Rear: Photos, videos, night photos, portraits,
+                              professional photos, panorama, super text, Google Lens, cute shots, dual-view video, ultra-clear image quality, high pixel mode, time-lapse photography, and slow motion <br>
+                              Front: Photos, videos, panorama photos, portraits, night photos, portrait retouching, screen fill flash, cute shots, time-lapse photography, dual-view videos, and others
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/video.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">VIDEO</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Main</td>
+                            <td class="align-top text-secondary">
+                              4K@30fps, 1080P@60fps/30fps, and 720P@60fps/30fps.
+                              Video OIS supports EIS.
+                              Super steady shot supports EIS 1080P@60fps only.
+                              Video zoom shot supports 1080P@30fps and 720P@30fps.
+                              Slow-motion video supports 1080P@120fps/480fps, and 720P@240fps/960fps.
+                              Time-lapse photography supports 1080P@30fps.
+                              Dual-view video supports 1080P@30fps.
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Front</td>
+                            <td class="align-top text-secondary">
+                              Up to 1080P/720P@30fps, defaulting to 1080P@30fps (retouching effect is on by default).
+                              Video anti-shake 1080P@30fps.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/comms.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">CONNECTIVITY</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">WLAN</td>
+                            <td class="align-top text-secondary">
+                              Supporting Wi-Fi 6 (802.11ax), Wi-Fi 5 (802.11ac), and 802.11a/b/g/n/. WLAN 2.4G / WLAN 5; WLAN Display; WLAN sharing; 2×2 MIMO; MU-MIMO
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Bluetooth</td>
+                            <td class="align-top text-secondary">
+                              Bluetooth® v5.3, Bluetooth® Low Energy
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Bluetooth® Audio Codec</td>
+                            <td class="align-top text-secondary">
+                              SBC, AAC, aptx, aptx-HD, LDAC, and LHDC
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">GPS</td>
+                            <td class="align-top text-secondary">
+                              GPS, GLONASS, BDS, Galileo, and QZSS
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Radio</td>
+                            <td class="align-top text-secondary">
+                              FM Radio
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">USB</td>
+                            <td class="align-top text-secondary">
+                              USB Type-C 2.0, OTG
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">NFC</td>
+                            <td class="align-top text-secondary">
+                              Supported
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">infrared</td>
+                            <td class="align-top text-secondary">
+                              Supported
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/features.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">FEATURES</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Sensors</td>
+                            <td class="align-top text-secondary">
+                              Geomagnetic induction
+                              Ambient light induction
+                              Proximity sensor
+                              Acceleration sensor
+                              Gravity sensor
+                              Gyroscope
+                              Infrared sensor
+                              Step recording function
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Audio</td>
+                            <td class="align-top text-secondary">
+                              3.5mm Audio Jack, MP4/H.264 player, MP3/WAV/eAAC+/FLAC player, Speaker Phone
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Browser</td>
+                            <td class="align-top text-secondary">
+                              HTML5
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Messaging</td>
+                            <td class="align-top text-secondary">
+                              SMS(threaded view), MMS, Email, Push Mail, IM
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Games</td>
+                            <td class="align-top text-secondary">
+                              Built-in + Downloadable
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Torch</td>
+                            <td class="align-top text-secondary">
+                              Yes
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Extra</td>
+                            <td class="align-top text-secondary">
+                              Glass front, plastic frame, plastic back, Document viewer, Photo/video editor
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/battery.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">BATTERY</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Capacity</td>
+                            <td class="align-top text-secondary">
+                              4870mAh/18.94Wh (Rated)
+                              5000mAh/19.45Wh (Typical)
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">Charge</td>
+                            <td class="align-top text-secondary">
+                              SUPERVOOCTM 67W, SUPERVOOCTM 2.0, SUPERVOOCTM, VOOC 3.0, PD3.0（9V/2A）
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody>
+                          <tr>
+                            <td class="text-secondary">charging</td>
+                            <td class="align-top text-secondary ">
+                              Fast Charge
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                  <!-- Reviews -->
+                  <div class="mb-3">
+                    <h3 class="mb-4">How students rated this courses</h3>
+                    <div class="row align-items-center">
+                      <div class="col-auto text-center">
+                        <h3 class="display-2 fw-bold">4.5</h3>
+                        <i class="mdi mdi-star me-n1 text-warning"></i>
+                        <i class="mdi mdi-star me-n1 text-warning"></i>
+                        <i class="mdi mdi-star me-n1 text-warning"></i>
+                        <i class="mdi mdi-star me-n1 text-warning"></i>
+                        <i class="mdi mdi-star me-n1-half text-warning"></i>
+                        <p class="mb-0 fs-6">(Based on 27 reviews)</p>
+                      </div>
+                      <!-- Progress bar -->
+                      <div class="col pt-3 order-3 order-md-2">
+                        <div class="progress mb-3" style="height: 6px">
+                          <div class="progress-bar bg-warning" role="progressbar"
+                            style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+                            aria-valuemax="100">
+                          </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 6px">
+                          <div class="progress-bar bg-warning" role="progressbar"
+                            style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+                            aria-valuemax="100">
+                          </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 6px">
+                          <div class="progress-bar bg-warning" role="progressbar"
+                            style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+                            aria-valuemax="100">
+                          </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 6px">
+                          <div class="progress-bar bg-warning" role="progressbar"
+                            style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+                            aria-valuemax="100">
+                          </div>
+                        </div>
+                        <div class="progress mb-0" style="height: 6px">
+                          <div class="progress-bar bg-warning" role="progressbar"
+                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                            aria-valuemax="100">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-auto col-6 order-2 order-md-3">
+                        <!-- Rating -->
+                        <div>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <span class="ms-1">53%</span>
+                        </div>
+                        <div>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <span class="ms-1">36%</span>
+                        </div>
+                        <div>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <span class="ms-1">9%</span>
+                        </div>
+                        <div>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <span class="ms-1">3%</span>
+                        </div>
+                        <div>
+                          <i class="mdi mdi-star me-n1 text-warning"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <i class="mdi mdi-star me-n1 text-light"></i>
+                          <span class="ms-1">2%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- hr -->
+                  <hr class="my-5">
+                  <div class="mb-3">
+                    <div class="d-md-flex align-items-center align-items-center justify-content-between
+                      mb-5">
+                      <!-- Reviews -->
+                      <div class="mb-3 mb-lg-0">
+                        <h3 class="mb-0">Reviews</h3>
+                      </div>
+                      <div>
+                        <!-- Form -->
+                        <form class="form-inline">
+                          <div class="d-flex align-items-center">
+                            <span class="position-absolute ps-3">
+                              <i class="fe fe-search"></i>
+                            </span>
+                            <input type="search" class="form-control ps-6"
+                                placeholder="Search Review">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- Rating -->
+                    <%= render "comments/form", product: @product %>
+                    <%= render 'comments/index' %>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="picture" role="tabpanel" aria-labelledby="picture-tab">
+                  <% if @product.pictures.present? %>
+                    <% @product.pictures.each do |picture| %>
+                      <center>
+                        <%= image_tag rails_blob_path(picture, disposition: "attachment",
+                          only_path: true), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                          <br>
+                      </center>
+                    <% end  %>
+                  <% else %>
+                    <h1 class="text-center mt-6">This Phone does not have any Image.</h1>
+                  <% end %>
+                </div>
+                <!-- Tab pane -->
+                <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                  <!-- FAQ -->
+                  <div>
+                    <h3 class="mb-3">Course - Frequently Asked Questions</h3>
+                    <div class="mb-4">
+                      <h4>How this course help me to design layout?</h4>
+                      <p>
+                        My name is Jason Woo and I work as human duct tape at
+                        Gatsby, that means that I do a lot of different
+                        things. Everything from dev roll to writing content to
+                        writing code. And I used to work as an architect at
+                        IBM. I live in Portland, Oregon.
+                      </p>
+                    </div>
+                    <div class="mb-4">
+                      <h4>What is important of this course?</h4>
+                      <p>
+                        We'll dive into GraphQL, the fundamentals of GraphQL.
+                        We're only gonna use the pieces of it that we need to
+                        build in Gatsby. We're not gonna be doing a deep dive
+                        into what GraphQL is or the language specifics. We're
+                        also gonna get into MDX. MDX is a way to write React
+                        components in your markdown.
+                      </p>
+                    </div>
+                    <div class="mb-4">
+                      <h4>Why Take This Course?</h4>
+                      <p>
+                        We'll dive into GraphQL, the fundamentals of GraphQL.
+                        We're only gonna use the pieces of it that we need to
+                        build in Gatsby. We're not gonna be doing a deep dive
+                        into what GraphQL is or the language specifics. We're
+                        also gonna get into MDX. MDX is a way to write React
+                        components in your markdown.
+                      </p>
+                    </div>
+                    <div class="mb-4">
+                      <h4>
+                        Is able to create application after this course?
+                      </h4>
+                      <p>
+                        We'll dive into GraphQL, the fundamentals of GraphQL.
+                        We're only gonna use the pieces of it that we need to
+                        build in Gatsby. We're not gonna be doing a deep dive
+                        into what GraphQL is or the language specifics. We're
+                        also gonna get into MDX. MDX is a way to write React
+                        components in your markdown.
+                      </p>
+                      <p>
+                        We'll dive into GraphQL, the fundamentals of GraphQL.
+                        We're only gonna use the pieces of it that we need to
+                        build in Gatsby. We're not gonna be doing a deep dive
+                        into what GraphQL is or the language specifics. We're
+                        also gonna get into MDX. MDX is a way to write React
+                        components in your markdown.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-12 mt-lg-n22">
+          <!-- Card -->
+          <div class="card mb-3 mb-4">
+            <div class="p-1">
+                <div class="d-flex justify-content-center position-relative rounded py-10 border-white border rounded-3 bg-cover"
+                    style="background-image: url(/assets/course-javascript.jpg);">
+                    <a class="popup-youtube icon-shape rounded-circle btn-play icon-xl text-decoration-none"
+                        href="https://www.youtube.com/watch?v=JRzWRZahOVU">
+                        <i class="fe fe-play"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+                <!-- Price single page -->
+                <div class="mb-3">
+                    <span class="text-dark fw-bold h2">$600</span>
+                    <del class="fs-4 text-muted">$750</del>
+                </div>
+                <div class="d-grid">
+                    <a href="#" class="btn btn-primary mb-2">Start Free Month</a>
+                    <a href="pricing.html" class="btn btn-outline-primary">Get Full Access</a>
+                </div>
+            </div>
+          </div>
+          <!-- Card -->
+          <div class="card mb-4">
+              <div>
+                  <!-- Card header -->
+                  <div class="card-header">
+                      <h4 class="mb-0">What’s included</h4>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item bg-transparent">
+                          <i class="fe fe-play-circle align-middle me-2 text-primary"></i>12 hours video
+                      </li>
+                      <li class="list-group-item bg-transparent">
+                          <i class="fe fe-award me-2 align-middle text-success"></i>Certificate
+                      </li>
+                      <li class="list-group-item bg-transparent">
+                          <i class="fe fe-calendar align-middle me-2 text-info"></i>12
+                          Article
+                      </li>
+                      <li class="list-group-item bg-transparent">
+                          <i class="fe fe-video align-middle me-2 text-secondary"></i>Watch Offline
+                      </li>
+                      <li class="list-group-item bg-transparent border-bottom-0">
+                          <i class="fe fe-clock align-middle me-2 text-warning"></i>Lifetime access
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <!-- Card -->
+          <div class="card">
+              <!-- Card body -->
+              <div class="card-body">
+                  <div class="d-flex align-items-center">
+                      <div class="position-relative">
+                          <% if @category&.picture.present? %>
+                            <%= image_tag rails_blob_path(@category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xl" %>
+                          <% else %>
+                            <img src="/assets/samsung-logo.png" alt="avatar"
+                                class="rounded-circle avatar-xl">
+                            <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip"
+                                data-placement="top" title="Verifed">
+                                <img src="/assets/checked-mark.svg" alt="checked-mark"height="30" width="30">
+                            </a>
+                          <% end %>
+                      </div>
+                      <div class="ms-4">
+                          <h4 class="mb-0"><%= @product.category.name %></h4>
+                          <p class="mb-1 fs-6"><%= @product.series %></p>
+                          <span class="fs-6"><span class="text-warning">4.5</span><span
+                                  class="mdi mdi-star text-warning me-2"></span>Rating</span>
+                      </div>
+                  </div>
+                  <div class="border-top row mt-3 border-bottom mb-3 g-0">
+                      <div class="col">
+                          <div class="pe-1 ps-2 py-3">
+                              <h5 class="mb-0"><%= @product.category.products.count %></h5>
+                              <span>All Phones</span>
+                          </div>
+                      </div>
+                      <div class="col border-start">
+                          <div class="pe-1 ps-3 py-3">
+                              <h5 class="mb-0"><%= @product.release_date %></h5>
+                              <span>Release Date</span>
+                          </div>
+                      </div>
+                      <div class="col border-start">
+                          <div class="pe-1 ps-3 py-3">
+                              <h5 class="mb-0">12,230</h5>
+                              <span>Reviews</span>
+                          </div>
+                      </div>
+                  </div>
+                  <p>
+                      I am an Innovation designer focussing on UX/UI based in
+                      Berlin. As a creative resident at Figma explored the city of
+                      the future and how new technologies.
+                  </p>
+                  <a href="instructor-profile.html" class="btn btn-outline-secondary btn-sm">View
+                      Details</a>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="pt-12 pb-3">
+          <div class="row d-md-flex align-items-center mb-4">
+              <div class="col-12">
+                  <h2 class="mb-0">Related Courses</h2>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-3 col-md-6 col-12">
+                  <!-- Card -->
+                  <div class="card mb-4 card-hover">
+                      <a href="course-single.html" class="card-img-top"><img
+                              src="/assets/course-react.jpg" alt="course"
+                              class="card-img-top rounded-top-md"></a>
+                      <!-- Card body -->
+                      <div class="card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                              <a href="course-single.html" class="text-inherit">How to easily create a website
+                                  with React</a>
+                          </h4>
+                          <ul class="mb-3 list-inline">
+                              <li class="list-inline-item">
+                                  <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
+                              </li>
+                              <li class="list-inline-item">
+                                  <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
+                                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                  </svg>
+                                  Beginner
+                              </li>
+                          </ul>
+                          <div class="lh-1">
+                              <span>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning"></i>
+                              </span>
+                              <span class="text-warning">4.5</span>
+                              <span class="fs-6 text-muted">(7,700)</span>
+                          </div>
+                      </div>
+                      <!-- Card footer -->
+                      <div class="card-footer">
+                          <div class="row align-items-center g-0">
+                              <div class="col-auto">
+                                  <img src="/assets/avatar-1.jpg"
+                                      class="rounded-circle avatar-xs" alt="avatar">
+                              </div>
+                              <div class="col ms-2">
+                                  <span>Morris Mccoy</span>
+                              </div>
+                              <div class="col-auto">
+                                  <a href="#" class="text-muted bookmark">
+                                      <i class="fe fe-bookmark"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-12">
+                  <!-- Card -->
+                  <div class="card mb-4 card-hover">
+                      <a href="course-single.html" class="card-img-top"><img
+                              src="/assets/course-graphql.jpg" alt="course"
+                              class="card-img-top rounded-top-md"></a>
+                      <!-- Card body -->
+                      <div class="card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                              <a href="course-single.html" class="text-inherit">GraphQL: introduction to
+                                  graphQL
+                                  for beginners</a>
+                          </h4>
+                          <ul class="mb-3 list-inline">
+                              <li class="list-inline-item">
+                                  <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 46m
+                              </li>
+                              <li class="list-inline-item">
+                                  <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
+                                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE" />
+                                  </svg>
+                                  Advance
+                              </li>
+                          </ul>
+                          <div class="lh-1">
+                              <span>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning"></i>
+                              </span>
+                              <span class="text-warning">4.5</span>
+                              <span class="fs-6 text-muted">(9,300)</span>
+                          </div>
+                      </div>
+                      <!-- Card footer -->
+                      <div class="card-footer">
+                          <div class="row align-items-center g-0">
+                              <div class="col-auto">
+                                  <img src="/assets/avatar-2.jpg"
+                                      class="rounded-circle avatar-xs" alt="avatar">
+                              </div>
+                              <div class="col ms-2">
+                                  <span>Ted Hawkins</span>
+                              </div>
+                              <div class="col-auto">
+                                  <a href="#" class="text-muted bookmark">
+                                      <i class="fe fe-bookmark"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-12">
+                  <!-- Card -->
+                  <div class="card mb-4 card-hover">
+                      <a href="course-single.html" class="card-img-top"><img
+                              src="/assets/course-angular.jpg" alt="course"
+                              class="card-img-top rounded-top-md"></a>
+                      <div class="card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                              <a href="course-single.html" class="text-inherit">Angular - the complete guide
+                                  for
+                                  beginner</a>
+                          </h4>
+                          <ul class="mb-3 list-inline">
+                              <li class="list-inline-item">
+                                  <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m
+                              </li>
+                              <li class="list-inline-item">
+                                  <svg class="me-1 mt-n1" width="16" height="16" viewBox="0
+                          0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
+                                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                  </svg>
+                                  Beginner
+                              </li>
+                          </ul>
+                          <div class="lh-1">
+                              <span>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning"></i>
+                              </span>
+                              <span class="text-warning">4.5</span>
+                              <span class="fs-6 text-muted">(8,890)</span>
+                          </div>
+                      </div>
+                      <!-- Card footer -->
+                      <div class="card-footer">
+                          <div class="row align-items-center g-0">
+                              <div class="col-auto">
+                                  <img src="/assets/avatar-3.jpg"
+                                      class="rounded-circle avatar-xs" alt="avatar">
+                              </div>
+                              <div class="col ms-2">
+                                  <span>Juanita Bell</span>
+                              </div>
+                              <div class="col-auto">
+                                  <a href="#" class="text-muted bookmark">
+                                      <i class="fe fe-bookmark"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-12">
+                  <div class="card mb-4 card-hover">
+                      <a href="course-single.html" class="card-img-top"><img
+                              src="/assets/course-python.jpg" alt="course"
+                              class="card-img-top rounded-top-md"></a>
+                      <div class="card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                              <a href="course-single.html" class="text-inherit">The Python Course: build web
+                                  application</a>
+                          </h4>
+                          <ul class="mb-3 list-inline">
+                              <li class="list-inline-item">
+                                  <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 30m
+                              </li>
+                              <li class="list-inline-item">
+                                  <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
+                                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
+                                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE" />
+                                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
+                                  </svg>
+                                  Intermediate
+                              </li>
+                          </ul>
+                          <div class="lh-1">
+                              <span>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning me-n1"></i>
+                                  <i class="mdi mdi-star text-warning"></i>
+                              </span>
+                              <span class="text-warning">4.5</span>
+                              <span class="fs-6 text-muted">(13,245)</span>
+                          </div>
+                      </div>
+                      <!-- Card footer -->
+                      <div class="card-footer">
+                          <div class="row align-items-center g-0">
+                              <div class="col-auto">
+                                  <img src="/assets/avatar-4.jpg"
+                                      class="rounded-circle avatar-xs" alt="avatar">
+                              </div>
+                              <div class="col ms-2">
+                                  <span>Claire Robertson</span>
+                              </div>
+                              <div class="col-auto">
+                                  <a href="#" class="text-muted bookmark">
+                                      <i class="fe fe-bookmark"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</main>

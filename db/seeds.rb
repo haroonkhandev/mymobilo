@@ -11,7 +11,7 @@ Category.create(name:"SAMSUNG")
 Category.create(name:"OPPO")
 Category.create(name:"VIVO")
 Category.create(name:"INFINIX")
-Category.create(name:"TECHNO")
+Category.create(name:"TECNO")
 
 
 Product.create(name: "Samsung Galaxy A10", series: "Galaxy A", description: "This is a Samsung A10 Smartphone", price: "1000", release_date: Date.today, category_id: 1)
@@ -42,7 +42,7 @@ Product.create(name: "Infinix Hot 20", series: "HOT Series", description: "This 
 Product.create(name: "Infinix Smart 6", series: "Smart Series", description: "This is a INFINIX Smart 6 Smartphone", price: "17657", release_date: Date.today - 6.days, category_id: 4)
 Product.create(name: "Infinix Zero 20", series: "Zero Series", description: "This is a INFINIX Zero 20 Smartphone", price: "18766", release_date: Date.today - 5.days, category_id: 4)
 
-Product.create(name: "TECHNO CAMON 17 PRO", series: "Camon Series", description: "This is a TECHNO CAMON 17 PRO Smartphone", price: "176585", release_date: Date.today - 6.days, category_id: 5)
-Product.create(name: "TECHNO POVA", series: "POVA Series", description: "This is a TECHNO POVA Smartphone", price: "14", release_date: Date.today - 7.days, category_id: 5)
-Product.create(name: "TECHNO Spark 8 PRO", series: "Spark Series", description: "This is a TECHNO Spark 8 PRO Smartphone", price: "188873", release_date: Date.today - 8.days, category_id: 5)
-Product.create(name: "TECHNO Spark 10 ", series: "Spark Series", description: "This is a TECHNO Spark 10 Smartphone", price: "17652", release_date: Date.today + 9.days, category_id: 5)
+Product.create(name: "TECNO CAMON 17 PRO", series: "Camon Series", description: "This is a TECNO CAMON 17 PRO Smartphone", price: "176585", release_date: Date.today - 6.days, category_id: 5)
+Product.create(name: "TECNO POVA", series: "POVA Series", description: "This is a TECNO POVA Smartphone", price: "1412", release_date: Date.today - 7.days, category_id: 5)
+Product.create(name: "TECNO Spark 8 PRO", series: "Spark Series", description: "This is a TECNO Spark 8 PRO Smartphone", price: "188873", release_date: Date.today - 8.days, category_id: 5)
+Product.create(name: "TECNO Spark 10 ", series: "Spark Series", description: "This is a TECNO Spark 10 Smartphone", price: "17652", release_date: Date.today + 9.days, category_id: 5)
