@@ -1,6 +1,12 @@
 RailsAdmin.config do |config|
   config.asset_source = :sprockets
 
+  config.model 'Product' do
+    nestable_tree({
+      position_field: :position, # Define the position field in your model
+    })
+  end
+
   ### Popular gems integration
 
   ## == Devise ==

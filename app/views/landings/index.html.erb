@@ -47,10 +47,10 @@
                 <div class="item">
                   <!-- Card -->
                   <div class="card  mb-4 card-hover">
-                    <% if product&.images.present? %>
+                    <% if product&.images.first.present? %>
                         <center>
-                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag(product.images.url, style: "max-width:120px;") %>
-                             <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag(product.images.first.url, style: "max-width:120px;") %>
+                             <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                             </a>
                         </center>
                     <% else %>
@@ -147,11 +147,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if upcoming_product&.images.present? %>
+                        <% if upcoming_product&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(upcoming_product) %>" class="card-img-top">
-                                    <%= image_tag(upcoming_product.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(upcoming_product.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -248,11 +248,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if oppo&.images.present? %>
+                        <% if oppo&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(oppo) %>" class="card-img-top">
-                                    <%= image_tag(oppo.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(oppo.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -349,11 +349,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if vivo&.images.present? %>
+                        <% if vivo&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(vivo) %>" class="card-img-top">
-                                    <%= image_tag(vivo.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(vivo.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -450,11 +450,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if samsung&.images.present? %>
+                        <% if samsung&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(samsung) %>" class="card-img-top">
-                                    <%= image_tag(samsung.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(samsung.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -551,11 +551,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if tecno&.images.present? %>
+                        <% if tecno&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(tecno) %>" class="card-img-top">
-                                    <%= image_tag(tecno.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(tecno.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -652,11 +652,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if infinix&.images.present? %>
+                        <% if infinix&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(infinix) %>" class="card-img-top">
-                                    <%= image_tag(infinix.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(infinix.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -753,11 +753,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if huawei&.images.present? %>
+                        <% if huawei&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(huawei) %>" class="card-img-top">
-                                    <%= image_tag(huawei.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(huawei.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -854,11 +854,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if iphone&.images.present? %>
+                        <% if iphone&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(iphone) %>" class="card-img-top">
-                                    <%= image_tag(iphone.images.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images,  style: "max-width:120px;")%>
+                                    <%= image_tag(iphone.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>

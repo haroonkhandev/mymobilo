@@ -80,3 +80,4 @@ gem 'rails_admin'
 gem "sassc-rails"
 gem 'kaminari'
 gem 'carrierwave'
+gem 'rails_admin_nestable'

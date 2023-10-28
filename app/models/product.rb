@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
 	paginates_per 6
-	mount_uploader :images, ImageUploader
+	mount_uploaders :images, ImageUploader
+	serialize :images, Array
 	has_many :comments, dependent: :destroy
 	has_one :specification
 	# has_one :build
