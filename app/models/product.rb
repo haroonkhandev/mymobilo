@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 	paginates_per 6
-	has_many_attached :pictures
+	mount_uploader :images, ImageUploader
 	has_many :comments, dependent: :destroy
 	has_one :specification
 	# has_one :build
