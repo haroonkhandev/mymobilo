@@ -15,4 +15,73 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('#product1Search').on('input', function() {
+    var searchTerm = $(this).val().toLowerCase();
+
+    // Send an AJAX request to the server to fetch product names
+    $.ajax({
+      url: '/compare_products/index',
+      method: 'GET',
+      data: { term: searchTerm },
+      success: function(response) {
+        // Update the select list with fetched product names
+        var selectList = $('#product1Select');
+        selectList.empty(); // Clear existing options
+
+        response.forEach(function(product) {
+          selectList.append('<option value="' + product + '">' + product + '</option>');
+        });
+      },
+      error: function(error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+
+  $('#product2Search').on('input', function() {
+    var searchTerm = $(this).val().toLowerCase();
+
+    // Send an AJAX request to the server to fetch product names
+    $.ajax({
+      url: '/compare_products/index',
+      method: 'GET',
+      data: { term: searchTerm },
+      success: function(response) {
+        // Update the select list with fetched product names
+        var selectList = $('#product2Select');
+        selectList.empty(); // Clear existing options
+
+        response.forEach(function(product) {
+          selectList.append('<option value="' + product + '">' + product + '</option>');
+        });
+      },
+      error: function(error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+
+    $('#compareButton').click(function() {
+    var product1Id = $('#product1Select').val();
+    var product2Id = $('#product2Select').val();
+
+    // Send an AJAX request to the server to compare products
+    $.ajax({
+      url: '/compare_products/compare',
+      method: 'GET',
+      data: {
+        product1_name: product1Id,
+        product2_name: product2Id
+      },
+      success: function(response) {
+        // Handle the comparison results (display in #comparisonResult)
+        $('#comparisonResult').html(response);
+      },
+      error: function(error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+
 });
