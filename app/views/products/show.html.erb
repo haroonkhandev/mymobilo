@@ -6,9 +6,9 @@
         <div class="col-xl-7 col-lg-7 col-md-12">
           <div>
             <center>
-              <% if @product.pictures.present? %>
+              <% if @product.images.present? %>
                 <section class="">
-                  <%= image_tag rails_blob_path(@product.pictures.first, disposition: "attachment", only_path: true), style: "max-height: 330px;" %>
+                  <%= image_tag(@product.images.first.url, style: "max-height: 330px;")%>
                 </section>
               <% else %>
                 <section class="pt-lg-8 pb-lg-16 pt-7 pb-12 show-page-image">
@@ -744,11 +744,10 @@
                   </div>
                 </div>
                 <div class="tab-pane fade" id="picture" role="tabpanel" aria-labelledby="picture-tab">
-                  <% if @product.pictures.present? %>
-                    <% @product.pictures.each do |picture| %>
+                  <% if @product.images.present? %>
+                    <% @product.images.each do |image| %>
                       <center>
-                        <%= image_tag rails_blob_path(picture, disposition: "attachment",
-                          only_path: true), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                        <%= image_tag(image.url, class:"card-img-top mb-3", style: "max-width:50%;")%>
                           <br>
                       </center>
                     <% end  %>
@@ -841,7 +840,8 @@
                 </div>
                 <div class="d-grid">
                     <a href="#" class="btn btn-primary mb-2">Start Free Month</a>
-                    <a href="pricing.html" class="btn btn-outline-primary">Get Full Access</a>
+                    <a href="pricing.html" class="btn btn-outline-primary mb-2">Get Full Access</a>
+                    <%= link_to "Compare Products", compare_products_index_path, class: "btn btn-primary" %>
                 </div>
             </div>
           </div>

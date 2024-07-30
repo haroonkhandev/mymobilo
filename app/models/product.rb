@@ -1,18 +1,10 @@
 class Product < ApplicationRecord
 	paginates_per 6
-	has_many_attached :pictures
+	mount_uploaders :images, ImageUploader
+	serialize :images, Array
 	has_many :comments, dependent: :destroy
-	has_one :specification
-	# has_one :build
-	# has_one :frequency
-	# has_one :processor
-	# has_one :display
-	# has_one :memory
-	# has_one :camera
-	# has_one :connectivity
-	# has_one :feature
-	# has_one :battery
-	# has_one :box
+	has_many :specifications, dependent: :destroy
+	accepts_nested_attributes_for :specifications, allow_destroy: true
 	belongs_to :category
 
 	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }

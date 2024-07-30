@@ -86,8 +86,22 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    carrierwave (3.0.4)
+      activemodel (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      addressable (~> 2.6)
+      image_processing (~> 1.1)
+      marcel (~> 1.0.0)
+      ssrf_filter (~> 1.0)
     childprocess (4.1.0)
     choice (0.2.0)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     cssbundling-rails (1.1.1)
@@ -102,9 +116,19 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.11.0)
+    execjs (2.9.1)
     ffi (1.16.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    haml (6.2.3)
+      temple (>= 0.8.2)
+      thor
+      tilt
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -193,6 +217,11 @@ GEM
       nested_form (~> 0.3)
       rails (>= 6.0, < 8)
       turbo-rails (~> 1.0)
+    rails_admin_nestable (0.3.2)
+      coffee-rails
+      haml-rails
+      rails_admin (>= 0.6.6)
+      sass-rails
     railties (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
@@ -214,6 +243,8 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -234,8 +265,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    ssrf_filter (1.1.2)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
+    temple (0.10.3)
     thor (1.2.1)
     tilt (2.3.0)
     timeout (0.3.0)
@@ -270,17 +303,19 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  carrierwave
   cssbundling-rails
   debug
   devise
-  image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
+  kaminari
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)
   rails-erd
   rails_admin
+  rails_admin_nestable
   redis (~> 4.0)
   sassc-rails
   selenium-webdriver

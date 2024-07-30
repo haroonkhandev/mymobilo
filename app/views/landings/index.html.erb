@@ -47,10 +47,10 @@
                 <div class="item">
                   <!-- Card -->
                   <div class="card  mb-4 card-hover">
-                    <% if product&.pictures.present? %>
+                    <% if product&.images.first.present? %>
                         <center>
-                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag rails_blob_path(product.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                             <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag(product.images.first.url, style: "max-width:120px;") %>
+                             <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                             </a>
                         </center>
                     <% else %>
@@ -147,10 +147,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if upcoming_product&.pictures.present? %>
+                        <% if upcoming_product&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(upcoming_product) %>" class="card-img-top"><%= image_tag rails_blob_path(upcoming_product.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(upcoming_product) %>" class="card-img-top">
+                                    <%= image_tag(upcoming_product.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -247,10 +248,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if oppo&.pictures.present? %>
+                        <% if oppo&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(oppo) %>" class="card-img-top"><%= image_tag rails_blob_path(oppo.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(oppo) %>" class="card-img-top">
+                                    <%= image_tag(oppo.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -347,10 +349,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if vivo&.pictures.present? %>
+                        <% if vivo&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(vivo) %>" class="card-img-top"><%= image_tag rails_blob_path(vivo.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(vivo) %>" class="card-img-top">
+                                    <%= image_tag(vivo.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -447,10 +450,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if samsung&.pictures.present? %>
+                        <% if samsung&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(samsung) %>" class="card-img-top"><%= image_tag rails_blob_path(samsung.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(samsung) %>" class="card-img-top">
+                                    <%= image_tag(samsung.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -547,10 +551,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if tecno&.pictures.present? %>
+                        <% if tecno&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(tecno) %>" class="card-img-top"><%= image_tag rails_blob_path(tecno.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(tecno) %>" class="card-img-top">
+                                    <%= image_tag(tecno.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -647,10 +652,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if infinix&.pictures.present? %>
+                        <% if infinix&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(infinix) %>" class="card-img-top"><%= image_tag rails_blob_path(infinix.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(infinix) %>" class="card-img-top">
+                                    <%= image_tag(infinix.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -747,10 +753,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if huawei&.pictures.present? %>
+                        <% if huawei&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(huawei) %>" class="card-img-top"><%= image_tag rails_blob_path(huawei.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(huawei) %>" class="card-img-top">
+                                    <%= image_tag(huawei.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -847,10 +854,11 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if iphone&.pictures.present? %>
+                        <% if iphone&.images.first.present? %>
                             <center>
-                                <a href="<%= product_path(iphone) %>" class="card-img-top"><%= image_tag rails_blob_path(iphone.pictures.first, disposition: "attachment", only_path: true), style: "max-width:120px;" %>
-                                 <%#= image_tag(product.pictures,  style: "max-width:120px;")%>
+                                <a href="<%= product_path(iphone) %>" class="card-img-top">
+                                    <%= image_tag(iphone.images.first.url, style: "max-width:120px;") %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                                 </a>
                             </center>
                         <% else %>

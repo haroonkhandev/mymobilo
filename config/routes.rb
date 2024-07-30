@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'compare_products/index'
+  get '/compare_products/compare'
   root 'landings#index'
   get 'specifications/index'
   get 'specifications/show'
