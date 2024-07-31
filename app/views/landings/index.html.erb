@@ -7,17 +7,9 @@
              <div class="scrollmenu">
                 <button style="background: white; border: none; border-radius: 5px; color: black; padding: 5px;">Categories</button>
                 <a href="<%= products_path %>" class="text-white"><strong>All</strong></a>
-                <a href="<%= products_path(name: "oppo") %>" class="text-white"><strong>Oppo</strong></a>
-                <a href="<%= products_path(name: "vivo") %>" class="text-white"><strong>Vivo</strong></a>
-                <a href="<%= products_path(name: "samsung") %>" class="text-white"><strong>Samsung</strong></a>
-                <a href="<%= products_path(name: "infinix") %>" class="text-white"><strong>Infinix</strong></a>
-                <a href="<%= products_path(name: "tecno") %>" class="text-white"><strong>Tecno</strong></a>
-                <a href="#" class="text-white"><strong>Xiaomi</strong></a>
-                <a href="<%= products_path(name: "huawei") %>" class="text-white"><strong>Huawei</strong></a>
-                <a href="<%= products_path(name: "iphone") %>" class="text-white"><strong>Apple</strong></a>
-                <a href="<%= products_path(name: "nokia") %>" class="text-white"><strong>Nokia</strong></a>
-                <a href="<%= products_path(name: "oneplus") %>" class="text-white"><strong>Oneplus</strong></a>
-                <a href="<%= products_path(name: "motorola") %>" class="text-white"><strong>Motorola</strong></a>
+                <% Category.all.each do |category| %>
+                  <a href="<%= products_path(name: category.name ) %>" class="text-white"><strong><%= category.name %></strong></a>
+                <% end %>
               </div>
            </div>
          </div>
