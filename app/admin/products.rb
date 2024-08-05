@@ -1,40 +1,39 @@
 ActiveAdmin.register Product do
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :name, :series, :description, :price, :category_id, :release_date, :images
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :series, :description, :price, :category_id, :release_date, :images]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  permit_params do
-    permitted = [:name, :description, :price, specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]]
-    permitted
-  end
+  permit_params :name, :description, :price, :category_id, specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
 
   form do |f|
-    f.inputs 'Product Details' do
+    f.inputs "Product Details" do
       f.input :name
       f.input :description
       f.input :price
+      f.input :category, as: :select, collection: Category.all.collect { |category| [category.name, category.id] }
     end
 
-    f.inputs 'Specifications' do
-      f.has_many :specifications, allow_destroy: true, new_record: true do |s|
-        s.input :specification_type, as: :select, collection: Specification.specification_types.keys.map { |type| [type.humanize, type] }
-        s.input :spec_attributes, as: :text
-        s.input :_destroy, as: :boolean, required: false, label: 'Remove'
+    f.inputs "Specifications" do
+      f.has_many :specifications, allow_destroy: true, new_record: true do |spec|
+        spec.input :specification_type
+        spec.input :spec_attributes
+        spec.input :_destroy, as: :boolean, required: false, label: 'Remove'
       end
     end
 
     f.actions
   end
-  
+
+  show do
+    attributes_table do
+      row :name
+      row :description
+      row :price
+      row :category
+    end
+
+    panel "Specifications" do
+      table_for product.specifications do
+        column :specification_type
+        column :spec_attributes
+      end
+    end
+  end
+
 end

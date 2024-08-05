@@ -9,10 +9,10 @@ ActiveAdmin.register Specification do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:product_id, :specification_type, :spec_attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params do
+    permitted = [:product_id, :specification_type, :spec_attributes]
+    permitted << :other if params[:action] == 'create'
+    permitted
+  end
   
 end

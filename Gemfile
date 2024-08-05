@@ -76,11 +76,9 @@ end
 
 gem 'devise'
 gem 'rails-erd', group: :development
-gem 'rails_admin'
 gem "sassc-rails"
 gem 'kaminari'
 gem 'carrierwave'
-gem 'rails_admin_nestable'
 
 # active admin for super admin role
 gem 'activeadmin'
