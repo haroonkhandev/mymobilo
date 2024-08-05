@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get 'compare_products/index'
   get '/compare_products/compare'
   root 'landings#index'
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sessions/sign_out'
   end
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
         sessions: 'users/sessions'
 
