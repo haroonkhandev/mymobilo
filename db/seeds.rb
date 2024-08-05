@@ -46,3 +46,5 @@ Product.create(name: "TECNO CAMON 17 PRO", series: "Camon Series", description: 
 Product.create(name: "TECNO POVA", series: "POVA Series", description: "This is a TECNO POVA Smartphone", price: "1412", release_date: Date.today - 7.days, category_id: 5)
 Product.create(name: "TECNO Spark 8 PRO", series: "Spark Series", description: "This is a TECNO Spark 8 PRO Smartphone", price: "188873", release_date: Date.today - 8.days, category_id: 5)
 Product.create(name: "TECNO Spark 10 ", series: "Spark Series", description: "This is a TECNO Spark 10 Smartphone", price: "17652", release_date: Date.today + 9.days, category_id: 5)
+
+AdminUser.create!(email: 'mymobilo.co@gmail.com', password: '123456', password_confirmation: '123456')
