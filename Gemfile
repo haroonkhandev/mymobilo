@@ -81,3 +81,9 @@ gem "sassc-rails"
 gem 'kaminari'
 gem 'carrierwave'
 gem 'rails_admin_nestable'
+
+# active admin for super admin role
+gem 'activeadmin'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'

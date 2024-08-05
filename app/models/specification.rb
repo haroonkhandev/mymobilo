@@ -17,4 +17,10 @@ class Specification < ApplicationRecord
   validates :specification_type, presence: true # Add validations as needed
 
   store_accessor :spec_attributes, :material, :dimensions, :weight, :frequency_value, :processor_type, :display_size, :memory_size, :camera_resolution, :video_resolution, :connectivity_type, :feature_list, :battery_capacity
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "id", "product_id", "spec_attributes", "specification_type", "updated_at"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["product"]
+  end
 end

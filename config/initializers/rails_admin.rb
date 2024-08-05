@@ -4,29 +4,17 @@ RailsAdmin.config do |config|
   config.model 'Product' do
     edit do
       field :name
-
-      field :specifications do
-          field :specification_type, :enum do
-            enum do
-              Specification.specification_types.keys
-            end
-            label 'Specification Type'
-          end
-
-          # field :spec_attributes, :jsonb do
-          #   label 'Attributes (JSON format)'
-          #   help 'Enter attributes in JSON format, e.g., {"material": "Plastic", "dimensions": "10x5x2", "weight": "200g"}'
-          # end
-      end
+      # field :specification_type, :enum do
+      #   enum do
+      #     User.specification_types.keys
+      #   end
+      # end
     end
   end
 
   config.model 'Specification' do
     edit do
       field :specification_type, :enum do
-        enum do
-          Specification.specification_types.keys
-        end
         label 'Specification Type'
       end
 
