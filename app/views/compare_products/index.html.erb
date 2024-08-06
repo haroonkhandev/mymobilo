@@ -1,36 +1,31 @@
-<!-- <div class="container" style="min-height: 100px;">
-	<label for="productSearch">Search for a Product:</label>
-	<input type="text" id="productSearch">
-	<select id="productSelect">
-
-	</select>
-</div> -->
-
-<form id="product1Form">
-  <label>Select Product 1:</label>
-  <input type="text" id="product1Search">
-  <select id="product1Select">
-    <!-- Options for Product 1 -->
-  </select>
-</form>
-
-<form id="product1Form">
-  <label>Select Product 2:</label>
-  <input type="text" id="product2Search">
-  <select id="product2Select">
-    <!-- Options for Product 1 -->
-  </select>
-</form>
-
-<button id="compareButton">Compare</button>
-
-<div id="comparisonResult">
-  <!-- Comparison results will be displayed here -->
-  <div id="product1-results">
-	  
-	</div>
-
-	<div id="product2-results">
-	  
-	</div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Compare Products</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form id="product1Form">
+                <label for="product1Search">Select Product 1:</label>
+                <input type="text" id="product1Search" class="form-control mb-2">
+                <select id="product1Select" class="form-control">
+                    <!-- Options for Product 1 -->
+                </select>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form id="product2Form">
+                <label for="product2Search">Select Product 2:</label>
+                <input type="text" id="product2Search" class="form-control mb-2">
+                <select id="product2Select" class="form-control">
+                    <!-- Options for Product 2 -->
+                </select>
+            </form>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <button id="compareButton" class="btn btn-primary">Compare</button>
+    </div>
+    <div id="comparisonResult" class="mt-5">
+        <!-- Comparison results will be displayed here -->
+        <div id="product1-results"></div>
+        <div id="product2-results"></div>
+    </div>
 </div>
