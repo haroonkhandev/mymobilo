@@ -841,7 +841,7 @@
                 <div class="d-grid">
                     <a href="#" class="btn btn-primary mb-2">Start Free Month</a>
                     <a href="pricing.html" class="btn btn-outline-primary mb-2">Get Full Access</a>
-                    <%= link_to "Compare Products", compare_products_index_path, class: "btn btn-primary" %>
+                    <%= link_to "Compare Products", compare_products_index_path(product_id: @product.id), class: "btn btn-primary" %>
                 </div>
             </div>
           </div>

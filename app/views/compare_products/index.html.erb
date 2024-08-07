@@ -4,8 +4,9 @@
         <div class="col-md-6">
             <form id="product1Form">
                 <label for="product1Search">Select Product 1:</label>
-                <input type="text" id="product1Search" class="form-control mb-2">
+                <input type="text" id="product1Search" placeholder="Select Product 1" class="form-control mb-2">
                 <select id="product1Select" class="form-control">
+                    <option value="<%= @product_1.id %>"><%= @product_1.name %></option>
                     <!-- Options for Product 1 -->
                 </select>
             </form>
@@ -13,7 +14,7 @@
         <div class="col-md-6">
             <form id="product2Form">
                 <label for="product2Search">Select Product 2:</label>
-                <input type="text" id="product2Search" class="form-control mb-2">
+                <input type="text" id="product2Search" placeholder="Select Product 2" class="form-control mb-2">
                 <select id="product2Select" class="form-control">
                     <!-- Options for Product 2 -->
                 </select>
