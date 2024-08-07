@@ -1,5 +1,6 @@
 class CompareProductsController < ApplicationController
   def index
+    @product_1 = Product.where(id: params[:product_id]).first
     if params[:term].present?
       term = params[:term].downcase
       products = Product.where('LOWER(name) LIKE ?', "%#{term}%").pluck(:name)
