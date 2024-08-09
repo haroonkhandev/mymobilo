@@ -162,7 +162,7 @@
                   aria-labelledby="description-tab">
                   <!-- Description -->
                   <div class="mb-4">
-                    <h3 class="mb-2">Realme Y31</h3>
+                    <h3 class="mb-2"><%= @product.name %></h3>
                     <div class="table-responsive table-borderless">
                       <table class="table mb-1 table-width">
                         <thead>
@@ -173,10 +173,12 @@
                         <tbody>
                           <tr>
                             <td class="text-secondary">Price in Pakistan</td>
-                            <td class="align-top text-secondary">Rs. 40,999/-</td>
+                            <td class="align-top text-secondary">Rs. <%= @product.price %>/-</td>
                           </tr>
                         </tbody>
                       </table>
+
+                      <!-- Build Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/build.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -184,56 +186,19 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">OS</td>
-                            <td class="align-top text-secondary">Android 13 OS</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">UI</td>
-                            <td class="align-top text-secondary">Funtouch OS 13</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Dimensions</td>
-                            <td class="align-top text-secondary">164.1 x 76.2 x 8.1 mm</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Weight</td>
-                            <td class="align-top text-secondary">190 g</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">SIM</td>
-                            <td class="align-top text-secondary">Dual Sim, Dual Standby (Nano-SIM)</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Colors</td>
-                            <td class="align-top text-secondary">Burgundy Black, Sea Blue</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Safety</td>
-                            <td class="align-top text-secondary">Emergency SOS Crash Detection4</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Finish</td>
-                            <td class="align-top text-secondary">Titanium design Ceramic Shield front
-                              Textured matte glass back
-                            </td>
-                          </tr>
+                            <% @product.specifications.each do |specification| %>
+                              <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                              <% parsed_attributes["build_type"]&.each do |key, value| %>
+                                <tr>
+                                  <td class="text-secondary"><%= key.to_s.titleize %></td>
+                                  <td class="align-top text-secondary"><%= value %></td>
+                                </tr>
+                              <% end %>
+                            <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Frequency Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/network.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -241,36 +206,20 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">2G Band</td>
-                            <td class="align-top text-secondary">SIM1: GSM: 850/900/1800/1900MHz <br>
-                             SIM2: GSM: 850/900/1800/1900MHz
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">3G Band</td>
-                            <td class="align-top text-secondary">WCDMA: Bands 1/2/4/5/6/8/19</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">4G Band</td>
-                            <td class="align-top text-secondary">LTE FDD: Bands 1/2/3/4/5/7/8/12/13/17/18/19/20/26/
-                              28A/28B/66<br>
-                              LTE TDD: Bands 38/39/40/41
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">5G Band</td>
-                            <td class="align-top text-secondary">5G NR: n1/n3/n5/n7/n8/n20/n28A/n28B/n66/n38/n40/n41/n77/n78
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["frequency"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %><br>
+                                </td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Processor Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/platform.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -278,24 +227,19 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">SoC</td>
-                            <td class="align-top text-secondary">MediaTek Dimensity 7050</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">CPU</td>
-                            <td class="align-top text-secondary">8 cores</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">GPU</td>
-                            <td class="align-top text-secondary">ARM Mail-G68 MC4</td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["processor"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Display Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/dis.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -303,89 +247,40 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">Panel</td>
-                            <td class="align-top text-secondary">3D AMOLED (flexible)</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Resolution</td>
-                            <td class="align-top text-secondary">FHD+ (2412×1080)</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Refresh Rate</td>
-                            <td class="align-top text-secondary">Maximum: 120H</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Touch Sampling Rate</td>
-                            <td class="align-top text-secondary">Maximum: 240Hz</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Brightness</td>
-                            <td class="align-top text-secondary">Up to 950 nits</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Cover Glasses</td>
-                            <td class="align-top text-secondary">AGC DT-Star2</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Extra Features</td>
-                            <td class="align-top text-secondary">Pixel Density: 394PPI<br>
-                              Color Depth: 1.07 billion hues (10 bit)<br>
-                              Colour Gamut: Active Mode: 100% DCI-P3
-                              <br>Soft Mode: 100% sRGB
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["display"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Memory Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/memory.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
                         <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">MEMORY</button>
                       </div>
+
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">RAM and ROM Capacities</td>
-                            <td class="align-top text-secondary">8GB + 256GB</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">RAM Type</td>
-                            <td class="align-top text-secondary">Dual-channel LPDDR4x @ 2133MHz</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">ROM Specifications</td>
-                            <td class="align-top text-secondary">UFS2.2</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Phone Storage Card</td>
-                            <td class="align-top text-secondary">Supported</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">USB OTG</td>
-                            <td class="align-top text-secondary">Supported</td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["memory"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Camera Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/camera.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -393,31 +288,19 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">Main</td>
-                            <td class="align-top text-secondary">Main camera: 64MP; f/1.7; FOV 81°; 6P lens;
-                              supporting AF<br>
-                              Telephoto: 32MP; f/2.0; FOV 49°; 6P lens; supporting AF<br>
-                              Ultra-wide-angle: 8MP; f/2.2; FOV 112°; 5P lens, fixed focus.<br>
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Front</td>
-                            <td class="align-top text-secondary">32MP; f/2.4; FOV 89°; 5P lens, not supporting AF or OIS</td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Features</td>
-                            <td class="align-top text-secondary">Rear: Photos, videos, night photos, portraits,
-                              professional photos, panorama, super text, Google Lens, cute shots, dual-view video, ultra-clear image quality, high pixel mode, time-lapse photography, and slow motion <br>
-                              Front: Photos, videos, panorama photos, portraits, night photos, portrait retouching, screen fill flash, cute shots, time-lapse photography, dual-view videos, and others
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["camera"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Video Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/video.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -425,29 +308,19 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">Main</td>
-                            <td class="align-top text-secondary">
-                              4K@30fps, 1080P@60fps/30fps, and 720P@60fps/30fps.
-                              Video OIS supports EIS.
-                              Super steady shot supports EIS 1080P@60fps only.
-                              Video zoom shot supports 1080P@30fps and 720P@30fps.
-                              Slow-motion video supports 1080P@120fps/480fps, and 720P@240fps/960fps.
-                              Time-lapse photography supports 1080P@30fps.
-                              Dual-view video supports 1080P@30fps.
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Front</td>
-                            <td class="align-top text-secondary">
-                              Up to 1080P/720P@30fps, defaulting to 1080P@30fps (retouching effect is on by default).
-                              Video anti-shake 1080P@30fps.
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["video"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
+                      <!-- Connectivity Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/comms.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -455,70 +328,18 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">WLAN</td>
-                            <td class="align-top text-secondary">
-                              Supporting Wi-Fi 6 (802.11ax), Wi-Fi 5 (802.11ac), and 802.11a/b/g/n/. WLAN 2.4G / WLAN 5; WLAN Display; WLAN sharing; 2×2 MIMO; MU-MIMO
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Bluetooth</td>
-                            <td class="align-top text-secondary">
-                              Bluetooth® v5.3, Bluetooth® Low Energy
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Bluetooth® Audio Codec</td>
-                            <td class="align-top text-secondary">
-                              SBC, AAC, aptx, aptx-HD, LDAC, and LHDC
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">GPS</td>
-                            <td class="align-top text-secondary">
-                              GPS, GLONASS, BDS, Galileo, and QZSS
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Radio</td>
-                            <td class="align-top text-secondary">
-                              FM Radio
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">USB</td>
-                            <td class="align-top text-secondary">
-                              USB Type-C 2.0, OTG
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">NFC</td>
-                            <td class="align-top text-secondary">
-                              Supported
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">infrared</td>
-                            <td class="align-top text-secondary">
-                              Supported
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["connectivity"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/features.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -526,69 +347,18 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">Sensors</td>
-                            <td class="align-top text-secondary">
-                              Geomagnetic induction
-                              Ambient light induction
-                              Proximity sensor
-                              Acceleration sensor
-                              Gravity sensor
-                              Gyroscope
-                              Infrared sensor
-                              Step recording function
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Audio</td>
-                            <td class="align-top text-secondary">
-                              3.5mm Audio Jack, MP4/H.264 player, MP3/WAV/eAAC+/FLAC player, Speaker Phone
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Browser</td>
-                            <td class="align-top text-secondary">
-                              HTML5
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Messaging</td>
-                            <td class="align-top text-secondary">
-                              SMS(threaded view), MMS, Email, Push Mail, IM
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Games</td>
-                            <td class="align-top text-secondary">
-                              Built-in + Downloadable
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Torch</td>
-                            <td class="align-top text-secondary">
-                              Yes
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Extra</td>
-                            <td class="align-top text-secondary">
-                              Glass front, plastic frame, plastic back, Document viewer, Photo/video editor
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["features"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
+
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/battery.svg" alt="network" class="rounded-circle avatar-xl
                           network-icon" >
@@ -596,29 +366,15 @@
                       </div>
                       <table class="table mb-1 table-width">
                         <tbody>
-                          <tr>
-                            <td class="text-secondary">Capacity</td>
-                            <td class="align-top text-secondary">
-                              4870mAh/18.94Wh (Rated)
-                              5000mAh/19.45Wh (Typical)
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">Charge</td>
-                            <td class="align-top text-secondary">
-                              SUPERVOOCTM 67W, SUPERVOOCTM 2.0, SUPERVOOCTM, VOOC 3.0, PD3.0（9V/2A）
-                            </td>
-                          </tr>
-                        </tbody>
-                        <tbody>
-                          <tr>
-                            <td class="text-secondary">charging</td>
-                            <td class="align-top text-secondary ">
-                              Fast Charge
-                            </td>
-                          </tr>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["battery"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         </tbody>
                       </table>
                     </div>
