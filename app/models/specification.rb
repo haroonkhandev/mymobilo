@@ -20,7 +20,9 @@ class Specification < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "id", "product_id", "spec_attributes", "specification_type", "updated_at"]
   end
+
   def self.ransackable_associations(auth_object = nil)
     ["product"]
   end
+
 end

@@ -14,5 +14,5 @@ ActiveAdmin.register Specification do
     permitted << :other if params[:action] == 'create'
     permitted
   end
-  
+
 end
