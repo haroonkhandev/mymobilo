@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+	# concerns
+	include ProductSpecificationsConcern
+
 	paginates_per 6
 	mount_uploaders :images, ImageUploader
 	serialize :images, Array
