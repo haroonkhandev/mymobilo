@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   get '/categories/index', to: 'categories#index'
   get '/categories/:category_id/subcategories', to: 'categories#subcategories'
+
+  resources :article_categories, only: [:index, :show]
+  resources :articles, only: [:index, :show]
   
   devise_scope :user do
     get 'users/sessions/sign_out'
