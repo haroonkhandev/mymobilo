@@ -15,35 +15,31 @@
                 </section>
               <% end %>
             </center>
-            <h1 class="text-white display-4 fw-semibold">
+            <h1 class="text-white fw-semibold display-6 display-md-4 display-lg-2">
               <%= @product&.name %>
             </h1>
-            <div class="d-flex align-items-center">
-              <span class="text-white ms-3"><i class="fas fa-camera"></i>
-                <strong><%= @product&.camera_prod %></strong>
-              </span>
-              <span class="text-white ms-3"><i class="fas fa-microchip"></i>
-                <strong><%= @product&.processor_prod %></strong>
-              </span>
-            </div><br>
 
-            <div class="d-flex align-items-center">
-              <span class="text-white ms-3"><i class="fas fa-sd-card"></i>
-                <strong><%= @product&.storage_prod %></strong>
-              </span>
-              <span class="text-white ms-3"><i class="fas fa-battery-three-quarters"></i>
-                <strong><%= @product&.battery_prod %></strong>
-              </span>
-            </div><br>
+            <% product_attributes = {
+              'fa-camera' => @product.camera_prod,
+              'fa-microchip' => @product.processor_prod,
+              'fa-hdd' => @product.storage_prod,
+              'fa-battery-full' => @product.battery_prod,
+              'fa-memory' => @product.ram_prod,
+              'fa-mobile-alt' => @product.display_prod # Mobile screen icon
+            } %>
 
-            <div class="d-flex align-items-center">
-              <span class="text-white ms-3"><i class="fas fa-memory"></i>
-                <strong><%= @product&.ram_prod %></strong>
-              </span>
-              <span class="text-white ms-3"><i class="fas fa-mobile"></i>
-                <strong><%= @product&.display_prod %></strong>
-              </span>
-            </div>
+            <% if product_attributes.values.any?(&:present?) %>
+              <div class="d-flex align-items-center flex-wrap">
+                <% product_attributes.each do |icon, value| %>
+                  <% if value.present? %>
+                    <span class="text-white ms-3 mb-2 d-flex align-items-center fs-6 fs-md-4 fs-lg-3">
+                      <i class="fas <%= icon %> me-2"></i>
+                      <strong><%= value %></strong>
+                    </span>
+                  <% end %>
+                <% end %>
+              </div><br>
+            <% end %>
           </div>
         </div>
       </div>
@@ -146,26 +142,6 @@
                             <td class="text-secondary">Price in Pakistan</td>
                             <td class="align-top text-secondary">Rs. <%= @product.price %>/-</td>
                           </tr>
-                        </tbody>
-                      </table>
-
-                      <!-- Build Spec Details -->
-                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
-                        <img src="/assets/build.svg" alt="network" class="rounded-circle avatar-xl
-                          network-icon" >
-                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">BUILD</button>
-                      </div>
-                      <table class="table mb-1 table-width">
-                        <tbody>
-                            <% @product.specifications.each do |specification| %>
-                              <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
-                              <% parsed_attributes["build_type"]&.each do |key, value| %>
-                                <tr>
-                                  <td class="text-secondary"><%= key.to_s.titleize %></td>
-                                  <td class="align-top text-secondary"><%= value %></td>
-                                </tr>
-                              <% end %>
-                            <% end %>
                         </tbody>
                       </table>
 
@@ -354,7 +330,7 @@
                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                   <!-- Reviews -->
                   <div class="mb-3">
-                    <h3 class="mb-4">How students rated this courses</h3>
+                    <h3 class="mb-4">How users rated this phone</h3>
                     <div class="row align-items-center">
                       <div class="col-auto text-center">
                         <h3 class="display-2 fw-bold">4.5</h3>
@@ -486,58 +462,60 @@
                 <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
                   <!-- FAQ -->
                   <div>
-                    <h3 class="mb-3">Course - Frequently Asked Questions</h3>
+                    <h3 class="mb-3">Samsung Mobile Phones - Frequently Asked Questions</h3>
+
                     <div class="mb-4">
-                      <h4>How this course help me to design layout?</h4>
+                      <h4>What are the key features of the latest Samsung Galaxy models?</h4>
                       <p>
-                        My name is Jason Woo and I work as human duct tape at
-                        Gatsby, that means that I do a lot of different
-                        things. Everything from dev roll to writing content to
-                        writing code. And I used to work as an architect at
-                        IBM. I live in Portland, Oregon.
+                        The latest Samsung Galaxy models offer a variety of high-end features, including
+                        advanced camera systems with multiple lenses, high-resolution displays with
+                        adaptive refresh rates, powerful processors, and large battery capacities.
+                        Additionally, they come equipped with 5G capabilities, fast charging, and
+                        Samsung's One UI for a smooth user experience.
                       </p>
                     </div>
+
                     <div class="mb-4">
-                      <h4>What is important of this course?</h4>
+                      <h4>How does the battery life of Samsung Galaxy phones compare?</h4>
                       <p>
-                        We'll dive into GraphQL, the fundamentals of GraphQL.
-                        We're only gonna use the pieces of it that we need to
-                        build in Gatsby. We're not gonna be doing a deep dive
-                        into what GraphQL is or the language specifics. We're
-                        also gonna get into MDX. MDX is a way to write React
-                        components in your markdown.
+                        Samsung Galaxy phones are known for their impressive battery life, thanks to
+                        their high-capacity batteries and energy-efficient hardware. With typical use,
+                        most Galaxy models can easily last a full day, and some of the larger models
+                        can even stretch into two days on a single charge. Fast charging and wireless
+                        charging features add convenience to keeping your device powered up.
                       </p>
                     </div>
+
                     <div class="mb-4">
-                      <h4>Why Take This Course?</h4>
+                      <h4>What makes Samsung's camera technology stand out?</h4>
                       <p>
-                        We'll dive into GraphQL, the fundamentals of GraphQL.
-                        We're only gonna use the pieces of it that we need to
-                        build in Gatsby. We're not gonna be doing a deep dive
-                        into what GraphQL is or the language specifics. We're
-                        also gonna get into MDX. MDX is a way to write React
-                        components in your markdown.
+                        Samsung’s camera technology is renowned for its versatility and quality.
+                        Galaxy phones feature multi-lens setups, including ultra-wide, wide-angle,
+                        telephoto, and sometimes macro lenses, allowing users to capture a wide
+                        range of photo types with excellent clarity and detail. Samsung also
+                        includes features like Super Steady video, Night Mode, and advanced AI
+                        scene detection to enhance your photography and videography experience.
                       </p>
                     </div>
+
                     <div class="mb-4">
-                      <h4>
-                        Is able to create application after this course?
-                      </h4>
+                      <h4>Is Samsung's software interface user-friendly?</h4>
                       <p>
-                        We'll dive into GraphQL, the fundamentals of GraphQL.
-                        We're only gonna use the pieces of it that we need to
-                        build in Gatsby. We're not gonna be doing a deep dive
-                        into what GraphQL is or the language specifics. We're
-                        also gonna get into MDX. MDX is a way to write React
-                        components in your markdown.
+                        Samsung’s One UI is designed to be user-friendly, providing a clean and
+                        intuitive interface with easy navigation. It offers customization options,
+                        a dark mode, and a seamless integration with Samsung's ecosystem of devices
+                        and services, including Samsung DeX for a desktop-like experience.
                       </p>
+                    </div>
+
+                    <div class="mb-4">
+                      <h4>What security features do Samsung Galaxy phones offer?</h4>
                       <p>
-                        We'll dive into GraphQL, the fundamentals of GraphQL.
-                        We're only gonna use the pieces of it that we need to
-                        build in Gatsby. We're not gonna be doing a deep dive
-                        into what GraphQL is or the language specifics. We're
-                        also gonna get into MDX. MDX is a way to write React
-                        components in your markdown.
+                        Samsung Galaxy phones are equipped with several security features to keep
+                        your data safe. These include an ultrasonic fingerprint sensor, facial
+                        recognition, and Samsung Knox, a multi-layered security platform that
+                        protects your device from the hardware to the software level. Additionally,
+                        Samsung provides regular security updates to protect against new threats.
                       </p>
                     </div>
                   </div>
@@ -658,7 +636,7 @@
       <div class="pt-12 pb-3">
           <div class="row d-md-flex align-items-center mb-4">
               <div class="col-12">
-                  <h2 class="mb-0">Related Courses</h2>
+                  <h2 class="mb-0">Related Phones</h2>
               </div>
           </div>
           <div class="row">
