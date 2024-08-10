@@ -16,57 +16,32 @@
               <% end %>
             </center>
             <h1 class="text-white display-4 fw-semibold">
-              <%= @product.name %> 4 12GB
+              <%= @product&.name %>
             </h1>
-            <!-- <p class="text-white mb-6 lead">
-                JavaScript is the popular programming language which powers web
-                pages and web applications. This course will get you started
-                coding in JavaScript.
-            </p> -->
             <div class="d-flex align-items-center">
-              <!-- <a href="#" class="bookmark text-white text-decoration-none">
-                  <i class="fe fe-bookmark  me-2"></i>Bookmark
-              </a> -->
               <span class="text-white ms-3"><i class="fas fa-camera"></i>
-                <strong> 48MP camera</strong>
+                <strong><%= @product&.camera_prod %></strong>
               </span>
               <span class="text-white ms-3"><i class="fas fa-microchip"></i>
-                <strong> Snapdragon 662 Processor</strong>
+                <strong><%= @product&.processor_prod %></strong>
               </span>
-              <!-- <span class="text-white ms-3"><i class="fe fe-cpu "></i> Processor
-              </span> -->
-              <!-- <span class="ms-4">
-                  <i class="mdi mdi-star me-n1 text-warning"></i>
-                  <i class="mdi mdi-star me-n1 text-warning"></i>
-                  <i class="mdi mdi-star me-n1 text-warning"></i>
-                  <i class="mdi mdi-star me-n1 text-warning"></i>
-                  <i class="mdi mdi-star me-n1-half text-warning"></i>
-                  <span class="text-white">(140)</span>
-              </span> -->
-              <!-- <span class="text-white ms-4 d-none d-md-block">
-                  <svg width="16" height="16" viewBox="0 0 16
-              16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="3" y="8" width="2" height="6" rx="1" fill="#DBD8E9"></rect>
-                      <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-                      <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-                  </svg>
-                  <span class="align-middle"> Intermediate </span>
-              </span> -->
             </div><br>
+
             <div class="d-flex align-items-center">
               <span class="text-white ms-3"><i class="fas fa-sd-card"></i>
-                <strong> 64GB/128GB Internal Storage</strong>
+                <strong><%= @product&.storage_prod %></strong>
               </span>
               <span class="text-white ms-3"><i class="fas fa-battery-three-quarters"></i>
-                <strong> 5000mAh Li-Po Battery</strong>
+                <strong><%= @product&.battery_prod %></strong>
               </span>
             </div><br>
+
             <div class="d-flex align-items-center">
               <span class="text-white ms-3"><i class="fas fa-memory"></i>
-                <strong> 4GB/6GB/8GB Memory (RAM)</strong>
+                <strong><%= @product&.ram_prod %></strong>
               </span>
               <span class="text-white ms-3"><i class="fas fa-mobile"></i>
-                <strong> 6.58" 1080x2408 pixels Display</strong>
+                <strong><%= @product&.display_prod %></strong>
               </span>
             </div>
           </div>
@@ -133,7 +108,7 @@
                             data-bs-toggle="collapse" href="#courseEleven" aria-expanded="false" aria-controls="courseEleven">
                             <div class="me-auto">
                               <!-- Title -->
-                              <%= @product.name %> 4 12GB price in Pakistan
+                              <%= @product.name %> Details
                             </div>
                             <!-- Chevron -->
                             <span class="chevron-arrow ms-4">
@@ -145,11 +120,7 @@
                           <div class="collapse" id="courseEleven" data-bs-parent="#courseAccordion">
                             <div class="pt-3 pb-2">
                               <p>
-                                Samsung Galaxy Z Fold 4 12GB price in Pakistan is Rs. 574,999. Official dealers and warranty providers regulate the retail price of Samsung mobile products in official warranty.
-
-                                <p>Price of Samsung Galaxy Z Fold 4 12GB in Pakistan is Rs. 574,999. <br><em> Price of Samsung in USD is $1758. </em> </p>
-                                Samsung Galaxy Z Fold 4 12GB - The Latest Foldable Smartphone!
-                                Samsung has launched the new Galaxy Z variant with 12GB of RAM. The Fold 4 has a lot to offer in terms of features. Firstly, we will discuss the display of this flagship smartphone, it comes with a massive 7.6 Inches Foldable Dynamic AMOLED 2X Capacitive Touchscreen that is both durable and slim. With an 1812 x 2176 pixels resolution and 120Hz refresh rate, Samsung Z Fold offers unbeatable display quality. A layer of Corning Gorilla Glass Victus+ is also present to protect the display on both sides of them. The Samsung Galaxy Z's a well-known and Powerful Qualcomm SM8475 Snapdragon 8+ Gen 1 chipset with the support of a 3.19Ghz Octa Core CPU. This Samsung Galaxy's Z Fold offers a triple camera setup in which the main camera is 50 MP, the second one is 10 MP and the third one is 12 MP. On the front, there is a single 10 MP selfie sensor to record and capture at high resolution. The Z Fold is backed with a bigger 4400 mAh battery pack that can easily last all day on just a single charge. In addition, it is also capable of 25W fast wired charging, 15W wireless charging, and 4.5W of reverse charging. Among the features of this Samsung's Galaxy Z Fold is the immersive 12GB of RAM and 512GB of internal storage. This is a very large amount of storage that will give you plenty of room for storing a lot of data in the future. As far as other brands are concerned, this brand new Galaxy Z Fold by Samsung is a tough competitor for them.
+                                <%= @product&.description %>
                               </p>
                             </div>
                           </div>
