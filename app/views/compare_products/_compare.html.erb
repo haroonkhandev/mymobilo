@@ -26,14 +26,14 @@
                     </td>
                     <td>
                         <div class="comparison-item">
-                            <a class="comparison-item-thumb" href="shop-single.html"><img src="https://www.bootdey.com/image/160x160/FF0000/000000" alt="Apple iPhone Xs Max"></a>
-                            <a class="comparison-item-title" href="shop-single.html"><%= @product1&.name %></a>
+                            <a class="comparison-item-thumb" href="<%= product_path(@product1) %>"><img src="https://www.bootdey.com/image/160x160/FF0000/000000" alt="Apple iPhone Xs Max"></a>
+                            <a class="comparison-item-title" href="<%= product_path(@product1) %>"><%= @product1&.name %></a>
                         </div>
                     </td>
                     <td>
                         <div class="comparison-item">
-                            <a class="comparison-item-thumb" href="shop-single.html"><img src="https://www.bootdey.com/image/160x160/1E90FF/000000" alt="Google Pixel 3 XL"></a>
-                            <a class="comparison-item-title" href="shop-single.html"><%= @product2&.name %></a>
+                            <a class="comparison-item-thumb" href="<%= product_path(@product2) %>"><img src="https://www.bootdey.com/image/160x160/1E90FF/000000" alt="Google Pixel 3 XL"></a>
+                            <a class="comparison-item-title" href="<%= product_path(@product2) %>"><%= @product2&.name %></a>
                         </div>
                     </td>
                 </tr>

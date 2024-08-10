@@ -13,9 +13,14 @@ class Product < ApplicationRecord
 	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }
 	scope :upcoming_products, -> { where('release_date > ?', Date.today) }
 	scope :latest, lambda{ where(['release_date > ?', 30.days.ago]) }
+	scope :order_by_products, -> { order(release_date: :desc) }
 
 	def is_upcoming?
     release_date > Date.today
+  end
+
+  def self.order_by_products
+    order(release_date: :desc)
   end
 
   def is_latest?
@@ -23,7 +28,7 @@ class Product < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["category_id", "created_at", "description", "id", "images", "name", "price", "release_date", "series", "updated_at"]
+    ["category_id", "created_at", "description", "id", "images", "camera_prod", "processor_prod", "storage_prod", "battery_prod", "ram_prod", "display_prod", "name", "price", "release_date", "series", "updated_at"]
   end
 
   def self.ransackable_associations(auth_object = nil)
