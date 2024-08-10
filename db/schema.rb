@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_10_114220) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_114220) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "article_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "article_category_id", null: false
+    t.bigint "admin_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_articles_on_admin_user_id"
+    t.index ["article_category_id"], name: "index_articles_on_article_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -127,6 +144,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_114220) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "admin_users"
+  add_foreign_key "articles", "article_categories"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
   add_foreign_key "products", "categories"

@@ -26,4 +26,15 @@ ActiveAdmin.register AdminUser do
     f.actions
   end
 
+  controller do
+    def create
+      if current_admin_user.email == "mymobilo.co@gmail.com"
+        super
+      else
+        flash[:error] = "You are not authorized to create articles."
+        redirect_to admin_articles_path
+      end
+    end
+  end
+
 end
