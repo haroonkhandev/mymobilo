@@ -1,18 +1,189 @@
-<!-- app/views/articles/index.html.erb -->
-<div class="container">
-  <h1>Articles</h1>
-  
-  <div class="row">
-    <% @articles.each do |article| %>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to article.title, article_path(article) %></h5>
-            <p class="card-text"><%= truncate(article.content, length: 100) %></p>
-            <%= link_to 'Read More', article_path(article), class: 'btn btn-primary' %>
+<body class="bg-white">
+  <!-- Page content -->
+  <main>
+
+    <!-- Page header -->
+    <section class="py-7 ">
+      <div class="container">
+        <div class="row ">
+          <div class="offset-xl-2 col-xl-8 offset-lg-1 col-lg-10 col-md-12 col-12">
+            <div class="text-center mb-5">
+              <h1 class=" display-2 fw-bold">All Categories Blogs</h1>
+              <p class=" lead">
+                Browse through our extensive collection of articles, featuring the latest trends, insights, and expert advice across various topics.
+              </p>
+            </div>
+            <!-- Form -->
+            <form class="row px-md-20">
+              <div class="mb-3 col ps-3">
+                <input type="email" class="form-control" placeholder="Email Address" required="">
+              </div>
+              <div class="mb-3 col-auto ps-0">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
-</div>
+    </section>
+    <!-- Content -->
+    <section class="pb-16">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-12">
+            <div class="row">
+              <% @articles.each do |article| %>
+                <div class=" col-lg-6 col-md-12 col-12">
+                  <!-- Card -->
+                    <div class="card mb-4  shadow-lg">
+                    <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/blogpost-4.jpg" class="card-img-top rounded-top-md"
+                        alt="blogpost"></a>
+                    <!-- Card body-->
+                    <div class="card-body">
+                      <a href="<%= article_categories_path %>" class="fs-5 fw-semibold d-block mb-3 text-primary">
+                        <%= article.article_category.name %>
+                      </a>
+                      <h3><a href="<%= article_path(article) %>" class="text-inherit">
+                          <%= article.title %>
+                        </a>
+                      </h3>
+                      <p><%= truncate(article.content, length: 100) %></p>
+                      <!-- Media content -->
+                          <!-- Row -->
+                      <div class="row align-items-center g-0 mt-4">
+                        <div class="col-auto">
+                          <img src="/assets/avatar-9.jpg" alt="avatar" class="rounded-circle avatar-sm me-2">
+                        </div>
+                        <div class="col lh-1">
+                          <h5 class="mb-1">MyMobilo</h5>
+                          <p class="fs-6 mb-0"><%= article.created_at.strftime("%B %d, %Y") %></p>
+                        </div>
+                        <div class="col-auto">
+                          <p class="fs-6 mb-0">15 Min Read</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+                <!-- Buttom -->
+                <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12 mt-4">
+                  <a href="#" class="btn btn-primary">
+                    <div class="spinner-border spinner-border-sm me-2" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>Load More
+                  </a>
+                </div> -->
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-5 col-12 mt-6 mt-md-0">
+            <!-- search -->
+            <div class="mb-4">
+              <div class="mb-3 position-relative">
+                <input type="search" class="form-control " placeholder="Search...">
+                <span class="position-absolute end-0 top-0 mt-2  me-3 "><i class="bi bi-search fs-5"></i></span>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-4 border ">
+              <!-- card body -->
+              <div class="card-body p-4">
+                <h3>Recent Posts</h3>
+                <div class="mt-3">
+                  <!-- list -->
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-3">
+                      <h4 class="lh-lg"><a href="#" class="text-inherit">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>
+                    </li>
+                    <li class="mb-3">
+                      <h4 class="lh-lg"><a href="#" class="text-inherit">
+                        Duis placerat mi quis purus feugiat, at bibendum arcu dignissim.</a></h4>
+                    </li>
+                    <li class="mb-3">
+                      <h4 class="lh-lg"><a href="#" class="text-inherit">
+                        Morbi sit amet metus nec elit hendrerit luctus.</a></h4>
+                    </li>
+                    <li>
+                      <h4 class="lh-lg"><a href="#" class="text-inherit">
+                        Vivamus ac sapien ultricies dolor ullamcorper porttitor.</a></h4>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-4 border ">
+              <!-- card body -->
+              <div class="card-body p-4">
+                <h3>Categories</h3>
+                <div class="mt-3">
+                  <!-- list -->
+                  <ul class="list-unstyled mb-0 nav nav-x-0 flex-column">
+                    <% @article_categories.each do |category| %>
+                      <li class="lh-lg mb-1">
+                        <i class="fe fe-arrow-right text-muted"></i>
+                        <a href="<%= article_category_path(category) %>" class="text-link d-inline">
+                          <%= category.name %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-4 border ">
+              <!-- card body -->
+              <div class="card-body p-4">
+                <h3>Archive</h3>
+                <div class="mt-3">
+                  <!-- list -->
+                  <ul class="list-unstyled mb-0 nav nav-x-0 flex-column">
+                    <li class="lh-lg mb-1">
+
+                      <i class="fe fe-arrow-right text-muted"></i>
+                      <a href="#" class="text-link d-inline">
+                        March 2021</a>
+                    </li>
+                    <li class="lh-lg mb-1">
+                      <i class="fe fe-arrow-right text-muted"></i>
+                      <a href="#" class="text-link d-inline">
+                        February 2021</a>
+                    </li>
+                    <li class="lh-lg mb-1">
+                      <i class="fe fe-arrow-right text-muted"></i>
+                      <a href="#" class="text-link d-inline">
+                        January 2021</a>
+                    </li>
+                    <li class="lh-lg mb-1">
+                      <i class="fe fe-arrow-right text-muted"></i>
+                      <a href="#" class="text-link d-inline">
+                        December 2020</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+              <!-- card -->
+              <div class="card mb-4 border ">
+                <!-- card body -->
+                <div class="card-body p-4">
+                  <h3>Tags</h3>
+                  <div class="mt-3">
+                    <a href="#" class="btn btn-light btn-xs mb-2">business</a>
+                    <a href="#" class="btn btn-light btn-xs  mb-2">e-commerce</a>
+                    <a href="#" class="btn btn-light btn-xs  mb-2">course</a>
+                    <a href="#" class="btn btn-light btn-xs  mb-2">dashboard</a>
+                    <a href="#" class="btn btn-light btn-xs  mb-2">landings</a>
+                    <a href="#" class="btn btn-light btn-xs  mb-2">marketing</a>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>

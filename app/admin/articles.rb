@@ -1,5 +1,5 @@
 ActiveAdmin.register Article do
-    permit_params :title, :content, :article_category_id, :admin_user_id, images: []
+    permit_params :title, :content, :article_category_id, :admin_user_id
   
     controller do
         def create
