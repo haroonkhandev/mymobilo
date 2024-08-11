@@ -1,22 +1,122 @@
-<!-- app/views/article_categories/show.html.erb -->
-<div class="container">
-  <h1><%= @article_category.name %></h1>
-  <p><strong>Created At:</strong> <%= @article_category.created_at.to_s(:long) %></p>
+<body class="bg-white">
+  <!-- Page content -->
+  <main>
 
-  <h2>Articles in this Category</h2>
-  <div class="row">
-    <% @articles.each do |article| %>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to article.title, article_path(article) %></h5>
-            <p class="card-text"><%= truncate(article.content, length: 100) %></p>
-            <%= link_to 'Read More', article_path(article), class: 'btn btn-primary' %>
+    <!-- Page header -->
+    <section class="py-7 ">
+      <div class="container">
+        <div class="row ">
+          <div class="offset-xl-2 col-xl-8 offset-lg-1 col-lg-10 col-md-12 col-12">
+            <div class="text-center mb-5">
+              <h1 class=" display-2 fw-bold">Articles in this Category</h1>
+              <p class=" lead">
+                Here are our latest blogs on this category, covering the most relevant trends and insights.
+              </p>
+            </div>
+            <!-- Form -->
+            <form class="row px-md-20">
+              <div class="mb-3 col ps-0  ms-2 ms-md-0">
+                <input type="email" class="form-control" placeholder="Email Address" required="">
+              </div>
+              <div class="mb-3 col-auto ps-0">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </section>
+    <!-- Content -->
+    <section class="pb-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+            <!-- Flush Nav -->
+            <div class="flush-nav">
+              <nav class="nav">
+                <a class="nav-link active ps-0" href="#">All</a>
+              </nav>
+            </div>
+          </div>
+          <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+            <!-- Card -->
+            <div class="card mb-4 shadow-lg">
+              <div class="row g-0">
+                <!-- Image -->
+                <a href="blog-single.html" class="col-lg-8 col-md-12 col-12 bg-cover img-left-rounded"
+                  style="background-image: url(/assets/blogpost-2.jpg);">
+                  <img src="/assets/blogpost-2.jpg" class="img-fluid d-lg-none invisible" alt="blogpost"></a>
+                <div class="col-lg-4 col-md-12 col-12">
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <a href="<%= article_categories_path %>" class="fs-5 mb-3 fw-semibold d-block"><%= @article_category.name %></a>
+                    <h1 class="mb-2 mb-lg-4"> <a href="blog-single.html" class="text-inherit">
+                        <%= @article_category.title %>
+                      </a>
+                    </h1>
+                    <p><%= @article_category.description %></p>
+                    <!-- Media content -->
+                    <div class="row align-items-center g-0 mt-lg-7 mt-4">
+                      <div class="col-auto">
+                      <!-- Img  -->
+                        <img src="/assets/mobilo1.png" alt="avatar" class="rounded-circle avatar-sm me-2">
+                      </div>
+                      <div class="col lh-1 ">
+                        <h5 class="mb-1">MyMobilo</h5>
+                        <p class="fs-6 mb-0"><%= @article_category.created_at.strftime("%B %d, %Y") %></p>
+                      </div>
+                      <div class="col-auto">
 
-  <%= link_to 'Back to Categories', article_categories_path, class: 'btn btn-secondary mt-3' %>
-</div>
+                        <p class="fs-6 mb-0">Total Articles <%= @article_category.articles.count %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% @articles.each do |article| %>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-12">
+              <!-- Card -->
+              <div class="card mb-4 shadow-lg">
+                <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
+                    alt="blogpost"></a>
+                <!-- Card body -->
+                <div class="card-body">
+                  <a href="#" class="fs-5 fw-semibold d-block mb-3 text-danger"><%= @article_category.name %></a>
+                  <h3><a href="<%= article_path(article) %>" class="text-inherit">
+                      <%= article.title %>
+                    </a>
+                  </h3>
+                  <p><%= truncate(article.content, length: 100) %></p>
+                    <!-- Row  -->
+                  <div class="row align-items-center g-0 mt-4">
+                    <div class="col-auto">
+                      <img src="/assets/mobilo1.png" alt="avatar" class="rounded-circle avatar-sm me-2">
+                    </div>
+                    <div class="col lh-1">
+                      <h5 class="mb-1">MyMobilo</h5>
+                      <p class="fs-6 mb-0"><%= article.created_at.strftime("%B %d, %Y") %></p>
+                    </div>
+                    <div class="col-auto">
+                      <p class="fs-6 mb-0">8 Min Read</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <!-- Buttom -->
+          <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
+            <a href="#" class="btn btn-primary">
+              <div class="spinner-border spinner-border-sm me-2" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>Load More
+            </a>
+          </div> -->
+        </div>
+        <%= link_to 'Back to Categories', article_categories_path, class: 'btn btn-secondary mt-3' %>
+      </div>
+    </section>
+  </main>
+</body>
