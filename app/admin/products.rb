@@ -14,8 +14,15 @@ ActiveAdmin.register Product do
   end
 
   controller do
+    def find_resource
+      Product.friendly.find(params[:id])
+    end
+  end
+
+
+  controller do
     def update
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
 
       # If no new images are uploaded, remove the images parameter to keep the existing ones
       if params[:product][:images].all?(&:blank?)
