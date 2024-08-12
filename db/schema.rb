@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_12_170159) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -72,6 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.string "title"
+    t.string "image"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -81,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
     t.bigint "admin_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "images"
     t.index ["admin_user_id"], name: "index_articles_on_admin_user_id"
     t.index ["article_category_id"], name: "index_articles_on_article_category_id"
   end
@@ -101,6 +115,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "pictures"
+    t.text "descripton"
+    t.string "brand_name"
+    t.decimal "price"
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "series"
@@ -117,7 +146,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
     t.string "battery_prod"
     t.string "ram_prod"
     t.string "display_prod"
+    t.string "slug"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "value"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_ratings_on_product_id"
   end
 
   create_table "specifications", force: :cascade do |t|
@@ -148,6 +187,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_10_191937) do
   add_foreign_key "articles", "article_categories"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
+  add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "ratings", "products"
   add_foreign_key "specifications", "products"
 end
