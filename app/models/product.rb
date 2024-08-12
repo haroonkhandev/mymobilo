@@ -1,9 +1,11 @@
 class Product < ApplicationRecord
 	# concerns
 	include ProductSpecificationsConcern
-
+	extend FriendlyId
+  friendly_id :name, use: :slugged
+	before_save :keep_images, if: :will_save_change_to_images?
+	has_many_attached :images
 	paginates_per 6
-	mount_uploaders :images, ImageUploader
 	serialize :images, Array
 	has_many :comments, dependent: :destroy
 	has_many :specifications, dependent: :destroy
@@ -35,5 +37,34 @@ class Product < ApplicationRecord
     ["category", "comments", "specifications"]
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    super + ['has_images']  # Add other attributes as needed
+  end
+
+  scope :with_images, -> {
+    joins(:images_attachments)
+    .group('products.id')
+    .having('COUNT(active_storage_attachments.id) > 0')
+  }
+
+  # Scope to find articles without images
+  scope :without_images, -> {
+    left_joins(:images_attachments)
+    .group('products.id')
+    .having('COUNT(active_storage_attachments.id) = 0')
+  }
+
+  # Method to check if an article has images
+  def self.has_images?
+    joins(:images_attachments)
+    .group('products.id')
+    .having('COUNT(active_storage_attachments.id) > 0')
+  end
+
+  private
+
+  def keep_images
+    images.attach(images_blobs) if images_blobs.present?
+  end
 
 end

@@ -1,72 +1,73 @@
-<body class="bg-white">
-	<!-- Page content -->
-	<main>
-		<!-- Page header -->
-		<div class="pt-9 pb-9">
-			<div class="container">
-				<div class="row">
-					<div class="offset-xl-2 col-xl-8 offset-lg-1 col-lg-10 col-md-12 col-12">
-						<div class="text-center mb-5">
-							<h1 class="display-2 fw-bold">Article Categories</h1>
-							<p class="lead">
-                Browse all categories to find the latest updates, trends, and insights on Mobile Technology.
-							</p>
-						</div>
-						<!-- Form -->
-						<form class="row px-md-20">
-							<div class="mb-3 col ps-0 ms-2 ms-md-0">
-								<input type="email" class="form-control" placeholder="Email Address" required="">
-							</div>
-							<div class="mb-3 col-auto ps-0">
-								<button class="btn btn-primary" type="submit">Submit</button>
-							</div>
-						</form>
+<main class="main">
+	<!-- Page header -->
+	<div class="pt-9 pb-9">
+		<div class="container">
+			<div class="row">
+				<div class="offset-xl-2 col-xl-8 offset-lg-1 col-lg-10 col-md-12 col-12">
+					<div class="text-center mb-5">
+						<h1 class="display-2 fw-bold">Article Categories</h1>
+						<p class="lead">
+              Browse all categories to find the latest updates, trends, and insights on Mobile Technology.
+						</p>
 					</div>
+					<!-- Form -->
+					<form class="row px-md-20">
+						<div class="mb-3 col ps-0 ms-2 ms-md-0">
+							<input type="email" class="form-control" placeholder="Email Address" required="">
+						</div>
+						<div class="mb-3 col-auto ps-0">
+							<button class="btn btn-primary" type="submit">Submit</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!-- Page Content -->
-		<section class="pb-12">
-			<div class="container">
-				<div class="row">
-          <% @article_categories.each do |category| %>
-            <div class="col-xl-4 col-lg-4 col-md-6 col-12">
-              <!-- Card -->
-              <div class="card mb-4 shadow-lg ">
-                <a href="<%= article_category_path(category) %>" class="card-img-top">
-                  <img src="/assets/blogpost-3.jpg" class="card-img-top rounded-top-md"
+	</div>
+	<!-- Page Content -->
+	<section class="pb-12">
+		<div class="container">
+			<div class="row">
+        <% @article_categories.each do |category| %>
+          <div class="col-xl-4 col-lg-4 col-md-6 col-12">
+            <!-- Card -->
+            <div class="card mb-4 shadow-lg ">
+            	<% if category.image.attached? %>
+                  <% first_image = category.image %>
+                  <a href="<%= article_path(category) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "190x190", class:"card-img-top rounded-top-md" %></a>
+                <% else %>
+                  <a href="<%= article_category_path(category) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
                     alt="blogpost"></a>
-                <!-- Card body -->
-                <div class="card-body">
-                  <a href="<%= article_category_path(category) %>" class="fs-5 fw-semibold d-block mb-3 text-danger"><%= category.name %></a>
-                  <h3>
-                    <a href="<%= article_category_path(category) %>" class="text-inherit">
-                      <%= category.title %>
-                    </a>
-                  </h3>
-                  <p>
-                    <%= category.description %>
-                  </p>
-                  <!-- Media content -->
-                  <div class="row align-items-center g-0 mt-4">
-                    <div class="col-auto">
-                      <i class="bi bi-android rounded-circle avatar-sm me-2" style="font-size: 24px; color: #000;"></i>
-                    </div>
-                    <div class="col lh-1">
-                      <h5 class="mb-1"> MyMobilo </h5>
-                      <p class="fs-6 mb-0"><%= category.created_at.strftime("%B %d, %Y") %></p>
-                    </div>
-                    <div class="col-auto">
-                      <p class="fs-6 mb-0">Total Articles <%= category.articles.count %></p>
-                    </div>
+                <% end %>
+              <!-- Card body -->
+              <div class="card-body">
+                <a href="<%= article_category_path(category) %>" class="fs-5 fw-semibold d-block mb-3 text-danger"><%= category.name %></a>
+                <h3>
+                  <a href="<%= article_category_path(category) %>" class="text-inherit">
+                    <%= category.title %>
+                  </a>
+                </h3>
+                <p>
+                  <%= category.description %>
+                </p>
+                <!-- Media content -->
+                <div class="row align-items-center g-0 mt-4">
+                  <div class="col-auto">
+                    <i class="bi bi-android rounded-circle avatar-sm me-2" style="font-size: 24px; color: #000;"></i>
+                  </div>
+                  <div class="col lh-1">
+                    <h5 class="mb-1"> MyMobilo </h5>
+                    <p class="fs-6 mb-0"><%= category.created_at.strftime("%B %d, %Y") %></p>
+                  </div>
+                  <div class="col-auto">
+                    <p class="fs-6 mb-0">Total Articles <%= category.articles.count %></p>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Button -->
-          <% end %>
-				</div>
+          </div>
+          <!-- Button -->
+        <% end %>
 			</div>
-		</section>
-	</main>
-</body>
+		</div>
+	</section>
+</main>

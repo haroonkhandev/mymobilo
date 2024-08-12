@@ -1,5 +1,44 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :series, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :category_id, specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
+  permit_params :name, :description, :series, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
+
+  filter :has_images, as: :boolean, label: 'With Images', collection: [['Yes', true], ['No', false]]
+
+  # Define custom scopes for image presence
+  scope :all, default: true
+  scope :with_images do |scope|
+    scope.with_images
+  end
+
+  scope :without_images do |scope|
+    scope.without_images
+  end
+
+  controller do
+    def update
+      @product = Product.find(params[:id])
+
+      # If no new images are uploaded, remove the images parameter to keep the existing ones
+      if params[:product][:images].all?(&:blank?)
+        params[:product].delete(:images)
+      end
+
+      if @product.update(permitted_params[:product])
+        redirect_to admin_product_path(@product), notice: 'Article was successfully updated.'
+      else
+        render :edit
+      end
+    end
+  end
+
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :price
+    column :series
+    column :release_date
+    actions
+  end
 
   form do |f|
     f.inputs "Product Details" do
@@ -7,6 +46,16 @@ ActiveAdmin.register Product do
       f.input :description
       f.input :price
       f.input :series
+      if object.images.attached?
+        f.object.images.attachments.each do |image|
+            span do
+              image_tag url_for(image), style: 'max-width:190px; max-height: 190px;'
+            end
+          end
+      else
+          span "No images available"
+      end
+      f.input :images, as: :file, input_html: { multiple: true }, hint: 'Upload new images to replace the existing ones'
       f.input :camera_prod
       f.input :processor_prod
       f.input :storage_prod
@@ -34,6 +83,17 @@ ActiveAdmin.register Product do
       row :description
       row :price
       row :series
+      row :images do |product|
+        if product.images.attached?
+          product.images.each do |image|
+            span do
+              image_tag image, style: 'max-width: 200px; max-height: 200px;'
+            end
+          end
+        else
+          span "No images available"
+        end
+      end
       row :camera_prod
       row :processor_prod
       row :storage_prod

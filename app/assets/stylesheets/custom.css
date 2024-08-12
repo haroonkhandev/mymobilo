@@ -146,3 +146,6 @@ div.scrollmenu a:hover {
 .bg-secondary {
     background-color: #f7f7f7 !important;
 }
+.main{
+    min-height: 100vh !important;
+}

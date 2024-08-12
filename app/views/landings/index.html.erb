@@ -41,7 +41,7 @@
                   <div class="card  mb-4 card-hover">
                     <% if product&.images.first.present? %>
                         <center>
-                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag(product.images.first.url, style: "max-width:120px;") %>
+                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag url_for(product.images.first), style: "max-width:120px;" %>
                              <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                             </a>
                         </center>
@@ -142,8 +142,8 @@
                         <% if upcoming_product&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(upcoming_product) %>" class="card-img-top">
-                                    <%= image_tag(upcoming_product.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(upcoming_product.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -243,8 +243,8 @@
                         <% if oppo&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(oppo) %>" class="card-img-top">
-                                    <%= image_tag(oppo.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(oppo.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -344,8 +344,8 @@
                         <% if vivo&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(vivo) %>" class="card-img-top">
-                                    <%= image_tag(vivo.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(vivo.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -445,8 +445,8 @@
                         <% if samsung&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(samsung) %>" class="card-img-top">
-                                    <%= image_tag(samsung.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(samsung.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -546,8 +546,8 @@
                         <% if tecno&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(tecno) %>" class="card-img-top">
-                                    <%= image_tag(tecno.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(tecno.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -647,8 +647,8 @@
                         <% if infinix&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(infinix) %>" class="card-img-top">
-                                    <%= image_tag(infinix.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(infinix.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -748,8 +748,8 @@
                         <% if huawei&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(huawei) %>" class="card-img-top">
-                                    <%= image_tag(huawei.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(huawei.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>
@@ -849,8 +849,8 @@
                         <% if iphone&.images.first.present? %>
                             <center>
                                 <a href="<%= product_path(iphone) %>" class="card-img-top">
-                                    <%= image_tag(iphone.images.first.url, style: "max-width:120px;") %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
+                                    <%= image_tag url_for(iphone.images.first), style: "max-width:170px;" %>
+                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
                                 </a>
                             </center>
                         <% else %>

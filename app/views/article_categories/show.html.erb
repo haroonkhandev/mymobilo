@@ -79,8 +79,13 @@
             <div class="col-xl-4 col-lg-4 col-md-6 col-12">
               <!-- Card -->
               <div class="card mb-4 shadow-lg">
-                <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
+                <% if article.images.attached? %>
+                  <% first_image = article.images.first %>
+                  <a href="<%= article_path(article) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "190x190", class:"card-img-top rounded-top-md" %></a>
+                <% else %>
+                  <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
                     alt="blogpost"></a>
+                <% end %>
                 <!-- Card body -->
                 <div class="card-body">
                   <a href="#" class="fs-5 fw-semibold d-block mb-3 text-danger"><%= @article_category.name %></a>
@@ -88,7 +93,13 @@
                       <%= article.title %>
                     </a>
                   </h3>
-                  <p><%= truncate(article.content, length: 100) %></p>
+                  <p>
+                    <% if article.content.present? %>
+                      <%= truncate(strip_tags(article.content.html_safe), length: 100) %>
+                    <% else %>
+                      No content
+                    <% end %>
+                  </p>
                     <!-- Row  -->
                   <div class="row align-items-center g-0 mt-4">
                     <div class="col-auto">

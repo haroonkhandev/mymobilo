@@ -56,6 +56,8 @@ GEM
       kaminari (>= 1.2.1)
       railties (>= 6.1)
       ransack (>= 4.0)
+    activeadmin_quill_editor (1.2.0)
+      activeadmin (>= 2.9, < 4)
     activejob (7.0.4)
       activesupport (= 7.0.4)
       globalid (>= 0.3.6)
@@ -100,7 +102,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    carrierwave (3.0.4)
+    carrierwave (3.0.7)
       activemodel (>= 6.0.0)
       activesupport (>= 6.0.0)
       addressable (~> 2.6)
@@ -135,6 +137,8 @@ GEM
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
     formtastic_i18n (0.7.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     has_scope (0.8.2)
@@ -142,7 +146,7 @@ GEM
       activesupport (>= 5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    image_processing (1.12.2)
+    image_processing (1.13.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     inherited_resources (1.14.0)
@@ -174,6 +178,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    logger (1.6.0)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -182,7 +187,7 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
-    mini_magick (4.12.0)
+    mini_magick (4.13.2)
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
@@ -256,8 +261,9 @@ GEM
     rexml (3.2.5)
     ruby-graphviz (1.2.5)
       rexml
-    ruby-vips (2.2.0)
+    ruby-vips (2.2.2)
       ffi (~> 1.12)
+      logger
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -316,6 +322,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activeadmin_quill_editor
   bootsnap
   cancancan
   capybara
@@ -324,6 +331,8 @@ DEPENDENCIES
   debug
   devise
   draper
+  friendly_id (~> 5.4.0)
+  image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
   kaminari

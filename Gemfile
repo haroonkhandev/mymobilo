@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -77,8 +77,10 @@ end
 gem 'devise'
 gem 'rails-erd', group: :development
 gem "sassc-rails"
+gem 'friendly_id', '~> 5.4.0'
 gem 'kaminari'
 gem 'carrierwave'
+gem 'activeadmin_quill_editor'
 
 # active admin for super admin role
 gem 'activeadmin'
