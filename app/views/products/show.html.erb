@@ -146,6 +146,26 @@
                         </tbody>
                       </table>
 
+                      <!-- Build Spec Details -->
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/build.svg" alt="network" class="rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">BUILD</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                            <% @product.specifications.each do |specification| %>
+                              <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                              <% parsed_attributes["build_type"]&.each do |key, value| %>
+                                <tr>
+                                  <td class="text-secondary"><%= key.to_s.titleize %></td>
+                                  <td class="align-top text-secondary"><%= value %></td>
+                                </tr>
+                              <% end %>
+                            <% end %>
+                        </tbody>
+                      </table>
+
                       <!-- Frequency Spec Details -->
                       <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
                         <img src="/assets/network.svg" alt="network" class="rounded-circle avatar-xl
