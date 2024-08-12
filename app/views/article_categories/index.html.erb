@@ -33,7 +33,7 @@
             <div class="card mb-4 shadow-lg ">
             	<% if category.image.attached? %>
                   <% first_image = category.image %>
-                  <a href="<%= article_path(category) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "190x190", class:"card-img-top rounded-top-md" %></a>
+                  <a href="<%= article_category_path(category) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "190x190", class:"card-img-top rounded-top-md" %></a>
                 <% else %>
                   <a href="<%= article_category_path(category) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
                     alt="blogpost"></a>
