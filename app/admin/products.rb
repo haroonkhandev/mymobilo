@@ -1,7 +1,7 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :series, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
+  permit_params :name, :description, :series, :is_old, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
 
-  filter :has_images, as: :boolean, label: 'With Images', collection: [['Yes', true], ['No', false]]
+  filter :has_images, as: :boolean, label: 'Gallary Images', collection: [['Yes', true], ['No', false]]
 
   # Define custom scopes for image presence
   scope :all, default: true
@@ -18,7 +18,6 @@ ActiveAdmin.register Product do
       Product.friendly.find(params[:id])
     end
   end
-
 
   controller do
     def update
@@ -43,6 +42,7 @@ ActiveAdmin.register Product do
     column :name
     column :price
     column :series
+    column :is_old, label: 'Is this old'
     column :release_date
     actions
   end
@@ -50,9 +50,12 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs "Product Details" do
       f.input :name
-      f.input :description
+      f.input :description, as: :quill_editor
       f.input :price
       f.input :series
+      f.input :is_old, label: 'Is this old'
+
+      f.input :images, label: 'Gallary', as: :file, input_html: { multiple: true }, hint: 'Upload new images to replace the existing ones'
       if object.images.attached?
         f.object.images.attachments.each do |image|
             span do
@@ -62,7 +65,6 @@ ActiveAdmin.register Product do
       else
           span "No images available"
       end
-      f.input :images, as: :file, input_html: { multiple: true }, hint: 'Upload new images to replace the existing ones'
       f.input :camera_prod
       f.input :processor_prod
       f.input :storage_prod
@@ -87,10 +89,14 @@ ActiveAdmin.register Product do
   show do
     attributes_table do
       row :name
-      row :description
+      row :description do |product|
+        raw product.description # Ensure content is displayed correctly
+      end
       row :price
       row :series
-      row :images do |product|
+      row :is_old, label: "Is this Old"
+      
+      row "Gallary" do |product|
         if product.images.attached?
           product.images.each do |image|
             span do

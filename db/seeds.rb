@@ -48,3 +48,4 @@ Product.create(name: "TECNO Spark 8 PRO", series: "Spark Series", description: "
 Product.create(name: "TECNO Spark 10 ", series: "Spark Series", description: "This is a TECNO Spark 10 Smartphone", price: "17652", release_date: Date.today + 9.days, category_id: 5)
 
 AdminUser.create!(email: 'mymobilo.co@gmail.com', password: '123456', password_confirmation: '123456')
+Product.where(is_old: nil).update_all(is_old: false)
