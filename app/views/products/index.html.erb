@@ -163,8 +163,7 @@
                         <div class="card  mb-4 card-hover">
                           <% if product&.images.present? %>
                               <center>
-                                  <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag(product.images.first) %>
-                                  </a>
+                                  <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top mb-3", style: "max-width:50%;" %></a>
                               </center>
                           <% else %>
                             <a href="<%= product_path(product) %>" class="card-img-top"><img src="/assets/course-react.jpg"

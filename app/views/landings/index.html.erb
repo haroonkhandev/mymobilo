@@ -41,7 +41,7 @@
                   <div class="card  mb-4 card-hover">
                     <% if product&.images.first.present? %>
                         <center>
-                            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag url_for(product.images.first), style: "max-width:120px;" %>
+                            <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top mb-3", style: "max-width:50%;" %>
                              <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
                             </a>
                         </center>
