@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_13_174654) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_15_115718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,6 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_13_174654) do
     t.string "display_prod"
     t.string "slug"
     t.boolean "is_old", default: false
+    t.string "main_iamge"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
