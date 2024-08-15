@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :series, :is_old, :main_iamge, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
+  permit_params :name, :description, :series, :is_old, :main_iamge, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :actual_price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
 
   filter :has_images, as: :boolean, label: 'Gallary Images', collection: [['Yes', true], ['No', false]]
 
@@ -60,6 +60,7 @@ ActiveAdmin.register Product do
     id_column
     column :name
     column :price
+    column :actual_price
     column :series
     column :is_old, label: 'Is this old'
     column :release_date
@@ -71,6 +72,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description, as: :quill_editor
       f.input :price
+      f.input :actual_price
       f.input :series
       f.input :is_old, label: 'Is this old'
       f.input :main_image, as: :file
@@ -121,6 +123,7 @@ ActiveAdmin.register Product do
         raw product.description # Ensure content is displayed correctly
       end
       row :price
+      row :actual_price
       row :series
       row :is_old, label: "Is this Old"
       row :main_image do |product|
