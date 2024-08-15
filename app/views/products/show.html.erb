@@ -6,8 +6,8 @@
         <div class="col-xl-7 col-lg-7 col-md-12">
           <div>
             <center>
-              <% if @product.images.attached? %>
-                  <% first_image = @product.images.first %>
+              <% if @product.main_image.attached? %>
+                  <% first_image = @product.main_image %>
                   <section class="">
                   <%= image_tag url_for(first_image), alt: "Article Image", class:"card-img-top mb-3", style: "max-width:50%;" %>
                 </section>
