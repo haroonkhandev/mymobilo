@@ -117,7 +117,7 @@
                           <div class="collapse" id="courseEleven" data-bs-parent="#courseAccordion">
                             <div class="pt-3 pb-2">
                               <p>
-                                <%= @product&.description %>
+                                <%= @product&.description.html_safe %>
                               </p>
                             </div>
                           </div>

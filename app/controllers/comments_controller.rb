@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     before_action :authenticate_user!
 
     def create
-      @product = Product.find(params[:product_id])
+      @product = Product.friendly.find(params[:product_id])
       @comment = @product.comments.create(comment_params)
       @comment.user = current_user
 
@@ -16,13 +16,13 @@ class CommentsController < ApplicationController
     end
 
     def edit
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
       @comment = @product.comments.find(params[:product_id])
     end
 
     def update
       respond_to do |format|
-        @product = Product.find(params[:id])
+        @product = Product.friendly.find(params[:id])
         @comment = @product.comments.find(params[:product_id])
         if @comment.update(comment_params)
           format.html { redirect_to product_path(@product), notice: "Comment hs been Updated" }
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @product = Product.find(params[:id])
+        @product = Product.friendly.find(params[:id])
         @comment = @product.comments.find(params[:product_id])
         @comment.destroy
         redirect_to product_path(@product)
