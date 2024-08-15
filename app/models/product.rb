@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   friendly_id :name, use: :slugged
 	before_save :keep_images, if: :will_save_change_to_images?
 	has_many_attached :images
+  has_one_attached :main_image
 	paginates_per 6
 	serialize :images, Array
 	has_many :comments, dependent: :destroy
@@ -30,7 +31,7 @@ class Product < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["category_id", "created_at", "description", "id", "images", "camera_prod", "processor_prod", "storage_prod", "battery_prod", "ram_prod", "display_prod", "name", "price", "release_date", "series", "updated_at"]
+    ["category_id", "created_at", "description", "id", "main_iamge", "images", "camera_prod", "processor_prod", "storage_prod", "battery_prod", "ram_prod", "display_prod", "name", "price", "release_date", "series", "updated_at"]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -38,7 +39,20 @@ class Product < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    super + ['has_images']  # Add other attributes as needed
+    super + ['has_images', 'has_image']  # Add other attributes as needed
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    super + %w[main_image_attachment main_image_blob]
+  end
+  scope :with_main_image, -> { joins(:main_image_attachment) }
+
+  def self.ransackable_scopes(auth_object = nil)
+    [:with_main_image]
+  end
+
+  def has_image?
+    main_image.attached?
   end
 
   scope :with_images, -> {
@@ -66,5 +80,4 @@ class Product < ApplicationRecord
   def keep_images
     images.attach(images_blobs) if images_blobs.present?
   end
-
 end

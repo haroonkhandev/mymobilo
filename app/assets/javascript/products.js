@@ -84,4 +84,20 @@ $(document).ready(function() {
     });
   });
 
+  document.addEventListener('DOMContentLoaded', function () {
+    const hash = window.location.hash || '#description';
+    const targetTab = document.querySelector(`[href="${hash}"]`);
+
+    if (targetTab) {
+      targetTab.click();
+    }
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const selectedTabId = this.getAttribute('href');
+        history.pushState(null, '', selectedTabId);
+      });
+    });
+  });
+
 });
