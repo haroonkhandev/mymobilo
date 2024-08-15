@@ -39,75 +39,31 @@
                 <div class="item">
                   <!-- Card -->
                   <div class="card  mb-4 card-hover">
-                    <% if product&.images.first.present? %>
-                        <center>
-                            <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top mb-3", style: "max-width:50%;" %>
-                             <%#= image_tag(product.images.first,  style: "max-width:120px;")%>
-                            </a>
-                        </center>
+                    <% if product&.main_image.present? %>
+                      <center>
+                        <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                        </a>
+                      </center>
                     <% else %>
-                      <a href="<%= product_path(product) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                        alt="course" class="rounded-top-md card-img-top">
+                      <center>
+                        <a href="<%= product_path(product) %>">
+                          <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                        </a>
+                      </center>
                     <% end %>
-                    </a>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <h4 class="mb-2 text-truncate-line-2 ">
-                          <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
-                          </a>
-                        </h4>
-                        <!-- List -->
-                        <!-- <ul class="mb-3 list-inline">
-                          <li class="list-inline-item">
-                            <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                          </li>
-                          <li class="list-inline-item">
-                            <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                              <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                              <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                              <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                            </svg> Beginner
-                          </li>
-                        </ul> -->
-                        <!-- <div class="lh-1">
-                          <span>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning me-n1"></i>
-                              <i class="mdi mdi-star text-warning"></i>
-                          </span>
-                          <span class="text-warning">4.5</span>
-                          <span class="fs-6 text-muted">(7,700)</span>
-                        </div> -->
-                        <!-- Price -->
-                        <div class="lh-1 mt-3">
-                            <span class="text-dark fw-bold">RS <%= product.price %></span>
-                            <del class="fs-6 text-muted"><%= product&.actual_price %></del>
-                        </div>
-                    </div>
-                    <!-- Card Footer -->
-                   <!--  <div class="card-footer">
-                      <div class="row align-items-center g-0">
-                        <div class="col-auto">
-                          <%# if product.sub_category&.picture.present? %>
-                            <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                          <%# else %>
-                            <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                alt="avatar">
-                          <%# end %>
-                        </div>
-                        <div class="col ms-2">
-                          <span><%#= product.sub_category.name %></span>
-                        </div>
-                        <div class="col-auto">
-                          <a href="#" class="text-muted bookmark">
-                              <i class="fe fe-bookmark  "></i>
-                          </a>
-                        </div>
+                      <h4 class="mb-2 text-truncate-line-2 ">
+                        <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
+                        </a>
+                      </h4>
+
+                      <!-- Price -->
+                      <div class="lh-1 mt-3">
+                        <span class="text-dark fw-bold">RS <%= product.price %></span>
+                        <del class="fs-6 text-muted"><%= product&.actual_price %></del>
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               <% end %>
@@ -139,76 +95,30 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if upcoming_product&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(upcoming_product) %>" class="card-img-top">
-                                    <%= image_tag url_for(upcoming_product.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if upcoming_product&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(upcoming_product) %>">
+                              <%= image_tag url_for(upcoming_product.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(upcoming_product) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(upcoming_product) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(upcoming_product) %>" class="text-inherit card-img-top"><%= upcoming_product.name %>
-                              </a>
-                            </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= upcoming_product.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
-                            </div>
-                        </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
+                          <h4 class="mb-2 text-truncate-line-2 ">
+                            <a href="<%= product_path(upcoming_product) %>" class="text-inherit card-img-top"><%= upcoming_product.name %>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                            <span class="text-dark fw-bold">RS <%= upcoming_product.price %></span>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   <% end %>
@@ -240,76 +150,32 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if oppo&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(oppo) %>" class="card-img-top">
-                                    <%= image_tag url_for(oppo.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if oppo&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(oppo) %>">
+                              <%= image_tag url_for(oppo.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(oppo) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                            <center>
+                              <a href="<%= product_path(oppo) %>">
+                                <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 ">
                               <a href="<%= product_path(oppo) %>" class="text-inherit card-img-top"><%= oppo.name %>
                               </a>
                             </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
+
                             <!-- Price -->
                             <div class="lh-1 mt-3">
                                 <span class="text-dark fw-bold">RS <%= oppo.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
+                                <del class="fs-6 text-muted"><%= oppo.actual_price %></del>
                             </div>
                         </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div> -->
                       </div>
                     </div>
                   <% end %>
@@ -341,76 +207,31 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if vivo&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(vivo) %>" class="card-img-top">
-                                    <%= image_tag url_for(vivo.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if vivo&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(vivo) %>">
+                              <%= image_tag url_for(vivo.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(vivo) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(vivo) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 ">
                               <a href="<%= product_path(vivo) %>" class="text-inherit card-img-top"><%= vivo.name %>
                               </a>
                             </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
                             <!-- Price -->
                             <div class="lh-1 mt-3">
                                 <span class="text-dark fw-bold">RS <%= vivo.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
+                                <del class="fs-6 text-muted"><%= vivo.actual_price %></del>
                             </div>
                         </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div> -->
                       </div>
                     </div>
                   <% end %>
@@ -442,76 +263,31 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if samsung&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(samsung) %>" class="card-img-top">
-                                    <%= image_tag url_for(samsung.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if samsung&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(samsung) %>">
+                              <%= image_tag url_for(samsung.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(samsung) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(samsung) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 ">
                               <a href="<%= product_path(samsung) %>" class="text-inherit card-img-top"><%= samsung.name %>
                               </a>
                             </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
                             <!-- Price -->
                             <div class="lh-1 mt-3">
                                 <span class="text-dark fw-bold">RS <%= samsung.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
+                                <del class="fs-6 text-muted"><%= samsung.actual_price %></del>
                             </div>
                         </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div> -->
                       </div>
                     </div>
                   <% end %>
@@ -543,76 +319,31 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if tecno&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(tecno) %>" class="card-img-top">
-                                    <%= image_tag url_for(tecno.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if tecno&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(tecno) %>">
+                              <%= image_tag url_for(tecno.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(tecno) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(tecno) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(tecno) %>" class="text-inherit card-img-top"><%= tecno.name %>
-                              </a>
-                            </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= tecno.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
-                            </div>
-                        </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
+                          <h4 class="mb-2 text-truncate-line-2 ">
+                            <a href="<%= product_path(tecno) %>" class="text-inherit card-img-top"><%= tecno.name %>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                            <span class="text-dark fw-bold">RS <%= tecno.price %></span>
+                            <del class="fs-6 text-muted"><%= tecno.actual_price %></del>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   <% end %>
@@ -644,76 +375,31 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if infinix&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(infinix) %>" class="card-img-top">
-                                    <%= image_tag url_for(infinix.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if infinix&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(infinix) %>">
+                              <%= image_tag url_for(infinix.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(infinix) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(infinix) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(infinix) %>" class="text-inherit card-img-top"><%= infinix.name %>
-                              </a>
-                            </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= infinix.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
-                            </div>
-                        </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
+                          <h4 class="mb-2 text-truncate-line-2 ">
+                            <a href="<%= product_path(infinix) %>" class="text-inherit card-img-top"><%= infinix.name %>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                            <span class="text-dark fw-bold">RS <%= infinix.price %></span>
+                            <del class="fs-6 text-muted"><%= infinix.actual_price %></del>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   <% end %>
@@ -745,76 +431,31 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if huawei&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(huawei) %>" class="card-img-top">
-                                    <%= image_tag url_for(huawei.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if huawei&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(huawei) %>">
+                              <%= image_tag url_for(huawei.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(huawei) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(huawei) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(huawei) %>" class="text-inherit card-img-top"><%= huawei.name %>
-                              </a>
-                            </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= huawei.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
-                            </div>
-                        </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
+                          <h4 class="mb-2 text-truncate-line-2 ">
+                            <a href="<%= product_path(huawei) %>" class="text-inherit card-img-top"><%= huawei.name %>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                            <span class="text-dark fw-bold">RS <%= huawei.price %></span>
+                            <del class="fs-6 text-muted"><%= huawei.actual_price %></del>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   <% end %>
@@ -846,76 +487,31 @@
                     <div class="item">
                       <!-- Card -->
                       <div class="card  mb-4 card-hover">
-                        <% if iphone&.images.first.present? %>
-                            <center>
-                                <a href="<%= product_path(iphone) %>" class="card-img-top">
-                                    <%= image_tag url_for(iphone.images.first), style: "max-width:170px;" %>
-                                 <%#= image_tag(product.images.first,  style: "max-width:170px;")%>
-                                </a>
-                            </center>
+                        <% if iphone&.main_image.present? %>
+                          <center>
+                            <a href="<%= product_path(iphone) %>">
+                              <%= image_tag url_for(iphone.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                            </a>
+                          </center>
                         <% else %>
-                          <a href="<%= product_path(iphone) %>" class="card-img-top"><img src="assets/course-react.jpg"
-                            alt="course" class="rounded-top-md card-img-top">
+                          <center>
+                            <a href="<%= product_path(iphone) %>">
+                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                            </a>
+                          </center>
                         <% end %>
-                        </a>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(iphone) %>" class="text-inherit card-img-top"><%= iphone.name %>
-                              </a>
-                            </h4>
-                            <!-- List -->
-                            <!-- <ul class="mb-3 list-inline">
-                              <li class="list-inline-item">
-                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
-                              </li>
-                              <li class="list-inline-item">
-                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                                </svg> Beginner
-                              </li>
-                            </ul> -->
-                            <!-- <div class="lh-1">
-                              <span>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning me-n1"></i>
-                                  <i class="mdi mdi-star text-warning"></i>
-                              </span>
-                              <span class="text-warning">4.5</span>
-                              <span class="fs-6 text-muted">(7,700)</span>
-                            </div> -->
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= iphone.price %></span>
-                                <del class="fs-6 text-muted">$850</del>
-                            </div>
-                        </div>
-                        <!-- Card Footer -->
-                       <!--  <div class="card-footer">
-                          <div class="row align-items-center g-0">
-                            <div class="col-auto">
-                              <%# if product.sub_category&.picture.present? %>
-                                <%#= image_tag rails_blob_path(product.sub_category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
-                              <%# else %>
-                                <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                    alt="avatar">
-                              <%# end %>
-                            </div>
-                            <div class="col ms-2">
-                              <span><%#= product.sub_category.name %></span>
-                            </div>
-                            <div class="col-auto">
-                              <a href="#" class="text-muted bookmark">
-                                  <i class="fe fe-bookmark  "></i>
-                              </a>
-                            </div>
+                          <h4 class="mb-2 text-truncate-line-2 ">
+                            <a href="<%= product_path(iphone) %>" class="text-inherit card-img-top"><%= iphone.name %>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                            <span class="text-dark fw-bold">RS <%= iphone.price %></span>
+                            <del class="fs-6 text-muted"><%= iphone.actual_price %></del>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   <% end %>

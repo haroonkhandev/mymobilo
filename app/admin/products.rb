@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :series, :is_old, :main_iamge, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :actual_price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
+  permit_params :name, :description, :series, :is_old, :main_image, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :actual_price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
 
   filter :has_images, as: :boolean, label: 'Gallary Images', collection: [['Yes', true], ['No', false]]
 
