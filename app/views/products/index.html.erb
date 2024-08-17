@@ -166,8 +166,9 @@
                                   <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top mb-3", style: "max-width:50%;" %></a>
                               </center>
                           <% else %>
-                            <a href="<%= product_path(product) %>" class="card-img-top"><img src="/assets/course-react.jpg"
-                              alt="course" class="rounded-top-md card-img-top">
+                            <center>
+                              <a href="<%= product_path(product) %>"><img src="/assets/official.png" alt="course" class="card-img-top mb-3", style= "max-width:50%;" >
+                            </center>
                           <% end %>
                           </a>
                           <!-- Card Body -->

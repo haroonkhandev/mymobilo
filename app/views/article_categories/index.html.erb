@@ -32,12 +32,12 @@
             <!-- Card -->
             <div class="card mb-4 shadow-lg ">
             	<% if category.image.attached? %>
-                  <% first_image = category.image %>
-                  <a href="<%= article_category_path(category) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "190x190", class:"card-img-top rounded-top-md" %></a>
-                <% else %>
-                  <a href="<%= article_category_path(category) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
-                    alt="blogpost"></a>
-                <% end %>
+                <% first_image = category.image %>
+                <a href="<%= article_category_path(category) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "411x222", class:"card-img-top rounded-top-md" %></a>
+              <% else %>
+                <a href="<%= article_category_path(category) %>"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
+                    alt="Article Image"></a>
+              <% end %>
               <!-- Card body -->
               <div class="card-body">
                 <a href="<%= article_category_path(category) %>" class="fs-5 fw-semibold d-block mb-3 text-danger"><%= category.name %></a>

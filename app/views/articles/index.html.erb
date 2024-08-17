@@ -35,9 +35,14 @@
               <% @articles.each do |article| %>
                 <div class=" col-lg-6 col-md-12 col-12">
                   <!-- Card -->
-                    <div class="card mb-4  shadow-lg">
-                    <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/blogpost-4.jpg" class="card-img-top rounded-top-md"
-                        alt="blogpost"></a>
+                  <div class="card mb-4  shadow-lg">
+                    <% if article.images.attached? %>
+                      <% first_image = article.images.first %>
+                        <a href="<%= article_path(article) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "411x222", class:"card-img-top rounded-top-md" %>
+                    <% else %>
+                      <a href="<%= article_path(article) %>"  class="card-img-top">
+                        <img src="/assets/category-article-img.jpg", class="card-img-top rounded-top-md" alt="blogpost" size= "411x222"></a>
+                    <% end %>
                     <!-- Card body-->
                     <div class="card-body">
                       <a href="<%= article_categories_path %>" class="fs-5 fw-semibold d-block mb-3 text-primary">
@@ -52,7 +57,7 @@
                           <!-- Row -->
                       <div class="row align-items-center g-0 mt-4">
                         <div class="col-auto">
-                          <img src="/assets/avatar-9.jpg" alt="avatar" class="rounded-circle avatar-sm me-2">
+                          <img src="/assets/mobilo1.png" alt="avatar" class="rounded-circle avatar-sm me-2">
                         </div>
                         <div class="col lh-1">
                           <h5 class="mb-1">MyMobilo</h5>
