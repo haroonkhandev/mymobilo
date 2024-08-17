@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   get 'compare_products/index'
   get '/compare_products/compare'
   root 'landings#index'
@@ -17,13 +18,14 @@ Rails.application.routes.draw do
   
   devise_scope :user do
     get 'users/sessions/sign_out'
+    get 'users/cancel_account', to: 'devise/registrations#cancel_account', as: 'cancel_account'
   end
-  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: {
-        sessions: 'users/sessions'
 
-      }
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+        sessions: 'users/sessions',
+        registrations: 'users/registrations'
+  }
+
 
   # Defines the root path route ("/")
   # root "articles#index"

@@ -70,7 +70,7 @@
                                  <div class="col">
                                      <a class="text-body" href="#">
                                          <div class="d-flex">
-                                             <img src="/assets/avatar-2.jpg" alt=""
+                                             <img src="/assets/avatar-1.jpg" alt=""
                                                  class="avatar-md rounded-circle" >
                                              <div class="ms-3">
                                                  <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
@@ -99,7 +99,7 @@
                                  <div class="col">
                                      <a class="text-body" href="#">
                                          <div class="d-flex">
-                                             <img src="/assets/avatar-3.jpg" alt=""
+                                             <img src="/assets/avatar-1.jpg" alt=""
                                                  class="avatar-md rounded-circle" >
                                              <div class="ms-3">
                                                  <h5 class="fw-bold mb-1">Jenny Wilson</h5>
@@ -129,7 +129,7 @@
                                  <div class="col">
                                      <a class="text-body" href="#">
                                          <div class="d-flex">
-                                             <img src="/assets/avatar-4.jpg" alt=""
+                                             <img src="/assets/avatar-1.jpg" alt=""
                                                  class="avatar-md rounded-circle" >
                                              <div class="ms-3">
                                                  <h5 class="fw-bold mb-1">Sina Ray</h5>
@@ -182,8 +182,8 @@
                                          class="rounded-circle" >
                                  </div>
                                  <div class="ms-3 lh-1">
-                                     <h5 class="mb-1">Annette Black</h5>
-                                     <p class="mb-0 text-muted">annette@geeksui.com</p>
+                                     <h5 class="mb-1"><%= current_user.first_name %> <%= current_user.last_name %></h5>
+                                     <p class="mb-0 text-muted"><%= current_user.email %></p>
                                  </div>
                              </div>
                          </div>
@@ -217,7 +217,7 @@
                                  </ul>
                              </li>
                              <li>
-                                 <a class="dropdown-item" href="./pages/profile-edit.html">
+                                 <a class="dropdown-item" href="<%= edit_user_registration_path %>">
                                      <i class="fe fe-user me-2"></i>Profile
                                  </a>
                              </li>

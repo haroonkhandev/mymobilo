@@ -1,76 +1,137 @@
-<!-- Page content -->
-<main>
-  <section class="container d-flex flex-column">
-    <div class="row align-items-center justify-content-center g-0 min-vh-100">
-      <div class="col-lg-5 col-md-8 py-8 py-xl-0">
-        <!-- Card -->
-        <div class="card shadow">
-          <!-- Card body -->
-          <div class="card-body p-6">
-            <div class="mb-4">
-              <a href="<%= root_path %>"><img src="/assets/logo-icon.svg" class="mb-4" alt="logo"></a>
-              <h1 class="mb-1 fw-bold">Edit Profile <%= resource_name.to_s.humanize %></h1>
-              <!-- <span>Already have an account?
-                <a href="<>" class="ms-1">Sign in</a></span> -->
-            </div>
-            <!-- Form -->
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-                <!-- Username -->
-              <!-- <div class="mb-3">
-                <label for="username" class="form-label">User Name</label>
-                <input type="text" id="username" class="form-control" name="username" placeholder="User Name"
-                  required>
-              </div> -->
-                <!-- Email -->
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <!-- <input type="email" id="email" class="form-control" name="email" placeholder="Email address here"
-                  required> -->
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder: "Email address here", required: true %>
+<body>
+  <main>
+    <section class="pt-5 pb-5">
+      <div class="container">
+        <!-- User info -->
+        <%= render 'devise/registrations/user_info' %>
+        <!-- Content -->
+        <div class="row mt-0 mt-md-4">
+          <div class="col-lg-3 col-md-4 col-12">
+            <!-- Side navbar -->
+            <%= render 'devise/registrations/user_sidebar' %>
+          </div>
+          <div class="col-lg-9 col-md-8 col-12">
+            <!-- Card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header">
+                <h3 class="mb-0">Profile Details</h3>
+                <p class="mb-0">
+                  You have full control to manage your own account setting.
+                </p>
               </div>
-              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-              <% end %>
-                <!-- Password -->
-              <div class="mb-3">
-                <label for="password" class="form-label">New Password <i>(leave blank if you don't want to change it)</i></label>
-                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
-                  required> -->
-                <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"**************", required: true %>
-                <% if @minimum_password_length %>
-                  <br />
-                  <em><%= @minimum_password_length %> characters minimum</em>
-                <% end %>
-
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password Confirmation</label>
-                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
-                  required> -->
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"**************", required: true %>
-              </div>
-
-              <div class="mb-3">
-                <label for="password" class="form-label">Current Password</label>
-                <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
-                  required> -->
-                 <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:"**************", required: true %>
-              </div>
-
-              <div>
-                  <!-- Button -->
-                <div class="d-grid">
-                  <%= f.submit "Update", type:"submit", class:"btn btn-primary" %>
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="d-lg-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center mb-4 mb-lg-0">
+                    <img src="/assets/avatar-1.jpg" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
+                    <div class="ms-3">
+                      <h4 class="mb-0">Your avatar</h4>
+                      <p class="mb-0">
+                        PNG or JPG no bigger than 800px wide and tall.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
+                    <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+                  </div>
                 </div>
+                <hr class="my-5">
+                <div>
+                  <h4 class="mb-0">Personal Details</h4>
+                  <p class="mb-4">
+                    Edit your personal information and address.
+                  </p>
+                  <!-- Form -->
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="row gx-3">
+                      <!-- First name -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :first_name, class: "form-label" %>
+                        <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+                      </div>
+                      <!-- Last name -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :last_name, class: "form-label" %>
+                        <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+                      </div>
+                      <!-- Phone -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :phone, class: "form-label" %>
+                        <%= f.text_field :phone, class: "form-control", placeholder: "Phone" %>
+                      </div>
+                      <!-- Birthday -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :birthday, "Birthday", class: "form-label" %>
+                        <%= f.date_field :birthday, class: "form-control", placeholder: "Birth of Date", id: "birth" %>
+                      </div>
+                      <!-- Address Line 1 -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :address_line_1, class: "form-label" %>
+                        <%= f.text_field :address_line_1, class: "form-control", placeholder: "Address Line 1" %>
+                      </div>
+                      <!-- Address Line 2 -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :address_line_2, class: "form-label" %>
+                        <%= f.text_field :address_line_2, class: "form-control", placeholder: "Address Line 2" %>
+                      </div>
+                      <!-- State -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :state, class: "form-label" %>
+                        <%= f.text_field :state, class: "form-control", placeholder: "State" %>
+                      </div>
+                      <!-- City -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :city, class: "form-label" %>
+                        <%= f.text_field :city, class: "form-control", placeholder: "City" %>
+                      </div>
+                      <!-- Country -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :country, class: "form-label" %>
+                        <%= f.country_select :country, { prompt: "Select your country" }, { class: "form-control" } %>
+                      </div>
+                      <!-- Email -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :email, class: "form-label" %>
+                        <%= f.email_field :email, class: "form-control", placeholder: "Email address here", required: true %>
+                      </div>
+                      <!-- New Password -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :password, "New Password (leave blank if you don't want to change it)", class: "form-label" %>
+                        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "**************" %>
+                        <% if @minimum_password_length %>
+                          <br />
+                          <em><%= @minimum_password_length %> characters minimum</em>
+                        <% end %>
+                      </div>
+                      <!-- Password Confirmation -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :password_confirmation, class: "form-label" %>
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "**************" %>
+                      </div>
+                      <!-- Current Password -->
+                      <div class="mb-3 col-12 col-md-6">
+                        <%= f.label :current_password, "Current Password (Please Enter Your Current Password to update your Form)", class: "form-label" %>
+                        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "**************", required: true %>
+                      </div>
+                      <div class="col-12">
+                        <!-- Button -->
+                        <button class="btn btn-primary" type="submit">
+                          Update Profile
+                        </button>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <br>
+                <%= link_to "Back", :back, class: 'btn btn-primary' %>
               </div>
-            <% end %>
-            <h1 class="mb-1 fw-bold">Cancel my account</h1>
-            <div><h4> Unhappy? </h4><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></div><br>
-            <%= link_to "Back", :back, class: 'btn btn-primary' %> 
-          </div>  
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
+</body>
