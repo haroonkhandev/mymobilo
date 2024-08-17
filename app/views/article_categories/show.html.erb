@@ -43,9 +43,15 @@
             <div class="card mb-4 shadow-lg">
               <div class="row g-0">
                 <!-- Image -->
-                <a href="blog-single.html" class="col-lg-8 col-md-12 col-12 bg-cover img-left-rounded"
-                  style="background-image: url(/assets/blogpost-2.jpg);">
-                  <img src="/assets/blogpost-2.jpg" class="img-fluid d-lg-none invisible" alt="blogpost"></a>
+                <% if @article_category.image.attached? %>
+                  <% first_image = @article_category.image %>
+                    <a href="<%= article_categories_path %>" class="col-lg-8 col-md-12 col-12 bg-cover img-left-rounded">
+                      <%= image_tag url_for(first_image), alt: "Article Image", class:"img-fluid", style: "width: 853px; height: 460px;" %>
+                    </a>
+                <% else %>
+                  <a href="<%= article_categories_path %>" class="col-lg-8 col-md-12 col-12 bg-cover img-left-rounded">
+                      <img src="/assets/Exclusive-Phone.svg" class="img-fluid" alt="blogpost"></a>
+                <% end %>
                 <div class="col-lg-4 col-md-12 col-12">
                   <!-- Card body -->
                   <div class="card-body">
@@ -83,7 +89,7 @@
                   <% first_image = article.images.first %>
                   <a href="<%= article_path(article) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "190x190", class:"card-img-top rounded-top-md" %></a>
                 <% else %>
-                  <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/blogpost-1.jpg" class="card-img-top rounded-top-md"
+                  <a href="<%= article_path(article) %>"  class="card-img-top"> <img src="/assets/category-article-img.jpg" class="card-img-top rounded-top-md"
                     alt="blogpost"></a>
                 <% end %>
                 <!-- Card body -->
