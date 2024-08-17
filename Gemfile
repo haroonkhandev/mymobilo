@@ -87,3 +87,6 @@ gem 'activeadmin'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+
+# country Selection
+gem 'country_select'

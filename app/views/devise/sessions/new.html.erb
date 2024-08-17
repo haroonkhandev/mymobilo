@@ -1,71 +1,63 @@
-<!-- Page content -->
 <main>
   <section class="container d-flex flex-column">
     <div class="row align-items-center justify-content-center g-0 min-vh-100">
-
-      <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+      <div class="col-lg-6 col-md-8 col-sm-10 py-5">
         <!-- Card -->
-        <div class="card shadow ">
+        <div class="card shadow-lg border-0">
           <!-- Card body -->
-          <div class="card-body p-6">
-            <div class="mb-4">
-              <a href="<%= root_path %>"><img src="/assets/mymobilo.svg" class="mb-4" alt="logo-icon"></a>
-              <h1 class="mb-1 fw-bold">Sign in</h1>
-              <span>Don’t have an account? <a href="<%= new_user_registration_path %>" class="ms-1">Sign up</a></span>
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <a href="<%= root_path %>">
+                <img src="/assets/mymobilo.svg" class="mb-4" alt="logo" style="max-width: 150px;">
+              </a>
+              <h1 class="mb-3 fw-bold">Sign in</h1>
+              <p>Don't have an account? <a href="<%= new_user_registration_path %>" class="ms-1">Sign up</a></p>
             </div>
             <!-- Form -->
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <!-- Username -->
-                <div class="mb-3">
-                  <label for="email" class="form-label">Username or email</label>
-                  <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email", placeholder: "Email address here", required: true %>
-                  <!-- <input type="email" id="email" class="form-control" name="email" placeholder="Email address here"
-                    required> -->
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form' }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <%= f.label :email, class: "form-label" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder: "Email address", required: true %>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <%= f.label :password, class: "form-label" %>
+                <%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder:"**************", required: true %>
+              </div>
+
+              <!-- Remember Me -->
+              <div class="mb-3 form-check">
+                <%= f.check_box :remember_me, class:"form-check-input", id:"rememberMe" %>
+                <%= f.label :remember_me, class: "form-check-label", for: "rememberMe" %>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="mb-4">
+                <div class="d-grid">
+                  <%= f.submit "Sign in", type:"submit", class:"btn btn-primary" %>
                 </div>
-                  <!-- Password -->
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <%= f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder:"**************", required: true %>
-                  <!-- <input type="password" id="password" class="form-control" name="password" placeholder="**************"
-                    required> -->
-                </div>
-                  <!-- Checkbox -->
-                <% if devise_mapping.rememberable? %>  
-                  <div class="d-lg-flex justify-content-between align-items-center mb-4">
-                    <div class="form-check">
-                      <%= f.check_box :remember_me, class:"form-check-input", id:"rememberme" %>
-                      <label class="form-check-label " for="rememberme">Remember me</label>
-                    </div>
-                    <div>
-                      <a href="#"><%= render "devise/shared/links" %></a>
-                    </div>
-                  </div>
-                <% end %>  
-                <div>
-                    <!-- Button -->
-                  <div class="d-grid">
-                    <%= f.submit "Sign in",  class: "btn btn-primary" %>
-                  </div>
-                </div>
-                <hr class="my-4">
-                <div class="mt-4 text-center">
-                  <!--Facebook-->
-                  <a href="https://www.facebook.com/mymobilo" class="btn-social btn-social-outline btn-facebook">
-                    <i class="mdi mdi-facebook fs-4"></i>
-                  </a>
-                  <!--Twitter-->
-                  <a href="https://x.com/mymobilo" class="btn-social btn-social-outline btn-twitter">
-                    <i class="mdi mdi-twitter fs-4"></i>
-                  </a>
-                  <!--Youtube-->
-                  <a href="https://www.youtube.com/@MyMobilo" class="btn-social btn-social-outline btn-youtube">
-                    <i class="mdi mdi-youtube"></i>
-                  </a>
-                  <!--Instagram-->
-                  <a href="https://www.instagram.com/mymobilo.co/" class="btn-social btn-social-outline btn-instagram">
-                    <i class="mdi mdi-instagram"></i>
-                  </a>
-                </div>
+              </div>
+
+              <!-- Social Media Links -->
+              <hr class="my-4">
+              <div class="text-center">
+                <a href="https://www.facebook.com/mymobilo" class="btn-social btn-social-outline btn-facebook me-2">
+                  <i class="mdi mdi-facebook fs-4"></i>
+                </a>
+                <a href="https://x.com/mymobilo" class="btn-social btn-social-outline btn-twitter me-2">
+                  <i class="mdi mdi-twitter fs-4"></i>
+                </a>
+                <a href="https://www.youtube.com/@MyMobilo" class="btn-social btn-social-outline btn-youtube me-2">
+                  <i class="mdi mdi-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/mymobilo.co/" class="btn-social btn-social-outline btn-instagram">
+                  <i class="mdi mdi-instagram"></i>
+                </a>
+              </div>
             <% end %>
           </div>
         </div>

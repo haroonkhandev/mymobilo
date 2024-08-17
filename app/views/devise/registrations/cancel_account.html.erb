@@ -1,0 +1,30 @@
+<!-- app/views/devise/registrations/cancel_account.html.erb -->
+<body>
+  <main>
+    <section class="pt-5 pb-5">
+      <div class="container">
+        <!-- User info -->
+        <%= render 'devise/registrations/user_info' %>
+        <!-- Content -->
+        <div class="row mt-0 mt-md-4">
+          <div class="col-lg-3 col-md-4 col-12">
+            <%= render  "devise/registrations/user_sidebar" %>
+          </div>
+          <div class="col-lg-9 col-md-8 col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="mb-0">Delete your account</h3>
+                <p class="mb-0">Delete or Close your account permanently.</p>
+              </div>
+              <div class="card-body p-4">
+                <span class="text-danger h4">Warning</span>
+                <p>If you close your account, you will be unsubscribed from our special offers and Discounts, and will lose access forever.</p>
+                <%= button_to "Cancel my account", registration_path(resource_name), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
