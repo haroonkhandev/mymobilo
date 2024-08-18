@@ -124,13 +124,7 @@
             </div>
           <% end %>
           <!-- Buttom -->
-          <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
-            <a href="#" class="btn btn-primary">
-              <div class="spinner-border spinner-border-sm me-2" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>Load More
-            </a>
-          </div> -->
+            <%= paginate @articles if @articles.present? %>
         </div>
         <%= link_to 'Back to Categories', article_categories_path, class: 'btn btn-secondary mt-3' %>
       </div>
