@@ -149,3 +149,10 @@ div.scrollmenu a:hover {
 .main{
     min-height: 100vh !important;
 }
+.inner-img {
+  transition: 0.3s;
+}
+
+.inner-img:hover {
+  transform: scale(1.1);
+}

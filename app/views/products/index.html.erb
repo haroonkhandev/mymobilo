@@ -158,16 +158,16 @@
                 <div class="row" id="filtered-products">
                   <% if @products.present? %>
                     <% @products.each do |product| %>
-                      <div class="col-lg-4 col-md-6 col-12">
+                      <div class="col-lg-3 col-md-6 col-12">
                         <!-- Card -->
                         <div class="card  mb-4 card-hover">
                           <% if product&.images.present? %>
                               <center>
-                                  <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top mb-3", style: "max-width:50%;" %></a>
+                                  <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top inner-img", style: "max-width:100%;" %></a>
                               </center>
                           <% else %>
                             <center>
-                              <a href="<%= product_path(product) %>"><img src="/assets/official.png" alt="course" class="card-img-top mb-3", style= "max-width:50%;" >
+                              <a href="<%= product_path(product) %>"><img src="/assets/official.png" alt="course" class="card-img-top inner-img", style= "max-width:100%;" >
                             </center>
                           <% end %>
                           </a>

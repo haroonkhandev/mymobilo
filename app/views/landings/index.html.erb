@@ -41,20 +41,20 @@
                   <div class="card  mb-4 card-hover">
                     <% if product&.main_image.present? %>
                       <center>
-                        <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                        <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                         </a>
                       </center>
                     <% else %>
                       <center>
                         <a href="<%= product_path(product) %>">
-                          <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                          <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                         </a>
                       </center>
                     <% end %>
                     <!-- Card Body -->
                     <div class="card-body">
                       <h4 class="mb-2 text-truncate-line-2 ">
-                        <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
+                        <a href="<%= product_path(product) %>" class="text-inherit card-img-top inner-img"><%= product.name %>
                         </a>
                       </h4>
 
@@ -98,20 +98,20 @@
                         <% if upcoming_product&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(upcoming_product) %>">
-                              <%= image_tag url_for(upcoming_product.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(upcoming_product.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(upcoming_product) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                           <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(upcoming_product) %>" class="text-inherit card-img-top"><%= upcoming_product.name %>
+                            <a href="<%= product_path(upcoming_product) %>" class="text-inherit card-img-top inner-img"><%= upcoming_product.name %>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -153,20 +153,20 @@
                         <% if oppo&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(oppo) %>">
-                              <%= image_tag url_for(oppo.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(oppo.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                             <center>
                               <a href="<%= product_path(oppo) %>">
-                                <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                                <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                               </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(oppo) %>" class="text-inherit card-img-top"><%= oppo.name %>
+                              <a href="<%= product_path(oppo) %>" class="text-inherit card-img-top inner-img"><%= oppo.name %>
                               </a>
                             </h4>
 
@@ -210,20 +210,20 @@
                         <% if vivo&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(vivo) %>">
-                              <%= image_tag url_for(vivo.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(vivo.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(vivo) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(vivo) %>" class="text-inherit card-img-top"><%= vivo.name %>
+                              <a href="<%= product_path(vivo) %>" class="text-inherit card-img-top inner-img"><%= vivo.name %>
                               </a>
                             </h4>
                             <!-- Price -->
@@ -266,20 +266,20 @@
                         <% if samsung&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(samsung) %>">
-                              <%= image_tag url_for(samsung.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(samsung.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(samsung) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(samsung) %>" class="text-inherit card-img-top"><%= samsung.name %>
+                              <a href="<%= product_path(samsung) %>" class="text-inherit card-img-top inner-img"><%= samsung.name %>
                               </a>
                             </h4>
                             <!-- Price -->
@@ -322,20 +322,20 @@
                         <% if tecno&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(tecno) %>">
-                              <%= image_tag url_for(tecno.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(tecno.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(tecno) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                           <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(tecno) %>" class="text-inherit card-img-top"><%= tecno.name %>
+                            <a href="<%= product_path(tecno) %>" class="text-inherit card-img-top inner-img"><%= tecno.name %>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -378,20 +378,20 @@
                         <% if infinix&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(infinix) %>">
-                              <%= image_tag url_for(infinix.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(infinix.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(infinix) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                           <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(infinix) %>" class="text-inherit card-img-top"><%= infinix.name %>
+                            <a href="<%= product_path(infinix) %>" class="text-inherit card-img-top inner-img"><%= infinix.name %>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -434,20 +434,20 @@
                         <% if huawei&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(huawei) %>">
-                              <%= image_tag url_for(huawei.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(huawei.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(huawei) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                           <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(huawei) %>" class="text-inherit card-img-top"><%= huawei.name %>
+                            <a href="<%= product_path(huawei) %>" class="text-inherit card-img-top inner-img"><%= huawei.name %>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -490,20 +490,20 @@
                         <% if iphone&.main_image.present? %>
                           <center>
                             <a href="<%= product_path(iphone) %>">
-                              <%= image_tag url_for(iphone.main_image), class:"card-img-top mb-3", style: "max-width:50%;" %>
+                              <%= image_tag url_for(iphone.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
                             </a>
                           </center>
                         <% else %>
                           <center>
                             <a href="<%= product_path(iphone) %>">
-                              <img src="assets/official.png" alt="course" class="card-img-top mb-3" style="max-width:50%;">
+                              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
                             </a>
                           </center>
                         <% end %>
                         <!-- Card Body -->
                         <div class="card-body">
                           <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(iphone) %>" class="text-inherit card-img-top"><%= iphone.name %>
+                            <a href="<%= product_path(iphone) %>" class="text-inherit card-img-top inner-img"><%= iphone.name %>
                             </a>
                           </h4>
                           <!-- Price -->
