@@ -71,16 +71,9 @@
                   </div>
                 </div>
               <% end %>
-
                 <!-- Buttom -->
-                <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12 mt-4">
-                  <a href="#" class="btn btn-primary">
-                    <div class="spinner-border spinner-border-sm me-2" role="status">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>Load More
-                  </a>
-                </div> -->
-              </div>
+                <%= paginate @articles if @articles.present? %>
+            </div>
           </div>
           <div class="col-lg-4 col-md-5 col-12 mt-6 mt-md-0">
             <!-- search -->
