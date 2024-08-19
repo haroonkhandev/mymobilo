@@ -156,3 +156,17 @@ div.scrollmenu a:hover {
 .inner-img:hover {
   transform: scale(1.1);
 }
+
+.card-hover:hover {
+    box-shadow: none !important;
+}
+
+.card-hover {
+    box-shadow: none !important;
+    background-color: transparent;
+}
+
+.card-body {
+    padding-top: 0px;
+    text-align: center;
+}
