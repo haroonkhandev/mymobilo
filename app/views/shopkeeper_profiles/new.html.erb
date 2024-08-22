@@ -1,0 +1,24 @@
+<%= form_for @shopkeeper_profile do |f| %>
+  <%= f.label :shop_name %>
+  <%= f.text_field :shop_name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+
+  <%= f.label :contact_information %>
+  <%= f.text_field :contact_info %>
+
+  <%= f.label :operating_hours %>
+  <%= f.text_field :operating_hours %>
+
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+
+  <%= f.label :shop_images %>
+  <%= f.file_field :shop_images %>
+
+  <%= f.submit %>
+<% end %>

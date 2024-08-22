@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="mb-4"><%= @shopkeeper_profile.shop_name %></h1>
+
+      <div class="mb-3">
+        <strong>Description:</strong>
+        <p><%= @shopkeeper_profile.description %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Address:</strong>
+        <p><%= @shopkeeper_profile.address %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Contact Information:</strong>
+        <p><%= @shopkeeper_profile.contact_info %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Operating Hours:</strong>
+        <p><%= @shopkeeper_profile.operating_hours %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Location:</strong>
+        <p><%= @shopkeeper_profile.location %></p>
+      </div>
+    </div>
+
+      <div class="mb-4">
+        <strong>Shop Images:</strong>
+        <div class="row">
+          <% if @shopkeeper_profile.shop_images.present? %>
+            <% @shopkeeper_profile.shop_images.each do |image| %>
+              <div class="col-md-6 mb-2">
+                <%= image_tag image, class: 'img-fluid' %>
+              </div>
+            <% end %>
+          <% else %>
+            <p>No images available</p>
+          <% end %>
+        </div>
+      </div>
+
+      <%= link_to 'Edit Profile', edit_shopkeeper_profile_path(@shopkeeper_profile), class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+</div>

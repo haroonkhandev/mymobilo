@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   resources :products do
     resources :comments
   end
+
+  resources :shopkeeper_profiles, only: [:index, :new, :create, :edit, :update, :show]
 end

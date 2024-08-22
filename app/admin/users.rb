@@ -15,7 +15,7 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
-  permit_params :email, :first_name, :last_name, :phone, :birthday, :address_line_1, :address_line_2, :state, :country, :password, :password_confirmation
+  permit_params :email, :first_name, :last_name, :role, :phone, :birthday, :address_line_1, :address_line_2, :state, :country, :password, :password_confirmation
 
   form do |f|
     f.inputs "User Details" do
@@ -30,6 +30,7 @@ ActiveAdmin.register User do
       f.input :country
       f.input :password
       f.input :password_confirmation
+      f.input :role, as: :select, collection: ['user', 'shopkeeper'], include_blank: false
     end
     f.actions
   end
@@ -40,6 +41,7 @@ ActiveAdmin.register User do
     column :email
     column :first_name
     column :last_name
+    column :role
     column :phone
     column :birthday
     column :address_line_1
@@ -67,5 +69,5 @@ ActiveAdmin.register User do
     end
     active_admin_comments
   end
-  
+  filter :role, as: :select, collection: ['user', 'shopkeeper']
 end
