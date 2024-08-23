@@ -189,6 +189,17 @@
                          </div>
                          <div class="dropdown-divider"></div>
                          <ul class="list-unstyled">
+                            <li>
+                              <% if current_user.shopkeeper? %>
+                                <a class="dropdown-item" href="<%= shopkeepers_dashboard_path %>">
+                                  <i class="nav-icon fe fe-home me-2"></i>Dashboard
+                                </a>
+                              <% elsif current_user.user? %>
+                                <a class="dropdown-item" href="<%= users_dashboard_path %>">
+                                  <i class="nav-icon fe fe-home me-2"></i>Dashboard
+                                </a>
+                              <% end %>
+                            </li>
                              <li class="dropdown-submenu dropstart-lg">
                                  <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
                                      <i class="fe fe-circle me-2"></i>Status

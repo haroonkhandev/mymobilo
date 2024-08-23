@@ -1,23 +1,33 @@
-<h1 class="mb-4">Your Shop Profiles</h1>
-
-<%= link_to 'New Shop Profile', new_shopkeeper_profile_path, class: 'btn btn-primary' %>
+<% if current_user.shopkeeper? %>
+  <h1 class="mb-4">Your Shop Profiles</h1>
+  <%= link_to 'New Shop Profile', new_shopkeeper_profile_path, class: 'btn btn-primary mb-3' %>
+<% else %>
+  <h1 class="mb-4">All Shop Profiles</h1>
+<% end %>
 
 <% if @shopkeeper_profiles.any? %>
   <div class="row">
     <% @shopkeeper_profiles.each do |profile| %>
       <div class="col-md-4 mb-4">
-        <div class="card">
+        <div class="card shadow-sm">
+          <img src="<%= profile.shop_images.present? ? profile.shop_images.first : 'default-shop-image.jpg' %>" class="card-img-top" alt="<%= profile.shop_name %>">
           <div class="card-body">
             <h5 class="card-title"><%= profile.shop_name %></h5>
-            <p class="card-text"><%= profile.description %></p>
+            <p class="card-text"><%= truncate(profile.description, length: 100) %></p>
             <%= link_to 'Show', shopkeeper_profile_path(profile), class: 'btn btn-info' %>
-            <%= link_to 'Edit', edit_shopkeeper_profile_path(profile), class: 'btn btn-warning' %>
-            <%= button_to 'Destroy', shopkeeper_profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+
+            <% if current_user.shopkeeper? && can?(:update, profile) %>
+              <%= link_to 'Edit', edit_shopkeeper_profile_path(profile), class: 'btn btn-warning ms-2' %>
+            <% end %>
+
+            <% if current_user.shopkeeper? && can?(:destroy, profile) %>
+              <%= button_to 'Destroy', shopkeeper_profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ms-2' %>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 <% else %>
-  <p>No shop profiles found.</p>
+  <p class="text-muted">No shop profiles found.</p>
 <% end %>

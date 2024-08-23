@@ -1,50 +1,23 @@
-<div class="container mt-5">
+<div class="container mt-4">
+  <h1 class="mb-3"><%= @shopkeeper_profile.shop_name %></h1>
+
   <div class="row">
-    <div class="col-md-8">
-      <h1 class="mb-4"><%= @shopkeeper_profile.shop_name %></h1>
-
-      <div class="mb-3">
-        <strong>Description:</strong>
-        <p><%= @shopkeeper_profile.description %></p>
-      </div>
-
-      <div class="mb-3">
-        <strong>Address:</strong>
-        <p><%= @shopkeeper_profile.address %></p>
-      </div>
-
-      <div class="mb-3">
-        <strong>Contact Information:</strong>
-        <p><%= @shopkeeper_profile.contact_info %></p>
-      </div>
-
-      <div class="mb-3">
-        <strong>Operating Hours:</strong>
-        <p><%= @shopkeeper_profile.operating_hours %></p>
-      </div>
-
-      <div class="mb-3">
-        <strong>Location:</strong>
-        <p><%= @shopkeeper_profile.location %></p>
-      </div>
+    <div class="col-md-4">
+      <img src="<%= @shopkeeper_profile.shop_images.present? ? @shopkeeper_profile.shop_images.first : 'default-shop-image.jpg' %>" class="img-fluid rounded" alt="<%= @shopkeeper_profile.shop_name %>">
     </div>
+    <div class="col-md-8">
+      <p><strong>Description:</strong> <%= @shopkeeper_profile.description %></p>
+      <p><strong>Address:</strong> <%= @shopkeeper_profile.address %></p>
+      <p><strong>Contact Info:</strong> <%= @shopkeeper_profile.contact_info %></p>
+      <p><strong>Operating Hours:</strong> <%= @shopkeeper_profile.operating_hours %></p>
+      <p><strong>Location:</strong> <%= @shopkeeper_profile.location %></p>
 
-      <div class="mb-4">
-        <strong>Shop Images:</strong>
-        <div class="row">
-          <% if @shopkeeper_profile.shop_images.present? %>
-            <% @shopkeeper_profile.shop_images.each do |image| %>
-              <div class="col-md-6 mb-2">
-                <%= image_tag image, class: 'img-fluid' %>
-              </div>
-            <% end %>
-          <% else %>
-            <p>No images available</p>
-          <% end %>
-        </div>
-      </div>
+      <% if current_user.shopkeeper? && can?(:update, @shopkeeper_profile) %>
+        <%= link_to 'Edit Profile', edit_shopkeeper_profile_path(@shopkeeper_profile), class: 'btn btn-warning me-2' %>
+        <%= button_to 'Delete Profile', shopkeeper_profile_path(@shopkeeper_profile), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <% end %>
 
-      <%= link_to 'Edit Profile', edit_shopkeeper_profile_path(@shopkeeper_profile), class: 'btn btn-primary btn-block' %>
+      <%= link_to 'Back to Profiles', shopkeeper_profiles_path, class: 'btn btn-secondary mt-3' %>
     </div>
   </div>
 </div>

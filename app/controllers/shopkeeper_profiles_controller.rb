@@ -1,11 +1,15 @@
 class ShopkeeperProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_shopkeeper!
+  before_action :authorize_shopkeeper!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_shopkeeper_profile, only: [:show, :edit, :update, :destroy]
   before_action :ensure_profile_ownership, only: [:edit, :update, :destroy, :show]
 
   def index
-    @shopkeeper_profiles = current_user.shopkeeper_profiles
+    if current_user.shopkeeper?
+      @shopkeeper_profiles = current_user.shopkeeper_profiles
+    else
+      @shopkeeper_profiles = ShopkeeperProfile.all
+    end
   end
 
   def show
@@ -55,6 +59,6 @@ class ShopkeeperProfilesController < ApplicationController
   end
 
   def ensure_profile_ownership
-    redirect_to root_path, alert: 'Access Denied' unless @shopkeeper_profile.user == current_user
+    redirect_to root_path, alert: 'Access Denied' unless @shopkeeper_profile.user == current_user || !current_user.shopkeeper?
   end
 end
