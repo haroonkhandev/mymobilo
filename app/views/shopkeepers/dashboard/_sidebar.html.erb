@@ -1,105 +1,99 @@
 <nav class="navbar-vertical navbar">
-            <div class="vh-100" data-simplebar>
-                 <!-- Brand logo -->
-                 <a class="navbar-brand" href="<%= root_path %>">
-                     <img src="/assets/mobilo.png" alt="" >
+    <div class="vh-100" data-simplebar>
+         <!-- Brand logo -->
+         <a class="navbar-brand" href="<%= root_path %>">
+             <img src="/assets/mobilo.png" alt="" >
+         </a>
+         <!-- Navbar nav -->
+         <ul class="navbar-nav flex-column" id="sideNavbar">
+             <li class="nav-item">
+               <a class="nav-link" href="<%= shopkeepers_dashboard_path %>"
+                  aria-expanded="false" aria-controls="navDashboard">
+                 <i class="nav-icon fe fe-home me-2"></i> Dashboard
+               </a>
+             </li>
+
+             <!-- Nav item -->
+             <li class="nav-item">
+                 <a class="nav-link  collapsed " href="#"
+                     data-bs-toggle="collapse" data-bs-target="#navecommerce" aria-expanded="false"
+                     aria-controls="navecommerce">
+                     <i class="nav-icon fe fe-shopping-bag me-2"></i> Shop Management
                  </a>
-                 <!-- Navbar nav -->
-                 <ul class="navbar-nav flex-column" id="sideNavbar">
-                     <li class="nav-item">
-                         <a class="nav-link   collapsed " href="#"
-                             data-bs-toggle="collapse" data-bs-target="#navDashboard" aria-expanded="false"
-                             aria-controls="navDashboard">
-                             <i class="nav-icon fe fe-home me-2"></i> Dashboard
-                         </a>
-                     </li>
-                     <!-- New Shop -->
-                     <li class="nav-item ">
-                         <a class="nav-link   " href="#"
-                             data-bs-toggle="collapse" data-bs-target="#navProject" aria-expanded="false"
-                             aria-controls="navProject">
-                             <i class="nav-icon fe fe-file me-2"></i> Shop
-                         </a>
-                     </li>
+                 <div id="navecommerce" class="collapse "
+                     data-bs-parent="#sideNavbar">
+                     <ul class="nav flex-column">
+                         <li class="nav-item">
+                             <a class="nav-link   collapsed  " href="#"
+                                 data-bs-toggle="collapse" data-bs-target="#navproduct" aria-expanded="false"
+                                 aria-controls="navproduct">
 
-                     <!-- Nav item -->
-                     <li class="nav-item">
-                         <a class="nav-link  collapsed " href="#"
-                             data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false"
-                             aria-controls="navAuthentication">
-                             <i class="nav-icon fe fe-lock me-2"></i> Authentication
-                         </a>
-                         <div id="navAuthentication" class="collapse "
-                             data-bs-parent="#sideNavbar">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a class="nav-link "
-                                         href="../../pages/sign-in.html">Sign In</a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a class="nav-link  "
-                                         href="../../pages/sign-up.html">Sign Up</a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a class="nav-link "
-                                         href="../../pages/forget-password.html">
-                                         Forget Password
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a class="nav-link  "
-                                         href="../../pages/dashboard/notification-history.html">
-                                         Notifications
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                     <a class="nav-link  "
-                                         href="../../pages/404-error.html"> 404 Error</a>
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
-                     <!-- Nav item -->
-                     <li class="nav-item">
-                         <a class="nav-link  collapsed " href="#"
-                             data-bs-toggle="collapse" data-bs-target="#navecommerce" aria-expanded="false"
-                             aria-controls="navecommerce">
-                             <i class="nav-icon fe fe-shopping-bag me-2"></i> Ecommerce
-                         </a>
-                         <div id="navecommerce" class="collapse "
-                             data-bs-parent="#sideNavbar">
-                             <ul class="nav flex-column">
-                                 <li class="nav-item">
-                                     <a class="nav-link   collapsed  " href="#"
-                                         data-bs-toggle="collapse" data-bs-target="#navproduct" aria-expanded="false"
-                                         aria-controls="navproduct">
+                                 Product
+                             </a>
+                             <div id="navproduct"
+                                 class="collapse "
+                                 data-bs-parent="#navProduct">
+                                 <ul class="nav flex-column">
+                                     <li class="nav-item">
+                                         <a class="nav-link "
+                                            href="../../pages/dashboard/ecommerce/product-grid.html">Grid</a>
+                                     </li>
+                                     <li class="nav-item">
+                                         <a class="nav-link "
+                                            href="../../pages/dashboard/ecommerce/product-grid-with-sidebar.html">Grid
+                                            Sidebar</a>
+                                     </li>
+                                     <% if current_user.shopkeeper? %>
+                                        <li class="nav-item">
+                                            <a class="nav-link  "
+                                              href="<%= new_shopkeeper_profile_path %>">New Shop</a>
+                                        </li>
+                                     <% else %>
+                                     <% end %>
+                                 </ul>
+                             </div>
+                         </li>
+                     </ul>
+                 </div>
+             </li>
 
-                                         Product
-                                     </a>
-                                     <div id="navproduct"
-                                         class="collapse "
-                                         data-bs-parent="#navProduct">
-                                         <ul class="nav flex-column">
-                                             <li class="nav-item">
-                                                 <a class="nav-link "
-                                                     href="../../pages/dashboard/ecommerce/product-grid.html">Grid</a>
-                                             </li>
-                                             <li class="nav-item">
-                                                 <a class="nav-link "
-                                                     href="../../pages/dashboard/ecommerce/product-grid-with-sidebar.html">Grid
-                                                     Sidebar</a>
-                                             </li>
-                                             <li class="nav-item">
-                                                 <a class="nav-link  "
-                                                     href="../../pages/dashboard/ecommerce/add-product.html">Add Product</a>
-                                             </li>
-
-                                         </ul>
-                                     </div>
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
-                 </ul>
-            </div>
-        </nav>
+             <!-- Nav item -->
+             <li class="nav-item">
+                 <a class="nav-link  collapsed " href="#"
+                     data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false"
+                     aria-controls="navAuthentication">
+                     <i class="nav-icon fe fe-lock me-2"></i> Authentication
+                 </a>
+                 <div id="navAuthentication" class="collapse "
+                     data-bs-parent="#sideNavbar">
+                     <ul class="nav flex-column">
+                         <li class="nav-item">
+                             <a class="nav-link "
+                                 href="../../pages/sign-in.html">Sign In</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link  "
+                                 href="../../pages/sign-up.html">Sign Up</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link "
+                                 href="../../pages/forget-password.html">
+                                 Forget Password
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link  "
+                                 href="../../pages/dashboard/notification-history.html">
+                                 Notifications
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link  "
+                                 href="../../pages/404-error.html"> 404 Error</a>
+                         </li>
+                     </ul>
+                 </div>
+             </li>
+         </ul>
+    </div>
+</nav>

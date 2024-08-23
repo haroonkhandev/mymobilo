@@ -32,8 +32,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :shopkeeper_profiles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-
+  # Restricted access for shopkeeper profiles
   namespace :users do
     get 'dashboard', to: 'dashboard#index'
   end
@@ -42,6 +41,8 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
   end
 
+  resources :shopkeeper_profiles, only: [:show, :new, :create, :edit, :update, :destroy]
+
   # Root path redirection based on role
   authenticated :user do
     root to: 'users/dashboard#index', as: :authenticated_user_root
@@ -49,5 +50,9 @@ Rails.application.routes.draw do
 
   authenticated :shopkeeper do
     root to: 'shopkeepers/dashboard#index', as: :authenticated_shopkeeper_root
+  end
+
+  unauthenticated do
+    root to: 'landings#index', as: :unauthenticated_root
   end
 end

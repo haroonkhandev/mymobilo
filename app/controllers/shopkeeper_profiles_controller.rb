@@ -8,7 +8,7 @@ class ShopkeeperProfilesController < ApplicationController
     if current_user.shopkeeper?
       @shopkeeper_profiles = current_user.shopkeeper_profiles
     else
-      @shopkeeper_profiles = ShopkeeperProfile.all
+      redirect_to users_dashboard_path, alert: 'Access Denied'
     end
   end
 
@@ -41,7 +41,7 @@ class ShopkeeperProfilesController < ApplicationController
 
   def destroy
     @shopkeeper_profile.destroy
-    redirect_to shopkeeper_profiles_url, notice: 'Profile was successfully destroyed.'
+    redirect_to shopkeepers_dashboard_path, notice: 'Profile was successfully destroyed.'
   end
 
   private
