@@ -41,8 +41,10 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
   end
 
-  resources :shopkeeper_profiles, only: [:show, :new, :create, :edit, :update, :destroy]
-
+  resources :shopkeeper_profiles do
+    get 'search_product', on: :member
+    post 'add_to_shop', on: :member
+  end
   # Root path redirection based on role
   authenticated :user do
     root to: 'users/dashboard#index', as: :authenticated_user_root

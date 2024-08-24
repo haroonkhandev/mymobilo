@@ -1,0 +1,51 @@
+<body>
+  <!-- Wrapper -->
+  <div id="db-wrapper">
+    <!-- navbar vertical -->
+     <!-- Sidebar -->
+     <%= render 'shopkeepers/dashboard/sidebar' %>
+    <!-- Page Content -->
+    <main id="page-content">
+      <!-- Container fluid -->
+      <div class="header">
+        <!-- navbar -->
+        <%= render 'shopkeepers/dashboard/navbar' %>
+      </div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <section class="container-fluid p-4">
+
+<h2>Products</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @products.any? %>
+      <div id="products-list">
+        <% @products.each do |product| %>
+          <div id="product-<%= product.id %>" style="display: flex;" >
+            <p><%= product.name %></p>
+            <% if @added_product_ids.include?(product.id) %>
+              <button type="button" disabled>Added</button>
+            <% else %>
+              <%= button_to 'Add to Shop', add_to_shop_shopkeeper_profile_path(product_id: product, user_id: current_user.id, shop_id: params[:id], search: params[:search]), remote: true, method: :post%>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No products found that haven't already been added to your shop.</p>
+    <% end %>
+  </tbody>
+</table>
+
+      </section>
+    </main>
+  </div>
+</body>

@@ -23,9 +23,7 @@
 
   <body>
     <% if user_signed_in? %>
-      <% if current_user.shopkeeper? %>
-        <%= render partial: "shopkeepers/dashboard/shopkeeper_navbar" %>
-      <% else %>
+      <% unless current_user.shopkeeper? %>
         <%= render partial: "shared/navbar" %>
       <% end %>
     <% else %>

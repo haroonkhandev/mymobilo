@@ -39,6 +39,35 @@ class ShopkeeperProfilesController < ApplicationController
     end
   end
 
+  def search_product
+    @products = if params[:search].present?
+                  Product.where('name ILIKE ?', "%#{params[:search]}%")
+                else
+                  redirect_to shopkeeper_profile_path(@shopkeeper_profile)
+                end
+    @added_product_ids = ShopProduct.where(shop_id: params[:id]).pluck(:product_id)
+  end
+
+  def add_to_shop
+    product = Product.find(params[:product_id])
+    shopkeeper = current_user
+    shop = ShopkeeperProfile.find(params[:shop_id])
+    search_params = params[:search] || {}
+
+    # Add the product to the shopkeeper's shop
+    if shopkeeper.products.include?(product)
+      flash[:alert] = "Product is already in your shop."
+    else
+      ShopProduct.create(user_id: shopkeeper.id, product_id: product.id, shop_id: shop.id)
+      flash[:notice] = "Product added to your shop successfully."
+    end
+
+    respond_to do |format|
+        format.html { redirect_to search_product_shopkeeper_profile_path(shop, search: search_params) }
+        format.js
+      end
+  end
+
   def destroy
     @shopkeeper_profile.destroy
     redirect_to shopkeepers_dashboard_path, notice: 'Profile was successfully destroyed.'

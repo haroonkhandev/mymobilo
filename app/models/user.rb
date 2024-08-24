@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :shopkeeper_profiles, dependent: :destroy  # Ensure this matches your model name
-
+  has_many :shop_products
+  has_many :products, through: :shop_products
   # Ensure role is either 'user' or 'shopkeeper'
   validates :role, inclusion: { in: %w[user shopkeeper] }
 

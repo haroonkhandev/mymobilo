@@ -6,12 +6,14 @@ class Product < ApplicationRecord
 	before_save :keep_images, if: :will_save_change_to_images?
 	has_many_attached :images
   has_one_attached :main_image
-	paginates_per 6
+  paginates_per 6
 	serialize :images, Array
 	has_many :comments, dependent: :destroy
 	has_many :specifications, dependent: :destroy
 	accepts_nested_attributes_for :specifications, allow_destroy: true
 	belongs_to :category
+  has_many :shop_products
+  has_many :users, through: :shop_products
 
 	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }
 	scope :upcoming_products, -> { where('release_date > ?', Date.today) }
@@ -76,6 +78,15 @@ class Product < ApplicationRecord
   end
 
   private
+
+  def validate_image_dimensions
+    return unless main_image.attached?
+
+    image = MiniMagick::Image.read(main_image.download)
+    if image.width != 800 || image.height != 600
+      errors.add(:main_image, 'Width must be 800px and height must be 600px')
+    end
+  end
 
   def keep_images
     images.attach(images_blobs) if images_blobs.present?
