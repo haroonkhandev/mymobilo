@@ -4,15 +4,15 @@ class Shopkeepers::DashboardController < ApplicationController
   def index
     if current_user.shopkeeper?
       # Fetch only the current user's shop profiles
-      @shopkeeper_profiles = current_user.shopkeeper_profiles
+      @shopkeeper_shops = current_user.shopkeeper_shops
     else
       # Fetch all shop profiles for users
-      @shopkeeper_profiles = ShopkeeperProfile.all
+      @shopkeeper_shops = ShopkeeperShop.all
     end
 
     # Optionally filter based on search if a search term is provided
     if params[:search].present?
-      @shopkeeper_profiles = @shopkeeper_profiles.where('shop_name LIKE ?', "%#{params[:search]}%")
+      @shopkeeper_shops = @shopkeeper_shops.where('shop_name LIKE ?', "%#{params[:search]}%")
     end
   end
 end

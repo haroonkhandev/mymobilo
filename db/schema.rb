@@ -163,17 +163,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
   end
 
   create_table "shop_products", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "product_id", null: false
-    t.integer "shopkeeper_profile"
-    t.integer "shop_id"
+    t.bigint "shopkeeper_shop_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_shop_products_on_product_id"
-    t.index ["user_id"], name: "index_shop_products_on_user_id"
+    t.index ["shopkeeper_shop_id"], name: "index_shop_products_on_shopkeeper_shop_id"
   end
 
-  create_table "shopkeeper_profiles", force: :cascade do |t|
+  create_table "shopkeeper_shops", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "shop_name"
     t.text "description"
@@ -184,7 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
     t.string "operating_hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_shopkeeper_profiles_on_user_id"
+    t.index ["user_id"], name: "index_shopkeeper_shops_on_user_id"
   end
 
   create_table "specifications", force: :cascade do |t|
@@ -231,7 +229,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
   add_foreign_key "products", "categories"
   add_foreign_key "ratings", "products"
   add_foreign_key "shop_products", "products"
-  add_foreign_key "shop_products", "users"
-  add_foreign_key "shopkeeper_profiles", "users"
+  add_foreign_key "shop_products", "shopkeeper_shops"
+  add_foreign_key "shopkeeper_shops", "users"
   add_foreign_key "specifications", "products"
 end

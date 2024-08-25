@@ -16,7 +16,7 @@
             <!-- Page header -->
             <div class="d-lg-flex align-items-center justify-content-between">
               <div class="mb-2 mb-lg-0">
-                <h1 class="mb-0 h2 fw-bold"><%= @shopkeeper_profile.shop_name %>
+                <h1 class="mb-0 h2 fw-bold"><%= @shopkeeper_shop.shop_name %>
                 </h1>
               </div>
             </div>
@@ -46,17 +46,17 @@
                         <h4 class="mb-0">Shop Overview</h4>
                       </div>
                       <!-- dropdown  -->
-                      <% if current_user.shopkeeper? && can?(:update, @shopkeeper_profile) %>
+                      <% if current_user.shopkeeper? && can?(:update, @shopkeeper_shop) %>
                         <div>
                           <span class="dropdown dropstart">
                             <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button"
-                               id="Dropdown<%= @shopkeeper_profile.id %>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               id="Dropdown<%= @shopkeeper_shop.id %>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="fe fe-more-vertical"></i>
                             </a>
-                            <span class="dropdown-menu" aria-labelledby="Dropdown<%= @shopkeeper_profile.id %>">
+                            <span class="dropdown-menu" aria-labelledby="Dropdown<%= @shopkeeper_shop.id %>">
                               <span class="dropdown-header">Settings</span>
-                              <%= link_to 'Edit Profile', edit_shopkeeper_profile_path(@shopkeeper_profile), class: 'dropdown-item' %>
-                              <%= button_to 'Delete Profile', shopkeeper_profile_path(@shopkeeper_profile), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item btn btn-danger' %>
+                              <%= link_to 'Edit Shop', edit_shopkeeper_shop_path(@shopkeeper_shop), class: 'dropdown-item' %>
+                              <%= button_to 'Delete Shop', shopkeeper_shop_path(@shopkeeper_shop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item btn btn-danger' %>
                             </span>
                           </span>
                         </div>
@@ -64,7 +64,7 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <p><%= @shopkeeper_profile.description %></p>
+                    <p><%= @shopkeeper_shop.description %></p>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item px-0">
                         <div class="d-flex justify-content-between align-items-center">
@@ -88,7 +88,7 @@
                             </div>
                           </div>
                           <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_profile.address %></p>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.address %></p>
                           </div>
                         </div>
                       </li>
@@ -102,7 +102,7 @@
                             </div>
                           </div>
                           <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_profile.contact_info %></p>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.contact_info %></p>
                           </div>
                         </div>
                       </li>
@@ -116,7 +116,7 @@
                             </div>
                           </div>
                           <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_profile.operating_hours %></p>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.operating_hours %></p>
                           </div>
                         </div>
                       </li>
@@ -130,7 +130,7 @@
                             </div>
                           </div>
                           <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_profile.location %></p>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.location %></p>
                           </div>
                         </div>
                       </li>

@@ -5,7 +5,7 @@
     <div class="ms-lg-3 d-none d-md-none d-lg-block">
         <!-- Form -->
         <% unless params[:action] == "new" || params[:action] == "create"%>
-            <%= form_with(url: search_product_shopkeeper_profile_path, method: :get, local: true, html: { class: "d-flex align-items-center" }) do %>
+            <%= form_with(url: search_product_shopkeeper_shop_path, method: :get, local: true, html: { class: "d-flex align-items-center" }) do %>
                 <span class="position-absolute ps-3 search-icon">
                         <i class="fe fe-search"></i>
                     </span>

@@ -39,7 +39,7 @@
               <!-- button -->
               <% if current_user.shopkeeper? %>
                 <div>
-                  <%= link_to 'Create a Shop', new_shopkeeper_profile_path, class: 'btn btn-primary me-2' %>
+                  <%= link_to 'Create a Shop', new_shopkeeper_shop_path, class: 'btn btn-primary me-2' %>
                 </div>
               <% end %>
             </div>
@@ -50,7 +50,7 @@
         <div class="row justify-content-md-between mb-4 mb-xl-0">
           <div class="col-xl-2 col-lg-4 col-md-6 col-12">
             <div class="mb-2 mb-lg-4">
-              <%= form_with url: shopkeeper_profiles_path, method: :get, local: true do %>
+              <%= form_with url: shopkeeper_shops_path, method: :get, local: true do %>
                 <%= text_field_tag :search, params[:search], placeholder: "Search by shop name", class: "form-control" %>
               <% end %>
             </div>
@@ -58,12 +58,12 @@
         </div>
 
         <div class="row">
-          <% if @shopkeeper_profiles.any? %>
-            <% @shopkeeper_profiles.each do |profile| %>
+          <% if @shopkeeper_shops.any? %>
+            <% @shopkeeper_shops.each do |profile| %>
               <div class="col-xxl-3 col-xl-4 col-lg-6 col-12 mb-4">
                 <!-- card -->
                 <div class="card h-100">
-                  <a href="<%= shopkeeper_profile_path(profile) %>"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
+                  <a href="<%= shopkeeper_shop_path(profile) %>"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
                     alt="Article Image"></a>
                   <!-- card body -->
                   <div class="card-body">
@@ -71,7 +71,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                       <div>
                         <h4 class="mb-0">
-                          <%= link_to profile.shop_name, shopkeeper_profile_path(profile), class: "text-inherit" %>
+                          <%= link_to profile.shop_name, shopkeeper_shop_path(profile), class: "text-inherit" %>
                         </h4>
                         <!-- Use 'Shop' or any other attribute -->
                         <span class="text-muted fs-6">Shop</span>
@@ -87,12 +87,12 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownProject<%= profile.id %>">
                               <span class="dropdown-header">Settings</span>
                               <% if can?(:update, profile) %>
-                                  <%= link_to edit_shopkeeper_profile_path(profile), class: "dropdown-item" do %>
+                                  <%= link_to edit_shopkeeper_shop_path(profile), class: "dropdown-item" do %>
                                       <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
                                   <% end %>
                               <% end %>
                               <% if can?(:destroy, profile) %>
-                                <%= button_to 'Delete shop', shopkeeper_profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item btn btn-danger" %>
+                                <%= button_to 'Delete shop', shopkeeper_shop_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item btn btn-danger" %>
                               <% end %>
                             </div>
                           </div>

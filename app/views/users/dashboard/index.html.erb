@@ -22,17 +22,17 @@
             <div class="tab-content" id="tabContent">
               <div class="tab-pane fade show active" id="bookmarked" role="tabpanel" aria-labelledby="bookmarked-tab">
                 <div class="row">
-                  <% @shopkeeper_profiles.each do |profile| %>
+                  <% @shopkeeper_shops.each do |profile| %>
                     <div class="col-lg-3 col-md-6 col-12">
                       <!-- Card -->
                       <div class="card mb-4 card-hover">
-                        <a href="<%= shopkeeper_profile_path(profile) %>" class="card-img-top">
+                        <a href="<%= shopkeeper_shop_path(profile) %>" class="card-img-top">
                           <img src="<%= profile.shop_images.present? ? profile.shop_images.first.url : '/assets/Exclusive-Phone.svg' %>" alt="<%= profile.shop_name %>" class="card-img-top rounded-top-md">
                         </a>
                         <!-- Card body -->
                         <div class="card-body">
                           <h3 class="h4 mb-2 text-truncate-line-2">
-                            <a href="<%= shopkeeper_profile_path(profile) %>" class="text-inherit"><%= profile.shop_name %></a>
+                            <a href="<%= shopkeeper_shop_path(profile) %>" class="text-inherit"><%= profile.shop_name %></a>
                           </h3>
                           <!-- List inline -->
                           <ul class="mb-3 list-inline">

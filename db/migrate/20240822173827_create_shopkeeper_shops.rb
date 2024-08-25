@@ -1,6 +1,6 @@
-class CreateShopkeeperProfiles < ActiveRecord::Migration[7.0]
+class CreateShopkeeperShops < ActiveRecord::Migration[7.0]
   def change
-    create_table :shopkeeper_profiles do |t|
+    create_table :shopkeeper_shops do |t|
       t.references :user, null: false, foreign_key: true
       t.string :shop_name
       t.text :description

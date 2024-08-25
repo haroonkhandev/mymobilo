@@ -9,10 +9,10 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     if user.shopkeeper?
-      can :manage, ShopkeeperProfile, user_id: user.id
+      can :manage, ShopkeeperShop, user_id: user.id
     else
-      can :read, ShopkeeperProfile, user_id: user.id
-      can :read, ShopkeeperProfile
+      can :read, ShopkeeperShop, user_id: user.id
+      can :read, ShopkeeperShop
     end
     #
     #   return unless user.present?

@@ -5,9 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :comments, dependent: :destroy
-  has_many :shopkeeper_profiles, dependent: :destroy  # Ensure this matches your model name
-  has_many :shop_products
-  has_many :products, through: :shop_products
+  has_many :shopkeeper_shops, dependent: :destroy  # Ensure this matches your model name
   # Ensure role is either 'user' or 'shopkeeper'
   validates :role, inclusion: { in: %w[user shopkeeper] }
 

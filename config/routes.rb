@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index'
   end
 
-  resources :shopkeeper_profiles do
+  resources :shopkeeper_shops do
     get 'search_product', on: :member
     post 'add_to_shop', on: :member
   end

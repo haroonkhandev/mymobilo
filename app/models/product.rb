@@ -13,7 +13,7 @@ class Product < ApplicationRecord
 	accepts_nested_attributes_for :specifications, allow_destroy: true
 	belongs_to :category
   has_many :shop_products
-  has_many :users, through: :shop_products
+  has_many :shopkeeper_shops, through: :shop_products
 
 	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }
 	scope :upcoming_products, -> { where('release_date > ?', Date.today) }

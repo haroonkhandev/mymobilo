@@ -12,7 +12,7 @@
           <!-- Page header -->
           <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
             <div>
-              <h1 class="mb-0 h2 fw-bold">Edit Shopkeeper Profile</h1>
+              <h1 class="mb-0 h2 fw-bold">Edit Shopkeeper Shop</h1>
               <!-- Breadcrumb -->
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -20,7 +20,7 @@
                     <%= link_to 'Dashboard', shopkeepers_dashboard_path %>
                   </li>
                   <li class="breadcrumb-item">
-                    <%= link_to 'Shop', shopkeeper_profiles_path %>
+                    <%= link_to 'Shop', shopkeeper_shops_path %>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
                     Edit Shop
@@ -39,7 +39,7 @@
             <!-- Card body -->
             <div class="card-body p-lg-6">
               <!-- Form -->
-              <%= form_with(model: @shopkeeper_profile, local: true, html: { class: 'row gx-3' }) do |f| %>
+              <%= form_with(model: @shopkeeper_shop, local: true, html: { class: 'row gx-3' }) do |f| %>
                 <!-- Form group -->
                 <div class="mb-3 col-12">
                   <%= f.label :shop_name, "Shop Name", class: "form-label" %>
