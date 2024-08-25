@@ -75,7 +75,7 @@
                             </div>
                           </div>
                           <div>
-                            <p class="text-dark mb-0 fw-semibold">01 Jan, 2021</p>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.created_at.strftime("%d %b, %Y") %></p>
                           </div>
                         </div>
                       </li>
@@ -188,7 +188,7 @@
                     <div class="col-lg-4 col-md-12 col-12 border-start-md">
                       <div class="d-flex align-items-center justify-content-between p-4">
                         <div>
-                          <h2 class="h1 fw-bold mb-0">70
+                          <h2 class="h1 fw-bold mb-0"> <%= @product_count %>
                           </h2>
                           <p class="mb-0">Remaining Phones</p>
 
@@ -257,8 +257,8 @@
                 <!-- dropdown  -->
                 <div class="d-flex justify-content-between align-items-center mt-8">
                   <div>
-                    <h1 class="display-4 text-white mb-1">121 Days</h1>
-                    <p class="mb-0 text-white">15 December, Friday</p>
+                    <h1 class="display-4 text-white mb-1"> <%= (Date.current - @shopkeeper_shop.created_at.to_date).to_i %> Days</h1>
+                    <p class="mb-0 text-white"><%= Date.today.strftime("%d %B, %A") %></p>
                   </div>
                   <div>
                     <i class="fe fe-flag fs-1 text-light-primary"></i>

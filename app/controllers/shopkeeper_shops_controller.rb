@@ -13,6 +13,7 @@ class ShopkeeperShopsController < ApplicationController
   end
 
   def show
+    @product_count = @shopkeeper_shop.product_count
   end
 
   def new

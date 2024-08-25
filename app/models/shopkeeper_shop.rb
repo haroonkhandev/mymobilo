@@ -4,4 +4,8 @@ class ShopkeeperShop < ApplicationRecord
   has_many :products, through: :shop_products
 
   validates :shop_name, :description, :address, :contact_info, presence: true
+
+  def product_count
+    products.count
+  end
 end
