@@ -1,0 +1,376 @@
+<body>
+  <!-- Wrapper -->
+  <div id="db-wrapper">
+    <!-- Sidebar -->
+    <%= render 'shopkeepers/dashboard/sidebar' %>
+    <!-- Page Content -->
+    <main id="page-content">
+      <div class="header">
+        <!-- navbar -->
+        <%= render 'shopkeepers/dashboard/navbar' %>
+      </div>
+      <!-- Container fluid -->
+      <section class="container-fluid p-4">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12 mb-2">
+            <!-- Page header -->
+            <div class="d-lg-flex align-items-center justify-content-between">
+              <div class="mb-2 mb-lg-0">
+                <h1 class="mb-0 h2 fw-bold"><%= @shopkeeper_shop.shop_name %>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- row  -->
+        <div class="row">
+          <div class="col-12 mb-4">
+            <!-- nav  -->
+            <ul class="nav nav-lb-tab">
+              <li class="nav-item ms-0 me-3">
+                <a class="nav-link active" href="#">Overview</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-12 col-xl-8 col-12">
+            <div class="row">
+              <div class="col-12 mb-4">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex justify-content-between
+                     align-items-center">
+                      <div>
+                        <h4 class="mb-0">Shop Overview</h4>
+                      </div>
+                      <!-- dropdown  -->
+                      <% if current_user.shopkeeper? && can?(:update, @shopkeeper_shop) %>
+                        <div>
+                          <span class="dropdown dropstart">
+                            <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button"
+                               id="Dropdown<%= @shopkeeper_shop.id %>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <span class="dropdown-menu" aria-labelledby="Dropdown<%= @shopkeeper_shop.id %>">
+                              <span class="dropdown-header">Settings</span>
+                              <%= link_to 'Edit Shop', edit_shopkeeper_shop_path(@shopkeeper_shop), class: 'dropdown-item' %>
+                              <%= button_to 'Delete Shop', shopkeeper_shop_path(@shopkeeper_shop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item btn btn-danger' %>
+                            </span>
+                          </span>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p><%= @shopkeeper_shop.description %></p>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-calendar me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Start Date</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.created_at.strftime("%d %b, %Y") %></p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Address</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.address %></p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-telephone me-2 me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Contact</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.contact_info %></p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-clock me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Operating Hours</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.operating_hours %></p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Location</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.location %></p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 mb-4">
+                <!-- card -->
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="mb-0">Analytics </h4>
+
+                  </div>
+                  <!-- card body -->
+
+                  <!-- row -->
+                  <div class="row">
+
+                    <!-- col -->
+                    <div class="col-lg-4 col-md-12 col-12">
+                      <div class="d-flex align-items-center justify-content-between p-4">
+                        <div>
+                          <h2 class="h1 fw-bold mb-0">52,000</h2>
+                          <p class="mb-0">Total Phones Sold</p>
+
+                        </div>
+                        <div class="ms-3">
+                          <div class="icon-shape icon-lg bg-light-primary text-primary rounded-circle">
+                            <i class="fe fe-dollar-sign fs-3"></i>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-lg-4 col-md-12 col-12 border-start-md">
+                      <div class="d-flex align-items-center justify-content-between p-4">
+                        <div>
+                          <h2 class="h1 fw-bold mb-0">$43,230</h2>
+                          <p class="mb-0">Total Earn</p>
+
+                        </div>
+                        <div class="ms-3">
+                          <div class="icon-shape icon-lg bg-light-danger text-danger rounded-circle">
+                            <i class="fe fe-shopping-cart fs-3"></i>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- col -->
+                    <div class="col-lg-4 col-md-12 col-12 border-start-md">
+                      <div class="d-flex align-items-center justify-content-between p-4">
+                        <div>
+                          <h2 class="h1 fw-bold mb-0"> <%= @product_count %>
+                          </h2>
+                          <p class="mb-0">Remaining Phones</p>
+
+                        </div>
+                        <div class="ms-3">
+                          <div class="icon-shape icon-lg bg-light-success text-success rounded-circle">
+                            <i class="fe fe-pie-chart fs-3"></i>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-12 mb-4">
+                <!-- card -->
+                <div class="card">
+                  <!-- card body -->
+
+                  <div class="card-header">
+                    <h4 class="mb-0">All Phones in This Shop
+                    </h4>
+                  </div>
+                </div>
+
+                <!-- This Shop's Phones -->
+                <div class="col-lg-3 col-md-6 col-12">
+                  <!-- Card -->
+                  <div class="card  mb-4 card-hover">
+                    <center>
+                      <a href="#"><img src="/assets/official.png" alt="course" class="card-img-top inner-img", style= "max-width:100%;" >
+                      </a>
+                    </center>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <h4 class="mb-2 text-truncate-line-2 ">
+                          <a href="#" class="text-inherit card-img-top">Name<%#= product.name %>
+                          </a>
+                        </h4>
+                        <!-- Price -->
+                        <div class="lh-1">
+                            <span class="text-dark fw-bold">RS 1600 <%#= product&.price %></span>
+                            <del class="fs-6 text-muted">RS 2000<%#= product&.actual_price %></del>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of This Shop's Phones -->
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-xl-4 col-12">
+            <!-- card  -->
+            <div class="card mb-4 bg-primary border-primary">
+              <a href="#"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
+                    alt="Article Image"></a>
+              <!-- card body  -->
+              <div class="card-body">
+
+                <h4 class="card-title text-white">Launch Date </h4>
+
+                <!-- dropdown  -->
+                <div class="d-flex justify-content-between align-items-center mt-8">
+                  <div>
+                    <h1 class="display-4 text-white mb-1"> <%= (Date.current - @shopkeeper_shop.created_at.to_date).to_i %> Days</h1>
+                    <p class="mb-0 text-white"><%= Date.today.strftime("%d %B, %A") %></p>
+                  </div>
+                  <div>
+                    <i class="fe fe-flag fs-1 text-light-primary"></i>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- card  -->
+            <div class="card mb-4 ">
+              <!-- card body  -->
+              <div class="card-body">
+
+                <h4 class=" card-title ">Overall User Satisfaction Rate </h4>
+
+                <div id="progressChart"></div>
+
+              </div>
+            </div>
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header card-header-height d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="mb-0">Recent Activity
+                  </h4>
+                </div>
+                <div><a href="#">View All</a></div>
+              </div>
+              <!-- Card body -->
+              <div class="card-body">
+                <!-- List group -->
+                <ul class="list-group list-group-flush list-timeline-activity">
+                  <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-check"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">Task Finished</h4>
+                        <p class="mb-0 text-body">Paula finished figma task</p>
+
+                      </div>
+                      <div class="col-auto">
+                        <span class="text-muted fs-6">2 mins ago</span>
+
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-message-square"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">New Comment</h4>
+                        <p class="mb-0 text-body">Georg commented on task.</p>
+
+                      </div>
+                      <div class="col-auto">
+                        <span class="text-muted fs-6">1 hour ago</span>
+
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-alert-triangle"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">Task Overdue</h4>
+                        <p class="mb-0 text-body">Task <a href="#"><u>status updatd for board</u></a>
+                          is overdue.</p>
+
+                      </div>
+                      <div class="col-auto">
+                        <span class="text-muted fs-6">1 day</span>
+
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item px-0 pt-0 border-0">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-mail"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">Update Send to Client</h4>
+                        <p class="mb-0 text-body">Jitu send email to update design
+                          for client Geeks UI.</p>
+
+                      </div>
+                      <div class="col-auto">
+                        <span class="text-muted fs-6">1 day</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>

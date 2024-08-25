@@ -17,14 +17,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_tag  %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_tag %>
   </head>
 
   <body>
-    <%= render partial: "shared/navbar" %>
+    <% if user_signed_in? %>
+      <% unless current_user.shopkeeper? %>
+        <%= render partial: "shared/navbar" %>
+      <% end %>
+    <% else %>
+      <%= render partial: "shared/navbar" %>
+    <% end %>
+
     <%= yield %>
-    <%= render partial: "shared/footer" %>
+
+    <% if user_signed_in? %>
+      <% if current_user.shopkeeper? %>
+        <%= render partial: "shopkeepers/dashboard/shopkeeper_footer" %>
+      <% else %>
+        <%= render partial: "shared/footer" %>
+      <% end %>
+    <% else %>
+      <%= render partial: "shared/footer" %>
+    <% end %>
   </body>
 
   <!-- Scripts -->
@@ -42,4 +58,8 @@
   <script src="/assets/tiny-slider.js"></script>
   <script src="/assets/tnsSlider.js"></script>
   <script src="/assets/products.js"></script>
+  <script src="/assets/dropzone.min.js"></script>
+  <script src="/assets/apexcharts.min.js"></script>
+  <script src="/assets/chart.js"></script>
+  <script src="/assets/increment-value.js"></script>
 </html>

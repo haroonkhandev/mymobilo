@@ -1,0 +1,6 @@
+var productId = "<%= @product.id %>";
+var productDiv = $("#product-" + productId);
+
+if (productDiv.length > 0) {
+  productDiv.find("button").replaceWith('<button type="button" disabled>Added</button>');
+}

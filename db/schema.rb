@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_15_115718) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,7 +148,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_115718) do
     t.string "display_prod"
     t.string "slug"
     t.boolean "is_old", default: false
-    t.string "main_iamge"
+    t.string "main_image"
+    t.string "actual_price"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
@@ -159,6 +160,29 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_115718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_ratings_on_product_id"
+  end
+
+  create_table "shop_products", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "shopkeeper_shop_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_shop_products_on_product_id"
+    t.index ["shopkeeper_shop_id"], name: "index_shop_products_on_shopkeeper_shop_id"
+  end
+
+  create_table "shopkeeper_shops", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "shop_name"
+    t.text "description"
+    t.string "address"
+    t.string "location"
+    t.string "shop_images"
+    t.string "contact_info"
+    t.string "operating_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shopkeeper_shops_on_user_id"
   end
 
   create_table "specifications", force: :cascade do |t|
@@ -179,6 +203,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_115718) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.date "birthday"
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "state"
+    t.string "country"
+    t.boolean "terms"
+    t.string "city"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -193,5 +228,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_115718) do
   add_foreign_key "posts", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "ratings", "products"
+  add_foreign_key "shop_products", "products"
+  add_foreign_key "shop_products", "shopkeeper_shops"
+  add_foreign_key "shopkeeper_shops", "users"
   add_foreign_key "specifications", "products"
 end

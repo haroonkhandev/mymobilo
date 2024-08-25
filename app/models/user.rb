@@ -3,10 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  has_many :comments, dependent: :destroy
 
-  # validates :first_name, :last_name, :phone, presence: true
+  has_many :comments, dependent: :destroy
+  has_many :shopkeeper_shops, dependent: :destroy  # Ensure this matches your model name
+  # Ensure role is either 'user' or 'shopkeeper'
+  validates :role, inclusion: { in: %w[user shopkeeper] }
+
+  before_validation :set_default_role, on: :create
+
+  # Ensure terms acceptance
   validates :terms, acceptance: true
 
   # Define searchable associations
@@ -22,7 +27,20 @@ class User < ApplicationRecord
   # Optional formatting or data processing
   # before_save :format_phone_number
 
-  # private
+  def set_default_role
+    self.role ||= 'user'
+  end
+
+  # Role checking methods
+  public
+
+  def user?
+    role == 'user'
+  end
+
+  def shopkeeper?
+    role == 'shopkeeper'
+  end
 
   # def format_phone_number
   #   self.phone = phone.gsub(/\D/, '') # Example: remove non-digit characters

@@ -1,0 +1,159 @@
+<body>
+  <!-- Page Content -->
+  <main>
+    <div class="container">
+      <%= render 'devise/registrations/user_info' %>
+    </div>
+    <!-- Content -->
+    <section class="pb-5 py-md-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Side Navbar -->
+            <ul class="nav nav-lb-tab mb-6" id="tab" role="tablist">
+              <li class="nav-item ms-0" role="presentation">
+                <a class="nav-link active" id="bookmarked-tab" data-bs-toggle="pill" href="#bookmarked" role="tab" aria-controls="bookmarked" aria-selected="true">All Shops</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="currentlyLearning-tab" data-bs-toggle="pill" href="#currentlyLearning" role="tab" aria-controls="currentlyLearning" aria-selected="false">Products</a>
+              </li>
+            </ul>
+            <!-- Shop Tab content -->
+            <div class="tab-content" id="tabContent">
+              <div class="tab-pane fade show active" id="bookmarked" role="tabpanel" aria-labelledby="bookmarked-tab">
+                <div class="row">
+                  <% @shopkeeper_shops.each do |profile| %>
+                    <div class="col-lg-3 col-md-6 col-12">
+                      <!-- Card -->
+                      <div class="card mb-4 card-hover">
+                        <a href="<%= shopkeeper_shop_path(profile) %>" class="card-img-top">
+                          <img src="<%= profile.shop_images.present? ? profile.shop_images.first.url : '/assets/Exclusive-Phone.svg' %>" alt="<%= profile.shop_name %>" class="card-img-top rounded-top-md">
+                        </a>
+                        <!-- Card body -->
+                        <div class="card-body">
+                          <h3 class="h4 mb-2 text-truncate-line-2">
+                            <a href="<%= shopkeeper_shop_path(profile) %>" class="text-inherit"><%= profile.shop_name %></a>
+                          </h3>
+                          <!-- List inline -->
+                          <ul class="mb-3 list-inline">
+                            <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i><%= profile.operating_hours %></li>
+                            <li class="list-inline-item"><svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
+                                <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
+                                <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
+                              </svg>Beginner
+                            </li>
+                          </ul>
+                          <div class="lh-1">
+                            <span>
+                              <i class="mdi mdi-star text-warning me-n1"></i>
+                              <i class="mdi mdi-star text-warning me-n1"></i>
+                              <i class="mdi mdi-star text-warning me-n1"></i>
+                              <i class="mdi mdi-star text-warning me-n1"></i>
+                              <i class="mdi mdi-star text-warning"></i>
+                            </span>
+                            <span class="text-warning">4.5</span>
+                            <span class="fs-6 text-muted">(9,300)</span>
+                          </div>
+                        </div>
+                        <!-- Card footer -->
+                        <div class="card-footer">
+                          <div class="row align-items-center g-0">
+                            <div class="col-auto">
+                              <% if profile.shop_images.present? && profile.shop_images.attached? %>
+                                <%= image_tag profile.shop_images.first, class: "rounded-circle avatar-xs", alt: "Shop Image" %>
+                              <% else %>
+                                <img src="/assets/avatar-1.jpg" class="rounded-circle avatar-xs" alt="default avatar">
+                              <% end %>
+                            </div>
+                            <div class="col ms-2">
+                              <span><%= "#{profile.user.first_name} #{profile.user.last_name}" %></span>
+                            </div>
+                            <div class="col-auto">
+                              <a href="#" class="removeBookmark">
+                                <i class="mdi mdi-bookmark mdi-18px"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="row">
+                  <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center mt-5">
+                    <p>You’ve reached the end of the list</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- All Products Tab content -->
+              <div class="tab-pane fade" id="currentlyLearning" role="tabpanel" aria-labelledby="currentlyLearning-tab">
+                <div class="row">
+                  <!-- Example product card -->
+                  <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Card -->
+                    <div class="card mb-4 card-hover">
+                      <a href="#" class="card-img-top"><img src="/assets/Exclusive-Phone.svg" alt="course" class="card-img-top rounded-top-md"></a>
+                      <!-- Card body -->
+                      <div class="card-body">
+                        <h3 class="h4 mb-2 text-truncate-line-2">
+                          <a href="#" class="text-inherit">How to easily create a website with React</a>
+                        </h3>
+                        <!-- List inline -->
+                        <ul class="mb-3 list-inline">
+                          <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m</li>
+                          <li class="list-inline-item"><svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
+                              <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
+                              <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
+                            </svg>Beginner
+                          </li>
+                        </ul>
+                        <div class="lh-1">
+                          <span>
+                            <i class="mdi mdi-star text-warning me-n1"></i>
+                            <i class="mdi mdi-star text-warning me-n1"></i>
+                            <i class="mdi mdi-star text-warning me-n1"></i>
+                            <i class="mdi mdi-star text-warning me-n1"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                          </span>
+                          <span class="text-warning">4.5</span>
+                          <span class="fs-6 text-muted">(6,300)</span>
+                        </div>
+                      </div>
+                      <!-- Card footer -->
+                      <div class="card-footer">
+                        <div class="row align-items-center g-0">
+                          <div class="col-auto">
+                            <img src="/assets/avatar-1.jpg" class="rounded-circle avatar-xs" alt="avatar">
+                          </div>
+                          <div class="col ms-2">
+                            <span>Morris Mccoy</span>
+                          </div>
+                          <div class="col-auto">
+                            <a href="#" class="removeBookmark">
+                              <i class="mdi mdi-bookmark mdi-18px"></i>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="progress mt-3" style="height: 5px;">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center mt-5">
+                    <p>You’ve reached the end of the list</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>

@@ -1,0 +1,135 @@
+<body>
+  <!-- Wrapper -->
+  <div id="db-wrapper">
+    <!-- Sidebar -->
+    <%= render 'shopkeepers/dashboard/sidebar' %>
+
+    <!-- Page Content -->
+    <main id="page-content">
+      <div class="header">
+        <!-- navbar -->
+        <%= render 'shopkeepers/dashboard/shopkeeper_navbar' %>
+      </div>
+
+      <!-- Container fluid -->
+      <section class="container-fluid p-4">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12">
+            <!-- Page header -->
+            <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
+              <div class="mb-3 mb-lg-0">
+                <h1 class="mb-0 h2 fw-bold">
+                  <%= current_user.shopkeeper? ? 'Your Shop Profiles' : 'All Shop Profiles' %>
+                </h1>
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <%= link_to 'Dashboard', shopkeepers_dashboard_path %>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <%= link_to 'Shop', '#' %>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Grid
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+              <!-- button -->
+              <% if current_user.shopkeeper? %>
+                <div>
+                  <%= link_to 'Create a Shop', new_shopkeeper_shop_path, class: 'btn btn-primary me-2' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search (optional, if needed) -->
+        <div class="row justify-content-md-between mb-4 mb-xl-0">
+          <div class="col-xl-2 col-lg-4 col-md-6 col-12">
+            <div class="mb-2 mb-lg-4">
+              <%= form_with url: shopkeeper_shops_path, method: :get, local: true do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search by shop name", class: "form-control" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <% if @shopkeeper_shops.any? %>
+            <% @shopkeeper_shops.each do |profile| %>
+              <div class="col-xxl-3 col-xl-4 col-lg-6 col-12 mb-4">
+                <!-- card -->
+                <div class="card h-100">
+                  <a href="<%= shopkeeper_shop_path(profile) %>"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
+                    alt="Article Image"></a>
+                  <!-- card body -->
+                  <div class="card-body">
+                    <!-- heading-->
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div>
+                        <h4 class="mb-0">
+                          <%= link_to profile.shop_name, shopkeeper_shop_path(profile), class: "text-inherit" %>
+                        </h4>
+                        <!-- Use 'Shop' or any other attribute -->
+                        <span class="text-muted fs-6">Shop</span>
+                      </div>
+                      <!-- dropdown-->
+                      <div class="d-flex align-items-center">
+                        <% if current_user.shopkeeper? && (can?(:update, profile) || can?(:destroy, profile)) %>
+                          <div class="dropdown dropstart">
+                            <a href="#" class="btn-icon btn btn-ghost btn-sm rounded-circle" id="dropdownProject<%= profile.id %>" data-bs-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                              <i class="bi bi-three-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownProject<%= profile.id %>">
+                              <span class="dropdown-header">Settings</span>
+                              <% if can?(:update, profile) %>
+                                  <%= link_to edit_shopkeeper_shop_path(profile), class: "dropdown-item" do %>
+                                      <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
+                                  <% end %>
+                              <% end %>
+                              <% if can?(:destroy, profile) %>
+                                <%= button_to 'Delete shop', shopkeeper_shop_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item btn btn-danger" %>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <!-- description -->
+                    <div class="mt-3 mb-4">
+                      <p class="mb-0"><%= truncate(profile.description, length: 100) %></p>
+                    </div>
+                    <!-- progress or additional info can go here -->
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <!-- placeholder for future enhancements like progress, due dates, etc. -->
+                      <span class="badge bg-info-soft">In Progress</span>
+                    </div>
+                  </div>
+                  <!-- card footer -->
+                  <div class="card-footer p-0">
+                    <div class="d-flex justify-content-between">
+                      <div class="w-50 py-3 px-4">
+                        <h6 class="mb-0 text-muted">Location:</h6>
+                        <p class="text-dark fs-6 fw-semibold mb-0"><%= profile.location %></p>
+                      </div>
+                      <div class="border-start w-50 py-3 px-4">
+                        <h6 class="mb-0 text-muted">Contact:</h6>
+                        <p class="text-dark fs-6 fw-semibold mb-0"><%= profile.contact_info %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="text-muted">No shop profiles found.</p>
+          <% end %>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>

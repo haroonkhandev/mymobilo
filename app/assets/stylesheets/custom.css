@@ -17,8 +17,8 @@
 }
 
 .network-icon {
-	width: 46px;
-    height: 46px;
+	width: 60px;
+    height: 60px;
     background-color: #fff;
     border: 3px solid #e9eef2;
     border-radius: 50%;
@@ -166,7 +166,11 @@ div.scrollmenu a:hover {
     background-color: transparent;
 }
 
-.card-body {
+.landing-card-body {
     padding-top: 0px;
     text-align: center;
+}
+
+.spec-rounded-circle {
+    border-radius: 30% !important;
 }
