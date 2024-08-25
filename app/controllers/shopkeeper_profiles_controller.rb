@@ -41,7 +41,7 @@ class ShopkeeperProfilesController < ApplicationController
 
   def search_product
     @products = if params[:search].present?
-                  Product.where('name ILIKE ?', "%#{params[:search]}%")
+                  Product.where('name ILIKE ?', "%#{params[:search]}%").page(params[:page]).per(5)
                 else
                   redirect_to shopkeeper_profile_path(@shopkeeper_profile)
                 end

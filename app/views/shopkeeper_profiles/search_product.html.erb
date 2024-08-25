@@ -1,50 +1,193 @@
 <body>
-  <!-- Wrapper -->
   <div id="db-wrapper">
-    <!-- navbar vertical -->
-     <!-- Sidebar -->
-     <%= render 'shopkeepers/dashboard/sidebar' %>
-    <!-- Page Content -->
+    <!-- Sidebar -->
+    <%= render 'shopkeepers/dashboard/sidebar' %>
     <main id="page-content">
-      <!-- Container fluid -->
       <div class="header">
         <!-- navbar -->
         <%= render 'shopkeepers/dashboard/navbar' %>
       </div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <section class="container-fluid p-4">
+      <div class="container mt-4">
+        <!-- Notices and Alerts -->
+        <div class="row">
+          <div class="col-12">
+            <% if notice %>
+              <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Notice:</strong> <%= notice %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% end %>
 
-<h2>Products</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @products.any? %>
-      <div id="products-list">
-        <% @products.each do |product| %>
-          <div id="product-<%= product.id %>" style="display: flex;" >
-            <p><%= product.name %></p>
-            <% if @added_product_ids.include?(product.id) %>
-              <button type="button" disabled>Added</button>
-            <% else %>
-              <%= button_to 'Add to Shop', add_to_shop_shopkeeper_profile_path(product_id: product, user_id: current_user.id, shop_id: params[:id], search: params[:search]), remote: true, method: :post%>
+            <% if alert %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Alert:</strong> <%= alert %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
-    <% else %>
-      <p>No products found that haven't already been added to your shop.</p>
-    <% end %>
-  </tbody>
-</table>
+      <section class="container-fluid p-4">
+        <div class="row">
+          <!-- Page header -->
+          <div class="col-lg-12 col-md-12 col-12">
+            <div class="border-bottom pb-3 mb-3">
+              <div class="mb-2 mb-lg-0">
+                <h1 class="mb-0 h2 fw-bold">Add Phones to Shop</h1>
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="<%= shopkeepers_dashboard_path %>">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="<%= shopkeeper_profile_path %>">Shop</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Add to Shop
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- row -->
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- card -->
+            <div class="card">
+              <!-- card header -->
+              <div class="card-header">
+                <div class="d-flex">
+                  <!-- heading -->
+                  <h4 class="mb-0">Available Products</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive table-card">
+                  <!-- Table -->
+                  <table class="table mb-0 text-nowrap">
+                    <!-- Table Head -->
+                    <thead class="table-light">
+                      <tr class="text-center">
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if @products.any? %>
+                        <% @products.each do |product| %>
+                          <tr class="align-middle">
+                            <td class="text-center">
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a href="<%= product_path(product) %>">
+                                  <img src="/assets/official.png" alt="" class="img-4by3-md rounded">
+                                </a>
+                              </div>
+                            </td>
+                            <td class="text-center">
+                              <a href="<%= product_path(product) %>">
+                                <h4 class="mb-0"><%= product.name %></h4>
+                              </a>
+                            </td>
+                            <td class="text-center">
+                              <h4 class="mb-0"><%= product.price %></h4>
+                            </td>
+                            <td class="text-center">
+                              <!-- Action buttons -->
+                              <div class="d-flex justify-content-center align-items-center">
+                                <% if @added_product_ids.include?(product.id) %>
+                                  <button type="button" class="btn btn-secondary" disabled>Added</button>
+                                <% else %>
+                                  <%= button_to 'Add to Shop', add_to_shop_shopkeeper_profile_path(product_id: product.id, user_id: current_user.id, shop_id: params[:id], search: params[:search]), remote: true, method: :post, class: 'btn btn-primary' %>
+                                <% end %>
+                              </div>
+                            </td>
+                          </tr>
+                        <% end %>
+                      <% else %>
+                        <tr>
+                          <td colspan="4" class="text-center">No products available.</td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Pagination Links -->
+            <div class="mt-4 d-flex justify-content-center">
+              <%= paginate @products %>
+            </div>
+            <%# <div class="mt-4 d-flex justify-content-between">
+              <a href="product-grid.html" class="btn btn-outline-primary">Continue Shopping</a>
+              <a href="checkout.html" class="btn btn-primary">Checkout</a>
+            </div> %>
+          </div>
+
+          <!-- Right Column: Summary -->
+          <div class="col-lg-4">
+            <!-- card -->
+            <div class="card mb-4 mt-4 mt-lg-0">
+              <!-- card body -->
+              <div class="card-body">
+                <h4 class="mb-3">Have a promo code?</h4>
+                <!-- row -->
+                <div class="row g-3">
+                  <!-- col -->
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="GKDIS15%">
+                  </div>
+                  <!-- col -->
+                  <div class="col-auto">
+                    <a href="#" class="btn btn-dark">Apply</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="card mb-4">
+              <!-- card body -->
+              <div class="card-body">
+                <h4 class="mb-3">Order Summary</h4>
+                <!-- list group -->
+                <ul class="list-group list-group-flush">
+                  <!-- list group item -->
+                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
+                    <span>Sub Total :</span>
+                    <span>$340.00</span>
+                  </li>
+                  <!-- list group item -->
+                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
+                    <span>Discount <span class="text-muted">(GKDIS15%)</span>: </span>
+                    <span>-$51.00</span>
+                  </li>
+                  <!-- list group item -->
+                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
+                    <span>Shipping Charge :</span>
+                    <span>$15.00</span>
+                  </li>
+                  <!-- list group item -->
+                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium pb-0">
+                    <span>Tax Vat 19% (included) :</span>
+                    <span>$64.00</span>
+                  </li>
+                </ul>
+              </div>
+              <!-- card footer -->
+              <div class="card-footer">
+                <div class="px-0 d-flex justify-content-between fs-5 text-dark fw-semibold">
+                  <span>Total (USD)</span>
+                  <span>$368.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
