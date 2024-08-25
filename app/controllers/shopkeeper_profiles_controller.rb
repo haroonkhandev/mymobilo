@@ -49,7 +49,7 @@ class ShopkeeperProfilesController < ApplicationController
   end
 
   def add_to_shop
-    product = Product.find(params[:product_id])
+    product =  Product.friendly.find(params[:product_id])
     shopkeeper = current_user
     shop = ShopkeeperProfile.find(params[:shop_id])
     search_params = params[:search] || {}
