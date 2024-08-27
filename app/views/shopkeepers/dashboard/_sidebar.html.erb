@@ -1,8 +1,8 @@
 <nav class="navbar-vertical navbar">
     <div class="vh-100" data-simplebar>
          <!-- Brand logo -->
-         <a class="navbar-brand" href="<%= root_path %>">
-             <img src="/assets/mobilo.png" alt="" >
+         <a class="navbar-brand" href="<%= root_path %>" target="_blank">
+           <img src="/assets/mobilo.png" alt="Mobilo Logo">
          </a>
          <!-- Navbar nav -->
          <ul class="navbar-nav flex-column" id="sideNavbar">
@@ -29,6 +29,28 @@
                         <% end %>
                      </ul>
                  </div>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link  collapsed " href="#"
+                   data-bs-toggle="collapse" data-bs-target="#techArticles" aria-expanded="false"
+                   aria-controls="techArticles">
+                   <i class="nav-icon fe fe-trending-up me-2"></i> Trendings
+               </a>
+               <div id="techArticles" class="collapse "
+                   data-bs-parent="#sideNavbar">
+                   <ul class="nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link" href="<%= article_categories_path %>" target="_blank"aria-expanded="false" aria-controls="navDashboard">
+                          <i class="nav-icon fa fa-cogs me-2"></i> Tech Categories
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="<%= articles_path %>" target="_blank"aria-expanded="false" aria-controls="navDashboard">
+                          <i class="nav-icon fe fe-file-text me-2"></i> All Tech Articles
+                        </a>
+                      </li>
+                   </ul>
+               </div>
              </li>
              <!-- Nav item -->
              <li class="nav-item">
