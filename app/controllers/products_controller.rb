@@ -48,4 +48,14 @@ class ProductsController < ApplicationController
     @product = Product.friendly.find(params[:id])
     @comments = @product.comments.order(created_at: :desc).page(params[:page])
   end
+
+  def all_products
+    # Fetch products that are associated with at least one shopkeeper's shop
+    @products = Product.joins(:shop_products).distinct.page(params[:page]).per(8)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 end
