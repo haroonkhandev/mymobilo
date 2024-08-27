@@ -32,46 +32,52 @@
         <div class="row">
           <div class="col-lg-8 col-md-7 col-12">
             <div class="row">
-              <% @articles.each do |article| %>
-                <div class=" col-lg-6 col-md-12 col-12">
-                  <!-- Card -->
-                  <div class="card mb-4  shadow-lg">
-                    <% if article.images.attached? %>
-                      <% first_image = article.images.first %>
-                        <a href="<%= article_path(article) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "411x222", class:"card-img-top rounded-top-md" %>
-                    <% else %>
-                      <a href="<%= article_path(article) %>"  class="card-img-top">
-                        <img src="/assets/category-article-img.jpg", class="card-img-top rounded-top-md" alt="blogpost" size= "411x222"></a>
-                    <% end %>
-                    <!-- Card body-->
-                    <div class="card-body">
-                      <a href="<%= article_categories_path %>" class="fs-5 fw-semibold d-block mb-3 text-primary">
-                        <%= article.article_category.name %>
-                      </a>
-                      <h3><a href="<%= article_path(article) %>" class="text-inherit">
-                          <%= article.title %>
+              <% if @articles.any? %>
+                <% @articles.each do |article| %>
+                  <div class=" col-lg-6 col-md-12 col-12">
+                    <!-- Card -->
+                    <div class="card mb-4  shadow-lg">
+                      <% if article.images.attached? %>
+                        <% first_image = article.images.first %>
+                          <a href="<%= article_path(article) %>"  class="card-img-top"><%= image_tag url_for(first_image), alt: "Article Image", size: "411x222", class:"card-img-top rounded-top-md" %>
+                      <% else %>
+                        <a href="<%= article_path(article) %>"  class="card-img-top">
+                          <img src="/assets/category-article-img.jpg", class="card-img-top rounded-top-md" alt="blogpost" size= "411x222"></a>
+                      <% end %>
+                      <!-- Card body-->
+                      <div class="card-body">
+                        <a href="<%= article_categories_path %>" class="fs-5 fw-semibold d-block mb-3 text-primary">
+                          <%= article.article_category.name %>
                         </a>
-                      </h3>
-                      <p><%= truncate(article.content, length: 100) %></p>
-                      <!-- Media content -->
-                          <!-- Row -->
-                      <div class="row align-items-center g-0 mt-4">
-                        <div class="col-auto">
-                          <img src="/assets/mobilo1.png" alt="avatar" class="rounded-circle avatar-sm me-2">
-                        </div>
-                        <div class="col lh-1">
-                          <h5 class="mb-1">MyMobilo</h5>
-                          <p class="fs-6 mb-0"><%= article.created_at.strftime("%B %d, %Y") %></p>
-                        </div>
-                        <div class="col-auto">
-                          <p class="fs-6 mb-0">15 Min Read</p>
+                        <h3><a href="<%= article_path(article) %>" class="text-inherit">
+                            <%= article.title %>
+                          </a>
+                        </h3>
+                        <p><%= truncate(article.content, length: 100) %></p>
+                        <!-- Media content -->
+                            <!-- Row -->
+                        <div class="row align-items-center g-0 mt-4">
+                          <div class="col-auto">
+                            <img src="/assets/mobilo1.png" alt="avatar" class="rounded-circle avatar-sm me-2">
+                          </div>
+                          <div class="col lh-1">
+                            <h5 class="mb-1">MyMobilo</h5>
+                            <p class="fs-6 mb-0"><%= article.created_at.strftime("%B %d, %Y") %></p>
+                          </div>
+                          <div class="col-auto">
+                            <p class="fs-6 mb-0">15 Min Read</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                <% end %>
+              <% else %>
+                <div class="col-12">
+                  <p class="text-center">No articles available at the moment. Please check back later.</p>
                 </div>
               <% end %>
-                <!-- Buttom -->
+                <!-- Pagination -->
                 <%= paginate @articles if @articles.present? %>
             </div>
           </div>
@@ -119,12 +125,22 @@
                 <div class="mt-3">
                   <!-- list -->
                   <ul class="list-unstyled mb-0 nav nav-x-0 flex-column">
-                    <% @article_categories.each do |category| %>
-                      <li class="lh-lg mb-1">
-                        <i class="fe fe-arrow-right text-muted"></i>
-                        <a href="<%= article_category_path(category) %>" class="text-link d-inline">
-                          <%= category.name %></a>
-                      </li>
+                    <% if @article_categories.any? %>
+                      <% @article_categories.each do |category| %>
+                        <li class="lh-lg mb-1">
+                          <i class="fe fe-arrow-right text-muted"></i>
+                          <a href="<%= article_category_path(category) %>" class="text-link d-inline">
+                            <%= category.name %></a>
+                        </li>
+                      <% end %>
+                    <% else %>
+                      <div class="alert p-4">
+                        <h3 class="mb-3">No Categories Yet</h3>
+                        <p class="mb-0">
+                          It looks like there aren't any categories available at the moment.
+                          We're constantly updating our content, so please check back soon for exciting new categories to explore!
+                        </p>
+                      </div>
                     <% end %>
                   </ul>
                 </div>

@@ -92,7 +92,9 @@
                                   <% end %>
                               <% end %>
                               <% if can?(:destroy, profile) %>
-                                <%= button_to 'Delete shop', shopkeeper_shop_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item btn btn-danger" %>
+                                <%= button_to shopkeeper_shop_path(profile), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item btn btn-danger" do %>
+                                  <i class="fe fe-trash dropdown-item-icon"></i> Delete shop
+                                <% end %>
                               <% end %>
                             </div>
                           </div>
