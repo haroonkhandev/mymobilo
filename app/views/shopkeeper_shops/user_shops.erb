@@ -1,0 +1,209 @@
+<body>
+    <main>
+      <div class="container-fluid">
+        <%= render 'devise/registrations/user_info' %>
+      </div>
+      <!-- Container fluid -->
+      <section class="container-fluid p-4">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12 mb-2">
+            <!-- Page header -->
+            <div class="d-lg-flex align-items-center justify-content-between">
+              <div class="mb-2 mb-lg-0">
+                <h1 class="mb-0 h2 fw-bold"><%= @shopkeeper_shop.shop_name %>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- row  -->
+        <div class="row">
+          <div class="col-12 mb-4">
+            <!-- nav  -->
+            <ul class="nav nav-lb-tab">
+              <li class="nav-item ms-0 me-3">
+                <a class="nav-link active" href="#">Overview</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-12 col-xl-8 col-12">
+            <div class="row">
+              <div class="col-12 mb-4">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="d-flex justify-content-between
+                     align-items-center">
+                      <div>
+                        <h4 class="mb-0">Shop Overview</h4>
+                      </div>
+                      <!-- dropdown  -->
+                      <% if current_user.shopkeeper? && can?(:update, @shopkeeper_shop) %>
+                        <div>
+                          <span class="dropdown dropstart">
+                            <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button"
+                               id="Dropdown<%= @shopkeeper_shop.id %>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <span class="dropdown-menu" aria-labelledby="Dropdown<%= @shopkeeper_shop.id %>">
+                              <span class="dropdown-header">Settings</span>
+                              <%= link_to 'Edit Shop', edit_shopkeeper_shop_path(@shopkeeper_shop), class: 'dropdown-item' %>
+                              <%= button_to 'Delete Shop', shopkeeper_shop_path(@shopkeeper_shop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item btn btn-danger' %>
+                            </span>
+                          </span>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p><%= @shopkeeper_shop.description %></p>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-calendar me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Start Date</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.created_at.strftime("%d %b, %Y") %></p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Address</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.address %></p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-clock me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Operating Hours</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.operating_hours %></p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="list-group-item  px-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt me-2 text-primary"></i>
+                            <div class="ms-2">
+                              <h5 class="mb-0 text-body">Location</h5>
+                            </div>
+                          </div>
+                          <div>
+                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.location %></p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-4">
+                <!-- card -->
+                <div class="card">
+                  <!-- card header -->
+                  <div class="card-header">
+                    <h4 class="mb-0">All Phones in This Shop</h4>
+                    <div class="d-flex flex-wrap mt-2">
+                      <!-- Example button group -->
+                      <button class="btn btn-primary me-2 mb-2">Categories</button>
+                      <a href="#" class="btn btn-primary me-2 mb-2">All</a>
+                      <a href="#" class="btn btn-primary me-2 mb-2">Samsung</a>
+                      <a href="#" class="btn btn-primary me-2 mb-2">Oppo</a>
+                      <a href="#" class="btn btn-primary me-2 mb-2">Vivo</a>
+                      <!-- Add more buttons as needed -->
+                    </div>
+                  </div>
+                  <!-- card body -->
+                  <div class="card-body">
+                    <!-- This Shop's Phones -->
+                    <div class="row">
+                      <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Phone Card -->
+                        <div class="card mb-4 card-hover">
+                          <center>
+                            <a href="#">
+                              <img src="/assets/official.png" alt="phone" class="card-img-top inner-img" style="max-width:100%;">
+                            </a>
+                          </center>
+                          <!-- Card Body -->
+                          <div class="card-body">
+                            <h4 class="mb-2 text-truncate-line-2">
+                              <a href="#" class="text-inherit card-img-top">Name</a>
+                            </h4>
+                            <!-- Price -->
+                            <div class="lh-1">
+                              <span class="text-dark fw-bold">RS 1600</span>
+                              <del class="fs-6 text-muted">RS 2000</del>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Repeat phone card as needed -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-xl-4 col-12">
+            <!-- card  -->
+            <div class="card mb-4 bg-primary border-primary">
+              <a href="#"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
+                    alt="Article Image"></a>
+              <!-- card body  -->
+              <div class="card-body">
+
+                <h4 class="card-title text-white">Launch Date </h4>
+
+                <!-- dropdown  -->
+                <div class="d-flex justify-content-between align-items-center mt-8">
+                  <div>
+                    <h1 class="display-4 text-white mb-1"> <%= (Date.current - @shopkeeper_shop.created_at.to_date).to_i %> Days</h1>
+                    <p class="mb-0 text-white"><%= Date.today.strftime("%d %B, %A") %></p>
+                  </div>
+                  <div>
+                    <i class="fe fe-flag fs-1 text-light-primary"></i>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- card  -->
+            <div class="card mb-4 ">
+              <!-- card body  -->
+              <div class="card-body">
+
+                <h4 class=" card-title ">Overall Customer Satisfaction Rating for This Shop</h4>
+
+                <div id="progressChart"></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>

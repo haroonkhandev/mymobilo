@@ -73,6 +73,10 @@ class ShopkeeperShopsController < ApplicationController
     redirect_to shopkeepers_dashboard_path, notice: 'Shop was successfully destroyed.'
   end
 
+  def user_shops
+    @shopkeeper_shop = ShopkeeperShop.find(params[:id])
+  end
+
   private
 
   def set_shopkeeper_shop
