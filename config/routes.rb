@@ -29,9 +29,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :products do
+    collection do
+      get :all_products
+    end
+
     resources :comments
   end
-
   # Restricted access for shopkeeper profiles
   namespace :users do
     get 'dashboard', to: 'dashboard#index'

@@ -1,0 +1,72 @@
+<div class="card">
+  <% if @products.any? %>
+    <div class="card-header">
+      <h4 class="mb-0">Discover Phones from Every <%= @total_product_count %> Shops</h4>
+      <div class="d-flex flex-wrap mt-2">
+        <!-- Example button group -->
+        <button class="btn btn-primary me-2 mb-2">Categories</button>
+        <a href="#" class="btn btn-primary me-2 mb-2">All</a>
+        <a href="#" class="btn btn-primary me-2 mb-2">Samsung</a>
+        <a href="#" class="btn btn-primary me-2 mb-2">Oppo</a>
+        <a href="#" class="btn btn-primary me-2 mb-2">Vivo</a>
+        <!-- Add more buttons as needed -->
+      </div>
+    </div>
+  <% else %>
+    <div class="card-header">
+      <h4 class="mb-0">Discover Phones from All <%= @total_product_count %> Shops</h4>
+    </div>
+  <% end %>
+  <div class="card-body">
+    <!-- This Shop's Phones -->
+    <div class="row">
+      <% if @products.any? %>
+      <!-- Iterate over products -->
+        <% @products.each do |product| %>
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <!-- Card -->
+            <div class="card card-hover">
+              <% if product&.main_image.present? %>
+                <a href="<%= product_path(product) %>">
+                  <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                </a>
+              <% else %>
+                <a href="<%= product_path(product) %>">
+                  <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                </a>
+              <% end %>
+              <!-- Card Body -->
+              <div class="landing-card-body">
+                <h4 class="mb-2 text-truncate">
+                  <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                </h4>
+                <!-- Price -->
+                <div class="lh-1">
+                  <span class="text-dark fw-bold">RS <%= product&.price %></span>
+                  <del class="fs-6 text-muted">RS <%= product&.actual_price %></del>
+                </div>
+                <div class="text-muted mt-2">
+                  <small>Available at:
+                    <% product.shopkeeper_shops.each_with_index do |shop, index| %>
+                      <%= link_to shop.shop_name, user_shops_shopkeeper_shop_path(shop) %><%= ', ' unless index == product.shopkeeper_shops.size - 1 %>
+                    <% end %>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="col-12">
+          <div class="alert alert-info text-center">
+            <h5 class="alert-heading">No Phones Listed Yet!</h5>
+            <p>This shop hasn't listed any phones yet. Please check back soon!<br>In the meantime, you can browse other shops to find phones and make a purchase.</p>
+          </div>
+        </div>
+      <% end %>
+      <!-- End of This Shop's Phones -->
+    </div>
+  </div>
+</div>
+
+
