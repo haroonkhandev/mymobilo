@@ -14,7 +14,7 @@ class ShopkeeperShopsController < ApplicationController
 
   def show
     @product_count = @shopkeeper_shop.product_count
-    @shop_products = @shopkeeper_shop.products.all
+    @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
   end
 
   def new
@@ -76,6 +76,7 @@ class ShopkeeperShopsController < ApplicationController
 
   def user_shops
     @shopkeeper_shop = ShopkeeperShop.find(params[:id])
+    @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
   end
 
   private

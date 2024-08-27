@@ -138,30 +138,41 @@
                   <div class="card-body">
                     <!-- This Shop's Phones -->
                     <div class="row">
-                      <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Phone Card -->
-                        <div class="card mb-4 card-hover">
-                          <center>
-                            <a href="#">
-                              <img src="/assets/official.png" alt="phone" class="card-img-top inner-img" style="max-width:100%;">
-                            </a>
-                          </center>
-                          <!-- Card Body -->
-                          <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2">
-                              <a href="#" class="text-inherit card-img-top">Name</a>
-                            </h4>
-                            <!-- Price -->
-                            <div class="lh-1">
-                              <span class="text-dark fw-bold">RS 1600</span>
-                              <del class="fs-6 text-muted">RS 2000</del>
+                      <!-- Iterate over products -->
+                      <% @shop_products.each do |product| %>
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                          <!-- Card -->
+                          <div class="card card-hover">
+                            <% if product&.main_image.present? %>
+                              <a href="<%= product_path(product) %>">
+                                <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                              </a>
+                            <% else %>
+                              <a href="<%= product_path(product) %>">
+                                <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                              </a>
+                            <% end %>
+                            <!-- Card Body -->
+                            <div class="landing-card-body">
+                              <h4 class="mb-2 text-truncate">
+                                <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                              </h4>
+                              <!-- Price -->
+                              <div class="lh-1">
+                                <span class="text-dark fw-bold">RS <%= product&.price %></span>
+                                <del class="fs-6 text-muted">RS <%= product&.actual_price %></del>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <!-- Repeat phone card as needed -->
+                      <% end %>
+                      <!-- End of This Shop's Phones -->
                     </div>
                   </div>
+                </div>
+                <!-- Pagination Links -->
+                <div class="mt-4 d-flex justify-content-center">
+                  <%= paginate @shop_products %>
                 </div>
               </div>
             </div>
