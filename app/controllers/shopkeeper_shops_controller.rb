@@ -15,6 +15,7 @@ class ShopkeeperShopsController < ApplicationController
   def show
     @product_count = @shopkeeper_shop.product_count
     @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
+    @recent_activities = @shopkeeper_shop.activities.order(created_at: :desc).page(params[:activity_page]).per(5)
   end
 
   def new
@@ -24,6 +25,7 @@ class ShopkeeperShopsController < ApplicationController
   def create
     @shopkeeper_shop = current_user.shopkeeper_shops.new(shopkeeper_shop_params)
     if @shopkeeper_shop.save
+      @shopkeeper_shop.log_activity('Shop Created', 'Your shop was successfully created.')
       redirect_to @shopkeeper_shop, notice: 'Profile was successfully created.'
     else
       render :new
@@ -35,6 +37,7 @@ class ShopkeeperShopsController < ApplicationController
 
   def update
     if @shopkeeper_shop.update(shopkeeper_shop_params)
+       @shopkeeper_shop.log_activity('Shop Updated', 'Your shop details were successfully updated.')
       redirect_to @shopkeeper_shop, notice: 'Profile was successfully updated.'
     else
       render :edit
@@ -60,6 +63,7 @@ class ShopkeeperShopsController < ApplicationController
       flash[:alert] = "Product is already in your shop."
     else
       ShopProduct.create(product_id: product.id, shopkeeper_shop_id: @shop.id)
+       @shop.log_activity('Product Added', "Product '#{product.name}' was added to your shop.")
       flash[:notice] = "Product added to your shop successfully."
     end
 
