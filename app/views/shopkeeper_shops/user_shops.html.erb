@@ -216,18 +216,34 @@
               </div>
 
             </div>
-            <!-- card  -->
-            <div class="card mb-4 ">
+            <!-- Rating  -->
+            <div id="rating-message"></div>
+            <div class="card mb-4">
               <!-- card body  -->
               <div class="card-body">
+                <h4 class="card-title">Overall Customer Satisfaction Rating for This Shop</h4>
 
-                <h4 class=" card-title ">Overall Customer Satisfaction Rating for This Shop</h4>
+                <div id="progressChart" data-rating="<%= @shopkeeper_shop.average_rating.to_f %>">
+                  <% if @shopkeeper_shop.ratings.any? %>
+                    <p>Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
+                  <% else %>
+                    <p>No ratings yet.</p>
+                  <% end %>
 
-                <div id="progressChart"></div>
-
+                  <% if current_user %>
+                    <div class="rating">
+                      <% (1..5).each do |star| %>
+                        <a href="#" class="rating-star" data-rating="<%= star %>" data-shop-id="<%= @shopkeeper_shop.id %>">
+                          <i class="mdi mdi-star me-n1 <%= star <= (@rating.rating || 0) ? 'text-warning' : 'text-muted' %>"></i>
+                        </a>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <p>Please log in to rate this shop.</p>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
     </main>

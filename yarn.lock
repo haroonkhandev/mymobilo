@@ -40,10 +40,10 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.4.tgz#70a3ca56809f7aaabb80af2f9c01ae51e1a8ed41"
   integrity sha512-tz4oM+Zn9CYsvtyicsa/AwzKZKL+ITHWkhiu7x+xF77clh2b4Rm+s6xnOgY/sGDWoFWZmtKsE95hxBPkgQQNnQ==
 
-"@rails/actiontext@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.2.0.tgz#ac05f705a5dc26e6200d3eec7a9276a587385332"
-  integrity sha512-vBxIQXpXRnzp24NCF2Y45SHrtcD63udfnfFidFNrZBIMlwZ1VrEMaSUrkM0Rp0bE+GZRvm53VKHjXIfaHAUoOg==
+"@rails/actiontext@^7.1.1":
+  version "7.2.100"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.2.100.tgz#e235c8150d252490902f8b33026bc0a030cce8e4"
+  integrity sha512-46oDEZdkxpbM/7+3GwSHTRyIkH3LRZRC9OE35rMIt0FcRbjXW+2Q7RL1YYjoy7megqnoCUDZglFISJQxJ/HBZg==
   dependencies:
     "@rails/activestorage" ">= 7.2.0-alpha"
 
@@ -54,9 +54,10 @@
   dependencies:
     spark-md5 "^3.0.1"
 
-activeadmin_quill_editor@blocknotes/activeadmin_quill_editor:
-  version "1.2.0"
-  resolved "https://codeload.github.com/blocknotes/activeadmin_quill_editor/tar.gz/99908f97f73b44c6ee3a66beae197418b7452f93"
+"@rails/ujs@^7.1.1":
+  version "7.1.400"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-7.1.400.tgz#b2a76bdccb5197b9e866954536106386c87cfab5"
+  integrity sha512-YwvXm3BR5tn+VCAKYGycLejMRVZE3Ionj5gFjEeGXCZnI0Rpi+7dKpmyu90kdUY7dRUFpHTdu9zZceEzFLl38w==
 
 anymatch@~3.1.2:
   version "3.1.2"
@@ -396,7 +397,7 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-trix@^2.1.5:
+trix@^2.0.7:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/trix/-/trix-2.1.5.tgz#512bc811172bea196de4a92fa8308c0914f263f9"
   integrity sha512-5pC4olCp7BwxTC8Joy1Kv33kDvSOApi9Tqf6c8wygqCgeCx9xPP5cxkZEhvKpMV+kjd9gszingd5fZo834+ktw==

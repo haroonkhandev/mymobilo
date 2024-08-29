@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     get 'search_product', on: :member
     post 'add_to_shop', on: :member
     get 'user_shops', on: :member
+    post 'rate', on: :member
   end
   # Root path redirection based on role
   authenticated :user do
