@@ -81,6 +81,21 @@ class ShopkeeperShopsController < ApplicationController
   def user_shops
     @shopkeeper_shop = ShopkeeperShop.find(params[:id])
     @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
+    # Fetch or initialize the rating for the current user
+    @rating = Rating.find_or_initialize_by(user: current_user, shopkeeper_shop: @shopkeeper_shop)
+  end
+
+  def rate
+    @shopkeeper_shop = ShopkeeperShop.find(params[:id])
+    @rating = Rating.find_or_initialize_by(user: current_user, shopkeeper_shop: @shopkeeper_shop)
+    @rating.rating = params[:rating].to_i
+
+    if @rating.save
+      respond_to do |format|
+        format.html { redirect_to user_shops_shopkeeper_shop_path(@shopkeeper_shop), notice: 'Your rating was successfully submitted.' }
+        format.js
+      end
+    end
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_29_140252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "activities", force: :cascade do |t|
+    t.string "action"
+    t.text "details"
+    t.bigint "shopkeeper_shop_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_activities_on_created_at"
+    t.index ["shopkeeper_shop_id"], name: "index_activities_on_shopkeeper_shop_id"
+  end
+
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -115,21 +125,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "pictures"
-    t.text "descripton"
-    t.string "brand_name"
-    t.decimal "price"
-    t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_posts_on_category_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "series"
@@ -155,11 +150,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer "value"
-    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "shopkeeper_shop_id", null: false
+    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_ratings_on_product_id"
+    t.index ["shopkeeper_shop_id"], name: "index_ratings_on_shopkeeper_shop_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "shop_products", force: :cascade do |t|
@@ -220,14 +217,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_24_191801) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "shopkeeper_shops"
   add_foreign_key "articles", "admin_users"
   add_foreign_key "articles", "article_categories"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
-  add_foreign_key "posts", "categories"
-  add_foreign_key "posts", "users"
   add_foreign_key "products", "categories"
-  add_foreign_key "ratings", "products"
+  add_foreign_key "ratings", "shopkeeper_shops"
+  add_foreign_key "ratings", "users"
   add_foreign_key "shop_products", "products"
   add_foreign_key "shop_products", "shopkeeper_shops"
   add_foreign_key "shopkeeper_shops", "users"

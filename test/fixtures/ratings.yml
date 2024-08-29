@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  shopkeeper_shop: one
+  rating: 1
+
+two:
+  user: two
+  shopkeeper_shop: two
+  rating: 1
