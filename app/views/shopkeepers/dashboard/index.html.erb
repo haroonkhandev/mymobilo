@@ -50,7 +50,7 @@
         <div class="row justify-content-md-between mb-4 mb-xl-0">
           <div class="col-xl-2 col-lg-4 col-md-6 col-12">
             <div class="mb-2 mb-lg-4">
-              <%= form_with url: shopkeeper_shops_path, method: :get, local: true do %>
+              <%= form_with url: shopkeepers_dashboard_path, method: :get, local: true do %>
                 <%= text_field_tag :search, params[:search], placeholder: "Search by shop name", class: "form-control" %>
               <% end %>
             </div>
