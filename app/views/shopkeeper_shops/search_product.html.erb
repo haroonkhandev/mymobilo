@@ -75,6 +75,7 @@
                         <th>Photo</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Quantity</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -97,21 +98,34 @@
                             <td class="text-center">
                               <h4 class="mb-0"><%= product.price %></h4>
                             </td>
-                            <td class="text-center">
-                              <!-- Action buttons -->
-                              <div class="d-flex justify-content-center align-items-center">
-                                <% if @added_product_ids.include?(product.id) %>
-                                  <button type="button" class="btn btn-secondary" disabled>Added</button>
-                                <% else %>
-                                  <%= button_to 'Add to Shop', add_to_shop_shopkeeper_shop_path(product_id: product.id, user_id: current_user.id, shop_id: params[:id], search: params[:search]), remote: true, method: :post, class: 'btn btn-primary' %>
-                                <% end %>
-                              </div>
-                            </td>
+                            <% if @added_product_ids.include?(product.id) %>
+                              <td class="text-center">
+                                <span class="text-muted">Added</span>
+                              </td>
+                              <td class="text-center">
+                                <button type="button" class="btn btn-secondary" disabled>Added</button>
+                              </td>
+                            <% else %>
+                              <%= form_with url: add_to_shop_shopkeeper_shop_path(product_id: product.id, user_id: current_user.id, shop_id: params[:id], search: params[:search]), method: :post, remote: true do %>
+                                <td class="text-center">
+                                  <!-- Quantity Input Design -->
+                                  <div class="input-group flex-nowrap justify-content-center">
+                                    <input type="button" value="-" class="button-minus form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1" data-field="quantity">
+                                    <%= number_field_tag :quantity, 1, step: 1, min: 1, class: "quantity-field form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1" %>
+                                    <input type="button" value="+" class="button-plus form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0 py-1" data-field="quantity">
+                                  </div>
+                                </td>
+                                <td class="text-center">
+                                  <!-- Add to Shop Button -->
+                                  <%= submit_tag 'Add to Shop', class: 'btn btn-primary' %>
+                                </td>
+                              <% end %>
+                            <% end %>
                           </tr>
                         <% end %>
                       <% else %>
                         <tr>
-                          <td colspan="4" class="text-center">No products available.</td>
+                          <td colspan="5" class="text-center">No products available.</td>
                         </tr>
                       <% end %>
                     </tbody>
@@ -127,65 +141,6 @@
               <a href="product-grid.html" class="btn btn-outline-primary">Continue Shopping</a>
               <a href="checkout.html" class="btn btn-primary">Checkout</a>
             </div> %>
-          </div>
-
-          <!-- Right Column: Summary -->
-          <div class="col-lg-4">
-            <!-- card -->
-            <div class="card mb-4 mt-4 mt-lg-0">
-              <!-- card body -->
-              <div class="card-body">
-                <h4 class="mb-3">Have a promo code?</h4>
-                <!-- row -->
-                <div class="row g-3">
-                  <!-- col -->
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="GKDIS15%">
-                  </div>
-                  <!-- col -->
-                  <div class="col-auto">
-                    <a href="#" class="btn btn-dark">Apply</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- card -->
-            <div class="card mb-4">
-              <!-- card body -->
-              <div class="card-body">
-                <h4 class="mb-3">Order Summary</h4>
-                <!-- list group -->
-                <ul class="list-group list-group-flush">
-                  <!-- list group item -->
-                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
-                    <span>Sub Total :</span>
-                    <span>$340.00</span>
-                  </li>
-                  <!-- list group item -->
-                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
-                    <span>Discount <span class="text-muted">(GKDIS15%)</span>: </span>
-                    <span>-$51.00</span>
-                  </li>
-                  <!-- list group item -->
-                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium">
-                    <span>Shipping Charge :</span>
-                    <span>$15.00</span>
-                  </li>
-                  <!-- list group item -->
-                  <li class="list-group-item px-0 d-flex justify-content-between fs-5 text-dark fw-medium pb-0">
-                    <span>Tax Vat 19% (included) :</span>
-                    <span>$64.00</span>
-                  </li>
-                </ul>
-              </div>
-              <!-- card footer -->
-              <div class="card-footer">
-                <div class="px-0 d-flex justify-content-between fs-5 text-dark fw-semibold">
-                  <span>Total (USD)</span>
-                  <span>$368.00</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
