@@ -247,10 +247,10 @@
                                 <h4 class="mb-2 text-truncate">
                                   <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
                                 </h4>
-                                <!-- Price -->
+                                <p>Quantity: <%= product.shop_products.find_by(shopkeeper_shop_id: @shopkeeper_shop.id)&.quantity %></p>
                                 <div class="lh-1">
-                                  <span class="text-dark fw-bold">RS <%= product&.price %></span>
-                                  <del class="fs-6 text-muted">RS <%= product&.actual_price %></del>
+                                  <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                  <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
                                 </div>
                               </div>
                             </div>

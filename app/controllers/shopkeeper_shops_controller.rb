@@ -54,23 +54,27 @@ class ShopkeeperShopsController < ApplicationController
   end
 
   def add_to_shop
-    product =  Product.friendly.find(params[:product_id])
+    product = Product.friendly.find(params[:product_id])
     @shop = ShopkeeperShop.find(params[:shop_id])
     search_params = params[:search] || {}
+    quantity = params[:quantity].to_i
 
-    # Add the product to the shopkeeper's shop
     if @shop.products.include?(product)
       flash[:alert] = "Product is already in your shop."
     else
-      ShopProduct.create(product_id: product.id, shopkeeper_shop_id: @shop.id)
-       @shop.log_activity('Product Added', "Product '#{product.name}' was added to your shop.")
-      flash[:notice] = "Product added to your shop successfully."
+      shop_product = ShopProduct.new(product_id: product.id, shopkeeper_shop_id: @shop.id, quantity: quantity)
+      if shop_product.save
+        @shop.log_activity('Product Added', "Product '#{product.name}' (Quantity: #{quantity}) was added to your shop.")
+        flash[:notice] = "Product added to your shop successfully."
+      else
+        flash[:alert] = "Failed to add product to your shop."
+      end
     end
 
     respond_to do |format|
-        format.html { redirect_to search_product_shopkeeper_shop_path(@shop, search: search_params) }
-        format.js
-      end
+      format.html { redirect_to search_product_shopkeeper_shop_path(@shop, search: search_params) }
+      format.js
+    end
   end
 
   def destroy
