@@ -7,30 +7,11 @@
         <!-- navbar -->
         <%= render 'shopkeepers/dashboard/navbar' %>
       </div>
-      <div class="container mt-4">
-        <!-- Notices and Alerts -->
-        <div class="row">
-          <div class="col-12">
-            <% if notice %>
-              <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>Notice:</strong> <%= notice %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            <% end %>
-
-            <% if alert %>
-              <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Alert:</strong> <%= alert %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
       <section class="container-fluid p-4">
         <div class="row">
           <!-- Page header -->
           <div class="col-lg-12 col-md-12 col-12">
+            <%= render 'shared/flash_messages' %>
             <div class="border-bottom pb-3 mb-3">
               <div class="mb-2 mb-lg-0">
                 <h1 class="mb-0 h2 fw-bold">Add Phones to Shop</h1>
