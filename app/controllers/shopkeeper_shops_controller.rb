@@ -79,7 +79,7 @@ class ShopkeeperShopsController < ApplicationController
 
   def destroy
     @shopkeeper_shop.destroy
-    redirect_to shopkeepers_dashboard_path, notice: 'Shop was successfully destroyed.'
+    redirect_to shopkeepers_dashboard_path, alert: 'Shop was successfully destroyed.'
   end
 
   def user_shops
