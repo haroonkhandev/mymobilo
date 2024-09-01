@@ -131,7 +131,7 @@
                   aria-labelledby="description-tab">
                   <!-- Description -->
                   <div class="mb-4">
-                    <h3 class="mb-2"><%= @product.name %></h3>
+                    <h3 class="mb-2"><%= @product.name %> <%= @product.product_type.humanize %></h3>
                     <div class="table-responsive table-borderless">
                       <table class="table mb-1 table-width">
                         <thead>
@@ -662,63 +662,70 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-3 col-md-6 col-12">
-            <!-- Card -->
-            <div class="card mb-4 card-hover">
-              <a href="#" class="card-img-top"><img
-                src="/assets/official.png" alt="course" class="card-img-top rounded-top-md">
-              </a>
-              <!-- Card body -->
-              <div class="card-body">
-                <h4 class="mb-2 text-truncate-line-2">
-                  <a href="course-single.html" class="text-inherit">
-                    This Feature is Coming Soon...</a>
-                </h4>
-                <ul class="mb-3 list-inline">
+          <% @related_products.each do |product| %>
+            <div class="col-lg-3 col-md-6 col-12">
+              <!-- Card -->
+              <div class="card mb-4 card-hover">
+                <a href="<%= product_path(product) %>" class="card-img-top">
+                  <% if product.main_image.attached? %>
+                    <%= image_tag product.main_image, alt: product.name, class: 'card-img-top rounded-top-md' %>
+                  <% else %>
+                    <%= image_tag 'official.png', alt: 'Placeholder', class: 'card-img-top rounded-top-md' %>
+                  <% end %>
+                </a>
+                <!-- Card body -->
+                <div class="card-body">
+                  <h4 class="mb-2 text-truncate-line-2">
+                    <a href="<%= product_path(product) %>" class="text-inherit">
+                      <%= product.name %></a>
+                  </h4>
+                  <ul class="mb-3 list-inline">
                     <li class="list-inline-item">
-                        <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
+                      <%= number_to_currency(product.price, unit: "RS") %>
                     </li>
                     <li class="list-inline-item">
-                        <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE" />
-                            <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9" />
-                            <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9" />
-                        </svg>
-                        Beginner
+                      <i class="mdi mdi-chip text-muted me-1"></i><%= product.processor_prod %>
                     </li>
-                </ul>
-                <div class="lh-1">
+                    <li class="list-inline-item">
+                      <i class="mdi mdi-camera text-muted me-1"></i><%= product.camera_prod %>
+                    </li>
+                  </ul>
+                  <div class="lh-1">
                     <span>
-                        <i class="mdi mdi-star text-warning me-n1"></i>
-                        <i class="mdi mdi-star text-warning me-n1"></i>
-                        <i class="mdi mdi-star text-warning me-n1"></i>
-                        <i class="mdi mdi-star text-warning me-n1"></i>
-                        <i class="mdi mdi-star text-warning"></i>
+                      <i class="mdi mdi-star text-warning me-n1"></i>
+                      <i class="mdi mdi-star text-warning me-n1"></i>
+                      <i class="mdi mdi-star text-warning me-n1"></i>
+                      <i class="mdi mdi-star text-warning me-n1"></i>
+                      <i class="mdi mdi-star-half text-warning"></i>
                     </span>
                     <span class="text-warning">4.5</span>
                     <span class="fs-6 text-muted">(7,700)</span>
-                </div>
-              </div>
-              <!-- Card footer -->
-              <div class="card-footer">
-                  <div class="row align-items-center g-0">
-                      <div class="col-auto">
-                          <img src="/assets/avatar-1.jpg"
-                              class="rounded-circle avatar-xs" alt="avatar">
-                      </div>
-                      <div class="col ms-2">
-                          <span>Morris Mccoy</span>
-                      </div>
-                      <div class="col-auto">
-                          <a href="#" class="text-muted bookmark">
-                              <i class="fe fe-bookmark"></i>
-                          </a>
-                      </div>
+                    <span>
+                      <a href="#" class="text-muted bookmark">
+                        <i class="fe fe-bookmark"></i>
+                      </a>
+                    </span>
                   </div>
+                </div>
+                <!-- Card footer -->
+                <%# <div class="card-footer">
+                  <div class="row align-items-center g-0">
+                    <div class="col-auto">
+                      <img src="/assets/avatar-1.jpg" class="rounded-circle avatar-xs" alt="avatar">
+                    </div>
+                    <div class="col ms-2">
+                      <span>Author Name</span>
+                    </div>
+                    <div class="col-auto">
+                      <a href="#" class="text-muted bookmark">
+                        <i class="fe fe-bookmark"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div> %>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

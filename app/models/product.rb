@@ -15,10 +15,32 @@ class Product < ApplicationRecord
   has_many :shop_products
   has_many :shopkeeper_shops, through: :shop_products
 
+  enum product_type: { flagship: 0, mid_range: 1 }
+
+  scope :flagships, -> { where(product_type: :flagship) }
+  scope :mid_ranges, -> { where(product_type: :mid_range) }
+
 	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }
 	scope :upcoming_products, -> { where('release_date > ?', Date.today) }
 	scope :latest, lambda{ where(['release_date > ?', 30.days.ago]) }
 	scope :order_by_products, -> { order(release_date: :desc) }
+
+  # scopes for related product feature
+
+  scope :similar_type, ->(product) { where(product_type: product.product_type) }
+  scope :similar_price, ->(product) {
+  numeric_price = product.price.gsub(/[^\d]/, '').to_i
+  where(price: (numeric_price - 10000)..(numeric_price + 10000))
+}
+  # scope :similar_processor, ->(product) { where("LOWER(processor_prod) LIKE ?", "%#{product.processor_prod.downcase}%") }
+  # scope :similar_camera, ->(product) { where("LOWER(camera_prod) LIKE ?", "%#{product.camera_prod.downcase}%") }
+
+  def related_products
+    Product.similar_type(self)
+           .similar_price(self)
+           .where.not(id: self.id) # Exclude the current product
+           .limit(4) # Adjust the limit as needed
+  end
 
 	def is_upcoming?
     release_date > Date.today
