@@ -1,5 +1,5 @@
 class Shopkeepers::DashboardController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_shopkeeper!
 
   def index
     if current_user.shopkeeper?
@@ -13,6 +13,12 @@ class Shopkeepers::DashboardController < ApplicationController
     # Optionally filter based on search if a search term is provided
     if params[:search].present?
       @shopkeeper_shops = @shopkeeper_shops.where('shop_name LIKE ?', "%#{params[:search]}%")
+    end
+  end
+
+  def authenticate_shopkeeper!
+    unless current_user&.shopkeeper?
+      redirect_to root_path, alert: "Access denied."
     end
   end
 end

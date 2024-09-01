@@ -10,4 +10,10 @@ class Users::DashboardController < ApplicationController
       @shopkeeper_shops = @shopkeeper_shops.where('shop_name LIKE ?', "%#{params[:search]}%")
     end
   end
+
+  def authenticate_user!
+    unless current_user&.user?
+      redirect_to root_path, alert: "Access denied."
+    end
+  end
 end

@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: wmd_solutions_production
-  username: wmd_solutions
-  password: <%= ENV["WMD_SOLUTIONS_DATABASE_PASSWORD"] %>
+  database: mymobilo_pro
+
+development:
+  <<: *default
+  database: mymobilo_stag

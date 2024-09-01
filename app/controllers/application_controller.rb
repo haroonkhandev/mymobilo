@@ -2,13 +2,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    # if resource.shopkeeper?
-    #   shopkeepers_dashboard_path
-    # elsif resource.user?
-    #   root_path # Updated to match your defined route
-    # else
-      root_path
-    # end
+    if resource.is_a?(AdminUser)
+      admin_root_path # Redirect to ActiveAdmin dashboard for admin users
+    elsif resource.is_a?(User)
+      if resource.shopkeeper?
+        shopkeepers_dashboard_path # Redirect to shopkeeper's dashboard
+      else
+        root_path # Redirect to user's dashboard (or root path)
+      end
+    else
+      root_path # Default fallback if resource is neither User nor AdminUser
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
