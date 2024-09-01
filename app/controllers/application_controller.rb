@@ -2,13 +2,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    if resource.shopkeeper?
-      shopkeepers_dashboard_path
-    elsif resource.user?
-      root_path # Updated to match your defined route
-    else
+    # if resource.shopkeeper?
+    #   shopkeepers_dashboard_path
+    # elsif resource.user?
+    #   root_path # Updated to match your defined route
+    # else
       root_path
-    end
+    # end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
