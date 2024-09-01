@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :series, :is_old, :main_image, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :actual_price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
+  permit_params :name, :description, :series, :is_old, :product_type, :main_image, :camera_prod, :processor_prod, :storage_prod, :battery_prod, :ram_prod, :display_prod, :release_date, :price, :actual_price, :category_id, images: [], specifications_attributes: [:id, :specification_type, :spec_attributes, :_destroy]
 
   filter :has_images, as: :boolean, label: 'Gallary Images', collection: [['Yes', true], ['No', false]]
 
@@ -64,6 +64,7 @@ ActiveAdmin.register Product do
     column :series
     column :is_old, label: 'Is this old'
     column :release_date
+    column :product_type, as: :select, collection: Product.product_types.keys.map { |type| [type.humanize, type] }
     actions
   end
 
@@ -103,6 +104,7 @@ ActiveAdmin.register Product do
       f.input :display_prod
       f.input :category, as: :select, collection: Category.all.collect { |category| [category.name, category.id] }
       f.input :release_date
+      f.input :product_type, as: :select, collection: Product.product_types.keys.map { |type| [type.humanize, type] }
     end
 
     f.inputs "Specifications" do
@@ -152,6 +154,7 @@ ActiveAdmin.register Product do
       row :display_prod
       row :category
       row :release_date
+      row :product_type, label: "Product Type"
     end
 
     panel "Specifications" do

@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.friendly.find(params[:id])
     @comments = @product.comments.order(created_at: :desc).page(params[:page])
+    @related_products = @product.related_products
   end
 
   def all_products
