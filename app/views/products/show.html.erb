@@ -131,7 +131,7 @@
                   aria-labelledby="description-tab">
                   <!-- Description -->
                   <div class="mb-4">
-                    <h3 class="mb-2"><%= @product.name %> <%= @product.product_type.humanize %></h3>
+                    <h3 class="mb-2"><%= @product.name %> <%= @product.product_type.present? ? @product.product_type.humanize : '' %></h3>
                     <div class="table-responsive table-borderless">
                       <table class="table mb-1 table-width">
                         <thead>
