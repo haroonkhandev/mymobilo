@@ -15,6 +15,13 @@ class ShopkeeperShopsController < ApplicationController
   def show
     @product_count = @shopkeeper_shop.product_count
     @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
+    @samsung_products = @shop_products.where(category_id: 1)
+    @oppo_products = @shop_products.where(category_id: 2)
+    @vivo_products = @shop_products.where(category_id: 3)
+    @infinix_products = @shop_products.where(category_id: 4)
+    @techno_products = @shop_products.where(category_id: 5)
+    @huawei_products = @shop_products.where(category_id: 6)
+    @iphone_products = @shop_products.where(category_id: 7)
     @recent_activities = @shopkeeper_shop.activities.order(created_at: :desc).page(params[:activity_page]).per(5)
   end
 
@@ -65,10 +72,29 @@ class ShopkeeperShopsController < ApplicationController
       shop_product = ShopProduct.new(product_id: product.id, shopkeeper_shop_id: @shop.id, quantity: quantity)
       if shop_product.save
         @shop.log_activity('Product Added', "Product '#{product.name}' (Quantity: #{quantity}) was added to your shop.")
-        flash[:notice] = "Product added to your shop successfully."
+        flash[:notice] = "#{product.name} added to your shop successfully."
       else
         flash[:alert] = "Failed to add product to your shop."
       end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to search_product_shopkeeper_shop_path(@shop, search: search_params) }
+      format.js
+    end
+  end
+
+  def remove_to_shop
+    shop_product = ShopProduct.where(product_id: params[:product_id], shopkeeper_shop_id: params[:shop_id]).first
+    @shop = ShopkeeperShop.find(params[:shop_id])
+    product = Product.find(params[:product_id])
+    search_params = params[:search] || {}
+
+    if shop_product.destroy
+      @shop.log_activity('Product Removed', "Product '#{product.name}'")
+      flash[:notice] = "#{product.name} removed to your shop successfully."
+    else
+      flash[:alert] = "Failed to add product to your shop."
     end
 
     respond_to do |format|
@@ -85,6 +111,13 @@ class ShopkeeperShopsController < ApplicationController
   def user_shops
     @shopkeeper_shop = ShopkeeperShop.find(params[:id])
     @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
+    @samsung_products = @shop_products.where(category_id: 1)
+    @oppo_products = @shop_products.where(category_id: 2)
+    @vivo_products = @shop_products.where(category_id: 3)
+    @infinix_products = @shop_products.where(category_id: 4)
+    @techno_products = @shop_products.where(category_id: 5)
+    @huawei_products = @shop_products.where(category_id: 6)
+    @iphone_products = @shop_products.where(category_id: 7)
     # Fetch or initialize the rating for the current user
     @rating = Rating.find_or_initialize_by(user: current_user, shopkeeper_shop: @shopkeeper_shop)
   end

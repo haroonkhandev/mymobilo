@@ -195,7 +195,7 @@
                                   <i class="nav-icon fe fe-home me-2"></i>Dashboard
                                 </a>
                               <% elsif current_user.user? %>
-                                <a class="dropdown-item" href="<%= users_dashboard_path %>">
+                                <a class="dropdown-item" href="<%= users_dashboard_path(anchor: 'all_shops') %>">
                                   <i class="nav-icon fe fe-home me-2"></i>Dashboard
                                 </a>
                               <% end %>
