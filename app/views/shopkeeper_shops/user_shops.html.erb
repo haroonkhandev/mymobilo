@@ -128,11 +128,51 @@
                       <h4 class="mb-0">All Phones in This Shop</h4>
                       <div class="d-flex flex-wrap mt-2">
                         <!-- Example button group -->
-                        <button class="btn btn-primary me-2 mb-2">Categories</button>
-                        <a href="#" class="btn btn-primary me-2 mb-2">All</a>
-                        <a href="#" class="btn btn-primary me-2 mb-2">Samsung</a>
-                        <a href="#" class="btn btn-primary me-2 mb-2">Oppo</a>
-                        <a href="#" class="btn btn-primary me-2 mb-2">Vivo</a>
+                        <ul class="nav nav-lb-tab" id="tab" role="tablist">
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2 active" id="all-tab" data-bs-toggle="pill"
+                            href="#all" role="tab" aria-controls="all"
+                            aria-selected="true">All
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="samsung-tab" data-bs-toggle="pill"
+                              href="#samsung" role="tab" aria-controls="samsung"
+                              aria-selected="false">Samsung
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="oppo-tab" data-bs-toggle="pill"
+                              href="#oppo" role="tab" aria-controls="oppo"
+                              aria-selected="false">Oppo
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="vivo-tab" data-bs-toggle="pill" href="#vivo"
+                              role="tab" aria-controls="vivo" aria-selected="false">Vivo
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="techno-tab" data-bs-toggle="pill" href="#techno"
+                              role="tab" aria-controls="techno" aria-selected="false">Techno
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="iphone-tab" data-bs-toggle="pill" href="#iphone"
+                              role="tab" aria-controls="iphone" aria-selected="false">Iphone
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="infinix-tab" data-bs-toggle="pill" href="#infinix"
+                              role="tab" aria-controls="infinix" aria-selected="false">Infinix
+                            </a>
+                          </li>
+                          <li>
+                            <a class="btn btn-primary me-2 mb-2" id="huawei-tab" data-bs-toggle="pill" href="#huawei"
+                              role="tab" aria-controls="huawei" aria-selected="false">Huawei
+                            </a>
+                          </li>
+                        </ul>
                         <!-- Add more buttons as needed -->
                       </div>
                     </div>
@@ -144,46 +184,407 @@
                   <!-- card body -->
                   <div class="card-body">
                     <!-- This Shop's Phones -->
-                    <div class="row">
-                      <% if @shop_products.any? %>
-                      <!-- Iterate over products -->
-                        <% @shop_products.each do |product| %>
-                          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                            <!-- Card -->
-                            <div class="card card-hover">
-                              <% if product&.main_image.present? %>
-                                <a href="<%= product_path(product) %>">
-                                  <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                </a>
-                              <% else %>
-                                <a href="<%= product_path(product) %>">
-                                  <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                </a>
-                              <% end %>
-                              <!-- Card Body -->
-                              <div class="landing-card-body">
-                                <h4 class="mb-2 text-truncate">
-                                  <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                </h4>
-                                <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                <!-- Price -->
-                                <div class="lh-1">
-                                  <span class="text-dark fw-bold">RS <%= product&.price %></span>
-                                  <del class="fs-6 text-muted">RS <%= product&.actual_price %></del>
+                    <div class="tab-content" id="tabContent">
+                      <div class="tab-pane fade show active" id="all" role="tabpanel"
+                        aria-labelledby="all-tab">
+                        <!-- Description -->
+                        <!-- Iterate over products -->
+                        <% if @shop_products.any? %>
+                        <div class="row">
+                          <% @shop_products.each do |product| %>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                              <!-- Card -->
+                              <div class="card card-hover">
+                                <% if product&.main_image.present? %>
+                                  <a href="<%= product_path(product) %>">
+                                    <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                  </a>
+                                <% else %>
+                                  <a href="<%= product_path(product) %>">
+                                    <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                  </a>
+                                <% end %>
+                                <!-- Card Body -->
+                                <div class="landing-card-body">
+                                  <h4 class="mb-2 text-truncate">
+                                    <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                  </h4>
+                                  <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                  <div class="lh-1">
+                                    <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                    <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                  </div>
                                 </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                        <% else %>
+                          <div class="col-12">
+                            <div class="alert alert-info text-center">
+                              <h5 class="alert-heading">No Phones Added Yet!</h5>
+                              <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                              <p>For immediate assistance, you can</p>
+                              <div class="text-center mt-4">
+                                <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                    Contact Us on WhatsApp
+                                </a>
                               </div>
                             </div>
                           </div>
                         <% end %>
-                      <% else %>
-                        <div class="col-12">
-                          <div class="alert alert-info text-center">
-                            <h5 class="alert-heading">No Phones Listed Yet!</h5>
-                            <p>This shop hasn't listed any phones yet. Please check back soon!<br>In the meantime, you can browse other shops to find phones and make a purchase.</p>
+                        <!-- End of This Shop's Phones -->
+                      </div>
+                      <div class="tab-pane fade show" id="samsung" role="tabpanel"
+                        aria-labelledby="samsung-tab">
+                        <!-- Description -->
+                        <!-- Iterate over products -->
+                        <% if @shop_products.any? %>
+                        <div class="row">
+                          <% @samsung_products.each do |product| %>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                              <!-- Card -->
+                              <div class="card card-hover">
+                                <% if product&.main_image.present? %>
+                                  <a href="<%= product_path(product) %>">
+                                    <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                  </a>
+                                <% else %>
+                                  <a href="<%= product_path(product) %>">
+                                    <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                  </a>
+                                <% end %>
+                                <!-- Card Body -->
+                                <div class="landing-card-body">
+                                  <h4 class="mb-2 text-truncate">
+                                    <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                  </h4>
+                                  <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                  <div class="lh-1">
+                                    <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                    <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        <% else %>
+                          <div class="col-12">
+                            <div class="alert alert-info text-center">
+                              <h5 class="alert-heading">No Phones Added Yet!</h5>
+                              <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                              <p>For immediate assistance, you can</p>
+                              <div class="text-center mt-4">
+                                <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                    Contact Us on WhatsApp
+                                </a>
+                              </div>
+                            </div>
                           </div>
+                        <% end %>
+                        <!-- End of This Shop's Phones -->
+                      </div>
+                      </div>
+                      <div class="tab-pane fade show" id="oppo" role="tabpanel"
+                          aria-labelledby="oppo-tab">
+                          <!-- Description -->
+                          <!-- Iterate over products -->
+                          <% if @shop_products.any? %>
+                          <div class="row">
+                            <% @oppo_products.each do |product| %>
+                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <!-- Card -->
+                                <div class="card card-hover">
+                                  <% if product&.main_image.present? %>
+                                    <a href="<%= product_path(product) %>">
+                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                    </a>
+                                  <% else %>
+                                    <a href="<%= product_path(product) %>">
+                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                    </a>
+                                  <% end %>
+                                  <!-- Card Body -->
+                                  <div class="landing-card-body">
+                                    <h4 class="mb-2 text-truncate">
+                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                    </h4>
+                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                    <div class="lh-1">
+                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div class="col-12">
+                              <div class="alert alert-info text-center">
+                                <h5 class="alert-heading">No Phones Added Yet!</h5>
+                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                                <p>For immediate assistance, you can</p>
+                                <div class="text-center mt-4">
+                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                      Contact Us on WhatsApp
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- End of This Shop's Phones -->
                         </div>
-                      <% end %>
-                      <!-- End of This Shop's Phones -->
+                      </div>
+                      <div class="tab-pane fade show" id="vivo" role="tabpanel"
+                          aria-labelledby="vivo-tab">
+                          <!-- Description -->
+                          <!-- Iterate over products -->
+                          <% if @shop_products.any? %>
+                          <div class="row">
+                            <% @vivo_products.each do |product| %>
+                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <!-- Card -->
+                                <div class="card card-hover">
+                                  <% if product&.main_image.present? %>
+                                    <a href="<%= product_path(product) %>">
+                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                    </a>
+                                  <% else %>
+                                    <a href="<%= product_path(product) %>">
+                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                    </a>
+                                  <% end %>
+                                  <!-- Card Body -->
+                                  <div class="landing-card-body">
+                                    <h4 class="mb-2 text-truncate">
+                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                    </h4>
+                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                    <div class="lh-1">
+                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div class="col-12">
+                              <div class="alert alert-info text-center">
+                                <h5 class="alert-heading">No Phones Added Yet!</h5>
+                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                                <p>For immediate assistance, you can</p>
+                                <div class="text-center mt-4">
+                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                      Contact Us on WhatsApp
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- End of This Shop's Phones -->
+                        </div>
+                      </div>
+                      <div class="tab-pane fade show" id="techno" role="tabpanel"
+                          aria-labelledby="techno-tab">
+                          <!-- Description -->
+                          <!-- Iterate over products -->
+                          <% if @shop_products.any? %>
+                          <div class="row">
+                            <% @infinix_products.each do |product| %>
+                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <!-- Card -->
+                                <div class="card card-hover">
+                                  <% if product&.main_image.present? %>
+                                    <a href="<%= product_path(product) %>">
+                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                    </a>
+                                  <% else %>
+                                    <a href="<%= product_path(product) %>">
+                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                    </a>
+                                  <% end %>
+                                  <!-- Card Body -->
+                                  <div class="landing-card-body">
+                                    <h4 class="mb-2 text-truncate">
+                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                    </h4>
+                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                    <div class="lh-1">
+                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div class="col-12">
+                              <div class="alert alert-info text-center">
+                                <h5 class="alert-heading">No Phones Added Yet!</h5>
+                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                                <p>For immediate assistance, you can</p>
+                                <div class="text-center mt-4">
+                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                      Contact Us on WhatsApp
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- End of This Shop's Phones -->
+                        </div>
+                      </div>
+                      <div class="tab-pane fade show" id="iphone" role="tabpanel"
+                          aria-labelledby="iphone-tab">
+                          <!-- Description -->
+                          <!-- Iterate over products -->
+                          <% if @shop_products.any? %>
+                          <div class="row">
+                            <% @techno_products.each do |product| %>
+                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <!-- Card -->
+                                <div class="card card-hover">
+                                  <% if product&.main_image.present? %>
+                                    <a href="<%= product_path(product) %>">
+                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                    </a>
+                                  <% else %>
+                                    <a href="<%= product_path(product) %>">
+                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                    </a>
+                                  <% end %>
+                                  <!-- Card Body -->
+                                  <div class="landing-card-body">
+                                    <h4 class="mb-2 text-truncate">
+                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                    </h4>
+                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                    <div class="lh-1">
+                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div class="col-12">
+                              <div class="alert alert-info text-center">
+                                <h5 class="alert-heading">No Phones Added Yet!</h5>
+                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                                <p>For immediate assistance, you can</p>
+                                <div class="text-center mt-4">
+                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                      Contact Us on WhatsApp
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- End of This Shop's Phones -->
+                        </div>
+                      </div>
+                      <div class="tab-pane fade show" id="infinix" role="tabpanel"
+                          aria-labelledby="infinix-tab">
+                          <!-- Description -->
+                          <!-- Iterate over products -->
+                          <% if @shop_products.any? %>
+                          <div class="row">
+                            <% @huawei_products.each do |product| %>
+                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <!-- Card -->
+                                <div class="card card-hover">
+                                  <% if product&.main_image.present? %>
+                                    <a href="<%= product_path(product) %>">
+                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                    </a>
+                                  <% else %>
+                                    <a href="<%= product_path(product) %>">
+                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                    </a>
+                                  <% end %>
+                                  <!-- Card Body -->
+                                  <div class="landing-card-body">
+                                    <h4 class="mb-2 text-truncate">
+                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                    </h4>
+                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                    <div class="lh-1">
+                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div class="col-12">
+                              <div class="alert alert-info text-center">
+                                <h5 class="alert-heading">No Phones Added Yet!</h5>
+                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                                <p>For immediate assistance, you can</p>
+                                <div class="text-center mt-4">
+                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                      Contact Us on WhatsApp
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- End of This Shop's Phones -->
+                        </div>
+                      </div>
+                      <div class="tab-pane fade show" id="huawei" role="tabpanel"
+                          aria-labelledby="huawei-tab">
+                          <!-- Description -->
+                          <!-- Iterate over products -->
+                          <% if @shop_products.any? %>
+                          <div class="row">
+                            <% @iphone_products.each do |product| %>
+                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <!-- Card -->
+                                <div class="card card-hover">
+                                  <% if product&.main_image.present? %>
+                                    <a href="<%= product_path(product) %>">
+                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+                                    </a>
+                                  <% else %>
+                                    <a href="<%= product_path(product) %>">
+                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+                                    </a>
+                                  <% end %>
+                                  <!-- Card Body -->
+                                  <div class="landing-card-body">
+                                    <h4 class="mb-2 text-truncate">
+                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+                                    </h4>
+                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+                                    <div class="lh-1">
+                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
+                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <div class="col-12">
+                              <div class="alert alert-info text-center">
+                                <h5 class="alert-heading">No Phones Added Yet!</h5>
+                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
+                                <p>For immediate assistance, you can</p>
+                                <div class="text-center mt-4">
+                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                                      Contact Us on WhatsApp
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                          <!-- End of This Shop's Phones -->
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

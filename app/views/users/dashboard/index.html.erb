@@ -12,15 +12,15 @@
             <!-- Side Navbar -->
             <ul class="nav nav-lb-tab mb-6" id="tab" role="tablist">
               <li class="nav-item ms-0" role="presentation">
-                <a class="nav-link active" id="bookmarked-tab" data-bs-toggle="pill" href="#bookmarked" role="tab" aria-controls="bookmarked" aria-selected="true">All Shops</a>
+                <a class="nav-link active" id="all_shops-tab" data-bs-toggle="pill" href="#all_shops" role="tab" aria-controls="all_shops" aria-selected="true">All Shops</a>
               </li>
               <li class="nav-item" role="presentation">
-                <a class="nav-link" id="currentlyLearning-tab" data-bs-toggle="pill" href="#currentlyLearning" role="tab" aria-controls="currentlyLearning" aria-selected="false">Products</a>
+                <a class="nav-link" id="products-tab" data-bs-toggle="pill" href="#products" role="tab" aria-controls="products" aria-selected="false">Products</a>
               </li>
             </ul>
             <!-- Shop Tab content -->
             <div class="tab-content" id="tabContent">
-              <div class="tab-pane fade show active" id="bookmarked" role="tabpanel" aria-labelledby="bookmarked-tab">
+              <div class="tab-pane fade show active" id="all_shops" role="tabpanel" aria-labelledby="all_shops-tab">
                 <div class="row">
                   <% @shopkeeper_shops.each do |profile| %>
                     <div class="col-lg-3 col-md-6 col-12">
@@ -88,7 +88,7 @@
               </div>
 
               <!-- All Products Tab content -->
-              <div class="tab-pane fade" id="currentlyLearning" role="tabpanel" aria-labelledby="currentlyLearning-tab">
+              <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="shop_products-tab">
                 <%= render 'products/all_products' %>
                 <div class="row">
                   <!-- Pagination Links -->

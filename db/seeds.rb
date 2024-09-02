@@ -12,6 +12,8 @@ Category.create(name:"OPPO")
 Category.create(name:"VIVO")
 Category.create(name:"INFINIX")
 Category.create(name:"TECNO")
+Category.create(name:"HUAWEI")
+Category.create(name:"IPHONE")
 
 
 Product.create(name: "Samsung Galaxy A10", series: "Galaxy A", description: "This is a Samsung A10 Smartphone", price: "1000", release_date: Date.today, category_id: 1)

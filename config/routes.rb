@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :shopkeeper_shops do
     get 'search_product', on: :member
     post 'add_to_shop', on: :member
+    post 'remove_to_shop', on: :member
     get 'user_shops', on: :member
     post 'rate', on: :member
   end

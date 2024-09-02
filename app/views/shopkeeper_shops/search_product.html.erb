@@ -80,12 +80,15 @@
                               <h4 class="mb-0"><%= product.price %></h4>
                             </td>
                             <% if @added_product_ids.include?(product.id) %>
-                              <td class="text-center">
-                                <span class="text-muted">Added</span>
-                              </td>
-                              <td class="text-center">
-                                <button type="button" class="btn btn-secondary" disabled>Added</button>
-                              </td>
+                              <%= form_with url: remove_to_shop_shopkeeper_shop_path(product_id: product.id, user_id: current_user.id, shop_id: params[:id], search: params[:search]), method: :post, remote: true do %>
+                                <td class="text-center">
+                                  <h4 class="mb-0"></h4>
+                                </td>
+                                <td class="text-center">
+                                  <!-- Add to Shop Button -->
+                                  <%= submit_tag 'Remove to Shop', class: 'btn btn-primary' %>
+                                </td>
+                              <% end %>
                             <% else %>
                               <%= form_with url: add_to_shop_shopkeeper_shop_path(product_id: product.id, user_id: current_user.id, shop_id: params[:id], search: params[:search]), method: :post, remote: true do %>
                                 <td class="text-center">
