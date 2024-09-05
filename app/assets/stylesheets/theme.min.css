@@ -21035,8 +21035,19 @@ textarea.form-control-lg{
 .pt-15{
     padding-top:7rem!important
 }
-.pt-16{
-    padding-top:7.5rem!important
+.pt-16 {
+    padding-top: 7.5rem;
+    background: url(/assets/user-dashboard.jpg) no-repeat;
+    background-size: cover;
+}
+
+/* Mobile-specific styling */
+@media (max-width: 768px) {
+    .pt-16 {
+        padding-top: 7.5rem; /* Adjust padding for mobile */
+        background: url(/assets/user-dashboard-mobile.jpg) no-repeat; /* Use mobile-specific image */
+        background-size: cover;
+    }
 }
 .pt-17{
     padding-top:8rem!important
