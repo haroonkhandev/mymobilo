@@ -12,7 +12,7 @@ class Shopkeepers::DashboardController < ApplicationController
 
     # Optionally filter based on search if a search term is provided
     if params[:search].present?
-      @shopkeeper_shops = @shopkeeper_shops.where('shop_name LIKE ?', "%#{params[:search]}%")
+      @shopkeeper_shops = @shopkeeper_shops.where('shop_name ILIKE ?', "%#{params[:search]}%")
     end
   end
 
