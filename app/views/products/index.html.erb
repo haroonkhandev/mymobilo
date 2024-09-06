@@ -284,7 +284,7 @@
                             <div class="row align-items-center g-0">
                               <div class="col-auto">
                                 <% if product.category&.picture.present? %>
-                                  <%= image_tag rails_blob_path(product.category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs" %>
+                                  <%= image_tag url_for(product.category&.picture), class:"rounded-circle avatar-xs" %>
                                 <% else %>
                                   <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
                                       alt="avatar">

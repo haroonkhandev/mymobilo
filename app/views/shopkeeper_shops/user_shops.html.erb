@@ -1,651 +1,239 @@
 <body>
-    <main>
-      <!-- Container fluid -->
-      <section class="container-fluid p-4">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-12 mb-2">
-            <%= render 'shared/flash_messages' %>
-            <!-- Page header -->
-            <div class="d-lg-flex align-items-center justify-content-between">
-              <div class="mb-2 mb-lg-0">
-                <h1 class="mb-0 h2 fw-bold"><%= @shopkeeper_shop.shop_name %>
-                </h1>
-              </div>
+  <main>
+    <!-- Container fluid -->
+    <section class="container-fluid p-4">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12 mb-2">
+          <%= render 'shared/flash_messages' %>
+          <!-- Page header -->
+          <div class="d-lg-flex align-items-center justify-content-between">
+            <div class="mb-2 mb-lg-0">
+              <h1 class="mb-0 h2 fw-bold"><%= @shopkeeper_shop.shop_name %>
+              </h1>
             </div>
           </div>
         </div>
-        <!-- row  -->
-        <div class="row">
-          <div class="col-12 mb-4">
-            <!-- nav  -->
-            <ul class="nav nav-lb-tab">
-              <li class="nav-item ms-0 me-3">
-                <a class="nav-link active" href="#">Overview</a>
-              </li>
-            </ul>
-          </div>
+      </div>
+      <!-- row  -->
+      <div class="row">
+        <div class="col-12 mb-4">
+          <!-- nav  -->
+          <ul class="nav nav-lb-tab">
+            <li class="nav-item ms-0 me-3">
+              <a class="nav-link active" href="#">Overview</a>
+            </li>
+          </ul>
         </div>
-        <div class="row">
+      </div>
+      <div class="row">
 
-          <div class="col-md-12 col-xl-8 col-12">
-            <div class="row">
-              <div class="col-12 mb-4">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="d-flex justify-content-between
-                     align-items-center">
+        <div class="col-md-12 col-xl-8 col-12">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  <div class="d-flex justify-content-between
+                   align-items-center">
+                    <div>
+                      <h4 class="mb-0">Shop Overview</h4>
+                    </div>
+                    <!-- dropdown  -->
+                    <% if current_user.shopkeeper? && can?(:update, @shopkeeper_shop) %>
                       <div>
-                        <h4 class="mb-0">Shop Overview</h4>
-                      </div>
-                      <!-- dropdown  -->
-                      <% if current_user.shopkeeper? && can?(:update, @shopkeeper_shop) %>
-                        <div>
-                          <span class="dropdown dropstart">
-                            <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button"
-                               id="Dropdown<%= @shopkeeper_shop.id %>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fe fe-more-vertical"></i>
-                            </a>
-                            <span class="dropdown-menu" aria-labelledby="Dropdown<%= @shopkeeper_shop.id %>">
-                              <span class="dropdown-header">Settings</span>
-                              <%= link_to 'Edit Shop', edit_shopkeeper_shop_path(@shopkeeper_shop), class: 'dropdown-item' %>
-                              <%= button_to 'Delete Shop', shopkeeper_shop_path(@shopkeeper_shop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item btn btn-danger' %>
-                            </span>
+                        <span class="dropdown dropstart">
+                          <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button"
+                             id="Dropdown<%= @shopkeeper_shop.id %>" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                          </a>
+                          <span class="dropdown-menu" aria-labelledby="Dropdown<%= @shopkeeper_shop.id %>">
+                            <span class="dropdown-header">Settings</span>
+                            <%= link_to 'Edit Shop', edit_shopkeeper_shop_path(@shopkeeper_shop), class: 'dropdown-item' %>
+                            <%= button_to 'Delete Shop', shopkeeper_shop_path(@shopkeeper_shop), method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item btn btn-danger' %>
                           </span>
+                        </span>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <p><%= @shopkeeper_shop.description %></p>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-0">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-calendar me-2 text-primary"></i>
+                          <div class="ms-2">
+                            <h5 class="mb-0 text-body">Start Date</h5>
+                          </div>
                         </div>
+                        <div>
+                          <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.created_at.strftime("%d %b, %Y") %></p>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item  px-0">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-geo-alt me-2 text-primary"></i>
+                          <div class="ms-2">
+                            <h5 class="mb-0 text-body">Address</h5>
+                          </div>
+                        </div>
+                        <div>
+                          <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.address %></p>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item  px-0">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-clock me-2 text-primary"></i>
+                          <div class="ms-2">
+                            <h5 class="mb-0 text-body">Operating Hours</h5>
+                          </div>
+                        </div>
+                        <div>
+                          <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.operating_hours %></p>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="list-group-item  px-0">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-geo-alt me-2 text-primary"></i>
+                          <div class="ms-2">
+                            <h5 class="mb-0 text-body">Location</h5>
+                          </div>
+                        </div>
+                        <div>
+                          <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.location %></p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <% if @shop_products.empty? %>
+                <!-- No Products Available Message -->
+                <div class="alert alert-info text-center">
+                  <h5 class="alert-heading">No Products Available!</h5>
+                  <p>It looks like this shop has no products available at the moment. Please check back later or contact us for more information!</p>
+                  <p>For immediate assistance, you can</p>
+                  <div class="text-center mt-4">
+                    <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+                        Contact Us on WhatsApp
+                    </a>
+                  </div>
+                </div>
+              <% else %>
+                <div class="card">
+                  <!-- Card Header -->
+                  <div class="card-header">
+                    <h4 class="mb-0">All Phones in This Shop</h4>
+                    <div class="d-flex flex-wrap mt-2">
+                      <ul class="nav nav-lb-tab" id="tab" role="tablist">
+                        <!-- All Tab -->
+                        <li>
+                          <a class="btn btn-primary me-2 mb-2 <%= 'active' if @active_category == 'all' %>" id="all-tab" data-bs-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="<%= @active_category == 'all' %>">All</a>
+                        </li>
+
+                        <!-- Category Tabs -->
+                        <% @categories.each do |category| %>
+                          <% if @products_by_category[category.id].present? %>
+                            <li>
+                              <a class="btn btn-primary me-2 mb-2 <%= 'active' if @active_category.to_s == category.id.to_s %>" id="<%= "#{category.id}-tab" %>" data-bs-toggle="pill" href="#<%= category.id %>" role="tab" aria-controls="<%= category.id %>" aria-selected="<%= @active_category.to_s == category.id.to_s %>"><%= category.name %></a>
+                            </li>
+                          <% end %>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="card-body">
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="tabContent">
+                      <!-- All Products Tab -->
+                      <div class="tab-pane fade <%= 'show active' if @active_category == 'all' %>" id="all" role="tabpanel" aria-labelledby="all-tab">
+                        <%= render partial: 'user_product_list', locals: { products: @all_products, category_name: 'All' } %>
+                      </div>
+
+                      <!-- Category Tabs -->
+                      <% @categories.each do |category| %>
+                        <% if @products_by_category[category.id].present? %>
+                          <div class="tab-pane fade <%= 'show active' if @active_category.to_s == category.id.to_s %>" id="<%= category.id %>" role="tabpanel" aria-labelledby="<%= "#{category.id}-tab" %>">
+                            <%= render partial: 'user_product_list', locals: { products: @products_by_category[category.id], category_name: category.name } %>
+                          </div>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>
-                  <div class="card-body">
-                    <p><%= @shopkeeper_shop.description %></p>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item px-0">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="d-flex align-items-center">
-                            <i class="bi bi-calendar me-2 text-primary"></i>
-                            <div class="ms-2">
-                              <h5 class="mb-0 text-body">Start Date</h5>
-                            </div>
-                          </div>
-                          <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.created_at.strftime("%d %b, %Y") %></p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="list-group-item  px-0">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="d-flex align-items-center">
-                            <i class="bi bi-geo-alt me-2 text-primary"></i>
-                            <div class="ms-2">
-                              <h5 class="mb-0 text-body">Address</h5>
-                            </div>
-                          </div>
-                          <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.address %></p>
-                          </div>
-                        </div>
-                      </li>
 
-                      <li class="list-group-item  px-0">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="d-flex align-items-center">
-                            <i class="bi bi-clock me-2 text-primary"></i>
-                            <div class="ms-2">
-                              <h5 class="mb-0 text-body">Operating Hours</h5>
-                            </div>
-                          </div>
-                          <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.operating_hours %></p>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="list-group-item  px-0">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="d-flex align-items-center">
-                            <i class="bi bi-geo-alt me-2 text-primary"></i>
-                            <div class="ms-2">
-                              <h5 class="mb-0 text-body">Location</h5>
-                            </div>
-                          </div>
-                          <div>
-                            <p class="text-dark mb-0 fw-semibold"><%= @shopkeeper_shop.location %></p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                  <!-- Pagination Links -->
+                  <div class="mt-4 d-flex justify-content-center">
+                    <%= paginate @shop_products %>
                   </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-xl-4 col-12">
+          <!-- card  -->
+          <div class="card mb-4 bg-primary border-primary">
+            <a href="#"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
+                  alt="Article Image"></a>
+            <!-- card body  -->
+            <div class="card-body">
+
+              <h4 class="card-title text-white">Launch Date </h4>
+
+              <!-- dropdown  -->
+              <div class="d-flex justify-content-between align-items-center mt-8">
+                <div>
+                  <h1 class="display-4 text-white mb-1"> <%= (Date.current - @shopkeeper_shop.created_at.to_date).to_i %> Days</h1>
+                  <p class="mb-0 text-white"><%= Date.today.strftime("%d %B, %A") %></p>
+                </div>
+                <div>
+                  <i class="fe fe-flag fs-1 text-light-primary"></i>
                 </div>
               </div>
-              <div class="col-md-12 mb-4">
-                <!-- card -->
-                <div class="card">
-                  <!-- card header -->
-                  <% if @shop_products.any? %>
-                    <div class="card-header">
-                      <h4 class="mb-0">All Phones in This Shop</h4>
-                      <div class="d-flex flex-wrap mt-2">
-                        <!-- Example button group -->
-                        <ul class="nav nav-lb-tab" id="tab" role="tablist">
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2 active" id="all-tab" data-bs-toggle="pill"
-                            href="#all" role="tab" aria-controls="all"
-                            aria-selected="true">All
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="samsung-tab" data-bs-toggle="pill"
-                              href="#samsung" role="tab" aria-controls="samsung"
-                              aria-selected="false">Samsung
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="oppo-tab" data-bs-toggle="pill"
-                              href="#oppo" role="tab" aria-controls="oppo"
-                              aria-selected="false">Oppo
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="vivo-tab" data-bs-toggle="pill" href="#vivo"
-                              role="tab" aria-controls="vivo" aria-selected="false">Vivo
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="techno-tab" data-bs-toggle="pill" href="#techno"
-                              role="tab" aria-controls="techno" aria-selected="false">Techno
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="iphone-tab" data-bs-toggle="pill" href="#iphone"
-                              role="tab" aria-controls="iphone" aria-selected="false">Iphone
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="infinix-tab" data-bs-toggle="pill" href="#infinix"
-                              role="tab" aria-controls="infinix" aria-selected="false">Infinix
-                            </a>
-                          </li>
-                          <li>
-                            <a class="btn btn-primary me-2 mb-2" id="huawei-tab" data-bs-toggle="pill" href="#huawei"
-                              role="tab" aria-controls="huawei" aria-selected="false">Huawei
-                            </a>
-                          </li>
-                        </ul>
-                        <!-- Add more buttons as needed -->
-                      </div>
-                    </div>
-                  <% else %>
-                    <div class="card-header">
-                      <h4 class="mb-0">All Phones in This Shop</h4>
-                    </div>
-                  <% end %>
-                  <!-- card body -->
-                  <div class="card-body">
-                    <!-- This Shop's Phones -->
-                    <div class="tab-content" id="tabContent">
-                      <div class="tab-pane fade show active" id="all" role="tabpanel"
-                        aria-labelledby="all-tab">
-                        <!-- Description -->
-                        <!-- Iterate over products -->
-                        <% if @shop_products.any? %>
-                        <div class="row">
-                          <% @shop_products.each do |product| %>
-                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                              <!-- Card -->
-                              <div class="card card-hover">
-                                <% if product&.main_image.present? %>
-                                  <a href="<%= product_path(product) %>">
-                                    <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                  </a>
-                                <% else %>
-                                  <a href="<%= product_path(product) %>">
-                                    <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                  </a>
-                                <% end %>
-                                <!-- Card Body -->
-                                <div class="landing-card-body">
-                                  <h4 class="mb-2 text-truncate">
-                                    <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                  </h4>
-                                  <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                  <div class="lh-1">
-                                    <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                    <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                        </div>
-                        <% else %>
-                          <div class="col-12">
-                            <div class="alert alert-info text-center">
-                              <h5 class="alert-heading">No Phones Added Yet!</h5>
-                              <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                              <p>For immediate assistance, you can</p>
-                              <div class="text-center mt-4">
-                                <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                    Contact Us on WhatsApp
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        <% end %>
-                        <!-- End of This Shop's Phones -->
-                      </div>
-                      <div class="tab-pane fade show" id="samsung" role="tabpanel"
-                        aria-labelledby="samsung-tab">
-                        <!-- Description -->
-                        <!-- Iterate over products -->
-                        <% if @shop_products.any? %>
-                        <div class="row">
-                          <% @samsung_products.each do |product| %>
-                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                              <!-- Card -->
-                              <div class="card card-hover">
-                                <% if product&.main_image.present? %>
-                                  <a href="<%= product_path(product) %>">
-                                    <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                  </a>
-                                <% else %>
-                                  <a href="<%= product_path(product) %>">
-                                    <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                  </a>
-                                <% end %>
-                                <!-- Card Body -->
-                                <div class="landing-card-body">
-                                  <h4 class="mb-2 text-truncate">
-                                    <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                  </h4>
-                                  <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                  <div class="lh-1">
-                                    <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                    <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                        <% else %>
-                          <div class="col-12">
-                            <div class="alert alert-info text-center">
-                              <h5 class="alert-heading">No Phones Added Yet!</h5>
-                              <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                              <p>For immediate assistance, you can</p>
-                              <div class="text-center mt-4">
-                                <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                    Contact Us on WhatsApp
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        <% end %>
-                        <!-- End of This Shop's Phones -->
-                      </div>
-                      </div>
-                      <div class="tab-pane fade show" id="oppo" role="tabpanel"
-                          aria-labelledby="oppo-tab">
-                          <!-- Description -->
-                          <!-- Iterate over products -->
-                          <% if @shop_products.any? %>
-                          <div class="row">
-                            <% @oppo_products.each do |product| %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                <!-- Card -->
-                                <div class="card card-hover">
-                                  <% if product&.main_image.present? %>
-                                    <a href="<%= product_path(product) %>">
-                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                    </a>
-                                  <% else %>
-                                    <a href="<%= product_path(product) %>">
-                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                    </a>
-                                  <% end %>
-                                  <!-- Card Body -->
-                                  <div class="landing-card-body">
-                                    <h4 class="mb-2 text-truncate">
-                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                    </h4>
-                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                    <div class="lh-1">
-                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% else %>
-                            <div class="col-12">
-                              <div class="alert alert-info text-center">
-                                <h5 class="alert-heading">No Phones Added Yet!</h5>
-                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                                <p>For immediate assistance, you can</p>
-                                <div class="text-center mt-4">
-                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                      Contact Us on WhatsApp
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                          <!-- End of This Shop's Phones -->
-                        </div>
-                      </div>
-                      <div class="tab-pane fade show" id="vivo" role="tabpanel"
-                          aria-labelledby="vivo-tab">
-                          <!-- Description -->
-                          <!-- Iterate over products -->
-                          <% if @shop_products.any? %>
-                          <div class="row">
-                            <% @vivo_products.each do |product| %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                <!-- Card -->
-                                <div class="card card-hover">
-                                  <% if product&.main_image.present? %>
-                                    <a href="<%= product_path(product) %>">
-                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                    </a>
-                                  <% else %>
-                                    <a href="<%= product_path(product) %>">
-                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                    </a>
-                                  <% end %>
-                                  <!-- Card Body -->
-                                  <div class="landing-card-body">
-                                    <h4 class="mb-2 text-truncate">
-                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                    </h4>
-                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                    <div class="lh-1">
-                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% else %>
-                            <div class="col-12">
-                              <div class="alert alert-info text-center">
-                                <h5 class="alert-heading">No Phones Added Yet!</h5>
-                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                                <p>For immediate assistance, you can</p>
-                                <div class="text-center mt-4">
-                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                      Contact Us on WhatsApp
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                          <!-- End of This Shop's Phones -->
-                        </div>
-                      </div>
-                      <div class="tab-pane fade show" id="techno" role="tabpanel"
-                          aria-labelledby="techno-tab">
-                          <!-- Description -->
-                          <!-- Iterate over products -->
-                          <% if @shop_products.any? %>
-                          <div class="row">
-                            <% @infinix_products.each do |product| %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                <!-- Card -->
-                                <div class="card card-hover">
-                                  <% if product&.main_image.present? %>
-                                    <a href="<%= product_path(product) %>">
-                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                    </a>
-                                  <% else %>
-                                    <a href="<%= product_path(product) %>">
-                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                    </a>
-                                  <% end %>
-                                  <!-- Card Body -->
-                                  <div class="landing-card-body">
-                                    <h4 class="mb-2 text-truncate">
-                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                    </h4>
-                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                    <div class="lh-1">
-                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% else %>
-                            <div class="col-12">
-                              <div class="alert alert-info text-center">
-                                <h5 class="alert-heading">No Phones Added Yet!</h5>
-                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                                <p>For immediate assistance, you can</p>
-                                <div class="text-center mt-4">
-                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                      Contact Us on WhatsApp
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                          <!-- End of This Shop's Phones -->
-                        </div>
-                      </div>
-                      <div class="tab-pane fade show" id="iphone" role="tabpanel"
-                          aria-labelledby="iphone-tab">
-                          <!-- Description -->
-                          <!-- Iterate over products -->
-                          <% if @shop_products.any? %>
-                          <div class="row">
-                            <% @techno_products.each do |product| %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                <!-- Card -->
-                                <div class="card card-hover">
-                                  <% if product&.main_image.present? %>
-                                    <a href="<%= product_path(product) %>">
-                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                    </a>
-                                  <% else %>
-                                    <a href="<%= product_path(product) %>">
-                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                    </a>
-                                  <% end %>
-                                  <!-- Card Body -->
-                                  <div class="landing-card-body">
-                                    <h4 class="mb-2 text-truncate">
-                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                    </h4>
-                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                    <div class="lh-1">
-                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% else %>
-                            <div class="col-12">
-                              <div class="alert alert-info text-center">
-                                <h5 class="alert-heading">No Phones Added Yet!</h5>
-                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                                <p>For immediate assistance, you can</p>
-                                <div class="text-center mt-4">
-                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                      Contact Us on WhatsApp
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                          <!-- End of This Shop's Phones -->
-                        </div>
-                      </div>
-                      <div class="tab-pane fade show" id="infinix" role="tabpanel"
-                          aria-labelledby="infinix-tab">
-                          <!-- Description -->
-                          <!-- Iterate over products -->
-                          <% if @shop_products.any? %>
-                          <div class="row">
-                            <% @huawei_products.each do |product| %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                <!-- Card -->
-                                <div class="card card-hover">
-                                  <% if product&.main_image.present? %>
-                                    <a href="<%= product_path(product) %>">
-                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                    </a>
-                                  <% else %>
-                                    <a href="<%= product_path(product) %>">
-                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                    </a>
-                                  <% end %>
-                                  <!-- Card Body -->
-                                  <div class="landing-card-body">
-                                    <h4 class="mb-2 text-truncate">
-                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                    </h4>
-                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                    <div class="lh-1">
-                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% else %>
-                            <div class="col-12">
-                              <div class="alert alert-info text-center">
-                                <h5 class="alert-heading">No Phones Added Yet!</h5>
-                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                                <p>For immediate assistance, you can</p>
-                                <div class="text-center mt-4">
-                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                      Contact Us on WhatsApp
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                          <!-- End of This Shop's Phones -->
-                        </div>
-                      </div>
-                      <div class="tab-pane fade show" id="huawei" role="tabpanel"
-                          aria-labelledby="huawei-tab">
-                          <!-- Description -->
-                          <!-- Iterate over products -->
-                          <% if @shop_products.any? %>
-                          <div class="row">
-                            <% @iphone_products.each do |product| %>
-                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                <!-- Card -->
-                                <div class="card card-hover">
-                                  <% if product&.main_image.present? %>
-                                    <a href="<%= product_path(product) %>">
-                                      <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
-                                    </a>
-                                  <% else %>
-                                    <a href="<%= product_path(product) %>">
-                                      <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
-                                    </a>
-                                  <% end %>
-                                  <!-- Card Body -->
-                                  <div class="landing-card-body">
-                                    <h4 class="mb-2 text-truncate">
-                                      <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
-                                    </h4>
-                                    <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
-                                    <div class="lh-1">
-                                      <span class="text-dark fw-bold">RS <%= product.price %></span>
-                                      <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            <% end %>
-                          <% else %>
-                            <div class="col-12">
-                              <div class="alert alert-info text-center">
-                                <h5 class="alert-heading">No Phones Added Yet!</h5>
-                                <p>It looks like you haven’t added any phones to your shop yet. To start showcasing your products, please add some phones to your inventory. If you need any assistance, feel free to reach out to support!</p>
-                                <p>For immediate assistance, you can</p>
-                                <div class="text-center mt-4">
-                                  <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
-                                      Contact Us on WhatsApp
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          <% end %>
-                          <!-- End of This Shop's Phones -->
-                        </div>
-                      </div>
-                    </div>
+
+            </div>
+
+          </div>
+          <!-- Rating  -->
+          <div id="rating-message"></div>
+          <div class="card mb-4">
+            <!-- card body  -->
+            <div class="card-body">
+              <h4 class="card-title">Overall Customer Satisfaction Rating for This Shop</h4>
+
+              <div id="progressChart" data-rating="<%= @shopkeeper_shop.average_rating.to_f %>">
+                <% if @shopkeeper_shop.ratings.any? %>
+                  <p>Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
+                <% else %>
+                  <p>No ratings yet.</p>
+                <% end %>
+
+                <% if current_user %>
+                  <div class="rating">
+                    <% (1..5).each do |star| %>
+                      <a href="#" class="rating-star" data-rating="<%= star %>" data-shop-id="<%= @shopkeeper_shop.id %>">
+                        <i class="mdi mdi-star me-n1 <%= star <= (@rating.rating || 0) ? 'text-warning' : 'text-muted' %>"></i>
+                      </a>
+                    <% end %>
                   </div>
-                </div>
-                <!-- Pagination Links -->
-                <div class="mt-4 d-flex justify-content-center">
-                  <%= paginate @shop_products %>
-                </div>
+                <% else %>
+                  <p>Please log in to rate this shop.</p>
+                <% end %>
               </div>
             </div>
           </div>
-          <div class="col-md-12 col-xl-4 col-12">
-            <!-- card  -->
-            <div class="card mb-4 bg-primary border-primary">
-              <a href="#"  class="card-img-top"> <img src="/assets/category-index.jpg" size="411x222" class="card-img-top rounded-top-md"
-                    alt="Article Image"></a>
-              <!-- card body  -->
-              <div class="card-body">
-
-                <h4 class="card-title text-white">Launch Date </h4>
-
-                <!-- dropdown  -->
-                <div class="d-flex justify-content-between align-items-center mt-8">
-                  <div>
-                    <h1 class="display-4 text-white mb-1"> <%= (Date.current - @shopkeeper_shop.created_at.to_date).to_i %> Days</h1>
-                    <p class="mb-0 text-white"><%= Date.today.strftime("%d %B, %A") %></p>
-                  </div>
-                  <div>
-                    <i class="fe fe-flag fs-1 text-light-primary"></i>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-            <!-- Rating  -->
-            <div id="rating-message"></div>
-            <div class="card mb-4">
-              <!-- card body  -->
-              <div class="card-body">
-                <h4 class="card-title">Overall Customer Satisfaction Rating for This Shop</h4>
-
-                <div id="progressChart" data-rating="<%= @shopkeeper_shop.average_rating.to_f %>">
-                  <% if @shopkeeper_shop.ratings.any? %>
-                    <p>Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
-                  <% else %>
-                    <p>No ratings yet.</p>
-                  <% end %>
-
-                  <% if current_user %>
-                    <div class="rating">
-                      <% (1..5).each do |star| %>
-                        <a href="#" class="rating-star" data-rating="<%= star %>" data-shop-id="<%= @shopkeeper_shop.id %>">
-                          <i class="mdi mdi-star me-n1 <%= star <= (@rating.rating || 0) ? 'text-warning' : 'text-muted' %>"></i>
-                        </a>
-                      <% end %>
-                    </div>
-                  <% else %>
-                    <p>Please log in to rate this shop.</p>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-        </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
 </body>

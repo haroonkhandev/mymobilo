@@ -15,13 +15,16 @@ class ShopkeeperShopsController < ApplicationController
   def show
     @product_count = @shopkeeper_shop.product_count
     @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
-    @samsung_products = @shop_products.where(category_id: 1)
-    @oppo_products = @shop_products.where(category_id: 2)
-    @vivo_products = @shop_products.where(category_id: 3)
-    @infinix_products = @shop_products.where(category_id: 4)
-    @techno_products = @shop_products.where(category_id: 5)
-    @huawei_products = @shop_products.where(category_id: 6)
-    @iphone_products = @shop_products.where(category_id: 7)
+
+    @categories = Category.all
+    @active_category = params[:category_id] || 'all'
+
+    @products_by_category = @categories.each_with_object({}) do |category, hash|
+      hash[category.id] = @shop_products.where(category_id: category.id)
+    end
+
+    @all_products = @shop_products
+
     @recent_activities = @shopkeeper_shop.activities.order(created_at: :desc).page(params[:activity_page]).per(5)
   end
 
@@ -111,13 +114,17 @@ class ShopkeeperShopsController < ApplicationController
   def user_shops
     @shopkeeper_shop = ShopkeeperShop.find(params[:id])
     @shop_products = @shopkeeper_shop.products.page(params[:page]).per(8)
-    @samsung_products = @shop_products.where(category_id: 1)
-    @oppo_products = @shop_products.where(category_id: 2)
-    @vivo_products = @shop_products.where(category_id: 3)
-    @infinix_products = @shop_products.where(category_id: 4)
-    @techno_products = @shop_products.where(category_id: 5)
-    @huawei_products = @shop_products.where(category_id: 6)
-    @iphone_products = @shop_products.where(category_id: 7)
+
+    @categories = Category.all
+    @products_by_category = @categories.each_with_object({}) do |category, hash|
+      products = @shop_products.where(category_id: category.id)
+      hash[category.id] = products if products.any?
+    end
+
+    @all_products = @shop_products
+
+    @active_category = params[:category] || 'all'
+
     # Fetch or initialize the rating for the current user
     @rating = Rating.find_or_initialize_by(user: current_user, shopkeeper_shop: @shopkeeper_shop)
   end

@@ -1,0 +1,44 @@
+<% if products.any? %>
+  <div class="row">
+    <% products.each do |product| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <!-- Card -->
+        <div class="card card-hover">
+          <% if product.main_image.present? %>
+            <a href="<%= product_path(product) %>">
+              <%= image_tag url_for(product.main_image), class: "card-img-top", style: "object-fit: cover; width: 100%; height: auto;" %>
+            </a>
+          <% else %>
+            <a href="<%= product_path(product) %>">
+              <img src="/assets/official.png" alt="product image" class="card-img-top" style="object-fit: cover; width: 100%; height: auto;">
+            </a>
+          <% end %>
+          <!-- Card Body -->
+          <div class="landing-card-body">
+            <h4 class="mb-2 text-truncate">
+              <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+            </h4>
+            <p>Quantity: <%= shop_product_quantity(@shopkeeper_shop, product) %></p>
+            <div class="lh-1">
+              <span class="text-dark fw-bold">RS <%= product.price %></span>
+              <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h5 class="alert-heading">No Products Available!</h5>
+      <p>It looks like there are no products in this category. Please check back later or contact support for assistance.</p>
+      <p>For immediate assistance, you can</p>
+      <div class="text-center mt-4">
+        <a href="https://wa.me/923134209115" target="_blank" class="btn btn-success rounded-pill px-4 py-2 text-white" style="background-color: #25D366; border-color: #25D366; font-weight: 600;">
+            Contact Us on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+<% end %>
