@@ -23,18 +23,22 @@
 
   <body>
     <% if user_signed_in? %>
-      <% unless current_user.shopkeeper? %>
-        <%= render partial: "shared/navbar" %>
+      <% if current_user.shopkeeper? %>
+        <% if shopkeeper_landing_nav? %>
+          <%= render partial: "shared/shopkeeper_landing_nav" %>
+        <% end %>
+      <% else %>
+        <%= render partial: "shared/user_navbar" %>
       <% end %>
     <% else %>
-      <%= render partial: "shared/navbar" %>
+      <%= render partial: "shared/user_navbar" %>
     <% end %>
 
     <%= yield %>
 
     <% if user_signed_in? %>
       <% if current_user.shopkeeper? %>
-        <%= render partial: "shopkeepers/dashboard/shopkeeper_footer" %>
+        <%= render partial: "shopkeepers/shopkeeper_footer" %>
       <% else %>
         <%= render partial: "shared/footer" %>
       <% end %>

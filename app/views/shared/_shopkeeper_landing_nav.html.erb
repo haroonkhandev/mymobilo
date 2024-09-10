@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-0">
+        <a class="navbar-brand" href="<%= root_path %>">
+            <img src="/assets/mobilo.png" alt="" style="max-width: 200px;">
+        </a>
+        <div class="collapse navbar-collapse" id="navbar-default">
+            <%= form_tag(products_path, method: "get", class: "mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center") do %>
+                <%= text_field_tag(:search, params[:search],  placeholder: "Search Products", class: "form-control ps-6") %>
+                <span class="position-absolute ps-3 search-icon">
+                    <i class="fe fe-search"></i>
+                </span>
+                <%= submit_tag("Search", class: "btn btn-outline-primary my-2 my-sm-0") %>
+            <% end %>
+        </div>
+    </div>
+</nav>
