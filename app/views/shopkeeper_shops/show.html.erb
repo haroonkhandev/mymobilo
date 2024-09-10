@@ -2,12 +2,12 @@
   <!-- Wrapper -->
   <div id="db-wrapper">
     <!-- Sidebar -->
-    <%= render 'shopkeepers/dashboard/sidebar' %>
+    <%= render 'shopkeepers/shopkeeper_sidebar' %>
     <!-- Page Content -->
     <main id="page-content">
       <div class="header">
         <!-- navbar -->
-        <%= render 'shopkeepers/dashboard/navbar' %>
+        <%= render 'shopkeepers/shopkeeper_shop_show_navbar' %>
       </div>
       <!-- Container fluid -->
       <section class="container-fluid p-4">
@@ -237,7 +237,7 @@
                         <!-- All Products Tab -->
                         <% if @all_products.any? %>
                           <div class="tab-pane fade <%= 'show active' if @active_category == 'all' %>" id="all" role="tabpanel" aria-labelledby="all-tab">
-                            <%= render partial: 'products_list', locals: { products: @all_products, category_name: 'All' } %>
+                            <%= render partial: 'shopkeeper_products_list', locals: { products: @all_products, category_name: 'All' } %>
                           </div>
                         <% else %>
                           <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
@@ -260,7 +260,7 @@
                         <% @categories.each do |category| %>
                           <% if @products_by_category[category.id].any? %>
                             <div class="tab-pane fade <%= 'show active' if @active_category.to_s == category.id.to_s %>" id="<%= category.id %>" role="tabpanel" aria-labelledby="<%= "#{category.id}-tab" %>">
-                              <%= render partial: 'products_list', locals: { products: @products_by_category[category.id], category_name: category.name } %>
+                              <%= render partial: 'shopkeeper_products_list', locals: { products: @products_by_category[category.id], category_name: category.name } %>
                             </div>
                           <% end %>
                         <% end %>

@@ -158,14 +158,14 @@
                     <div class="tab-content" id="tabContent">
                       <!-- All Products Tab -->
                       <div class="tab-pane fade <%= 'show active' if @active_category == 'all' %>" id="all" role="tabpanel" aria-labelledby="all-tab">
-                        <%= render partial: 'user_product_list', locals: { products: @all_products, category_name: 'All' } %>
+                        <%= render partial: 'user_shop_product_list', locals: { products: @all_products, category_name: 'All' } %>
                       </div>
 
                       <!-- Category Tabs -->
                       <% @categories.each do |category| %>
                         <% if @products_by_category[category.id].present? %>
                           <div class="tab-pane fade <%= 'show active' if @active_category.to_s == category.id.to_s %>" id="<%= category.id %>" role="tabpanel" aria-labelledby="<%= "#{category.id}-tab" %>">
-                            <%= render partial: 'user_product_list', locals: { products: @products_by_category[category.id], category_name: category.name } %>
+                            <%= render partial: 'user_shop_product_list', locals: { products: @products_by_category[category.id], category_name: category.name } %>
                           </div>
                         <% end %>
                       <% end %>

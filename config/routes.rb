@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'categories/index'
   get 'categories/show'
   get '/categories/index', to: 'categories#index'
-  get '/categories/:category_id/subcategories', to: 'categories#subcategories'
+  get '/categories/:category_id/subcategories', to: 'categories#subcategories', as: 'subcategories'
 
   resources :article_categories, only: [:index, :show]
   resources :articles, only: [:index, :show]
