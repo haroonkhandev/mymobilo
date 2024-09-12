@@ -25,15 +25,55 @@
                         </div>
                     </td>
                     <td>
-                        <div class="comparison-item">
-                            <a class="comparison-item-thumb" href="<%= product_path(@product1) %>"><img src="https://www.bootdey.com/image/160x160/FF0000/000000" alt="Apple iPhone Xs Max"></a>
-                            <a class="comparison-item-title" href="<%= product_path(@product1) %>"><%= @product1&.name %></a>
+                        <div class="item">
+                          <!-- Card -->
+                          <div class="card  mb-4 card-hover">
+                            <% if @product1.main_image.attached? %>
+                            <% first_image = @product1.main_image %>
+                              <center>
+                                <a href="<%= product_path(@product1) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:50%;" %>
+                                </a>
+                              </center>
+                            <% else %>
+                              <center>
+                                <a href="<%= product_path(@product1) %>">
+                                  <img src="/assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:50%;">
+                                </a>
+                              </center>
+                            <% end %>
+                            <!-- Card Body -->
+                            <div class="landing-card-body card-body">
+                              <h4 class="mb-2 text-truncate">
+                                <a href="<%= product_path(@product1) %>" class="text-inherit card-img-top inner-img" data-toggle="tooltip" title="<%= @product1.name %>"><%= @product1.name %></a>
+                              </h4>
+                            </div>
+                          </div>
                         </div>
                     </td>
                     <td>
-                        <div class="comparison-item">
-                            <a class="comparison-item-thumb" href="<%= product_path(@product2) %>"><img src="https://www.bootdey.com/image/160x160/1E90FF/000000" alt="Google Pixel 3 XL"></a>
-                            <a class="comparison-item-title" href="<%= product_path(@product2) %>"><%= @product2&.name %></a>
+                        <div class="item">
+                          <!-- Card -->
+                          <div class="card  mb-4 card-hover">
+                            <% if @product2.main_image.attached? %>
+                            <% first_image = @product2.main_image %>
+                              <center>
+                                <a href="<%= product_path(@product2) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:50%;" %>
+                                </a>
+                              </center>
+                            <% else %>
+                              <center>
+                                <a href="<%= product_path(@product2) %>">
+                                  <img src="/assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:50%;">
+                                </a>
+                              </center>
+                            <% end %>
+                            <!-- Card Body -->
+                            <div class="landing-card-body card-body">
+                              <h4 class="mb-2 text-truncate">
+                                <a href="<%= product_path(@product2) %>" class="text-inherit card-img-top inner-img" data-toggle="tooltip" title="<%= @product2.name %>"><%= @product2.name %></a>
+                              </h4>
+                            </div>
+                          </div>
                         </div>
                     </td>
                 </tr>
