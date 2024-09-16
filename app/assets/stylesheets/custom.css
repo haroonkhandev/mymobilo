@@ -174,3 +174,16 @@ div.scrollmenu a:hover {
 .spec-rounded-circle {
     border-radius: 30% !important;
 }
+
+.category-avatar-xs {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.category-rounded-circle {
+    border-radius: 24% !important;
+}
+
+.category-mb-1 {
+    margin-bottom: 0.50rem !important;
+}
