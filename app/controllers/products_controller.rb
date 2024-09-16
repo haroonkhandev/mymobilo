@@ -16,8 +16,8 @@ class ProductsController < ApplicationController
 
       if params[:category].present?
         @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"
-        @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
-        @products = @products.order(price: :desc) if params[:category] == "Highest Price"
+        @products = @products.sort_by { |product| product.price.to_i } if params[:category] == "Lowest Price"
+        @products = @products.sort_by { |product| -product.price.to_i } if params[:category] == "Highest Price"
       end
     elsif params[:name].present?
       keyword = params[:name].downcase
@@ -28,14 +28,14 @@ class ProductsController < ApplicationController
 
       if params[:category].present?
         @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"
-        @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
-        @products = @products.order(price: :desc) if params[:category] == "Highest Price"
+        @products = @products.sort_by { |product| product.price.to_i } if params[:category] == "Lowest Price"
+        @products = @products.sort_by { |product| -product.price.to_i } if params[:category] == "Highest Price"
       end
     else
       @products = Product.all.order(release_date: :desc).page(params[:page]).per(8)
       @products = @products.last_30_days.order(release_date: :desc) if params[:category] == "Newest"
-      @products = @products.order(price: :asc) if params[:category] == "Lowest Price"
-      @products = @products.order(price: :desc) if params[:category] == "Highest Price"
+      @products = @products.sort_by { |product| product.price.to_i } if params[:category] == "Lowest Price"
+      @products = @products.sort_by { |product| -product.price.to_i } if params[:category] == "Highest Price"
     end
 
     respond_to do |format|
