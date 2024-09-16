@@ -139,7 +139,7 @@ class ShopkeeperShopsController < ApplicationController
       average_rating = @shopkeeper_shop.ratings.average(:rating).to_f.round(2)
 
       # Respond with JSON for AJAX
-      render json: { average_rating: average_rating, user_rating: @rating.rating }
+      render json: { average_rating: average_rating, rating: @rating.rating }
     else
       render json: { error: 'Unable to save rating' }, status: :unprocessable_entity
     end

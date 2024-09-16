@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         if (data.average_rating !== undefined) {
           updateProgressChart(data.average_rating);
-          updateStars(data.user_rating);
+          updateStars(data.rating);
           updateAverageRating(data.average_rating);
         } else {
           console.error('Error: ', data.error);
