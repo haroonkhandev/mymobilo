@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Function to update the progress chart
   function updateProgressChart(averageRating) {
     const progressChart = document.querySelector("#progressChart");
 
     if (progressChart) {
-      // Initialize the chart options
       const chartOptions = {
-        series: [averageRating * 20], // Convert rating to percentage (e.g., 4.5 becomes 90)
+        series: [averageRating * 20],
         chart: {
           height: 350,
           type: "radialBar",
@@ -72,32 +70,50 @@ document.addEventListener('DOMContentLoaded', () => {
         stroke: { lineCap: "round" },
       };
 
-      // Destroy the existing chart if it exists
       if (progressChart.chart) {
         progressChart.chart.destroy();
       }
 
-      // Render the new chart
       const chart = new ApexCharts(progressChart, chartOptions);
       chart.render();
-      progressChart.chart = chart; // Store reference to the chart
+      progressChart.chart = chart;
     }
   }
 
-  // Initialize the chart on page load with default rating of 100%
-  const initialRating = parseFloat(document.querySelector("#progressChart").getAttribute("data-rating")) || 5;
-  updateProgressChart(initialRating);
+  function updateStars(userRating) {
+    document.querySelectorAll('.rating-star i').forEach(starIcon => {
+      const starRating = parseInt(starIcon.parentElement.getAttribute('data-rating'), 10);
+      if (starRating <= userRating) {
+        starIcon.classList.add('text-warning');
+        starIcon.classList.remove('text-muted');
+      } else {
+        starIcon.classList.add('text-muted');
+        starIcon.classList.remove('text-warning');
+      }
+    });
+  }
 
-  // Add event listeners to rating stars
+  function updateAverageRating(averageRating) {
+    const averageRatingElement = document.getElementById('averageRating');
+    if (averageRatingElement) {
+      averageRatingElement.textContent = `Average Rating: ${averageRating} / 5`;
+    }
+  }
+
+  const progressChart = document.querySelector("#progressChart");
+  if (progressChart) {
+    const initialRating = parseFloat(progressChart.getAttribute("data-rating")) || 0;
+    updateProgressChart(initialRating);
+    updateStars(initialRating);
+  }
+
   document.querySelectorAll('.rating-star').forEach(star => {
     star.addEventListener('click', event => {
       event.preventDefault();
 
-      // Get the rating value and shop ID
       const rating = star.getAttribute('data-rating');
       const shopId = star.getAttribute('data-shop-id');
 
-      // Send the AJAX request
       fetch(`/shopkeeper_shops/${shopId}/rate`, {
         method: 'POST',
         headers: {
@@ -106,16 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: `rating=${rating}&shopkeeper_shop_id=${shopId}`
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json(); // Expecting JSON response with the new rating
-        } else {
-          throw new Error('Network response was not ok.');
-        }
-      })
+      .then(response => response.json())
       .then(data => {
-        // Update the progress chart with new rating
-        updateProgressChart(data.average_rating);
+        if (data.average_rating !== undefined) {
+          updateProgressChart(data.average_rating);
+          updateStars(data.user_rating);
+          updateAverageRating(data.average_rating);
+        } else {
+          console.error('Error: ', data.error);
+        }
       })
       .catch(error => {
         console.error('Error:', error);

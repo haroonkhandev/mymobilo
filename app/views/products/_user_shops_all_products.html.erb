@@ -7,8 +7,8 @@
         <ul class="nav nav-pills" id="product-tabs" role="tablist">
           <!-- 'All' tab -->
           <li class="nav-item">
-              <a class="nav-link active" id="all-tab" data-bs-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
-            </li>
+            <a class="nav-link active" id="all-tab" data-bs-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+          </li>
           <!-- Dynamically generate category tabs -->
           <% @categories.each do |category| %>
             <% if category.products.joins(:shop_products).distinct.any? %>

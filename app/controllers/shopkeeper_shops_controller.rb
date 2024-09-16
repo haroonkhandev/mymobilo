@@ -135,10 +135,13 @@ class ShopkeeperShopsController < ApplicationController
     @rating.rating = params[:rating].to_i
 
     if @rating.save
-      respond_to do |format|
-        format.html { redirect_to user_shops_shopkeeper_shop_path(@shopkeeper_shop), notice: 'Your rating was successfully submitted.' }
-        format.js
-      end
+      # Calculate the new average rating for the shop
+      average_rating = @shopkeeper_shop.ratings.average(:rating).to_f.round(2)
+
+      # Respond with JSON for AJAX
+      render json: { average_rating: average_rating, user_rating: @rating.rating }
+    else
+      render json: { error: 'Unable to save rating' }, status: :unprocessable_entity
     end
   end
 
