@@ -214,16 +214,16 @@
 
               <div id="progressChart" data-rating="<%= @shopkeeper_shop.average_rating.to_f %>">
                 <% if @shopkeeper_shop.ratings.any? %>
-                  <p>Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
+                  <p id="averageRating">Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
                 <% else %>
-                  <p>No ratings yet.</p>
+                  <p id="averageRating">No ratings yet.</p>
                 <% end %>
 
                 <% if current_user %>
                   <div class="rating">
                     <% (1..5).each do |star| %>
-                      <a href="#" class="rating-star" data-rating="<%= star %>" data-shop-id="<%= @shopkeeper_shop.id %>">
-                        <i class="mdi mdi-star me-n1 <%= star <= (@rating.rating || 0) ? 'text-warning' : 'text-muted' %>"></i>
+                      <a href="#" class="rating-star" data-rating="<%= star %>" data-shop-id="<%= @shopkeeper_shop.id %>" aria-label="Rate <%= star %> stars">
+                        <i class="mdi mdi-star me-n1 <%= star <= (@rating&.rating || 0) ? 'text-warning' : 'text-muted' %>"></i>
                       </a>
                     <% end %>
                   </div>
