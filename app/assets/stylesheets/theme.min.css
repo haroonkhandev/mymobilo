@@ -37975,6 +37975,27 @@ input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{
     max-height:3rem;
     overflow:hidden
 }
+
+.product-name {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.name-part {
+  display: block; /* Ensure each part is on its own line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name-part-1 {
+  white-space: nowrap; /* Prevent the first part from breaking */
+  font-weight: bold; /* Optional: makes the first part stand out */
+}
+
+.name-part-2 {
+  margin-top: 0.2em; /* Optional: adds a bit of spacing between lines */
+}
 .bootstrap-select>.dropdown-toggle{
     background-color:var(--geeks-white)!important;
     border-color:var(--geeks-gray-300)!important;

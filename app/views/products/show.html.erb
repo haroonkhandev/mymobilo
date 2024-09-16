@@ -674,10 +674,14 @@
                   <% end %>
                 </a>
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body landing-card-body">
                   <h4 class="mb-2 text-truncate-line-2">
-                    <a href="<%= product_path(product) %>" class="text-inherit">
-                      <%= product.name %></a>
+                    <a href="<%= product_path(product) %>" class="text-inherit card-img-top inner-img">
+                      <div class="product-name">
+                        <span class="name-part name-part-1"><%= product.name.split(' ').first %></span>
+                        <span class="name-part name-part-2"><%= product.name.split(' ')[1..-1].join(' ') %></span>
+                      </div>
+                    </a>
                   </h4>
                   <ul class="mb-3 list-inline">
                     <li class="list-inline-item">

@@ -137,26 +137,16 @@
             </div>
             <!-- Card body -->
             <div class="card-body border-top">
-              <span class="dropdown-header px-0 mb-2"> Skill Level</span>
+              <span class="dropdown-header px-0 mb-2">Phone Types</span>
               <!-- Checkbox -->
               <div class="form-check mb-1">
                 <input type="checkbox" class="form-check-input" id="allTwoCheck">
-                <label class="form-check-label" for="allTwoCheck">All Level</label>
+                <label class="form-check-label" for="allTwoCheck">Flagships</label>
               </div>
               <!-- Checkbox -->
               <div class="form-check mb-1">
                 <input type="checkbox" class="form-check-input" id="beginnerTwoCheck" checked>
-                <label class="form-check-label" for="beginnerTwoCheck">Beginner</label>
-              </div>
-              <!-- Checkbox -->
-              <div class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="intermediateCheck">
-                <label class="form-check-label" for="intermediateCheck">Intermediate</label>
-              </div>
-              <!-- Checkbox -->
-              <div class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="AdvancedTwoCheck">
-                <label class="form-check-label" for="AdvancedTwoCheck">Advance</label>
+                <label class="form-check-label" for="beginnerTwoCheck">Midrange</label>
               </div>
             </div>
           </div>
@@ -184,11 +174,15 @@
                             </center>
                           <% end %>
                           <!-- Card Body -->
-                          <div class="card-body">
-                              <h4 class="mb-2 text-truncate-line-2 ">
-                                <a href="<%= product_path(product) %>" class="text-inherit card-img-top"><%= product.name %>
-                                </a>
-                              </h4>
+                          <div class="card-body landing-card-body">
+                            <h4 class="mb-2 text-truncate-line-2">
+                              <a href="<%= product_path(product) %>" class="text-inherit card-img-top">
+                                <div class="product-name">
+                                  <span class="name-part name-part-1"><%= product.name.split(' ').first %></span>
+                                  <span class="name-part name-part-2"><%= product.name.split(' ')[1..-1].join(' ') %></span>
+                                </div>
+                              </a>
+                            </h4>
                               <!-- List -->
                               <!-- <ul class="mb-3 list-inline">
                                 <li class="list-inline-item">
@@ -215,10 +209,10 @@
                                 <span class="fs-6 text-muted">(7,700)</span>
                               </div> -->
                               <!-- Price -->
-                              <div class="lh-1">
-                                  <span class="text-dark fw-bold">RS <%= product&.price %></span>
-                                  <del class="fs-6 text-muted"><%= product&.actual_price %></del>
-                              </div>
+                            <div class="lh-1">
+                              <span class="text-dark fw-bold">RS <%= product&.price %></span>
+                              <del class="fs-6 text-muted"><%= product&.actual_price %></del>
+                            </div>
                           </div>
                         </div>
                       </div>

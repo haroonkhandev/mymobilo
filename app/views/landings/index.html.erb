@@ -53,8 +53,12 @@
                     <% end %>
                     <!-- Card Body -->
                     <div class="landing-card-body card-body">
-                      <h4 class="mb-2 text-truncate-line-2 ">
-                        <a href="<%= product_path(product) %>" class="text-inherit card-img-top inner-img"><%= product.name %>
+                      <h4 class="mb-2 text-truncate-line-2">
+                        <a href="<%= product_path(product) %>" class="text-inherit card-img-top">
+                          <div class="product-name">
+                            <span class="name-part name-part-1"><%= product.name.split(' ').first %></span>
+                            <span class="name-part name-part-2"><%= product.name.split(' ')[1..-1].join(' ') %></span>
+                          </div>
                         </a>
                       </h4>
 
@@ -109,9 +113,13 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                          <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(upcoming_product) %>" class="text-inherit card-img-top inner-img"><%= upcoming_product.name %>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(upcoming_product) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= upcoming_product.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= upcoming_product.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -164,17 +172,20 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(oppo) %>" class="text-inherit card-img-top inner-img"><%= oppo.name %>
-                              </a>
-                            </h4>
-
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= oppo.price %></span>
-                                <del class="fs-6 text-muted"><%= oppo.actual_price %></del>
-                            </div>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(oppo) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= oppo.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= oppo.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                              <span class="text-dark fw-bold">RS <%= oppo.price %></span>
+                              <del class="fs-6 text-muted"><%= oppo.actual_price %></del>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -221,16 +232,20 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(vivo) %>" class="text-inherit card-img-top inner-img"><%= vivo.name %>
-                              </a>
-                            </h4>
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= vivo.price %></span>
-                                <del class="fs-6 text-muted"><%= vivo.actual_price %></del>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                          <a href="<%= product_path(vivo) %>" class="text-inherit card-img-top inner-img">
+                            <div class="product-name">
+                              <span class="name-part name-part-1"><%= vivo.name.split(' ').first %></span>
+                              <span class="name-part name-part-2"><%= vivo.name.split(' ')[1..-1].join(' ') %></span>
                             </div>
+                          </a>
+                        </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                              <span class="text-dark fw-bold">RS <%= vivo.price %></span>
+                              <del class="fs-6 text-muted"><%= vivo.actual_price %></del>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -277,16 +292,20 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                            <h4 class="mb-2 text-truncate-line-2 ">
-                              <a href="<%= product_path(samsung) %>" class="text-inherit card-img-top inner-img"><%= samsung.name %>
-                              </a>
-                            </h4>
-                            <!-- Price -->
-                            <div class="lh-1 mt-3">
-                                <span class="text-dark fw-bold">RS <%= samsung.price %></span>
-                                <del class="fs-6 text-muted"><%= samsung.actual_price %></del>
-                            </div>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(samsung) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= samsung.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= samsung.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
+                            </a>
+                          </h4>
+                          <!-- Price -->
+                          <div class="lh-1 mt-3">
+                              <span class="text-dark fw-bold">RS <%= samsung.price %></span>
+                              <del class="fs-6 text-muted"><%= samsung.actual_price %></del>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -333,9 +352,13 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                          <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(tecno) %>" class="text-inherit card-img-top inner-img"><%= tecno.name %>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(tecno) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= tecno.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= tecno.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -389,9 +412,13 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                          <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(infinix) %>" class="text-inherit card-img-top inner-img"><%= infinix.name %>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(infinix) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= infinix.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= infinix.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -445,9 +472,13 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                          <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(huawei) %>" class="text-inherit card-img-top inner-img"><%= huawei.name %>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(huawei) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= huawei.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= huawei.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
                             </a>
                           </h4>
                           <!-- Price -->
@@ -501,9 +532,13 @@
                           </center>
                         <% end %>
                         <!-- Card Body -->
-                        <div class="card-body">
-                          <h4 class="mb-2 text-truncate-line-2 ">
-                            <a href="<%= product_path(iphone) %>" class="text-inherit card-img-top inner-img"><%= iphone.name %>
+                        <div class="card-body landing-card-body">
+                          <h4 class="mb-2 text-truncate-line-2">
+                            <a href="<%= product_path(iphone) %>" class="text-inherit card-img-top inner-img">
+                              <div class="product-name">
+                                <span class="name-part name-part-1"><%= iphone.name.split(' ').first %></span>
+                                <span class="name-part name-part-2"><%= iphone.name.split(' ')[1..-1].join(' ') %></span>
+                              </div>
                             </a>
                           </h4>
                           <!-- Price -->
