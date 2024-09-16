@@ -10,13 +10,20 @@
       </a>
     <% end %>
     <!-- Card Body -->
-    <div class="landing-card-body">
-      <h4 class="mb-2 text-truncate">
-        <a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a>
+    <div class="card-body landing-card-body">
+      <h4 class="mb-2 text-truncate text-truncate-line-2">
+        <a href="<%= product_path(product) %>" class="text-inherit card-img-top inner-img">
+          <div class="product-name">
+            <span class="name-part name-part-1"><%= product.name.split(' ').first %></span>
+            <span class="name-part name-part-2"><%= product.name.split(' ')[1..-1].join(' ') %></span>
+          </div>
+        </a>
       </h4>
       <div class="lh-1">
         <span class="text-dark fw-bold">RS <%= product.price %></span>
-        <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+        <% if product.actual_price.present? %>
+          <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+        <% end %>
       </div>
       <div class="text-muted mt-2">
         <small>Available at:
