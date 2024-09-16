@@ -39,9 +39,6 @@ class Product < ApplicationRecord
   # scope :similar_camera, ->(product) { where("LOWER(camera_prod) LIKE ?", "%#{product.camera_prod.downcase}%") }
 
 
-  # Validations
-  validate :validate_image_dimensions, if: -> { main_image.attached? }
-
   # Callbacks
   before_save :keep_images, if: :will_save_change_to_images?
 
@@ -118,14 +115,6 @@ class Product < ApplicationRecord
 
   private
 
-  def validate_image_dimensions
-    return unless main_image.attached?
-
-    image = MiniMagick::Image.read(main_image.download)
-    if image.width != 800 || image.height != 600
-      errors.add(:main_image, 'Width must be 800px and height must be 600px')
-    end
-  end
 
   def keep_images
     images.attach(images_blobs) if images_blobs.present?
