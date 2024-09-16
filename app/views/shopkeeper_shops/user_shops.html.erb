@@ -222,12 +222,12 @@
               <% else %>
                 <p>Please log in to rate this shop.</p>
               <% end %>
+              <% if @shopkeeper_shop.ratings.any? %>
+                <p id="averageRating">Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
+              <% else %>
+                <p id="averageRating">No ratings yet.</p>
+              <% end %>
               <div id="progressChart" data-rating="<%= @shopkeeper_shop.average_rating.to_f %>">
-                <% if @shopkeeper_shop.ratings.any? %>
-                  <p id="averageRating">Average Rating: <%= @shopkeeper_shop.average_rating.round(2) %> / 5</p>
-                <% else %>
-                  <p id="averageRating">No ratings yet.</p>
-                <% end %>
               </div>
             </div>
           </div>
