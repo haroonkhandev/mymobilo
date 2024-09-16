@@ -76,10 +76,9 @@
                   <div class="row align-items-center g-0">
                     <div class="col-auto">
                       <% if category&.picture.present? %>
-                        <%= image_tag rails_blob_path(category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xs mb-1" %>
+                        <%= image_tag category.picture.url, class: "category-rounded-circle category-avatar-xs category-mb-1" %>
                       <% else %>
-                        <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs mb-1"
-                            alt="avatar">
+                        <img src="<%= asset_path('category-logo.png') %>" class="category-rounded-circle category-avatar-xs category-mb-1" alt="avatar">
                       <% end %>
                     </div>
                     <div class="col-auto ms-3">
@@ -278,10 +277,9 @@
                             <div class="row align-items-center g-0">
                               <div class="col-auto">
                                 <% if product.category&.picture.present? %>
-                                  <%= image_tag url_for(product.category&.picture), class:"rounded-circle avatar-xs" %>
+                                  <%= image_tag product.category.picture.url, class: "rounded-circle avatar-xs" %>
                                 <% else %>
-                                  <img src="assets/avatar-1.jpg" class="rounded-circle avatar-xs"
-                                      alt="avatar">
+                                  <img src="<%= asset_path('category-logo.png') %>" class="rounded-circle avatar-xs" alt="avatar">
                                 <% end %>
                               </div>
                               <div class="col ms-2">

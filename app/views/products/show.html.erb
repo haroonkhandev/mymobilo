@@ -604,18 +604,16 @@
               <!-- Card body -->
               <div class="card-body">
                   <div class="d-flex align-items-center">
-                      <div class="position-relative">
-                          <% if @category&.picture.present? %>
-                            <%= image_tag rails_blob_path(@category&.picture, disposition: "attachment", only_path: true), class:"rounded-circle avatar-xl" %>
-                          <% else %>
-                            <img src="/assets/samsung-logo.png" alt="avatar"
-                                class="rounded-circle avatar-xl">
-                            <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip"
-                                data-placement="top" title="Verifed">
-                                <img src="/assets/checked-mark.svg" alt="checked-mark"height="30" width="30">
-                            </a>
-                          <% end %>
-                      </div>
+                    <div class="position-relative">
+                      <% if @category.picture.present? %>
+                        <%= image_tag @category.picture.url, class: "rounded-circle avatar-xl" %>
+                      <% else %>
+                        <img src="<%= asset_path('category-logo.png') %>" alt="avatar" class="rounded-circle avatar-xl">
+                      <% end %>
+                      <a href="#" class="position-absolute mt-2 ms-n3" data-bs-toggle="tooltip" data-placement="top" title="Verified">
+                        <img src="<%= asset_path('checked-mark.svg') %>" alt="checked-mark" height="30" width="30">
+                      </a>
+                    </div>
                       <div class="ms-4">
                           <h4 class="mb-0"><%= @product.category.name %></h4>
                           <p class="mb-1 fs-6"><%= @product.series %></p>
