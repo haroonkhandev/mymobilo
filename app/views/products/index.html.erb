@@ -26,11 +26,14 @@
                 <% if @products.any? %>
                   <% if params[:search].present? %>
                     Displaying <%= @products.count %> result<%= 's' if @products.count != 1 %> for "<%= params[:search] %>"
-                    <% elsif @category_name.present? %>
-                      Displaying <%= @products.count %> Mobile<%= 's' if @products.count != 1 %> in <%= @category_name %> category (Total: <%= @total_category_products_count %> Phone<%= 's' if @total_category_products_count != 1 %>)
-                    <% else %>
-                      Displaying All <%= @products.count %> Mobiles (Total: <%= Product.all.count %>)
-                    <% end %>
+                  <% elsif params[:product_type].present? %>
+                    <% product_types = params[:product_type].map(&:capitalize).join(', ') %>
+                    Displaying <%= @products.count %> Mobile<%= 's' if @products.count != 1 %> of type "<%= product_types %>"
+                  <% elsif @category_name.present? %>
+                    Displaying <%= @products.count %> Mobile<%= 's' if @products.count != 1 %> in <%= @category_name %> category (Total: <%= @total_category_products_count %> Phone<%= 's' if @total_category_products_count != 1 %>)
+                  <% else %>
+                    Displaying All <%= @products.count %> Mobiles (Total: <%= Product.all.count %>)
+                  <% end %>
                 <% else %>
                   No results found for "<%= params[:search] %>"
                 <% end %>
@@ -134,19 +137,34 @@
                   <span class="fs-6">3.0 & UP</span></label>
               </div>
             </div>
-            <!-- Card body -->
+            <!-- Filtering checkboxes -->
             <div class="card-body border-top">
               <span class="dropdown-header px-0 mb-2">Phone Types</span>
-              <!-- Checkbox -->
+
+              <!-- Checkbox for Flagship -->
               <div class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="allTwoCheck">
-                <label class="form-check-label" for="allTwoCheck">Flagships</label>
+                <%= check_box_tag 'product_type[]', 'flagship', params[:product_type]&.include?('flagship'), class: 'form-check-input' %>
+                <%= label_tag 'product_type_flagship', 'Flagships', class: 'form-check-label' %>
               </div>
-              <!-- Checkbox -->
+
+              <!-- Checkbox for Midrange -->
               <div class="form-check mb-1">
-                <input type="checkbox" class="form-check-input" id="beginnerTwoCheck" checked>
-                <label class="form-check-label" for="beginnerTwoCheck">Midrange</label>
+                <%= check_box_tag 'product_type[]', 'mid_range', params[:product_type]&.include?('mid_range'), class: 'form-check-input' %>
+                <%= label_tag 'product_type_mid_range', 'Midrange', class: 'form-check-label' %>
               </div>
+
+              <!-- Checkbox for Button Phones -->
+              <div class="form-check mb-1">
+                <%= check_box_tag 'product_type[]', 'button_phone', params[:product_type]&.include?('button_phone'), class: 'form-check-input' %>
+                <%= label_tag 'product_type_button_phone', 'Button Phones', class: 'form-check-label' %>
+              </div>
+            </div>
+
+            <!-- Display products -->
+            <div class="products-list">
+              <% @products.each do |product| %>
+                <!-- Render product details -->
+              <% end %>
             </div>
           </div>
         </div>
@@ -250,18 +268,7 @@
                             <h3 class="mb-2 text-truncate-line-2 "><a href="<%= product_path(product) %>" class="text-inherit"><%= product.name %></a></h3>
                             <!-- List inline -->
                             <ul class="mb-5 list-inline">
-                              <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h
-                                56m
-                              </li>
-                              <li class="list-inline-item"><svg class="me-1 mt-n1" width="16" height="16"
-                                  viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE">
-                                  </rect>
-                                  <rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9">
-                                  </rect>
-                                  <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9">
-                                  </rect>
-                                </svg>Beginner </li>
+                              <li class="list-inline-item"><%= product&.product_type %></li>
                               <li class="list-inline-item"> <span>
                                   <i class="mdi mdi-star text-warning me-n1"></i>
                                   <i class="mdi mdi-star text-warning me-n1"></i>

@@ -19,11 +19,12 @@ class Product < ApplicationRecord
 	serialize :images, Array
 
   # Enumerations
-  enum product_type: { flagship: 0, mid_range: 1 }
+  enum product_type: { flagship: 0, mid_range: 1, button_phone: 2 }
 
   # Scopes
   scope :flagships, -> { where(product_type: :flagship) }
   scope :mid_ranges, -> { where(product_type: :mid_range) }
+  scope :button_phone, -> { where(product_type: :button_phone) }
 	scope :last_30_days, -> { where(release_date: (Time.now - 30.days)..Time.now) }
 	scope :upcoming_products, -> { where('release_date > ?', Date.today) }
 	scope :latest, lambda{ where(['release_date > ?', 30.days.ago]) }
@@ -119,6 +120,14 @@ class Product < ApplicationRecord
   def keep_images
     images.attach(images_blobs) if images_blobs.present?
   end
+
+  scope :order_by_price_asc, -> {
+    order(Arel.sql("CAST(price AS DECIMAL(10,2)) ASC"))
+  }
+
+  scope :order_by_price_desc, -> {
+    order(Arel.sql("CAST(price AS DECIMAL(10,2)) DESC"))
+  }
 
   def numeric_price
     price.to_s.gsub(/[^0-9]/, '').to_i
