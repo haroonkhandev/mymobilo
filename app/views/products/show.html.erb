@@ -346,6 +346,24 @@
                           <% end %>
                         </tbody>
                       </table>
+                      <div class="network-tab bg-primary" style="" id="pills-tab" role="tablist">
+                        <img src="/assets/box.png" alt="network" class="spec-rounded-circle avatar-xl
+                          network-icon" >
+                        <button class="nav-link" id="pills-development-tab" data-bs-toggle="pill" href="#pills-development" role="tab" aria-controls="pills-development" aria-selected="true" style="color: white;">In the Box</button>
+                      </div>
+                      <table class="table mb-1 table-width">
+                        <tbody>
+                          <% @product.specifications&.each do |specification| %>
+                            <% parsed_attributes = JSON.parse(specification.spec_attributes) rescue {} %>
+                            <% parsed_attributes["box"]&.each do |key, value| %>
+                              <tr>
+                                <td class="text-secondary"><%= key.to_s %></td>
+                                <td class="align-top text-secondary"><%= value %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
