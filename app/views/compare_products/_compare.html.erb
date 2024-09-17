@@ -29,9 +29,10 @@
                           <!-- Card -->
                           <div class="card  mb-4 card-hover">
                             <% if @product1.main_image.attached? %>
-                            <% first_image = @product1.main_image %>
+                              <% first_image = @product1.main_image %>
                               <center>
-                                <a href="<%= product_path(@product1) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:50%;" %>
+                                <a href="<%= product_path(@product1) %>">
+                                  <%= image_tag url_for(@product1.main_image), class:"card-img-top inner-img", style: "max-width:50%;" %>
                                 </a>
                               </center>
                             <% else %>
@@ -55,9 +56,10 @@
                           <!-- Card -->
                           <div class="card  mb-4 card-hover">
                             <% if @product2.main_image.attached? %>
-                            <% first_image = @product2.main_image %>
+                              <% second_image = @product2.main_image %>
                               <center>
-                                <a href="<%= product_path(@product2) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:50%;" %>
+                                <a href="<%= product_path(@product2) %>">
+                                  <%= image_tag url_for(@product2.main_image), class:"card-img-top inner-img", style: "max-width:50%;" %>
                                 </a>
                               </center>
                             <% else %>
