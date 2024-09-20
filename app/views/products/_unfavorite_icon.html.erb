@@ -1,0 +1,11 @@
+<!-- Heart Icon Button -->
+<a href="#"
+   id="unfavorite-button-<%= product.id %>"
+   data-remote="true"
+   data-method="delete"
+   data-url="<%= unfavorite_product_path(product) %>"
+   class="text-muted unfavorite-button"
+   data-bs-toggle="tooltip"
+   title="Remove from favorites">
+  <i class="fe fe-heart text-danger"></i>
+</a>

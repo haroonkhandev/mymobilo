@@ -1,0 +1,11 @@
+<!-- Heart Icon Button -->
+<a href="#"
+   id="favorite-button-<%= product.id %>"
+   data-remote="true"
+   data-method="post"
+   data-url="<%= favorite_product_path(product) %>"
+   class="text-muted favorite-button"
+   data-bs-toggle="tooltip"
+   title="Add to favorites">
+  <i class="fe fe-heart"></i>
+</a>
