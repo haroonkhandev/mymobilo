@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+  <!-- Card -->
+  <% @favorite_products.each do |product| %>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card mb-4 card-hover">
+        <% if product&.images.present? %>
+          <center>
+            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag url_for(product.images.first), style: "max-width:120px;" %>
+            </a>
+          </center>
+        <% else %>
+          <a href="<%= product_path(product) %>" class="card-img-top"><img src="/assets/official.png" alt="course" class="rounded-top-md card-img-top">
+        <% end %>
+        </a>
+        <!-- Card Body -->
+        <div class="card-body landing-card-body">
+          <h4 class="mb-2 text-truncate-line-2">
+            <a href="<%= product_path(product) %>" class="text-inherit card-img-top">
+              <div class="product-name">
+                <span class="name-part name-part-1"><%= product.name.split(' ').first %></span>
+                <span class="name-part name-part-2"><%= product.name.split(' ')[1..-1].join(' ') %></span>
+              </div>
+            </a>
+          </h4>
+          <!-- Price -->
+          <div class="lh-1 mt-3">
+            <span class="text-dark fw-bold">RS <%= product.price %></span>
+            <% if product.actual_price.present? %>
+              <del class="fs-6 text-muted">RS <%= product.actual_price %></del>
+            <% end %>
+          </div>
+          <!-- Remove from Favorites Button -->
+          <%= button_to 'Remove from Favorites', unfavorite_product_path(product), method: :delete, remote: true, class: 'btn btn-danger btn-sm mt-2' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

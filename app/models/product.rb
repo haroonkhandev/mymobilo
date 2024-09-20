@@ -15,6 +15,8 @@ class Product < ApplicationRecord
 	accepts_nested_attributes_for :specifications, allow_destroy: true
   has_many :shop_products
   has_many :shopkeeper_shops, through: :shop_products
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_by_users, through: :favorites, source: :user
 
 	serialize :images, Array
 
@@ -112,6 +114,10 @@ class Product < ApplicationRecord
     joins(:images_attachments)
     .group('products.id')
     .having('COUNT(active_storage_attachments.id) > 0')
+  end
+
+  def favorited_by?(user)
+    favorited_by_users.include?(user)
   end
 
   private
