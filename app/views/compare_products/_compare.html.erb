@@ -92,8 +92,32 @@
             <tbody id="performance" data-filter="target">
                 <tr>
                     <th class="text-dark text-uppercase">Performance</th>
-                    <td><span class="text-dark font-weight-semibold">Apple A12 Bionic</span></td>
-                    <td><span class="text-dark font-weight-semibold">Qualcomm Snapdragon 845</span></td>
+                    <% @product1.specifications.each do |pro1_spec| %>
+                      <% parsed_attributes1 = JSON.parse(pro1_spec.spec_attributes) rescue {} %>
+                      <% parsed_attributes1["build_type"]&.each do |pro1_key, pro1_value| %>
+                        <tr>
+                          <td class="text-secondary"><%= pro1_key.to_s.titleize %></td>
+                          <td><span class="text-dark font-weight-semibold"><%= pro1_value %></span></td>
+                          <td>
+                                <% count = 0 %> <!-- Initialize counter outside the loop -->
+                                <% display_limit = 1 %> <!-- Set how many values you want to display per iteration -->
+                                <% @product2.specifications.each do |pro2_spec| %>
+                                  <% parsed_attributes2 = JSON.parse(pro2_spec.spec_attributes) rescue {} %>
+                                  <% if parsed_attributes2["build_type"] %>
+                                    <% parsed_attributes2["build_type"].each_with_index do |(pro2_key, pro2_value), index| %>
+                                      <% if index >= count && index < count + display_limit %> <!-- Show only next set of values -->
+                                        <span class="text-dark font-weight-semibold"><%= pro2_value %></span>
+                                        <% break %>
+                                      <% end %>
+                                    <% end %>
+                                  <% end %>
+                                <% end %>
+
+                                <% count += display_limit %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% end %>
                 </tr>
                 <tr class="bg-secondary">
                     <th class="text-dark text-uppercase">RAM</th>
