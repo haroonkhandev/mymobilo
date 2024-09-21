@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const favoriteElements = document.querySelectorAll('.favorite-button, .unfavorite-button, .btn-outline-danger, .btn-outline-primary');
+  const favoriteElements = document.querySelectorAll('.favorite-button, .unfavorite-button, .btn-outline-primary[data-product-id], .btn-outline-danger[data-product-id]');
 
   // Initialize Bootstrap tooltips
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
