@@ -6,15 +6,18 @@
                     <td class="align-middle">
                         <select class="form-control custom-select" id="compare-criteria" data-filter="trigger">
                             <option value="all">Comparison criteria *</option>
-                            <option value="summary">Summary</option>
-                            <option value="performance">Performance</option>
+                            <option value="price">Price</option>
+                            <option value="build">Build</option>
+                            <option value="frequency">Frequency</option>
+                            <option value="processor">Processor</option>
                             <option value="display">Display</option>
-                            <option value="storage">Storage</option>
+                            <option value="memory">Memory</option>
                             <option value="camera">Camera</option>
-                            <option value="battery">Battery</option>
+                            <option value="video">video</option>
                             <option value="connectivity">Connectivity</option>
-                            <option value="design">Design</option>
-                            <option value="price">Price &amp; Rating</option>
+                            <option value="features">Features</option>
+                            <option value="battery">Battery</option>
+                            <option value="box">Box</option>
                         </select>
                         <small class="form-text text-muted">* Choose criteria to filter table below.</small>
                         <div class="pt-3">
@@ -45,7 +48,12 @@
                             <!-- Card Body -->
                             <div class="landing-card-body card-body">
                               <h4 class="mb-2 text-truncate">
-                                <a href="<%= product_path(@product1) %>" class="text-inherit card-img-top inner-img" data-toggle="tooltip" title="<%= @product1.name %>"><%= @product1.name %></a>
+                                <a href="<%= product_path(@product1) %>" class="text-inherit card-img-top inner-img" data-toggle="tooltip" title="<%= @product1.name %>">
+                                  <div class="product-name">
+                                    <span class="name-part name-part-1"><%= @product1.name.split(' ').first %></span>
+                                    <span class="name-part name-part-2"><%= @product1.name.split(' ')[1..-1].join(' ') %></span>
+                                  </div>
+                                </a>
                               </h4>
                             </div>
                           </div>
@@ -72,7 +80,12 @@
                             <!-- Card Body -->
                             <div class="landing-card-body card-body">
                               <h4 class="mb-2 text-truncate">
-                                <a href="<%= product_path(@product2) %>" class="text-inherit card-img-top inner-img" data-toggle="tooltip" title="<%= @product2.name %>"><%= @product2.name %></a>
+                                <a href="<%= product_path(@product2) %>" class="text-inherit card-img-top inner-img" data-toggle="tooltip" title="<%= @product2.name %>">
+                                  <div class="product-name">
+                                    <span class="name-part name-part-1"><%= @product2.name.split(' ').first %></span>
+                                    <span class="name-part name-part-2"><%= @product2.name.split(' ')[1..-1].join(' ') %></span>
+                                  </div>
+                                </a>
                               </h4>
                             </div>
                           </div>
@@ -80,136 +93,471 @@
                     </td>
                 </tr>
             </thead>
-            <!-- Summary -->
-            <tbody id="summary" data-filter="target">
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Summary</th>
-                    <td><span class="text-dark font-weight-semibold"><%= @product1.description %></span></td>
-                    <td><span class="text-dark font-weight-semibold"><%= @product2.description %></span></td>
-                </tr>
-            </tbody>
-            <!-- Performance -->
-            <tbody id="performance" data-filter="target">
-                <tr>
-                    <th class="text-dark text-uppercase">Performance</th>
-                    <% @product1.specifications.each do |pro1_spec| %>
-                      <% parsed_attributes1 = JSON.parse(pro1_spec.spec_attributes) rescue {} %>
-                      <% parsed_attributes1["build_type"]&.each do |pro1_key, pro1_value| %>
-                        <tr>
-                          <td class="text-secondary"><%= pro1_key.to_s.titleize %></td>
-                          <td><span class="text-dark font-weight-semibold"><%= pro1_value %></span></td>
-                          <td>
-                                <% count = 0 %> <!-- Initialize counter outside the loop -->
-                                <% display_limit = 1 %> <!-- Set how many values you want to display per iteration -->
-                                <% @product2.specifications.each do |pro2_spec| %>
-                                  <% parsed_attributes2 = JSON.parse(pro2_spec.spec_attributes) rescue {} %>
-                                  <% if parsed_attributes2["build_type"] %>
-                                    <% parsed_attributes2["build_type"].each_with_index do |(pro2_key, pro2_value), index| %>
-                                      <% if index >= count && index < count + display_limit %> <!-- Show only next set of values -->
-                                        <span class="text-dark font-weight-semibold"><%= pro2_value %></span>
-                                        <% break %>
-                                      <% end %>
-                                    <% end %>
-                                  <% end %>
-                                <% end %>
-
-                                <% count += display_limit %>
-                          </td>
-                        </tr>
-                      <% end %>
-                    <% end %>
-                </tr>
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">RAM</th>
-                    <td class="text-dark">4 GB</td>
-                    <td class="text-dark">4 GB</td>
-                </tr>
-                <tr>
-                    <th class="text-dark text-uppercase">Graphics</th>
-                    <td class="text-dark">Apple GPU (4-core graphics)</td>
-                    <td class="text-dark">Adreno 630</td>
-                </tr>
-            </tbody>
-            <!-- Display -->
-            <tbody id="display" data-filter="target">
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Display</th>
-                    <td class="text-dark">6.5-inch Super Retina OLED</td>
-                    <td class="text-dark">6.3-inch 'flexible' OLED</td>
-                </tr>
-                <tr>
-                    <th class="text-dark text-uppercase">Resolution</th>
-                    <td class="text-dark">1125 x 2436 pixels</td>
-                    <td class="text-dark">1440 x 2880 pixels</td>
-                </tr>
-            </tbody>
-            <!-- Storage -->
-            <tbody id="storage" data-filter="target">
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Storage</th>
-                    <td class="text-dark">64 GB</td>
-                    <td class="text-dark">64 GB</td>
-                </tr>
-                <tr>
-                    <th class="text-dark text-uppercase">Expandable</th>
-                    <td class="text-dark">No</td>
-                    <td class="text-dark">No</td>
-                </tr>
-            </tbody>
-            <!-- Camera -->
-            <tbody id="camera" data-filter="target">
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Camera</th>
-                    <td class="text-dark">Dual 12-megapixel</td>
-                    <td class="text-dark">12.2-megapixel</td>
-                </tr>
-                <tr>
-                    <th class="text-dark text-uppercase">Features</th>
-                    <td class="text-dark">10x Digital zoom, Optical zoom</td>
-                    <td class="text-dark">Fixed focus</td>
-                </tr>
-            </tbody>
-            <!-- Battery -->
-            <tbody id="battery" data-filter="target">
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Battery</th>
-                    <td class="text-dark">3,174 mAh, Fast Charging</td>
-                    <td class="text-dark">3,430 mAh, Fast Charging</td>
-                </tr>
-            </tbody>
-            <!-- Connectivity -->
-            <tbody id="connectivity" data-filter="target">
-                <tr>
-                    <th class="text-dark text-uppercase">Connectivity</th>
-                    <td class="text-dark">4G, 3G, 2G</td>
-                    <td class="text-dark">4G, 3G, 2G</td>
-                </tr>
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Bluetooth</th>
-                    <td class="text-dark">Yes</td>
-                    <td class="text-dark">Yes</td>
-                </tr>
-            </tbody>
-            <!-- Design -->
-            <tbody id="design" data-filter="target">
-                <tr>
-                    <th class="text-dark text-uppercase">Design</th>
-                    <td class="text-dark">Aluminum, Glass back</td>
-                    <td class="text-dark">Aluminum</td>
-                </tr>
-                <tr class="bg-secondary">
-                    <th class="text-dark text-uppercase">Weight</th>
-                    <td class="text-dark">174 grams</td>
-                    <td class="text-dark">175 grams</td>
-                </tr>
-            </tbody>
             <!-- Price -->
             <tbody id="price" data-filter="target">
-                <tr>
-                    <th class="text-dark text-uppercase">Price & Rating</th>
-                    <td class="text-dark">$<%= @product1&.price %>, Rating: 4.5/5</td>
-                    <td class="text-dark">$<%= @product2&.price %>, Rating: 4.5/5</td>
+                <tr class="bg-secondary">
+                    <th class="text-dark text-uppercase">Price</th>
+                    <td><span class="text-dark font-weight-semibold"><%= @product1.price %> PKR</span></td>
+                    <td><span class="text-dark font-weight-semibold"><%= @product2.price %> PKR</span></td>
                 </tr>
+            </tbody>
+            <!-- build -->
+            <tbody id="build" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/build1.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">BUILD</button>
+                </th>
+                <% product1_spec = @product1.specifications.find_by(specification_type: "build_type") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "build_type") %>
+
+                <% product1_build_specs = JSON.parse(product1_spec.spec_attributes)["build_type"] rescue {} %>
+                <% product2_build_specs = JSON.parse(product2_spec.spec_attributes)["build_type"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_build_specs = product1_build_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_build_specs = product2_build_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_build_specs.keys + normalized_product2_build_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_build_specs[key].present? ? normalized_product1_build_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_build_specs[key].present? ? normalized_product2_build_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- frequency -->
+            <tbody id="frequency" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/frequency.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">FREQUENCY</button>
+                </th>
+                <% product1_spec = @product1.specifications.find_by(specification_type: "frequency") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "frequency") %>
+
+                <% product1_frequency_specs = JSON.parse(product1_spec.spec_attributes)["frequency"] rescue {} %>
+                <% product2_frequency_specs = JSON.parse(product2_spec.spec_attributes)["frequency"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_frequency_specs = product1_frequency_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_frequency_specs = product2_frequency_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_frequency_specs.keys + normalized_product2_frequency_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_frequency_specs[key].present? ? normalized_product1_frequency_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_frequency_specs[key].present? ? normalized_product2_frequency_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- processor -->
+            <tbody id="processor" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/cpu.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">PROCESSOR</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "processor") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "processor") %>
+
+                <% product1_processor_specs = JSON.parse(product1_spec.spec_attributes)["processor"] rescue {} %>
+                <% product2_processor_specs = JSON.parse(product2_spec.spec_attributes)["processor"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_processor_specs = product1_processor_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_processor_specs = product2_processor_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_processor_specs.keys + normalized_product2_processor_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_processor_specs[key].present? ? normalized_product1_processor_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_processor_specs[key].present? ? normalized_product2_processor_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- display -->
+            <tbody id="display" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/display.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">DISPLAY</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "display") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "display") %>
+
+                <% product1_display_specs = JSON.parse(product1_spec.spec_attributes)["display"] rescue {} %>
+                <% product2_display_specs = JSON.parse(product2_spec.spec_attributes)["display"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_display_specs = product1_display_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_display_specs = product2_display_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_display_specs.keys + normalized_product2_display_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_display_specs[key].present? ? normalized_product1_display_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_display_specs[key].present? ? normalized_product2_display_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- Memory -->
+            <tbody id="memory" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/memory.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">MEMORY</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "memory") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "memory") %>
+
+                <% product1_memory_specs = JSON.parse(product1_spec.spec_attributes)["memory"] rescue {} %>
+                <% product2_memory_specs = JSON.parse(product2_spec.spec_attributes)["memory"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_memory_specs = product1_memory_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_memory_specs = product2_memory_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_memory_specs.keys + normalized_product2_memory_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_memory_specs[key].present? ? normalized_product1_memory_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_memory_specs[key].present? ? normalized_product2_memory_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- camera -->
+            <tbody id="camera" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/camera.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">CAMERA</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "camera") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "camera") %>
+
+                <% product1_camera_specs = JSON.parse(product1_spec.spec_attributes)["camera"] rescue {} %>
+                <% product2_camera_specs = JSON.parse(product2_spec.spec_attributes)["camera"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_camera_specs = product1_camera_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_camera_specs = product2_camera_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_camera_specs.keys + normalized_product2_camera_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_camera_specs[key].present? ? normalized_product1_camera_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_camera_specs[key].present? ? normalized_product2_camera_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- video -->
+            <tbody id="video" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/video.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">VIDEO</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "video") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "video") %>
+
+                <% product1_video_specs = JSON.parse(product1_spec.spec_attributes)["video"] rescue {} %>
+                <% product2_video_specs = JSON.parse(product2_spec.spec_attributes)["video"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_video_specs = product1_video_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_video_specs = product2_video_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_video_specs.keys + normalized_product2_video_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_video_specs[key].present? ? normalized_product1_video_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_video_specs[key].present? ? normalized_product2_video_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- connectivity -->
+            <tbody id="connectivity" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/connectivity.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">CONNECTIVITY</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "connectivity") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "connectivity") %>
+
+                <% product1_connectivity_specs = JSON.parse(product1_spec.spec_attributes)["connectivity"] rescue {} %>
+                <% product2_connectivity_specs = JSON.parse(product2_spec.spec_attributes)["connectivity"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_connectivity_specs = product1_connectivity_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_connectivity_specs = product2_connectivity_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_connectivity_specs.keys + normalized_product2_connectivity_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_connectivity_specs[key].present? ? normalized_product1_connectivity_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_connectivity_specs[key].present? ? normalized_product2_connectivity_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <!-- Features -->
+            <tbody id="features" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/feature.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">FEATURES</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "features") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "features") %>
+
+                <% product1_features_specs = JSON.parse(product1_spec.spec_attributes)["features"] rescue {} %>
+                <% product2_features_specs = JSON.parse(product2_spec.spec_attributes)["features"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_features_specs = product1_features_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_features_specs = product2_features_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_features_specs.keys + normalized_product2_features_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_features_specs[key].present? ? normalized_product1_features_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_features_specs[key].present? ? normalized_product2_features_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <tbody id="battery" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/battery.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">BATTERY</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "battery") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "battery") %>
+
+                <% product1_battery_specs = JSON.parse(product1_spec.spec_attributes)["battery"] rescue {} %>
+                <% product2_battery_specs = JSON.parse(product2_spec.spec_attributes)["battery"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_battery_specs = product1_battery_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_battery_specs = product2_battery_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_battery_specs.keys + normalized_product2_battery_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_battery_specs[key].present? ? normalized_product1_battery_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_battery_specs[key].present? ? normalized_product2_battery_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
+            </tbody>
+            <tbody id="box" data-filter="target">
+              <tr>
+                <th class="network-tab bg-primary">
+                  <img src="/assets/box.png" alt="build" class="spec-rounded-circle avatar-xl
+                    network-icon" >
+                  <button class="nav-link" style="color: white;">BOX</button>
+                </th>
+
+                <% product1_spec = @product1.specifications.find_by(specification_type: "box") %>
+                <% product2_spec = @product2.specifications.find_by(specification_type: "box") %>
+
+                <% product1_box_specs = JSON.parse(product1_spec.spec_attributes)["box"] rescue {} %>
+                <% product2_box_specs = JSON.parse(product2_spec.spec_attributes)["box"] rescue {} %>
+
+                <% # Normalize keys for both products %>
+                <% normalized_product1_box_specs = product1_box_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+                <% normalized_product2_box_specs = product2_box_specs.transform_keys { |k| k.to_s.downcase.gsub(/\s+/, "_") } %>
+
+                <% all_keys = (normalized_product1_box_specs.keys + normalized_product2_box_specs.keys).uniq %>
+
+                <% all_keys.each do |key| %>
+                  <tr>
+                    <td class="text-secondary"><%= key.to_s.titleize.gsub("_", " ") %></td>
+
+                    <!-- Product 1 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product1_box_specs[key].present? ? normalized_product1_box_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+
+                    <!-- Product 2 value -->
+                    <td>
+                      <span class="text-dark font-weight-semibold">
+                        <%= normalized_product2_box_specs[key].present? ? normalized_product2_box_specs[key] : "Not available" %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tr>
             </tbody>
         </table>
     </div>
