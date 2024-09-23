@@ -61,6 +61,12 @@ $(document).ready(function() {
       }
     });
   });
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent default form submission
+        document.getElementById('compareButton').click(); // Trigger the compare button click
+    }
+});
 
     $('#compareButton').click(function() {
     var product1Id = $('#product1Select').val();
