@@ -4,45 +4,44 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-xl-7 col-lg-7 col-md-12">
-          <div>
-            <center>
-              <% if @product.main_image.attached? %>
-                  <% first_image = @product.main_image %>
-                  <section>
-                    <%= image_tag url_for(first_image), alt: "Product Image", class:"card-img-top mb-3", style: "max-width:50%;" %>
-                  </section>
-                <% else %>
-                  <section>
-                    <img src="/assets/official.png" class="card-img-top mb-3", style="max-width:50%;" alt="product Image">
-                  </section>
-                <% end %>
-            </center>
-            <h1 class="text-white fw-semibold display-6 display-md-4 display-lg-2">
-              <%= @product&.name %>
-            </h1>
-
-            <% product_attributes = {
-              'fa-camera' => @product.camera_prod,
-              'fa-microchip' => @product.processor_prod,
-              'fa-hdd' => @product.storage_prod,
-              'fa-battery-full' => @product.battery_prod,
-              'fa-memory' => @product.ram_prod,
-              'fa-mobile-alt' => @product.display_prod # Mobile screen icon
-            } %>
-
-            <% if product_attributes.values.any?(&:present?) %>
-              <div class="d-flex align-items-center flex-wrap">
-                <% product_attributes.each do |icon, value| %>
-                  <% if value.present? %>
-                    <span class="text-white ms-3 mb-2 d-flex align-items-center fs-6 fs-md-4 fs-lg-3">
-                      <i class="fas <%= icon %> me-2"></i>
-                      <strong><%= value %></strong>
-                    </span>
-                  <% end %>
-                <% end %>
-              </div><br>
+          <center>
+            <% if @product.main_image.attached? %>
+              <% first_image = @product.main_image %>
+              <section>
+                <%= image_tag url_for(first_image), alt: "Product Image", class:"card-img-top mb-3", style: "max-width:50%;" %>
+              </section>
+            <% else %>
+              <section>
+                <img src="/assets/official.png" class="card-img-top mb-3" style="max-width:50%;" alt="Product Image">
+              </section>
             <% end %>
-          </div>
+          </center>
+
+          <h1 class="text-white fw-semibold display-6 display-md-4 display-lg-2 mb-4"> <!-- Added mb-4 for space -->
+            <%= @product&.name %>
+          </h1>
+
+          <% product_attributes = {
+            'fa-mobile-alt' => @product.display_prod,
+            'fa-microchip' => @product.processor_prod,
+            'fa-hdd' => @product.storage_prod,
+            'fa-camera' => @product.camera_prod,
+            'fa-memory' => @product.ram_prod,
+            'fa-battery-full' => @product.battery_prod
+          } %>
+
+          <% if product_attributes.values.any?(&:present?) %>
+            <div class="row">
+              <% product_attributes.each do |icon, value| %>
+                <% if value.present? %>
+                  <div class="col-12 col-sm-6 d-flex align-items-center mb-3"> <!-- col-12 on mobile, col-6 on larger screens -->
+                    <i class="fas <%= icon %> fa-3x me-3 text-white"></i> <!-- Added me-3 for more space between icon and text -->
+                    <strong class="text-white"><%= value %></strong>
+                  </div>
+                <% end %>
+              <% end %>
+            </div><br>
+          <% end %>
         </div>
       </div>
     </div>
