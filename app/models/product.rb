@@ -128,11 +128,11 @@ class Product < ApplicationRecord
   end
 
   scope :order_by_price_asc, -> {
-    order(Arel.sql("CAST(price AS DECIMAL(10,2)) ASC"))
+    order(Arel.sql("CAST(REPLACE(price, ',', '') AS DECIMAL(10,2)) ASC"))
   }
 
   scope :order_by_price_desc, -> {
-    order(Arel.sql("CAST(price AS DECIMAL(10,2)) DESC"))
+    order(Arel.sql("CAST(REPLACE(price, ',', '') AS DECIMAL(10,2)) DESC"))
   }
 
   def numeric_price

@@ -21,7 +21,7 @@
     <%= javascript_tag %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <% if user_signed_in? %>
       <% if current_user.shopkeeper? %>
         <% if shopkeeper_landing_nav? %>
@@ -34,8 +34,11 @@
       <%= render partial: "shared/user_navbar" %>
     <% end %>
 
-    <%= yield %>
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
 
+    <!-- Footer -->
     <% if user_signed_in? %>
       <% if current_user.shopkeeper? %>
         <%= render partial: "shopkeepers/shopkeeper_footer" %>
