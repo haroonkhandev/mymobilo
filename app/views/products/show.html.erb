@@ -611,7 +611,7 @@
                       Add to Favorite
                     </a>
                   <% end %>
-                  <a href="#" class="btn btn-outline-primary mb-2">Get Full Access</a>
+                  <%= link_to 'Where to Buy', where_to_buy_product_path(@product), class: 'btn btn-outline-primary mb-2' %>
                   <%= link_to "Compare Products", compare_products_index_path(product_id: @product.id), class: "btn btn-primary" %>
                 </div>
             </div>
