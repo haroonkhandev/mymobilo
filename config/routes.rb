@@ -37,9 +37,13 @@ Rails.application.routes.draw do
     member do
       post :favorite, to: 'favorites#create'
       delete :unfavorite, to: 'favorites#destroy'
+
+      get 'where_to_buy', to: 'shopkeeper_shops#where_to_buy'
     end
   end
+
   resources :favorites, only: [:index]
+
   # Restricted access for shopkeeper profiles
   namespace :users do
     get 'dashboard', to: 'dashboard#index'

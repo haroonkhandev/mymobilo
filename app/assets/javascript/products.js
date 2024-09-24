@@ -2,6 +2,7 @@ $(document).ready(function() {
   $('#category-select').change(function() {
     var selectedFilter = $(this).val();
     var currentUrl = window.location.href;
+
     // Make an AJAX request to fetch filtered products based on the selected category
     $.ajax({
       url: currentUrl, // Update the URL based on your route configuration
@@ -9,7 +10,7 @@ $(document).ready(function() {
       data: { category: selectedFilter },
       dataType: 'script',
       success: function(data) {
-       },
+      },
       error: function(xhr, status, error) {
         // Handle errors if any
       }
@@ -61,14 +62,18 @@ $(document).ready(function() {
       }
     });
   });
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
+
+  // Add Enter key functionality specifically for the compare products page
+  if (window.location.pathname === '/compare_products/index') {
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
         event.preventDefault(); // Prevent default form submission
         document.getElementById('compareButton').click(); // Trigger the compare button click
-    }
-});
+      }
+    });
+  }
 
-    $('#compareButton').click(function() {
+  $('#compareButton').click(function() {
     var product1Id = $('#product1Select').val();
     var product2Id = $('#product2Select').val();
 
@@ -90,10 +95,11 @@ $(document).ready(function() {
     });
   });
 });
+
 document.addEventListener('DOMContentLoaded', function () {
   const hash = window.location.hash || '#description';
   const targetTab = document.querySelector(`[href="${hash}"]`);
-  
+
   if (targetTab) {
     targetTab.click();
   }

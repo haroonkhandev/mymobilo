@@ -145,6 +145,11 @@ class ShopkeeperShopsController < ApplicationController
     end
   end
 
+  def where_to_buy
+    @product = Product.friendly.find(params[:id])
+    @shop_products = ShopProduct.where(product_id: @product.id).includes(:shopkeeper_shop)
+  end
+
   private
 
   def set_shopkeeper_shop

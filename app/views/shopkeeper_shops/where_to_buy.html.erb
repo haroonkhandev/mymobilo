@@ -1,0 +1,235 @@
+<body>
+  <main>
+    <!-- Page header -->
+    <section class="bg-primary py-4 py-lg-6">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+            <div>
+              <h1 class="mb-0 text-white display-4">
+                <i class="fas fa-map-marker-alt me-2"></i> <!-- Font Awesome Map Marker Icon -->
+                Where to Buy <%= @product.name %>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Content -->
+    <section class="py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-12 mb-4 mb-lg-0">
+            <!-- Card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header">
+                <h4 class="mb-0">Filter</h4>
+              </div>
+              <!-- Card body -->
+              <div class="card-body">
+                <span class="dropdown-header px-0 mb-2"> Category</span>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="reactCheck" checked>
+                  <label class="form-check-label" for="reactCheck">React</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="javascriptCheck">
+                  <label class="form-check-label" for="javascriptCheck">Javascript</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="angularCheck">
+                  <label class="form-check-label" for="angularCheck">Angular</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="nodeCheck">
+                  <label class="form-check-label" for="nodeCheck">Node</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="angularJSCheck">
+                  <label class="form-check-label" for="angularJSCheck">Angular JS</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="gatsbyCheck">
+                  <label class="form-check-label" for="gatsbyCheck">GatsBy</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="graphQlCheck">
+                  <label class="form-check-label" for="graphQlCheck">GraphQL</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="vueJsCheck">
+                  <label class="form-check-label" for="vueJsCheck">VueJs</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="bootstrapCheck">
+                  <label class="form-check-label" for="bootstrapCheck">Bootstrap</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="figmaCheck">
+                  <label class="form-check-label" for="figmaCheck">Figma</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="sketchCheck">
+                  <label class="form-check-label" for="sketchCheck">Sketch</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="HTML5Check">
+                  <label class="form-check-label" for="HTML5Check">HTML5</label>
+                </div>
+              </div>
+              <!-- Card body -->
+              <div class="card-body border-top">
+                <span class="dropdown-header px-0 mb-2"> Ratings</span>
+                <!-- Custom control -->
+                <div class="custom-control custom-radio mb-1">
+                  <input type="radio" class="form-check-input" id="starRadio1" name="customRadio">
+                  <label class="form-check-label" for="starRadio1">
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star text-warning "></i>
+                    <span class="fs-6">4.5 & UP</span>
+                  </label>
+                </div>
+                <!-- Custom control -->
+                <div class="custom-control custom-radio mb-1">
+                  <input type="radio" class="form-check-input" id="starRadio2" name="customRadio" checked>
+                  <label class="form-check-label" for="starRadio2"> <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star text-warning "></i>
+                    <span class="fs-6">4.0 & UP</span></label>
+                </div>
+                <!-- Custom control -->
+                <div class="custom-control custom-radio mb-1">
+                  <input type="radio" class="form-check-input" id="starRadio3" name="customRadio">
+                  <label class="form-check-label" for="starRadio3"> <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star text-warning "></i>
+                    <span class="fs-6">3.5 & UP</span></label>
+                </div>
+                <!-- Custom control -->
+                <div class="custom-control custom-radio mb-1">
+                  <input type="radio" class="form-check-input" id="starRadio4" name="customRadio">
+                  <label class="form-check-label" for="starRadio4"> <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star me-n1 text-warning"></i>
+                    <i class="mdi mdi-star text-warning "></i>
+                    <span class="fs-6">3.0 & UP</span></label>
+                </div>
+              </div>
+              <!-- Card body -->
+              <div class="card-body border-top">
+                <span class="dropdown-header px-0 mb-2"> Skill Level</span>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="allTwoCheck">
+                  <label class="form-check-label" for="allTwoCheck">All Level</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="beginnerTwoCheck" checked>
+                  <label class="form-check-label" for="beginnerTwoCheck">Beginner</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="intermediateCheck">
+                  <label class="form-check-label" for="intermediateCheck">Intermediate</label>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-check mb-1">
+                  <input type="checkbox" class="form-check-input" id="AdvancedTwoCheck">
+                  <label class="form-check-label" for="AdvancedTwoCheck">Advance</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Tab content -->
+          <div class="col-xl-9 col-lg-9 col-md-8 col-12">
+            <div class="tab-content">
+              <!-- Tab pane -->
+              <div class="tab-pane fade show active pb-4 " id="tabPaneGrid" role="tabpanel"
+                aria-labelledby="tabPaneGrid">
+                <div class="row">
+                  <% if @shop_products.any? %>
+                    <% @shop_products.each do |shop_product| %>
+                      <div class="col-lg-3 col-md-6 col-12">
+                          <!-- Card -->
+                          <div class="card mb-4 card-hover">
+                            <% if shop_product.product&.main_image.present? %>
+                              <center>
+                                <a href="<%= product_path(shop_product.product) %>">
+                                  <%= image_tag url_for(shop_product.product.main_image), class: "card-img-top inner-img", style: "max-width:100%;" %>
+                                </a>
+                              </center>
+                            <% else %>
+                              <center>
+                                <a href="<%= product_path(shop_product.product) %>">
+                                  <img src="/assets/official.png" alt="phone" class="card-img-top inner-img" style="max-width:100%;">
+                                </a>
+                              </center>
+                            <% end %>
+                            <!-- Card Body -->
+                            <div class="landing-card-body card-body">
+                              <h4 class="mb-2 text-truncate-line-2">
+                                <a href="<%= product_path(shop_product.product) %>" class="text-inherit card-img-top">
+                                  <div class="product-name">
+                                    <span class="name-part name-part-1"><%= shop_product.product.name.split(' ').first %></span>
+                                    <span class="name-part name-part-2"><%= shop_product.product.name.split(' ')[1..-1].join(' ') %></span>
+                                  </div>
+                                </a>
+                              </h4>
+
+                              <!-- Available At Section -->
+                              <div class="lh-1">
+                                <span class="text-dark fw-bold">Available at:
+                                  <%= link_to shop_product.shopkeeper_shop.shop_name, shopkeeper_shop_path(shop_product.shopkeeper_shop) %>
+                                </span>
+                                <span class="text-muted"> (Quantity: <%= shop_product.quantity %>)</span>
+                              </div><br>
+
+                              <!-- Price Section -->
+                              <div class="lh-1">
+                                <span class="text-dark fw-bold">Price: RS <%= shop_product.product&.price %></span>
+                                <% if shop_product.product&.actual_price.present? %>
+                                  <del class="fs-6 text-muted">RS <%= shop_product.product&.actual_price %></del>
+                                <% end %>
+                              </div>
+                              <div class="mt-3 d-flex justify-content-center">
+                                <%= button_tag 'Book Now', class: 'btn btn-outline-primary btn-sm me-2', style: 'white-space: nowrap;' %>
+                                <%= button_tag 'Add to Cart', class: 'btn btn-primary btn-sm', style: 'white-space: nowrap;' %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    <% end %>
+                  <% else %>
+                    <p>No shops selling this product currently.</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
