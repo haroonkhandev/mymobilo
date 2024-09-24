@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
   before_action :set_product, only: [:create, :destroy]
 
   def index
-  @favorite_products = current_user.favorite_products.includes(:category)
+  @favorite_products = current_user.favorite_products.includes(:category).page(params[:page]).per(8)
 
   respond_to do |format|
     format.html # This will render the default index.html.erb view
