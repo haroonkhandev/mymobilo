@@ -180,18 +180,20 @@
                       <div class="col-lg-3 col-md-6 col-12">
                         <!-- Card -->
                         <div class="card  mb-4 card-hover">
-                          <% if product&.images.present? %>
+                          <% if product&.main_image.present? %>
                             <center>
-                              <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.images.first), class:"card-img-top inner-img", style: "max-width:100%;" %></a>
+                              <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
+                              </a>
                             </center>
                           <% else %>
                             <center>
-                              <a href="<%= product_path(product) %>"><img src="/assets/official.png" alt="course" class="card-img-top inner-img", style= "max-width:100%;" >
+                              <a href="<%= product_path(product) %>">
+                                <img src="/assets/official.png" alt="phone" class="card-img-top inner-img" style="max-width:100%;">
                               </a>
                             </center>
                           <% end %>
                           <!-- Card Body -->
-                          <div class="card-body landing-card-body">
+                          <div class="landing-card-body card-body">
                             <h4 class="mb-2 text-truncate-line-2">
                               <a href="<%= product_path(product) %>" class="text-inherit card-img-top">
                                 <div class="product-name">
@@ -245,16 +247,16 @@
             </div>
             <!-- List Products -->
             <div class="tab-pane fade pb-4" id="tabPaneList" role="tabpanel" aria-labelledby="tabPaneList">
-              <!-- Card -->
+              <!-- List Card -->
               <% if @products.present? %>
                 <% @products.each do |product| %>
                   <div class="card mb-4 card-hover">
                     <div class="row g-0 mb-4">
-                      <% if product&.images.present? %>
+                      <% if product&.main_image.present? %>
                         <a class="col-12 col-md-12 col-xl-3 col-lg-3 p-0 d-flex align-items-center justify-content-center"
                            style="overflow: hidden; border-radius: 0.5rem;"
                            href="<%= product_path(product) %>">
-                          <%= image_tag url_for(product.images.first), class: "img-fluid" %>
+                          <%= image_tag url_for(product.main_image), class: "img-fluid" %>
                         </a>
                       <% else %>
                         <a class="col-12 col-md-12 col-xl-3 col-lg-3 p-0 d-flex align-items-center justify-content-center"
