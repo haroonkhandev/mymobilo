@@ -618,30 +618,27 @@
           </div>
           <!-- Card -->
           <div class="card mb-4">
-              <div>
-                  <!-- Card header -->
-                  <div class="card-header">
-                      <h4 class="mb-0">What’s included</h4>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                      <li class="list-group-item bg-transparent">
-                          <i class="fe fe-play-circle align-middle me-2 text-primary"></i>12 hours video
-                      </li>
-                      <li class="list-group-item bg-transparent">
-                          <i class="fe fe-award me-2 align-middle text-success"></i>Certificate
-                      </li>
-                      <li class="list-group-item bg-transparent">
-                          <i class="fe fe-calendar align-middle me-2 text-info"></i>12
-                          Article
-                      </li>
-                      <li class="list-group-item bg-transparent">
-                          <i class="fe fe-video align-middle me-2 text-secondary"></i>Watch Offline
-                      </li>
-                      <li class="list-group-item bg-transparent border-bottom-0">
-                          <i class="fe fe-clock align-middle me-2 text-warning"></i>Lifetime access
-                      </li>
-                  </ul>
-              </div>
+            <div>
+                <div class="card-header">
+                    <h4 class="mb-0">Mymobilo’s Recommended Stores</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <% if @shop_products.present? %>
+                      <% @shop_products.first(5).each do |shop_product| %>
+                        <li class="list-group-item bg-transparent">
+                          <i class="fe fe-shopping-cart align-middle me-2 text-primary"></i>
+                          <% if shop_product.shopkeeper_shop %>
+                              <%= link_to shop_product.shopkeeper_shop.shop_name, user_shops_shopkeeper_shop_path(shop_product.shopkeeper_shop), class: 'text-decoration-none' %>
+                          <% else %>
+                              <%= link_to shop_product.shopkeeper_shop.shop_name, shopkeeper_shop_path(shop_product.shopkeeper_shop), class: 'text-decoration-none' %>
+                          <% end %>
+                        </li>
+                      <% end %>
+                  <% else %>
+                      <li class="list-group-item bg-transparent">No shops available for this product.</li>
+                  <% end %>
+                </ul>
+            </div>
           </div>
           <!-- Card -->
           <div class="card">

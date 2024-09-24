@@ -23,6 +23,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.friendly.find(params[:id])
+    @shop_products = @product.shop_products.includes(:shopkeeper_shop).limit(5)
     @comments = @product.comments.order(created_at: :desc).page(params[:page])
     @related_products = @product.related_products
     @category = @product.category

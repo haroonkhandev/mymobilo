@@ -201,7 +201,7 @@
                               <!-- Available At Section -->
                               <div class="lh-1">
                                 <span class="text-dark fw-bold">Available at:
-                                  <%= link_to shop_product.shopkeeper_shop.shop_name, shopkeeper_shop_path(shop_product.shopkeeper_shop) %>
+                                  <%= link_to shop_product.shopkeeper_shop.shop_name, user_shops_shopkeeper_shop_path(shop_product.shopkeeper_shop), class: 'text-decoration-none' %>
                                 </span>
                                 <span class="text-muted"> (Quantity: <%= shop_product.quantity %>)</span>
                               </div><br>
