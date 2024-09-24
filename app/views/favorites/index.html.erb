@@ -1,18 +1,22 @@
 <div class="container">
   <div class="row">
+  <%= render 'shared/flash_messages' %>
   <!-- Card -->
   <% @favorite_products.each do |product| %>
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
       <div class="card mb-4 card-hover">
-        <% if product&.images.present? %>
+        <% if product&.main_image.present? %>
           <center>
-            <a href="<%= product_path(product) %>" class="card-img-top"><%= image_tag url_for(product.images.first), style: "max-width:120px;" %>
+            <a href="<%= product_path(product) %>" ><%= image_tag url_for(product.main_image), class:"card-img-top inner-img", style: "max-width:100%;" %>
             </a>
           </center>
         <% else %>
-          <a href="<%= product_path(product) %>" class="card-img-top"><img src="/assets/official.png" alt="course" class="rounded-top-md card-img-top">
+          <center>
+            <a href="<%= product_path(product) %>">
+              <img src="assets/official.png" alt="course" class="card-img-top inner-img" style="max-width:100%;">
+            </a>
+          </center>
         <% end %>
-        </a>
         <!-- Card Body -->
         <div class="card-body landing-card-body">
           <h4 class="mb-2 text-truncate-line-2">
@@ -37,4 +41,8 @@
     </div>
   <% end %>
   </div>
+  <!-- Pagination Links -->
+   <div class="mt-4 d-flex justify-content-center">
+     <%= paginate @favorite_products %>
+   </div>
 </div>

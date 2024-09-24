@@ -145,7 +145,7 @@
                         <% @categories.each do |category| %>
                           <% if @products_by_category[category.id].present? %>
                             <li>
-                              <a class="btn btn-primary me-2 mb-2 <%= 'active' if @active_category.to_s == category.id.to_s %>" id="<%= "#{category.id}-tab" %>" data-bs-toggle="pill" href="#<%= category.id %>" role="tab" aria-controls="<%= category.id %>" aria-selected="<%= @active_category.to_s == category.id.to_s %>"><%= category.name %></a>
+                              <a class="btn btn-primary me-2 mb-2 <%= 'active' if @active_category.to_s == category.name.parameterize %>" id="<%= "#{category.name.parameterize}-tab" %>" data-bs-toggle="pill" href="#<%= category.name.parameterize %>" role="tab" aria-controls="<%= category.name.parameterize %>" aria-selected="<%= @active_category.to_s == category.name.parameterize %>"><%= category.name %></a>
                             </li>
                           <% end %>
                         <% end %>
@@ -164,7 +164,7 @@
                       <!-- Category Tabs -->
                       <% @categories.each do |category| %>
                         <% if @products_by_category[category.id].present? %>
-                          <div class="tab-pane fade <%= 'show active' if @active_category.to_s == category.id.to_s %>" id="<%= category.id %>" role="tabpanel" aria-labelledby="<%= "#{category.id}-tab" %>">
+                          <div class="tab-pane fade <%= 'show active' if @active_category.to_s == category.name.parameterize %>" id="<%= category.name.parameterize %>" role="tabpanel" aria-labelledby="<%= "#{category.name.parameterize}-tab" %>">
                             <%= render partial: 'user_shop_product_list', locals: { products: @products_by_category[category.id], category_name: category.name } %>
                           </div>
                         <% end %>
