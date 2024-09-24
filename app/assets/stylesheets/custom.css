@@ -187,3 +187,14 @@ div.scrollmenu a:hover {
 .category-mb-1 {
     margin-bottom: 0.50rem !important;
 }
+
+.responsive-width {
+    width: 1240px !important; /* Default for web */
+  }
+
+  @media (max-width: 767px) {
+    /* For mobile screens */
+    .responsive-width {
+      width: 657px !important;
+    }
+  }

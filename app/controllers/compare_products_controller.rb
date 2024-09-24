@@ -19,5 +19,4 @@ class CompareProductsController < ApplicationController
       format.js { render 'compare_products/compare' }
     end
   end
-
 end
